@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<t_alteration_exclusion_control store_code="222" business_date="20180512" 
+cash_register_no="134" data_alteration_type="2" exclusion_valid_time="60" 
+create_user_id="aa"  create_datetime="2019-03-15 00:00:00" create_program_id="cc" 
+update_user_id="bb"  update_datetime="2019-03-15 00:00:00" update_program_id="dd" />
+<m_trans_store_code store_code="222" store_name="storename" 
+view_store_code="viewstorecode" integrate_db_store_code="dbstorecode" system_brand_code="0001" 
+system_business_code="systemcode" business_name="businessname" block_code="1000"
+block_name="blockname" area_code="111" area_name="areaname" system_country_code="100"
+country_name="countryname" batch_region="22" integrate_db_business_code="100"
+store_device_rmvl_date="2019-03-15 00:00:00" send_target_store_flag="1"
+create_user_id="12"  create_datetime="2019-03-15 00:00:00" create_program_id="45" 
+update_user_id="23"  update_datetime="2019-03-15 00:00:00" update_program_id="67" />
+</dataset>

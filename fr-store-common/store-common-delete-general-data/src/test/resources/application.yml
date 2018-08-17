@@ -1,0 +1,35 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SLS
+    full: sales
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+
+spring:
+  messages:
+    basename: messages,messages-delete-general-data
+    cache-seconds: -1
+    encoding: UTF-8
+  
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+
+logging:
+  level:
+     com.fastretailing.dcp: DEBUG
+  path: logs
+  
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-alteration-data-upload.title},~{::link}, ~{::script})">
+<script type="text/javascript"
+	th:src="@{static/js/sales-alteration-data-upload.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-alteration-data-upload.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main" th:object="${alterationDataUploadForm}">
+		<input id="E_SLS_66000119" type="hidden" data-error="E_SLS_66000119"
+			th:value="#{E_SLS_66000119}" /> <input id="E_SLS_66000120"
+			type="hidden" data-error="E_SLS_66000120"
+			th:value="#{E_SLS_66000120}" /> <input id="I_SLS_06000111"
+			type="hidden" data-error="I_SLS_06000111"
+			th:value="#{I_SLS_06000111}" />
+			<input id="filesize" type="hidden" th:value="#{sales-alteration-data-upload.filesize}" />
+			<input id="salestransactiondata" type="hidden" th:value="#{sales-alteration-data-upload.salestransactiondata}">
+			<input id="payoffdata" type="hidden" th:value="#{sales-alteration-data-upload.payoffdata}">
+			<input id="salestransactionsize" type="hidden" th:value="#{sales-alteration-data-upload.salestransactionsize}">
+			<input id="payoffsize" type="hidden" th:value="#{sales-alteration-data-upload.payoffsize}">
+			
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{sales-alteration-data-upload.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<br> <input type="hidden" id="loginUserId" name="loginUserId"
+				th:value="${commonBaseForm.loginUserId}" />
+			<div class="radio-btn" id="type1">
+				<input type="radio" value="0" th:field="*{alterationDataType}">
+				<label class="transactionData"
+					th:text="#{sales-alteration-data-upload.salestransactiondata}"
+					for="alterationDataType1"></label>
+			</div>
+			<div class="radio-btn" id="type2">
+				<input type="radio" value="1" th:field="*{alterationDataType}">
+				<label class="payoffData" th:text="#{sales-alteration-data-upload.payoffdata}"
+					for="alterationDataType2"></label>
+			</div>
+			<br>
+			<div class="input-wrap space-between fz13 mb15">
+				<input type="text" class="textbox width330" id="fileName" readonly>&nbsp;&nbsp;&nbsp;
+				<a href="#" onclick="selectFile()" class="button small cancel"
+					th:text="#{sales-alteration-data-upload.reference}"></a> <input
+					type="file" id="file" onchange="setfileName()"
+					style="display: none;">
+			</div>
+		</div>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options">
+			<ul>
+				<li><a href="#" class="button submit" id="uploadButton"
+					onclick="clickRegister();"
+					th:text="#{sales-alteration-data-upload.upload}"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

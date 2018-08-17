@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:object="${salesTransactionCorrectionHistoryDetailForm}">
+	<div
+		th:replace="sales-transaction-correction-history-detail-header-itemdetails-tableBody :: tableBody(*{salesTransactionHistoryDetail})"></div>
+	<div
+		th:replace="sales-transaction-correction-history-detail-header-tax-tableBody :: tableBody(*{salesTransactionHistoryDetail})"></div>
+	<div
+		th:replace="sales-transaction-correction-history-detail-header-payment-tableBody :: tableBody(*{salesTransactionHistoryDetail})"></div>
+	<div
+		th:replace="sales-transaction-correction-history-detail-header-total-tableBody :: tableBody(*{salesTransactionHistoryDetail})"></div>
+</div>
+</html>

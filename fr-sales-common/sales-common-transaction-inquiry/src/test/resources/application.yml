@@ -1,0 +1,48 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SLS
+    full: sales
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+  session:
+    timeout: 60
+
+spring:
+  messages:
+    basename: i18n/messages,i18n/messages-sales-api,ValidationMessages,messages-store-common
+    cache-seconds: -1
+    encoding: UTF-8
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+    tomcat:
+      testOnBorrow: true
+      testWhileIdle: true
+      validationQuery: SELECT 1
+      validationQueryTimeout: 5
+  transaction:
+    default-timeout: 60
+  jackson:
+    default-property-inclusion: NON_NULL
+logging:
+  level:
+    org.apache.tomcat: INFO
+    org.springframework.web: INFO
+    com.fastretailing: DEBUG
+    com.fastretailing.dcp.common.api.log: DEBUG
+  path: logs
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+version:
+  aws: 1.11.228

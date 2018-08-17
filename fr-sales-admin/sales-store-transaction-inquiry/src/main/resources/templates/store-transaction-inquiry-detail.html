@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div id="detailArea" th:object="${storeTransactionInquiryForm}">
+	<input type="hidden" th:field="*{taxTypeFlag}" /> <input type="hidden"
+		th:field="*{decimalFormat}" />
+	<div class="input-wrap space-between fz17 mb15" id="countTransaction">
+		<div class="input-wrap mb0">
+			<div class="width100">
+				<label class="button skeleton primary small"
+					th:utext="#{store-transaction-inquiry.detail.resultNumberofTransactionLabel}"></label>
+			</div>
+			<div class="input-elem" id="countTransaction">
+				<p>
+					<span class="numerickeybord-wrap"><input type="text"
+						class="textbox width160 numerickeybord" maxlength="4"
+						th:field="*{numberOfTransaction}" readonly><span
+						class="input-clear fade-action"></span></span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="input-wrap space-between fz13 mb15" id="countTransaction">
+		<div class="input-wrap mb0">
+			<a href="#" id="previousButton"
+				th:class="${storeTransactionInquiryForm.countIndex>0}?'button skeleton primary small':'button skeleton primary small disabled'"
+				th:text="#{store-transaction-inquiry.detail.prevButton}"
+				onclick="onClickPrevious()"></a>&nbsp;&nbsp;&nbsp;<a href="#"
+				id="nextButton"
+				th:class="${storeTransactionInquiryForm.previousNextFlag == true}?'button skeleton primary small':'button skeleton primary small disabled'"
+				th:text="#{store-transaction-inquiry.detail.nextButton}"
+				onclick="onClickNext()"></a>
+		</div>
+	</div>
+
+	<div class="mr-left-110" id="detailDiv">
+		<label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptBusinessDateLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.imsLinkageDate}"></span>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptDataCreationDateTimeLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.dataCreationDateTime}"></span>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptStoreLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.storeCode}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptRegisterNoLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.cashRegisterNo}"></span>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptReceiptNoLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.receiptNo}"></span> <br>
+		<label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptCasherLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.operatorCode}"></span>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptSalesTransactionTypeLabel}"></label>
+		<span class="headerSub" th:text="*{headerDetail.salesTransactionType}"></span>
+		<br> <br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptItemLabel}"></label>
+		<br>
+		<th:block th:each="item , stat: *{itemList}">
+			<span class="itemSub"
+				th:text="${item != null ? item.detailSubNumber:''}"></span>
+			<span class="itemSub" th:text="${item != null ? item.nonMdCode:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="itemSub"
+				th:text="${item != null ? item.l3PosProductName:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="itemSub"
+				th:text="${item != null ? item.detailQuantity:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="itemSub"
+				th:text="${item != null ? item.retailUnitPriceTaxCurrencyCode:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="itemSub"
+				th:text="${item != null ? item.retailUnitPriceTax:''}"></span>
+			<br>
+		</th:block>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptDiscountLabel}"></label>
+		<br>
+		<th:block th:each="discount , stat: *{discountList}">
+			<span class="discountSub"
+				th:text="${item != null ? discount.discountType:''}"></span>
+			<br>
+			<span>-&nbsp;&nbsp;&nbsp;</span>
+			<span class="discountSub"
+				th:text="${discount != null ? discount.detailSubNumber:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="discountSub"
+				th:text="${discount != null ? discount.discountAmountTaxCurrencyCode:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="discountSub"
+				th:text="${discount != null ? discount.discountAmountTax:''}"></span>
+		</th:block>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptTaxLabel}"></label>
+		<br>
+		<th:block th:each="tax : *{taxList}">
+			<span class="taxSub" th:text="${tax.taxGroup}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="taxSub" th:text="${tax.taxAmountCurrencyCode}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="taxSub" th:text="${tax.taxAmountValue}"></span>
+			<br>
+		</th:block>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptPaymentTypeLabel}"></label>
+		<br>
+		<th:block th:each="payment , stat: *{paymentList}">
+			<span class="tenderSub"
+				th:text="${payment != null ? payment.imsTenderGroup:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="tenderSub"
+				th:text="${payment != null ? payment.taxIncludedPaymentAmountCurrencyCode:''}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="tenderSub"
+				th:text="${payment != null ? payment.taxAmountValue:''}"></span>
+			<br>
+		</th:block>
+		<br> <label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptDepositLabel}"></label>
+		<br> <span class="headerSub"
+			th:text="*{headerDetail.depositCurrencyCode}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+			class="headerSub" th:text="*{headerDetail.depositValue}"></span> <br>
+		<label class="fz17"
+			th:utext="#{store-transaction-inquiry.detail.receiptChangeLabel}"></label>
+		<br> <span class="headerSub"
+			th:text="*{headerDetail.changeCurrencyCode}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+			class="headerSub" th:text="*{headerDetail.changeValue}"></span> <br>
+	</div>
+</div>
+</html>

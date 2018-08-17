@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<m_business_country_state_setting system_brand_code="1234" system_business_code="sbc" 
+system_country_code="scc" state_code="1234" store_code="222" code_l1="SALESINTEGRITYCHECK"  
+code_l2="codel2" code_l3="1111" code_value="P" variable_type="1"   display_order="1" 
+create_user_id="aa"  create_datetime="2019-03-15 00:00:00" create_program_id="cc" 
+update_user_id="bb"  update_datetime="2019-03-15 00:00:00" update_program_id="dd" />
+<m_business_country_state_setting system_brand_code="1234" system_business_code="sbc" 
+system_country_code="scc" state_code="1234" store_code="222" code_l1="SALESINTEGRITYCHECK"  
+code_l2="codel2" code_l3="2222" code_value="P" variable_type="1"   display_order="1" 
+create_user_id="aa"  create_datetime="2019-03-15 00:00:00" create_program_id="cc" 
+update_user_id="bb"  update_datetime="2019-03-15 00:00:00" update_program_id="dd" />
+<m_business_country_state_setting system_brand_code="1234" system_business_code="sbc" 
+system_country_code="scc" state_code="1234" store_code="222" code_l1="SALESINTEGRITYCHECK"  
+code_l2="codel2" code_l3="3333" code_value="N" variable_type="1"   display_order="1" 
+create_user_id="aa"  create_datetime="2019-03-15 00:00:00" create_program_id="cc" 
+update_user_id="bb"  update_datetime="2019-03-15 00:00:00" update_program_id="dd" />
+</dataset>

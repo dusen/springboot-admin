@@ -1,0 +1,75 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.sales.common.repository.optional.ComparePileUpPayoffDataOptionalMapper">
+	<resultMap id="BaseResultMap" type="com.fastretailing.dcp.sales.common.entity.optional.ComparePileUpPayoffDataOptional">
+	    <result column="store_code" jdbcType="VARCHAR" property="storeCode" />
+	    <result column="payoff_date" jdbcType="VARCHAR" property="payoffDate" />
+	    <result column="payoff_type_code" jdbcType="VARCHAR" property="payoffTypeCode" />
+	    <result column="payoff_type_sub_number_code" jdbcType="VARCHAR" property="payoffTypeSubNumberCode" />
+	    <result column="cash_register_no" jdbcType="NUMERIC" property="cashRegisterNo" />
+	    <result column="payoff_amount_currency_code" jdbcType="VARCHAR" property="payoffAmountCurrencyCode" />
+	    <result column="payoff_amount" jdbcType="NUMERIC" property="payoffAmount" />
+	    <result column="payoff_quantity" jdbcType="NUMERIC" property="payoffQuantity" />
+	    <result column="payoff_processing_flag" jdbcType="BOOLEAN" property="payoffProcessingFlag" />
+	    <result column="batch_region" jdbcType="NUMERIC" property="batchRegion" />
+	    <result column="system_brand_code" jdbcType="VARCHAR" property="systemBrandCode" />
+	    <result column="system_business_code" jdbcType="VARCHAR" property="systemBusinessCode" />
+	    <result column="system_country_code" jdbcType="VARCHAR" property="systemCountryCode" />
+	    <result column="advance_received_store_code" jdbcType="VARCHAR" property="advanceReceivedStoreCode" />
+	    <result column="check_store_code" jdbcType="VARCHAR" property="checkStoreCode" />
+     </resultMap>
+     <select id="selectComparePileUpPayoffDataList"  resultMap="BaseResultMap">
+		SELECT /* ComparePileUpPayoffDataOptionalMapper_001 */ 
+		  tpupod2.store_code
+		  , tpupod2.payoff_date
+		  , tpupod2.payoff_type_code
+		  , tpupod2.payoff_type_sub_number_code
+		  , tpupod2.cash_register_no
+		  , tpupod2.payoff_amount_currency_code
+		  , tpupod2.payoff_amount
+		  , tpupod2.payoff_quantity
+		  , tpupod2.payoff_processing_flag
+		  , tpupod2.batch_region
+		  , tpupod2.system_brand_code
+		  , tpupod2.system_business_code
+		  , tpupod2.system_country_code
+		  , tpupod2.advance_received_store_code
+		  , mbcss1.store_code check_store_code 
+		FROM
+		  ( 
+		    SELECT
+		      tpupod1.store_code
+		      , tpupod1.payoff_date
+		      , tpupod1.payoff_type_code
+		      , tpupod1.payoff_type_sub_number_code
+		      , tpupod1.cash_register_no
+		      , tpupod1.payoff_amount_currency_code
+		      , tpupod1.payoff_amount
+		      , tpupod1.payoff_quantity
+		      , tpupod1.payoff_processing_flag
+		      , tpupod1.batch_region
+		      , tpupod1.system_brand_code
+		      , tpupod1.system_business_code
+		      , tpupod1.system_country_code
+		      , tpupod1.advance_received_store_code 
+		    FROM
+		      t_pile_up_pay_off_data tpupod1 
+		    WHERE
+		      tpupod1.store_code = #{ storeCode } 
+		      AND tpupod1.payoff_date = #{ payoffDate } 
+		      AND tpupod1.cash_register_no = #{ cashRegisterNo }
+		  ) tpupod2 
+		  LEFT JOIN m_business_country_state_setting mbcss1 
+		    ON mbcss1.code_l1 = 'SALESINTEGRITYCHECKTYPE' 
+		    AND mbcss1.code_l2 = 'TARGETTYPE' 
+		    AND mbcss1.store_code = tpupod2.store_code 
+		    AND mbcss1.code_l3 = tpupod2.payoff_type_code 
+		ORDER BY
+		  tpupod2.store_code
+		  , tpupod2.payoff_date
+		  , tpupod2.payoff_type_code
+		  , tpupod2.payoff_type_sub_number_code
+		  , tpupod2.cash_register_no
+     </select>
+</mapper>

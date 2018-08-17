@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<t_alteration_history_sales_transaction_tax
+		transaction_id="0" order_sub_number="0" sales_transaction_id="0"
+		detail_sub_number="0" tax_group="0" history_type="0"
+		sales_transaction_error_id="0" tax_sub_number="0" tax_amount_sign="0"
+		tax_amount_currency_code="0" tax_amount_value="0" tax_rate="0"
+		tax_name="0" create_user_id="0" create_datetime="2010-03-15 00:00:00"
+		create_program_id="0" update_user_id="0" update_datetime="2018-03-15 00:00:00"
+		update_program_id="0" />
+
+</dataset>

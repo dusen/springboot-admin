@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<t_pay_off_data store_code="1" payoff_date="1"
+		payoff_type_code="1" payoff_type_sub_number_code="1" cash_register_no="1"
+		payoff_amount="1" payoff_quantity="1"
+		processing_flag="1" accounting_record_status="1"
+		batch_region="1" system_brand_code="1" system_business_code="1"
+		system_country_code="1" 
+		advance_received_store_code="1" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" close_complete_flag="1" data_alteration_status="1"
+		daily_summary_error_notification_flag="1" regular_time_error_notification_flag="1"
+		report_output_count="1" integrity_check_type="1"/>
+
+	<t_pay_off_data store_code="1" payoff_date="1"
+		payoff_type_code="2" payoff_type_sub_number_code="2" cash_register_no="1"
+		payoff_amount="1" payoff_quantity="1"
+		processing_flag="1" accounting_record_status="1"
+		batch_region="1" system_brand_code="1" system_business_code="1"
+		system_country_code="1" 
+		advance_received_store_code="1" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" close_complete_flag="1" data_alteration_status="1"
+		daily_summary_error_notification_flag="1" regular_time_error_notification_flag="1"
+		report_output_count="1" integrity_check_type="1"/>
+
+	<t_pay_off_data store_code="1" payoff_date="1"
+		payoff_type_code="3" payoff_type_sub_number_code="3" cash_register_no="1"
+		payoff_amount="1" payoff_quantity="1"
+		processing_flag="1" accounting_record_status="1"
+		batch_region="1" system_brand_code="1" system_business_code="1"
+		system_country_code="1" 
+		advance_received_store_code="1" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" close_complete_flag="1" data_alteration_status="1"
+		daily_summary_error_notification_flag="1" regular_time_error_notification_flag="1"
+		report_output_count="1" integrity_check_type="1"/>
+</dataset>

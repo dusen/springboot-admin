@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-transaction-correction.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/sales-transaction-correction.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/sales-transaction-correction.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-transaction-correction.title},~{::#main},~{::#footer},~{::#popup})">
+	<div id="main" class="contents scroll-block v-hheight"
+		th:object="${salesTransactionCorrectionForm}">
+		<!-- information dialog two button -->
+		<div class="hiddeh-message">
+			<input id="E_SLS_66000140" type="hidden" th:value="#{E_SLS_66000140}" />
+		</div>
+		<!-- Update Option Start -->
+		<div id="upload-option"
+			style="display: none; position: absolute; z-index: 999999; background: #fff">
+			<div class="modal-title modal-title-information">
+				<p>
+					<img id="informationImg" class="vertical-align-middle"
+						th:src="@{/static/images/common/white_check_icon.png}"> <span
+						id="box-title" class="vertical-align-middle"
+						th:text="#{sales-transaction-correction.select.option}">Option</span>
+				</p>
+				<a href="#" class="close modal-close">&nbsp;</a>
+			</div>
+			<div id="box-body" class="modal-inner">
+				<div class="option-block">
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption1" value="0"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnAll}"
+							for="uploadOption1">1</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption2" value="1"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnlyOnIMSLinkage}"
+							for="uploadOption2">2</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption3" value="2"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.uploadWithoutCorrection}"
+							for="uploadOption3">3</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption4" value="3"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnlyOnReceipt}"
+							for="uploadOption4">4</label>
+					</div>
+				</div>
+			</div>
+			<div class="message-btns">
+				<a href="#"
+					class="button skeleton cancel small close modal-close font-weight-bold-cancel"
+					th:text="#{common.button.cancel}">Cancel</a> <a href="#"
+					class="button skeleton primary small confirm-btn font-weight-bold"
+					th:text="#{common.button.ok}">OK</a>
+			</div>
+		</div>
+		<!-- Update Option End -->
+		<!-- Delete Option Start -->
+		<div id="delete-option"
+			style="display: none; position: absolute; z-index: 999999; background: #fff">
+			<div class="modal-title modal-title-information">
+				<p>
+					<img id="informationImg" class="vertical-align-middle"
+						th:src="@{/static/images/common/white_check_icon.png}"> <span
+						id="box-title" class="vertical-align-middle"
+						th:text="#{sales-transaction-correction.select.option}">Option</span>
+				</p>
+				<a href="#" class="close modal-close">&nbsp;</a>
+			</div>
+			<div id="box-body" class="modal-inner">
+				<div class="option-block">
+					<div class="radio-btn">
+						<input type="radio" id="deleteOption1" value="0"
+							name="deleteOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnAll}"
+							for="deleteOption1">1</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="deleteOption2" value="1"
+							name="deleteOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnlyOnIMSLinkage}"
+							for="deleteOption2">2</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="deleteOption4" value="2"
+							name="deleteOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnlyOnReceipt}"
+							for="deleteOption4">4</label>
+					</div>
+				</div>
+			</div>
+			<div class="message-btns">
+				<a href="javascript:void(0);"
+					class="button skeleton cancel small close modal-close font-weight-bold-cancel"
+					th:text="#{common.button.cancel}">Cancel</a> <a href="javascript:void(0);"
+					class="button skeleton primary small confirm-btn font-weight-bold"
+					th:text="#{common.button.ok}">OK</a>
+			</div>
+		</div>
+		<!-- Delete Option end -->
+
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:utext="#{sales-transaction-correction.title}"></p>
+			</div>
+			<p>
+				<a href="javascript:void(0);" id="back">&lt;Back</a>
+			</p>
+		</div>
+		<div class="option-block">
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap mb0">
+					<input type="hidden" th:field="*{transactionId}"> <input
+						type="hidden" th:field="*{salesTransactionErrorId}"> <input
+						type="hidden" th:field="*{orderSubNumber}"> <input
+						type="hidden" th:field="*{detailSubNumber}"> <input
+						type="hidden" id="discountPopupTitle"
+						th:value="#{sales-transaction-correction.discountTitle}">
+					<input type="hidden" id="taxPopupTitle"
+						th:value="#{sales-transaction-correction.taxTitle}">
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.brandLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{systemBrandCode != null ? systemBrandCode:''}"></label>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.countryLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:text="*{systemCountryCode != null ? systemCountryCode:''}"></label>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.storeLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{storeCode != null ? storeCode:''}"></label>
+						<input type="hidden" th:field="*{storeCode}" />
+					</div>
+					<div class="width120">
+						<label th:text="*{storeName != null ? storeName:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.registerNoLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{cashRegisterNo != null ? cashRegisterNo:''}"></label>
+						<input type="hidden" th:field="*{cashRegisterNo}">
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.receiptNoLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{receiptNo != null ? receiptNo:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.dataCreationDateLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{dataCreationDate != null ? dataCreationDate:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.errorContentsLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{errorContents != null ? errorContents:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.businessDateLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{businessDate != null ? businessDate:''}"></label>
+						<input type="hidden" th:field="*{businessDate}">
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.transactionTypeLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{transactionType != null ? transactionType:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.errorDetailLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label></label><label
+							th:utext="#{sales-transaction-correction.colon}"></label><label></label>
+					</div>
+					<div class="width120">
+						<label></label><label
+							th:utext="#{sales-transaction-correction.colon}"></label><label></label>
+					</div>
+					<div class="width120">
+						<label></label><label
+							th:utext="#{sales-transaction-correction.colon}"></label><label></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap">
+					<div class="width120"></div>
+					<div class="width120">
+						<label></label><label
+							th:utext="#{sales-transaction-correction.colon}"></label><label></label>
+					</div>
+					<div class="width120">
+						<label></label><label
+							th:utext="#{sales-transaction-correction.colon}"></label><label></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<a href="javascript:void(0)" class="tablinks active padding5"
+				for="orderInformationTab"
+				th:utext="#{sales-transaction-correction.orderInformationTab}"></a>
+			<th:block
+				th:each="transaction, stat: *{transactionImportData.transactionList}">
+				<a href="javascript:void(0)"
+					class="tablinks padding5 salesTransactionHeaderTab"
+					th:for="|salesTransactionHeaderTab_${stat.index+1}|"
+					th:utext="#{sales-transaction-correction.salesTransactionHeaderTab}"></a>
+			</th:block>
+			<a href="javascript:void(0)" class="tablinks padding5"
+				for="evacuatedSalesInformationTab"
+				th:if="*{not #lists.isEmpty(evacuatedSalesInformationList)}"
+				th:utext="#{sales-transaction-correction.evacuatedSalesInformationTab}"></a>
+		</div>
+		<!-- Tab content -->
+		<div id="orderInformationTab" class="tabcontent">
+			<div id="orderInformationTab">
+				<input type="hidden" th:field="*{transactionImportData.updateType}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.errorCheckType}" /> <input
+					type="hidden"
+					th:field="*{transactionImportData.dataAlterationSalesLinkageType}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.dataAlterationBackboneLinkageType}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.salesTransactionErrorId}" /> <input
+					type="hidden" th:field="*{transactionImportData.integratedOrderId}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.orderBarcodeNumber}" /> <input
+					type="hidden" th:field="*{transactionImportData.channelCode}" /> <input
+					type="hidden" th:field="*{transactionImportData.storeCode}" /> <input
+					type="hidden" th:field="*{transactionImportData.systemBrandCode}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.systemBusinessCode}" /> <input
+					type="hidden" th:field="*{transactionImportData.systemCountryCode}" />
+				<input type="hidden" th:field="*{transactionImportData.customerId}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.dataCorrectionEditingFlag}" /> <input
+					type="hidden"
+					th:field="*{transactionImportData.dataCorrectionUserId}" /> <input
+					type="hidden"
+					th:field="*{transactionImportData.orderConfirmationBusinessDate}" />
+				<input type="hidden"
+					th:field="*{transactionImportData.orderConfirmationDateTime}" />
+			</div>
+			<div class="width100per">
+				<div class="th-fixed">
+					<div class="th-fixed-head">
+						<table class="common-table width100per">
+							<colgroup>
+								<col class="width4em">
+								<col class="width3em">
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width12em">
+								<col class="width5em">
+							</colgroup>
+							<thead>
+								<tr class="v-align-middle">
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.errLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.storeLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.registerNoLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.receiptNoLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderConfirmationBusinessDateLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderConfirmationDateTimeLabel2}"></th>
+							</thead>
+						</table>
+					</div>
+					<div class="scroll-block th-fixed-body v-hheight"
+						style="max-height: 150px">
+						<table
+							class="common-table width100per cell-color-change orderInformationTabTable">
+							<colgroup>
+								<col class="width4em">
+								<col class="width3em">
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width12em">
+								<col class="width5em">
+							</colgroup>
+							<tbody>
+								<tr class="v-align-middle"
+									th:if="*{transactionImportData != null}">
+									<td class="text-center"><label>&#10003;</label></td>
+									<td class="text-center"
+										th:text="*{transactionImportData.storeCode}"></td>
+									<td class="text-center"
+										th:text="${#strings.substring(salesTransactionCorrectionForm.transactionImportData.integratedOrderId,20,23)}"></td>
+									<td class="text-center"
+										th:text="${#strings.substring(salesTransactionCorrectionForm.transactionImportData.integratedOrderId,23,27)}"></td>
+									<td><div
+											style="width: 120px; height: 32px; margin: 0px auto;">
+											<span class="datepicker-span"><input type="text"
+												class="datepicker-text"
+												th:field="*{transactionImportData.formatOrderConfirmationBusinessDate}"></span><span
+												class="input-clear fade-action"></span>
+										</div></td>
+									<td class="text-center"><input type="text"
+										class="textbox width160" maxlength="30"
+										th:field="*{transactionImportData.formatOrderConfirmationDateTime}">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block
+			th:each="transaction, stat: *{transactionImportData.transactionList}">
+			<!-- Sales Transaction Header Tab -->
+			<div th:id="|salesTransactionHeaderTab_${stat.index+1}|"
+				class="tabcontent">
+				<div class="headerHiddenField">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].dataCreationDateTime}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].OrderStatusLastUpdateDateTime}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].formatOrderCancellationDate}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].orderStatusUpdateDate}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].transactionSerialNumber}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].integratedOrderId}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].orderSubNumber}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionId}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].tokenCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].returnType}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].systemBrandCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].systemBusinessCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].systemCountryCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].channelCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].dataCreationBusinessDate}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].orderNumberForStorePayment}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].advanceReceivedStoreCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].advanceReceivedStoreSystemBrandCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].advanceReceivedStoreSystemBusinessCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].advanceReceivedStoreSystemCountryCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].operatorCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].originalTransactionId}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].originalReceiptNo}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].originalCashRegisterNo}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].deposit.value}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].deposit.currencyCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].change.value}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].change.currencyCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptNoForCreditCardCancellation}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptNoForCreditCard}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].paymentStoreCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].paymentStoreSystemBrandCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].paymentStoreSystemBusinessCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].paymentStoreSystemCountryCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptIssuedFlag}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].processingCompanyCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].orderCancellationDate}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].orderStatus}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].orderSubstatus}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].paymentStatus}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].shipmentStatus}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receivingStatus}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].transferOutStatus}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].bookingStoreCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].bookingStoreSystemBrandCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].bookingStoreSystemBusinessCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].bookingStoreSystemCountryCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].shipmentStoreCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].shipmentStoreSystemBrandCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].shipmentStoreSystemBusinessCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].shipmentStoreSystemCountryCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptStoreCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptStoreSystemBrandCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptStoreSystemBusinessCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptStoreSystemCountryCode}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].customerId}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].customerType}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountType}" />
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].eReceiptTargetFlag}" />
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap mb0">
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.noLabel3}"></label>
+						</div>
+						<div class="width120 one">
+							<label th:utext="${stat.index+1}"></label>
+						</div>
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.tranTypeLabel3}"></label>
+						</div>
+						<div class="width120 two">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].transactionType}"></label>
+							<input type="hidden"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].transactionType}" />
+						</div>
+						<div class="width120">
+							<label
+								th:utext="#{sales-transaction-correction.salesLinkageTypeLabel3}"></label>
+						</div>
+						<div class="width120 three">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].salesLinkageType}"></label>
+							<input type="hidden"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].salesLinkageType}" />
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap mb0">
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.storeLabel3}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].storeCode}"></label>
+							<input type="hidden"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].storeCode}" />
+						</div>
+						<div class="width120">
+							<label
+								th:utext="#{sales-transaction-correction.registerNoLabel3}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].cashRegisterNo}"></label>
+							<input type="hidden"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].cashRegisterNo}" />
+						</div>
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.receiptNoLabel3}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].receiptNo}"></label>
+							<input type="hidden"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].receiptNo}" />
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.dataCreationBusinessDateLabel3}"></label>
+						</div>
+						<span class="datepicker-span width210 input-elem"><input
+							type="text" class="datepicker-text"
+							th:field="*{transactionImportData.transactionList[__${stat.index}__].formatDataCreationBusinessDate}"></span><span
+							class="input-clear fade-action"></span>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.dataCreationDateTimeLabel3}"></label>
+						</div>
+						<div class="width210 input-elem">
+							<p>
+								<span class="numerickeybord-wrap"><input type="text"
+									class="textbox width210"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].formatDataCreationDateTime}">
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.orderStatusUpdateDateLabel3}"></label>
+						</div>
+						<span class="datepicker-span width210 input-elem"><input
+							type="text" class="datepicker-text width120"
+							style="readonly: true;"
+							th:field="*{transactionImportData.transactionList[__${stat.index}__].formatOrderStatusUpdateDate}"></span><span
+							class="input-clear fade-action"></span>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.orderStatusLastUpdateDateTimeLabel3}"></label>
+						</div>
+						<div class="width210 input-elem">
+							<p>
+								<span class="numerickeybord-wrap"><input type="text"
+									class="textbox width210 numerickeybord"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].formatOrderStatusLastUpdateDateTime}">
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.employeeSaleFlagLabel3}"></label>
+						</div>
+						<div class="width210 mrMedium">
+							<div class="selectbox" id="employeeSaleFlagSelect">
+								<div class="selectbox-text">
+									<input type="text" readonly> <input type="hidden"
+										th:field="*{transactionImportData.transactionList[__${stat.index}__].employeeSaleFlag}">
+								</div>
+								<div class="select-elem">
+									<ul class="category">
+										<li data-value="-1" data-name=""><span
+											th:text="#{sales-transaction-correction.select.clear}"></span></li>
+										<li th:each="employeeSaleFlag : *{employeeSaleFlagMap}"
+											th:selected="${#strings.toLowerCase(employeeSaleFlag.key)} == *{transactionImportData.transactionList[__${stat.index}__].employeeSaleFlag}"
+											th:data-value="${#strings.toLowerCase(employeeSaleFlag.key)}"
+											th:data-name="${employeeSaleFlag.value}"><span
+											th:text="${employeeSaleFlag.value}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.corporateSaleFlagLabel3}"></label>
+						</div>
+						<div class="width210 mrMedium">
+							<div class="selectbox" id="corporateSaleFlagSelect">
+								<div class="selectbox-text">
+									<input type="text" readonly> <input type="hidden"
+										th:field="*{transactionImportData.transactionList[__${stat.index}__].consistencySalesFlag}">
+								</div>
+								<div class="select-elem">
+									<ul class="category">
+										<li data-value="-1" data-name=""><span
+											th:text="#{sales-transaction-correction.select.clear}"></span></li>
+										<li th:each="corporateSalesFlag : *{corporateSalesFlagMap}"
+											th:selected="${#strings.toLowerCase(corporateSalesFlag.key)} == *{transactionImportData.transactionList[__${stat.index}__].consistencySalesFlag}"
+											th:data-value="${#strings.toLowerCase(corporateSalesFlag.key)}"
+											th:data-name="${corporateSalesFlag.value}"><span
+											th:text="${corporateSalesFlag.value}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.corporateIdLabel3}"></label>
+						</div>
+						<div class="width210 input-elem">
+							<p>
+								<span class="numerickeybord-wrap"><input type="text"
+									class="textbox width210 numerickeybord"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].corporateId}">
+								</span>
+							</p>
+						</div>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.salesTransactionDiscountFlagLabel3}"></label>
+						</div>
+						<div class="width210 mrMedium">
+							<div class="selectbox" id="salesTransactionDiscountFlagSelect">
+								<div class="selectbox-text">
+									<input type="text" readonly> <input type="hidden"
+										th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountFlag}">
+								</div>
+								<div class="select-elem">
+									<ul class="category">
+										<li data-value="-1" data-name=""><span
+											th:text="#{sales-transaction-correction.select.clear}"></span></li>
+										<li
+											th:each="salesTransactionDiscountFlag : *{salesTransactionDiscountFlagMap}"
+											th:selected="${#strings.toLowerCase(salesTransactionDiscountFlag.key)} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountFlag}"
+											th:data-value="${#strings.toLowerCase(salesTransactionDiscountFlag.key)}"
+											th:data-name="${salesTransactionDiscountFlag.value}"><span
+											th:text="${salesTransactionDiscountFlag.value}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.salesTransactionDiscountAmountRateLabel3}"></label>
+						</div>
+						<div class="width275 input-elem">
+							<p>
+								<span class="numerickeybord-wrap"><input type="text"
+									class="textbox width275"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountAmountRate.value}">
+									<input type="hidden" class="textbox width275"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountAmountRate.currencyCode}">
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="width100per">
+					<div class="tab">
+						<a href="javascript:void(0)" class="tablinks active padding5"
+							th:for="|itemDetailsTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.itemDetailsTab}"></a> <a
+							href="javascript:void(0)" class="tablinks padding5 tax"
+							th:for="|salesTransactionTaxTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.salesTransationTaxTab}"></a>
+						<a href="javascript:void(0)" class="tablinks padding5 payment"
+							th:for="|salesTransactionPaymentTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.salesTransactionPaymentTab}"></a>
+						<a href="javascript:void(0)" class="tablinks padding5 total"
+							th:for="|salesTransactionTotalTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.salesTransactionTotalTab}"></a>
+					</div>
+					<!-- Tab content -->
+					<div th:id="|itemDetailsTab_${stat.index}|" class="tabcontent">
+						
+						<p class="text-right mb10" style="float:right;">
+							<a href="javascript:void(0)" onclick="deleteAction(this)" 
+								id="itemDetailsTabDeleteButton" th:data-action="|.item_detail_del_target_${stat.index}|"
+								class="button skeleton primary small mrMedium"
+								th:text="#{sales-transaction-correction.tab.deleteButton}"><br>
+							</a><a href="javascript:void(0)"
+								class="button skeleton primary small mrMedium"
+								id="itemDetailsTabAddButton"
+								onclick="addDetailBySelect(this)"
+								th:data-headerindex="${stat.index}"
+							    th:data-action="|.item_detail_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.addButton}"></a> 
+								<a href="javascript:void(0)"
+								class="button skeleton primary small mrMedium audit"
+								id="itemDetailsTabAuditButton"
+								th:text="#{sales-transaction-correction.tab.auditButton}"></a>
+						</p>
+						<div class="selectbox" style="display:inline-block;width:100px;float:right;margin-right:10px;">
+							<div class="selectbox-text">
+								<input type="text" readonly class="item_pull_down"> <input type="hidden"
+									class="textbox add_item_check" value="ITEM">
+							</div>
+							<div class="select-elem" >
+								<ul class="category ">
+									<li th:each="productClassification : *{productClassificationMap}"
+										th:data-value="${productClassification.key}"
+										th:data-name="${productClassification.value}"><span
+										th:text="${productClassification.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width7em">
+											<col class="width7em">
+											<col class="width7em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width15em">
+											<col class="width15em">
+											<!-- 										<col class="width8em"> -->
+											<!-- 										<col class="width8em"> -->
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"><label
+													th:utext="#{sales-transaction-correction.selectLabel4}"></label>
+												</th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.errLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.productClassificationLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.productCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.productNameLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.nonMdCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.gDepartmentCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel4}"></th>
+												<th colspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.retailUnitPriceLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.quantityCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.detailQuantityLabel4}"></th>
+												<th colspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.salesAmountLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxationTypeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxKindLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.orderStatusUpdateDateLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.orderStatusLastUpdateDateTimeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.discountLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxLabel4}"></th>
+											</tr>
+											<tr class="v-align-middle">
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxExcludedLabel4}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedLabel4}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxExcludedLabel4}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedLabel4}"></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-header-itemdetails-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div th:id="|salesTransactionTaxTab_${stat.index}|" class="tabcontent">
+						<p class="text-right mb10">
+							<a href="javascript:void(0)" id="taxTabDeleteButton" onclick="deleteAction(this)" 
+								class="button skeleton primary small mrMedium" th:data-action="|.item_tax_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.deleteButton}"></a><a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium"
+								id="taxTabAddButton"
+								onclick="addTax(this)"
+								th:data-headerindex="${stat.index}"
+							    th:data-action="|.item_tax_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.addButton}"></a> <a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium audit"
+								id="taxTabAuditButton"
+								th:text="#{sales-transaction-correction.tab.auditButton}"></a>
+						</p>
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"><label
+													th:utext="#{sales-transaction-correction.selectLabel7}"></label>
+												</th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.errLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxGroupLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxNameLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxAmountSignLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxAmountLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxRateLabel7}"></th>
+										</thead>
+									</table>
+								</div>
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-header-tax-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div th:id="|salesTransactionPaymentTab_${stat.index}|" class="tabcontent">
+						<p class="text-right mb10">
+							<a href="javascript:void(0)" id="paymentTabDeleteButton" onclick="deleteAction(this)" 
+								class="button skeleton primary small mrMedium"  th:data-action="|.item_tender_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.deleteButton}"></a>
+								<a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium"
+								id="paymentTabReferenceButton"
+								onclick="referenceTender(this)"
+								th:text="#{sales-transaction-correction.referenceButton}"></a>
+								<a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium"
+								id="paymentTabAddButton"
+								onclick="addTender(this)"
+								th:data-headerindex="${stat.index}"
+							    th:data-action="|.item_tender_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.addButton}"></a> <a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium audit"
+								id="paymentTabAuditButton"
+								th:text="#{sales-transaction-correction.tab.auditButton}"></a>
+						</p>
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width12em">
+											<col class="width12em">
+											<col class="width12em">
+											<col class="width12em">
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"><label
+													th:utext="#{sales-transaction-correction.selectLabel8}"></label></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.errLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.iMSTenderGroupLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.iMSTenderIDLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.tenderNameLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.paymentSignLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedPaymentAmountValueLabel8}"></th>
+										</thead>
+									</table>
+								</div>
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-header-payment-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div th:id="|salesTransactionTotalTab_${stat.index}|" class="tabcontent">
+						<p class="text-right mb10">
+							<a href="javascript:void(0)" id="totalTabDeleteButton" onclick="deleteAction(this)" 
+								class="button skeleton primary small mrMedium" th:data-action="|.item_total_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.deleteButton}"></a><a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium"
+								id="totalTabAddButton"
+								onclick="addTotal(this)"
+								th:data-headerindex="${stat.index}"
+							    th:data-action="|.item_total_del_target_${stat.index}|"
+								th:text="#{sales-transaction-correction.tab.addButton}" ></a> <a
+								href="javascript:void(0)"
+								class="button skeleton primary small mrMedium audit"
+								id="totalTabAuditButton"
+								th:text="#{sales-transaction-correction.tab.auditButton}"></a>
+						</p>
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width12em">
+											<col class="width12em">
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"><label
+													th:utext="#{sales-transaction-correction.selectLabel10}"></label></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.totalTypeLabel10}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel10}"></th>
+												<th colspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.totalAmountLabel10}"></th>
+											</tr>
+											<tr class="v-align-middle">
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxExcludedLabel10}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedLabel10}"></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-header-total-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="pageLink" style="width: 100%;line-height:20px;height:20px;text-align:center"></div>				
+			</div>
+		</th:block>
+		<div id="evacuatedSalesInformationTab" class="tabcontent"
+			th:if="*{not #lists.isEmpty(evacuatedSalesInformationList)}">
+			<div class="width100per">
+				<div class="th-fixed">
+					<div class="th-fixed-head">
+						<table class="common-table width100per">
+							<colgroup>
+								<col class="width4em">
+								<col class="width5em">
+								<col class="width5em">
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width10em">
+								<col class="width20em">
+								<col class="width8em">
+								<col class="width8em">
+								<col class="width10em">
+								<col class="width20em">
+								<col class="width10em">
+								<col class="width10em">
+								<col class="width15em">
+								<col class="width15em">
+								<col class="width15em">
+							</colgroup>
+							<thead>
+								<tr class="v-align-middle">
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.storeLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.registerNoLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.receiptNoLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.updateTypeLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.salesLinkageTypeLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.dataCreationBusinessDateLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.dataCreationDateTimeLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderStatusLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderSubStatusLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderStatusUpdateDateLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderStatusLastUpdateDateTimeLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.employeeSaleFlagLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.corporateSaleFlagLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.corporateIdLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.salesTransactionDiscountFlagLabel11}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.salesTransactionDiscountAmountRateLabel11}"></th>
+							</thead>
+						</table>
+					</div>
+					<div id="divTableBody">
+						<div
+							th:replace="sales-transaction-correction-evacuated-sales-tableBody :: tableBody(*{evacuatedSalesInformationList})"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table class="nmdetail_add_temp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle item_detail_del_target_[__${stat.index}__] nmdetail_index_[__${stat.index}__]">
+			<td class="text-center">
+				<div class="checkbox">
+					<input class="deleteFlag" value="0" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].deleteCheckFlag" />
+					<input id="nonItemDetailList_[__${stat.index}__]_[__${itemStat.index}__].cancleButton"
+						class="detail_item_check"
+						type="checkbox"
+						th:value="0">
+					<label class="fz13"
+						for="nonItemDetailList_[__${stat.index}__]_[__${itemStat.index}__].cancleButton">
+					</label>
+				</div>
+			</td>
+			<td class="text-center"><label>&#10003;</label></td>
+			<td class="text-center">
+			<div class="selectbox">
+				<div class="selectbox-text">
+					<input type="text" readonly class="item_pull_down"> <input type="hidden"
+						class="textbox" value="NMITEM">
+				</div>
+				<div class="select-elem" >
+					<ul class="category">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="productClassification : *{productClassificationMap}"
+							th:selected="${productClassification.key} == 'NMITEM'"
+							th:data-value="${productClassification.key}"
+							th:data-name="${productClassification.value}"><span
+							th:text="${productClassification.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			</td>
+			<td class="text-left" style="font-size: 1.2em">
+				<input class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].serviceCode">
+			</td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].posNonItemName">
+			</td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemCode"></td>
+			<td class="text-center"></td>
+			<td class="text-center">
+			<div class="selectbox">
+				<div class="selectbox-text">
+					<input type="text" readonly> <input type="hidden"
+						class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemUnitPriceTaxExcluded.currencyCode">
+				</div>
+				<div class="select-elem">
+					<ul class="category ">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="currencyCode : *{currencyCodeMap}"
+							th:data-value="${currencyCode.key}"
+							th:data-name="${currencyCode.value}"><span
+							th:text="${currencyCode.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemUnitPriceTaxExcluded.value"></td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemUnitPriceTaxIncluded.value"></td>
+			<td class="text-center">
+			<div class="selectbox">
+				<div class="selectbox-text">
+					<input type="text" readonly> <input type="hidden"
+						class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].quantityCode">
+				</div>
+				<div class="select-elem">
+					<ul class="category ">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="quantityCode : *{quantityCodeMap}"
+							th:data-value="${quantityCode.key}"
+							th:data-name="${quantityCode.value}"><span
+							th:text="${quantityCode.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			</td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemQty"></td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemSalesAmtTaxExcluded.value"></td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemSalesAmtTaxIncluded.value"></td>
+			<td class="text-center">
+			<div class="selectbox" id="employeeSaleFlagSelect">
+				<div class="selectbox-text">
+					<input type="text" readonly> <input type="hidden"
+						class="textbox"
+						name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxationType">
+				</div>
+				<div class="select-elem">
+					<ul class="category ">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="taxationType : *{taxationTypeMap}"
+							th:data-value="${taxationType.key}"
+							th:data-name="${taxationType.value}"><span
+							th:text="${taxationType.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			</td>
+			<td class="text-center">
+			<div class="selectbox">
+				<div class="selectbox-text">
+					<input type="text" readonly> <input class="textbox" type="hidden"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxKind">
+				</div>
+				<div class="select-elem">
+					<ul class="category">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="taxKind : *{taxKindMap}"
+							th:data-value="${taxKind.key}"
+							th:data-name="${taxKind.value}"><span
+							th:text="${taxKind.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			</td>
+			<td>
+				<div style="width: 120px; height: 32px; margin: 0px auto;">
+					<input class="datepicker-text-add_nmdetail_[__${stat.index}__]_[__${itemStat.index}__]"  type="text" style="border:1px solid #b3b3b3;padding-left: 35px !important;" 
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].formatOrderStatusUpdateDate">
+				</div>
+			</td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].formatOrderStatusLastUpdateDateTime">
+			</td>
+			<td class="text-center"><a class="for-detail" style="color:#000;" onclick="return;"
+				th:utext="#{sales-transaction-correction.discountLabel4}"></a>
+			</td>
+			<td class="text-center"><a class="for-detail"style="color:#000;" onclick="return;"
+				th:utext="#{sales-transaction-correction.taxLabel4}"></a>
+			</td>
+		</tr>
+	</table>
+	<table th:class="detail_add_temp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle item_detail_del_target_[__${stat.index}__] detail_index_[__${stat.index}__]" >
+			<td class="text-center">
+			<div class="checkbox">
+				<input class="deleteFlag" value="0" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].deleteCheckFlag" />
+				<input id="detailList_[__${stat.index}__]_[__${itemStat.index}__].cancleButton"
+					class="detail_item_check"
+					type="checkbox"
+					th:value="0">
+				<label class="fz13"
+					for="detailList_[__${stat.index}__]_[__${itemStat.index}__].cancleButton">
+				</label>
+			</div>
+			</td>
+			<td class="text-center"><label>&#10003;</label></td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly class="item_pull_down"> <input type="hidden"
+							class="textbox" value="ITEM">
+					</div>
+					<div class="select-elem"  style="display:none">
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="productClassification : *{productClassificationMap}"
+								th:data-value="${productClassification.key}"
+								th:data-name="${productClassification.value}"><span
+								th:text="${productClassification.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center" style="font-size: 1.2em">
+				<input class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].l3ItemCode">
+			</td>
+			<td class="text-center">
+				<input class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].l3PosProductName">
+			</td>
+			<td class="text-center"></td>
+			<td class="text-center">
+			<input class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].gDepartmentCode"></td>
+			<td class="text-center">
+			<div class="selectbox">
+				<div class="selectbox-text">
+					<input type="text" readonly> <input type="hidden"
+						class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemUnitPriceTaxExcluded.currencyCode">
+				</div>
+				<div class="select-elem">
+					<ul class="category ">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="currencyCode : *{currencyCodeMap}"
+							th:data-value="${currencyCode.key}"
+							th:data-name="${currencyCode.value}"><span
+							th:text="${currencyCode.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			</td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemUnitPriceTaxExcluded.value"></td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemUnitPriceTaxIncluded.value"></td>
+			<td class="text-center">
+			<div class="selectbox">
+				<div class="selectbox-text">
+					<input type="text" readonly> <input type="hidden"
+						class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].quantityCode">
+				</div>
+				<div class="select-elem">
+					<ul class="category ">
+						<li data-value="-1" data-name=""><span
+							th:text="#{sales-transaction-correction.select.clear}"></span></li>
+						<li th:each="quantityCode : *{quantityCodeMap}"
+							th:data-value="${quantityCode.key}"
+							th:data-name="${quantityCode.value}"><span
+							th:text="${quantityCode.value}"></span></li>
+					</ul>
+				</div>
+			</div>
+			</td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemQty"></td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemSalesAmtTaxExcluded.value"></td>
+			<td class="text-center"><input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemSalesAmtTaxIncluded.value"></td>
+			<td class="text-center">
+				<div class="selectbox" id="employeeSaleFlagSelect">
+					<div class="selectbox-text">
+						<input type="text" readonly> <input type="hidden"
+							class="textbox"
+							name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxationType">
+					</div>
+					<div class="select-elem">
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="taxationType : *{taxationTypeMap}"
+								th:data-value="${taxationType.key}"
+								th:data-name="${taxationType.value}"><span
+								th:text="${taxationType.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly> <input class="textbox" type="hidden"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxKind">
+					</div>
+					<div class="select-elem">
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="taxKind : *{taxKindMap}"
+								th:data-value="${taxKind.key}"
+								th:data-name="${taxKind.value}"><span
+								th:text="${taxKind.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="datepicker_add">
+			<div  style="width: 120px; height: 32px; margin: 0px auto;">
+				<input class="datepicker-text-add_detail_[__${stat.index}__]_[__${itemStat.index}__]" style="border:1px solid #b3b3b3;padding-left: 35px !important;"  type="text" 
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].formatOrderStatusUpdateDate">
+			</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].formatOrderStatusLastUpdateDateTime">
+			</td>
+			<td class="text-center"><a class="for-detail" style="color:#000;" href="javascript:void(0)" onclick="return;"
+				th:utext="#{sales-transaction-correction.discountLabel4}"></a>
+			</td>
+			<td class="text-center"><a class="for-detail" style="color:#000;" href="javascript:void(0)" onclick="return;"
+				th:utext="#{sales-transaction-correction.taxLabel4}"></a>
+			</td>
+		</tr>
+	</table>
+	<table class="item_item_nmdetail_tax_tmp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle in_select_tr item_detail_nm_del_target_tax_[__${stat.index}__]_[__${itemStat.index}__]_[__${nmItemStat.index}__]" >
+			<td>
+				<div class="checkbox">
+					<input class="deleteFlag" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].deleteCheckFlag" th:value="0" />
+					<input id="non_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_tax_[__${nmTaxStat.index}__].cancleButton"
+						class="detail_item_check_inn"
+						type="checkbox">
+					<label class="fz13 detail_item_check_inn_label" onclick="labelAction(this)"
+						for="non_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_tax_[__${nmTaxStat.[__${nmTaxStat.index}__]tton">
+					</label>
+				</div>
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly > <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxType">
+					</div>
+					<div class="select-elem" >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="taxGroup : *{taxGroupMap}"
+								th:data-value="${taxGroup.key}"
+								th:data-name="${taxGroup.value}"><span
+								th:text="${taxGroup.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxName">
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly > <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].[__${nmItemStat.index}__]t[[__${nmTaxStat.index}__]].nonItemTaxAmt.currencyCode">
+					</div>
+					<div class="select-elem" >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="currencyCode : *{currencyCodeMap}"
+								th:data-value="${currencyCode.key}"
+								th:data-name="${currencyCode.value}"><span
+								th:text="${currencyCode.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly> <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxAmountSign">
+					</div>
+					<div class="select-elem" >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="amountSign : *{amountSignMap}"
+								th:data-value="${amountSign.key}"
+								th:data-name="${amountSign.value}"><span
+								th:text="${amountSign.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxAmt.value">
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxRate">
+			</td>
+			
+			<td style="display:none">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxDetailSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxDiscountSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxSubNumber">
+			</td>
+		</tr>
+	</table>
+	<table class="item_item_nmdetail_discount_tmp" style="display:none">
+		<tr data-updatetype="add" class="add_item_item_nmdetail_discount v-align-middle in_select_tr item_detail_nm_del_target_discount_[__${stat.index}__]_[__${itemStat.index}__]_[__${nmItemStat.index}__]" >
+			<td>
+				<div class="checkbox">
+					<input class="deleteFlag" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].deleteCheckFlag" th:value="0" />
+					<input id="item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_[__${nmItemStat.index}__]_discount_[__${nmDiscountStat.index}__].cancleButton"
+						class="detail_item_check_inn"
+						type="checkbox">
+					<label class="fz13 detail_item_check_inn_label"  onclick="labelAction(this)" id="item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_[__${nmItemStat.index}__]_discount_[__${nmDiscountStat.index}__].cancleLabel"
+						for="item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_[__${nmItemStat.index}__]_discount_[__${nmDiscountStat.index}__].cancleButton">
+					</label>
+				</div>
+			</td>
+			<td>Err</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+					<input readonly type="text">
+						<input type="hidden" onclick="labelAction(this)"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemPromotionType">
+					</div>
+					<div class="select-elem" >
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="promotionType : *{promotionTypeMap}"
+								th:data-value="${promotionType.key}" th:text="${promotionType.value}"
+								th:data-name="${promotionType.value}"></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemPromotionNumber">
+			</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+					<input readonly type="text">
+						<input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemStoreDiscountType">
+					</div>
+					<div class="select-elem">
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="storeDiscountType : *{storeDiscountTypeMap}"
+								th:data-value="${storeDiscountType.key}" th:text="${storeDiscountType.value}"
+								th:data-name="${storeDiscountType.value}"></li>
+						</ul>
+					</div>
+				</div>	
+			</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text" >
+					<input readonly type="text" class="currency_code_pull_down"> 
+						<input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxIncluded.currencyCode">
+					</div>
+					<div class="select-elem">
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="currencyCode : *{currencyCodeMap}"
+								th:data-value="${currencyCode.key}" th:text="${currencyCode.value}"
+								th:data-name="${currencyCode.value}"></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxExcluded.value">
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxIncluded.value">
+			</td>
+			
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input readonly type="text">
+						<input type="hidden" 
+							 name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemQuantityCode">
+					</div>
+					<div class="select-elem">
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="quantityCode : *{quantityCodeMap}"
+								th:data-value="${quantityCode.key}" th:text="${quantityCode.value}"
+								th:data-name="${quantityCode.value}"></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountQty">
+			</td>
+			<td class="hidden text-center" style="display:none;">
+				<input class="textbox currency_code_hidden"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxExcluded.currencyCode">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountDetailSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].nonItemDetailListByItem[[__${nmItemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountSubNumber">
+			</td>
+		</tr>
+	</table>
+	<table class="item_detail_tax_tmp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle add_item_detail_tax in_select_tr item_detail_del_target_tax_[__${stat.index}__]_[__${itemStat.index}__]">
+			<td>
+				<div class="checkbox">
+					<input class="deleteFlag" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].deleteCheckFlag" th:value="0" />
+					<input id="item_detail_list_[__${itemStat.index}__]_tax_[__${taxStat.index}__].cancleButton"
+						class="detail_item_check_inn"
+						type="checkbox">
+					<label class="fz13 detail_item_check_inn_label"  onclick="labelAction(this)"
+						for="item_detail_list_[__${itemStat.index}__]_tax_[__${taxStat.index}__].cancleButton">
+					</label>
+				</div>
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly > <input type="hidden" 
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxType">
+					</div>
+					<div class="select-elem" >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="taxGroup : *{taxGroupMap}"
+								th:data-value="${taxGroup.key}"
+								th:data-name="${taxGroup.value}"><span
+								th:text="${taxGroup.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxName">
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly > <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxAmt.currencyCode">
+					</div>
+					<div class="select-elem"  >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="currencyCode : *{currencyCodeMap}"
+								th:data-value="${currencyCode.key}"
+								th:data-name="${currencyCode.value}"><span
+								th:text="${currencyCode.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly> <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxAmountSign">
+					</div>
+					<div class="select-elem" >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="amountSign : *{amountSignMap}"
+								th:data-value="${amountSign.key}"
+								th:data-name="${amountSign.value}"><span
+								th:text="${amountSign.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxAmt.value">
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxRate">
+			</td>
+			
+			<td style="display:none">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxDetailSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemTaxDetailList[[__${taxStat.index}__]].itemTaxSubNumber">
+			</td>
+		</tr>
+	</table>
+	<table class="item_detail_discount_tmp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle add_item_detail_discount in_select_tr item_detail_del_target_discount_[__${stat.index}__]_[__${itemStat.index}__]">
+			<td>
+				<div class="checkbox">
+					<input class="deleteFlag" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].deleteCheckFlag" th:value="0" />
+					<input id="item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_discount_${discountStat.index}.cancleButton"
+						class="detail_item_check_inn"
+						type="checkbox">
+					<label class="fz13 detail_item_check_inn_label" onclick="labelAction(this)" id="label_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_discount_${discountStat.index}.cancleButton"
+						for="item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_discount_${discountStat.index}.cancleButton">
+					</label>
+				</div>
+			</td>
+			<td>Err</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+					<input readonly type="text">
+						<input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemPromotionType">
+					</div>
+					<div class="select-elem" >
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="promotionType : *{promotionTypeMap}"
+								th:data-value="${promotionType.key}" th:text="${promotionType.value}"
+								th:data-name="${promotionType.value}"></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+				name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemPromotionNumber">
+			</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+					<input readonly type="text">
+						<input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemStoreDiscountType">
+					</div>
+					<div class="select-elem" >
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="storeDiscountType : *{storeDiscountTypeMap}"
+								th:data-value="${storeDiscountType.key}" th:text="${storeDiscountType.value}"
+								th:data-name="${storeDiscountType.value}"></li>
+						</ul>
+					</div>
+				</div>	
+			</td>
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+					<input readonly type="text" class="currency_code_pull_down">
+						<input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountAmtTaxIncluded.currencyCode">
+					</div>
+					<div class="select-elem" >
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="currencyCode : *{currencyCodeMap}"
+								th:data-value="${currencyCode.key}" th:text="${currencyCode.value}"
+								th:data-name="${currencyCode.value}"></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountAmtTaxExcluded.value">
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountAmtTaxIncluded.value">
+			</td>
+			
+			<td class="text-center">
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input readonly type="text">
+						<input type="hidden" 
+							 name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemQuantityCode">
+					</div>
+					<div class="select-elem">
+						<ul class="category">
+							<li data-value="-1" data-name=""
+								th:utext="#{sales-transaction-correction.select.clear}"></li>
+							<li th:each="quantityCode : *{quantityCodeMap}"
+								th:data-value="${quantityCode.key}" th:text="${quantityCode.value}"
+								th:data-name="${quantityCode.value}"></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td class="text-center">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountQty">
+			</td>
+			<td class="hidden text-center" style="display:none;">
+				<input class="textbox currency_code_hidden"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountAmtTaxExcluded.currencyCode">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountDetailSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].transactionItemDetailList[[__${itemStat.index}__]].itemDiscountList[${discountStat.index}].itemDiscountSubNumber">
+			</td>
+		</tr>
+	</table>
+	<table class="item_nmdetail_tax_tmp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle add_item_nmdetail_tax in_select_tr item_nmdetail_del_target_tax_[__${stat.index}__]_[__${itemStat.index}__]">
+			<td>
+				<div class="checkbox">
+					<input class="deleteFlag" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].deleteCheckFlag" th:value="0" />
+					<input id="non_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_tax_[__${nmTaxStat.index}__].cancleButton"
+						class="detail_item_check_inn" 
+						type="checkbox">
+					<label class="fz13 detail_item_check_inn_label" onclick="labelAction(this)" 
+						for="non_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_tax_[__${nmTaxStat.index}__].cancleButton">
+					</label>
+				</div>
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly > <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxType">
+					</div>
+					<div class="select-elem">
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="taxGroup : *{taxGroupMap}"
+								th:data-value="${taxGroup.key}"
+								th:data-name="${taxGroup.value}"><span
+								th:text="${taxGroup.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxName">
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly class="currency_code_pull_down"> <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxAmt.currencyCode">
+					</div>
+					<div class="select-elem">
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="currencyCode : *{currencyCodeMap}"
+								th:data-value="${currencyCode.key}"
+								th:data-name="${currencyCode.value}"><span
+								th:text="${currencyCode.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="selectbox">
+					<div class="selectbox-text">
+						<input type="text" readonly> <input type="hidden"
+							class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxAmountSign">
+					</div>
+					<div class="select-elem"  >
+						<ul class="category ">
+							<li data-value="-1" data-name=""><span
+								th:text="#{sales-transaction-correction.select.clear}"></span></li>
+							<li th:each="amountSign : *{amountSignMap}"
+								th:data-value="${amountSign.key}"
+								th:data-name="${amountSign.value}"><span
+								th:text="${amountSign.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxAmt.value">
+			</td>
+			<td>
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxRate">
+			</td>
+			
+			<td style="display:none">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxDetailSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[[__${nmTaxStat.index}__]].nonItemTaxDiscountSubNumber">
+				<input class="textbox"
+					name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemTaxDetailList[${nmTaxStat.index}].nonItemTaxSubNumber">
+			</td>
+		</tr>
+	</table>
+	<table class="item_nmdetail_discount_tmp" style="display:none">
+		<tr data-updatetype="add" class="v-align-middle add_item_nmdetail_discount in_select_tr item_nmdetail_del_target_discount_[__${stat.index}__]_[__${itemStat.index}__]">
+					<td>
+						<div class="checkbox">
+							<input class="deleteFlag" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].deleteCheckFlag" th:value="0" />
+							<input id="non_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_discount_[__${nmDiscountStat.index}__].cancleButton"
+								class="detail_item_check_inn"
+								type="checkbox">
+							<label class="fz13 detail_item_check_inn_label" onclick="labelAction(this)"
+								for="non_item_detail_list_[__${stat.index}__]_[__${itemStat.index}__]_discount_[__${nmDiscountStat.index}__].cancleButton">
+							</label>
+						</div>
+					</td>
+					<td>Err</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+							<input readonly type="text">
+								<input type="hidden"
+									class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemPromotionType">
+							</div>
+							<div class="select-elem" >
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-correction.select.clear}"></li>
+									<li th:each="promotionType : *{promotionTypeMap}"
+										th:data-value="${promotionType.key}" th:text="${promotionType.value}"
+										th:data-name="${promotionType.value}"></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<input class="textbox"
+						name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemPromotionNumber">
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+							<input readonly type="text">
+								<input type="hidden"
+									class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemStoreDiscountType">
+							</div>
+							<div class="select-elem" >
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-correction.select.clear}"></li>
+									<li th:each="storeDiscountType : *{storeDiscountTypeMap}"
+										th:data-value="${storeDiscountType.key}" th:text="${storeDiscountType.value}"
+										th:data-name="${storeDiscountType.value}"></li>
+								</ul>
+							</div>
+						</div>	
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+							<input readonly type="text" class="currency_code_pull_down">
+								<input type="hidden"
+									class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxIncluded.currencyCode">
+							</div>
+							<div class="select-elem" >
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-correction.select.clear}"></li>
+									<li th:each="currencyCode : *{currencyCodeMap}"
+										th:data-value="${currencyCode.key}" th:text="${currencyCode.value}"
+										th:data-name="${currencyCode.value}"></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<input class="textbox"
+							name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxExcluded.value">
+					</td>
+					<td class="text-center">
+						<input class="textbox"
+							name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxIncluded.value">
+					</td>
+					
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input readonly type="text">
+								<input type="hidden" 
+									 name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemQuantityCode">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-correction.select.clear}"></li>
+									<li th:each="quantityCode : *{quantityCodeMap}"
+										th:data-value="${quantityCode.key}" th:text="${quantityCode.value}"
+										th:data-name="${quantityCode.value}"></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<input class="textbox"
+							name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountQty">
+					</td>
+					<td class="hidden text-center" style="display:none;">
+						<input class="textbox currency_code_hidden" 
+							name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountAmtTaxExcluded.currencyCode">
+						<input class="textbox"
+							name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountDetailSubNumber">
+						<input class="textbox"
+							name="transactionImportData.transactionList[[__${stat.index}__]].nonItemDetailList[[__${itemStat.index}__]].nonItemDiscountDetailList[[__${nmDiscountStat.index}__]].nonItemDiscountSubNumber">
+					</td>
+				</tr>
+	</table>
+	<table class="tax_add_temp" style="display:none">
+	<tr class="v-align-middle item_tax_del_target_[__${stat.index}__]" data-updatetype="add" data-inputclass=".transaction_tax_[__${itemStat.index}__]">
+		<td class="text-center">
+		<div class="checkbox">
+			<input class="deleteFlag" value="0" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTaxDetailList[[__${itemStat.index}__]].deleteCheckFlag" />
+			<input id="header_[__${stat.index}__]_taxList_[__${itemStat.index}__].cancleButton"
+				class="detail_item_check"
+				type="checkbox">
+			<label class="fz13"
+				for="header_[__${stat.index}__]_taxList_[__${itemStat.index}__].cancleButton">
+			</label>
+		</div>
+		</td>
+		<td class="text-center"><label>&#10003;</label></td>
+		<td class="text-center">
+		<div class="selectbox">
+			<div class="selectbox-text">
+				<input type="text" readonly> <input type="hidden"
+					class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTaxDetailList[[__${itemStat.index}__]].taxGroup">
+			</div>
+			<div class="select-elem">
+				<ul class="category ">
+					<li data-value="-1" data-name=""><span
+						th:text="#{sales-transaction-correction.select.clear}"></span></li>
+					<li th:each="taxCroup : *{taxGroupMap}"
+						th:data-value="${taxCroup.key}"
+						th:data-name="${taxCroup.value}"><span
+						th:text="${taxCroup.value}"></span></li>
+				</ul>
+			</div>
+		</div>
+		</td>
+		<td class="text-center"></td>
+		<td class="text-center">
+		<div class="selectbox">
+			<div class="selectbox-text">
+				<input type="text" readonly class="currency_code_input_tax"> <input type="hidden"
+					class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTaxDetailList[[__${itemStat.index}__]].taxAmount.currencyCode">
+			</div>
+			<div class="select-elem">
+				<ul class="category">
+					<li data-value="-1" data-name=""><span
+						th:text="#{sales-transaction-correction.select.clear}"></span></li>
+					<li th:each="currencyCode : *{currencyCodeMap}"
+						th:data-value="${currencyCode.key}"
+						th:data-name="${currencyCode.value}"><span
+						th:text="${currencyCode.value}"></span></li>
+				</ul>
+			</div>
+		</div>
+		</td>
+		<td class="text-center">
+		<div class="selectbox">
+			<div class="selectbox-text">
+				<input type="text" readonly> <input type="hidden"
+					class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTaxDetailList[[__${itemStat.index}__]].taxAmountSign">
+			</div>
+			<div class="select-elem">
+				<ul class="category ">
+					<li data-value="-1" data-name=""><span
+						th:text="#{sales-transaction-correction.select.clear}"></span></li>
+					<li th:each="amountSign : *{amountSignMap}"
+						th:data-value="${amountSign.key}"
+						th:data-name="${amountSign.value}"><span
+						th:text="${amountSign.value}"></span></li>
+				</ul>
+			</div>
+		</div>
+		</td>
+		<td class="text-center"><input class="textbox"
+			name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTaxDetailList[[__${itemStat.index}__]].taxAmount.value">
+		</td>
+		<td class="text-center">
+			<input class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTaxDetailList[[__${itemStat.index}__]].taxRate">
+		</td>
+	</tr>
+	</table>
+	<table class="total_add_temp" style="display:none">
+<tr class="v-align-middle item_total_del_target_[__${stat.index}__]" data-updatetype="add" data-totalindex="[__${itemStat.index}__]" data-inputclass=".transaction_total_[__${stat.index}__]_[__${itemStat.index}__]">
+	<td class="text-center">
+		<div class="checkbox">
+		<input class="deleteFlag" value="0" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTotalList[[__${itemStat.index}__]].deleteCheckFlag" />
+			<input id="header_[__${stat.index}__]_totalList_[__${itemStat.index}__].cancleButton"
+				class="detail_item_check"
+				type="checkbox"
+				value="0">
+			<label class="fz13"
+				for="header_[__${stat.index}__]_totalList_[__${itemStat.index}__].cancleButton">
+			</label>
+		</div>
+	</td>
+	<td class="text-center" >
+	<div class="selectbox item_total_add_[__${stat.index}__][__${itemStat.index}__]">
+		<div class="selectbox-text item_total_add_[__${stat.index}__][__${itemStat.index}__]">
+			<input type="text" readonly> <input type="hidden"
+				class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTotalList[[__${itemStat.index}__]].totalType">
+		</div>
+		<div class="select-elem item_total_add_[__${stat.index}__][__${itemStat.index}__]">
+			<ul class="category">
+				<li data-value="-1" data-name=""><span
+					th:text="#{sales-transaction-correction.select.clear}"></span></li>
+				<li th:each="totalType : *{totalTypeMap}"
+					th:data-value="${totalType.key}"
+					th:data-name="${totalType.value}"><span
+					th:text="${totalType.value}"></span></li>
+			</ul>
+		</div>
+	</div>
+	</td>
+	<td class="text-center">
+	<div class="selectbox item_total_add_[__${stat.index}__][__${itemStat.index}__]">
+		<div class="selectbox-text item_total_add_[__${stat.index}__][__${itemStat.index}__]">
+			<input type="text" class="currency_code_input_total" readonly > <input type="hidden"  
+				class="textbox"  name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTotalList[[__${itemStat.index}__]].totalAmountTaxIncluded.currencyCode">
+		</div>
+		<div class="select-elem item_total_add_[__${stat.index}__][__${itemStat.index}__]">
+			<ul class="category">
+				<li data-value="-1" data-name=""><span
+					th:text="#{sales-transaction-correction.select.clear}"></span></li>
+				<li th:each="currencyCode : *{currencyCodeMap}"
+					th:data-value="${currencyCode.key}"
+					th:data-name="${currencyCode.value}"><span
+					th:text="${currencyCode.value}"></span></li>
+			</ul>
+		</div>
+	</div>
+	</td>
+	<td class="text-center">
+	<input type="hidden" class="textbox currencyCode_add"
+		name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTotalList[[__${itemStat.index}__]].totalAmountTaxExcluded.currencyCode">
+	<input type="text" class="textbox"
+		name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTotalList[[__${itemStat.index}__]].totalAmountTaxExcluded.value">
+	</td>
+	<td class="text-center"><input type="text" class="textbox"
+		name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTotalList[[__${itemStat.index}__]].totalAmountTaxIncluded.value">
+	</td>
+</tr>
+</table>
+
+<div id="payment_refference" style="width:900px; display: none; position: absolute; z-index: 999999; background: #fff" >
+<div class=" modal-title header" style="box-shadow:none!important">
+		<p>
+		<span id="box-title" class="vertical-align-middle"
+			th:text="#{sales-transaction-correction.reference.title}"></span>
+		</p>
+		<a href="#" class="close modal-close">&nbsp;</a>
+</div>
+<div class="th-fixed" style="padding:20px;">
+	<div class="th-fixed-head">
+		<table class="common-table" style="width:860px;">
+			<colgroup>
+				<col class="width5em">
+				<col class="width10em">
+				<col class="width8em">
+				<col class="width9em">
+				<col class="width9em">
+			</colgroup>
+			<thead>
+				<tr class="v-align-middle" style="height:0px!important">
+					<th rowspan=2 class="text-center"
+						th:utext="#{sales-transaction-correction.iMSTenderGroupLabel8}"></th>
+					<th rowspan=2 class="text-center"
+						th:utext="#{sales-transaction-correction.iMSTenderIDLabel8}"></th>
+					<th rowspan=2 class="text-center"
+						th:utext="#{sales-transaction-correction.tenderNameLabel8}"></th>
+					<th rowspan="2" class="text-center"
+						th:utext="#{sales-transaction-correction.tenderGroupLabel9}"></th>
+					<th rowspan="2" class="text-center"
+						th:utext="#{sales-transaction-correction.tenderIdLabel9}"></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<div class="scroll-block th-fixed-body v-hheight max-height-500" style="height:300px;">
+		<table id="dataTable" class="common-table" style="width:860px;">
+			<colgroup>
+				<col class="width5em">
+				<col class="width10em">
+				<col class="width8em">
+				<col class="width9em">
+				<col class="width9em">
+			</colgroup>
+			<tbody id="dataTable"  style="width:100%;height:300px!important;overflow:scroll">
+					<tr th:each="tenderReference,stat : *{tenderAndTransformInformationOptionalList}">
+					<td class="text-center" th:utext="${tenderReference.imsTenderGroup}">
+					</td>
+					<td class="text-center" th:utext="${tenderReference.imsTenderId}">
+					</td>
+					<td class="text-center" th:utext="${tenderReference.tenderName}">
+					</td>
+					<td class="text-center" th:utext="${tenderReference.tenderGroup}">
+					</td>
+					<td class="text-center" th:utext="${tenderReference.tenderId}">
+					</td>
+					</tr>
+				</tbody>
+		</table>
+	</div>
+	<p class="text-right">
+		<a href="#" class="button skeleton primary small mrMedium modal-close"
+			id="cancelButton"
+			th:text="#{sales-transaction-correction.popup.cancelButton}" onclick=""></a>
+	</p>
+</div>
+</div>
+
+<table class="tender_add_temp" style="display:none">
+<tr class="v-align-middle item_tender_del_target_[__${stat.index}__]" data-updatetype="add"  data-tenderindex="[__${itemStat.index}__]" data-headerindex="[__${stat.index}__]" data-inputclass=".transaction_tender_[__${stat.index}__]_[__${itemStat.index}__]">
+	<td class="text-center">
+		<div class="checkbox">
+			<input class="deleteFlag" value="0" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTenderList[[__${itemStat.index}__]].deleteCheckFlag" />
+			<input id="header_[__${stat.index}__]_tenderList_[__${itemStat.index}__].cancleButton"
+				class="detail_item_check"
+				type="checkbox"
+				th:value="0">
+			<label class="fz13"
+				for="header_[__${stat.index}__]_tenderList_[__${itemStat.index}__].cancleButton">
+			</label>
+		</div>
+	</td>
+	<td class="text-center">
+		<label>&#10003;</label>
+	</td>
+	<td class="text-center">
+		<input type="text" class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTenderList[[__${itemStat.index}__]].tenderGroupId" >
+	</td>
+	<td class="text-center"><input type="text" class="textbox"
+		name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTenderList[[__${itemStat.index}__]].tenderId">
+	</td>
+	<td class="text-center"></td>
+	<td class="text-center">
+	<div class="selectbox">
+		<div class="selectbox-text">
+			<input type="text" readonly class="currency_code_input_tender"> <input type="hidden"
+				class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTenderList[[__${itemStat.index}__]].taxIncludedPaymentAmount.currencyCode">
+		</div>
+		<div class="select-elem">
+			<ul class="category ">
+				<li data-value="-1" data-name=""><span
+					th:text="#{sales-transaction-correction.select.clear}"></span></li>
+				<li th:each="currencyCode : *{currencyCodeMap}"
+					th:data-value="${currencyCode.key}"
+					th:data-name="${currencyCode.value}"><span
+					th:text="${currencyCode.value}"></span></li>
+			</ul>
+		</div>
+	</div>
+	</td>
+	<td class="text-center" >
+	<div class="selectbox">
+		<div class="selectbox-text">
+			<input type="text" readonly> <input type="hidden"
+				class="textbox" name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTenderList[[__${itemStat.index}__]].paymentSign">
+		</div>
+		<div class="select-elem">
+			<ul class="category ">
+				<li data-value="-1" data-name=""><span
+					th:text="#{sales-transaction-correction.select.clear}"></span></li>
+				<li th:each="paymentSign : *{paymentSignMap}"
+					th:data-value="${paymentSign.key}"
+					th:data-name="${paymentSign.value}"><span
+					th:text="${paymentSign.value}"></span></li>
+			</ul>
+		</div>
+	</div>
+	</td>
+	<td class="text-center"><input type="text" class="textbox"
+		name="transactionImportData.transactionList[[__${stat.index}__]].salesTransactionTenderList[[__${itemStat.index}__]].taxIncludedPaymentAmount.value">
+	</td>
+</tr>
+</table>
+	</div>
+	<div id="footer" class="footer">
+		
+		<div class="left-options">
+			<ul>
+				<li><a href="javascript:void(0)" class="button submit"
+					id="deleteButton"
+					th:utext="#{sales-transaction-correction.deleteButton}"></a></li>
+			</ul>
+		</div>
+		<div class="right-options">
+			<ul>
+				<li><a class="button submit"
+					th:utext="#{sales-transaction-correction.uploadButton}" id="upload"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

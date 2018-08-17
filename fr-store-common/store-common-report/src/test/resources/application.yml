@@ -1,0 +1,40 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SIV
+    full: inventory
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+
+spring:
+
+  messages:
+    basename: messages-dcp-common,messages-edge-print,messages-report-api,messages-report-server
+    cache-seconds: -1
+    encoding: UTF-8
+  datasource:
+    url: jdbc:postgresql://172.31.11.63:5432/reportdb
+    username: nec
+    password: nec
+    driverClassName: org.postgresql.Driver
+  transaction:
+    default-timeout: 60
+
+logging:
+  level:
+    com.fastretailing.dcp: DEBUG
+    org.springframework.web: INFO
+  path: logs
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+version:
+  aws: 1.11.228

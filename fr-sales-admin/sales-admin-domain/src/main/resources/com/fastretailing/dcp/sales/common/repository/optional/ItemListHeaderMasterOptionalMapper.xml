@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.ItemListHeaderMasterOptionalMapper">
+	<resultMap id="BaseResultMap" type="java.lang.String">
+	    <result column="system_brand_code" jdbcType="VARCHAR" property="systemBrandCode" />
+	</resultMap>
+	<insert id="insertBySkulistParentWork">
+		insert into /* ItemListHeaderMasterOptionalMapper-001 */ m_item_list_head
+		select
+			system_brand_code,
+			business_code,
+			country_code,
+			skulist_code,
+			item_list_name,
+			parent_skulist_code,
+			color_code,
+			size_code,
+			pattern_length_code,
+			major_category_code,
+			class_code,
+			middle_category_code,
+			uda_value,
+			initial_selling_price,
+			regular_item_flag,
+			core_attribute_flag,
+			out_of_stock_judge_quantity,
+			line_up_type_code,
+			input_aggregation_type,
+			skulist_status,
+			view_item_code,
+			item_list_hierarchy_code,
+			year_code,
+			view_year_type,
+			season_code,
+			detail_season_code,
+			skulist_pattern_code,
+			set_object_auto_update_flag,
+			#{updateUserId},
+			#{updateDatetime},
+			#{updateProgramId},
+			#{updateUserId},
+			#{updateDatetime},
+			#{updateProgramId}
+		from ( 
+			select
+				m.system_brand_code,
+				btrim(to_char(w.business_code,'9999999999')) business_code,
+				w.country_code,
+				btrim(to_char(w.skulist_code,'99999999')) skulist_code,
+				w.item_list_name,
+				btrim(to_char(w.parent_skulist_code,'99999999')) parent_skulist_code,
+				w.color_code,
+				w.size_code,
+				w.pattern_length_code,
+				btrim(to_char(w.major_category_code,'99999999')) major_category_code,
+				btrim(to_char(w.class_code,'99999999')) class_code,
+				btrim(to_char(w.middle_category_code,'99999999')) middle_category_code,
+				w.uda_value,
+				w.initial_selling_price,
+				cast(w.regular_item_type as boolean) regular_item_flag,
+				cast(w.core_attribute_type as boolean) core_attribute_flag,
+				w.out_of_stock_judge_quantity,
+				w.line_up_type_code,
+				w.input_aggregation_type,
+				w.skulist_status,
+				w.view_item_code,
+				w.item_list_hierarchy_code,
+				w.year_code,
+				w.view_year_type,
+				w.season_code,
+				w.detail_season_code,
+				w.skulist_pattern_code,
+				cast(w.set_object_auto_update_type as boolean) set_object_auto_update_flag
+			from
+				w_skulist_parent w, m_trans_business_code m 
+			where
+				w.lot_number = #{ lotNumber }
+				and w.eai_update_type in ('1','2','9') 
+				and btrim(to_char(w.business_code,'9999999999')) = m.system_business_code 
+				and w.country_code = m.system_country_code 
+		except 
+			select
+				system_brand_code,
+				system_business_code,
+				system_country_code, 
+				skulist_code,
+				item_list_name,
+				parent_skulist_code,
+				color_code,
+				size_code,
+				pattern_length_code,
+				major_category_code,
+				class_code,
+				middle_category_code,
+				small_category_value,
+				initial_selling_price,
+				regular_item_flag,
+				core_attribute_flag,
+				out_of_stock_judge_quantity,
+				line_up_type_code,
+				input_aggregation_type,
+				skulist_status,
+				view_item_code,
+				item_list_hierarchy_code,
+				year_code,
+				view_year_type,
+				season_code,
+				detail_season_code,
+				skulist_pattern_code,
+				set_object_auto_update_flag
+			from
+				m_item_list_head
+		) total
+	</insert>
+	
+	<update id="updateBySkulistParentWork">
+		update /* ItemListHeaderMasterOptionalMapper-002 */ m_item_list_head
+		set 
+			system_business_code = wm.business_code,
+			item_list_name = wm.item_list_name,
+			parent_skulist_code = wm.parent_skulist_code,
+			color_code = wm.color_code,
+			size_code = wm.size_code,
+			pattern_length_code = wm.pattern_length_code,
+			major_category_code = wm.major_category_code,
+			class_code = wm.class_code,
+			middle_category_code = wm.middle_category_code,
+			small_category_value  = wm.uda_value,
+			initial_selling_price = wm.initial_selling_price, 
+			regular_item_flag = cast(wm.regular_item_type as boolean),
+			core_attribute_flag = cast(wm.core_attribute_type as boolean),
+			out_of_stock_judge_quantity = wm.out_of_stock_judge_quantity,
+			line_up_type_code = wm.line_up_type_code,
+			input_aggregation_type = wm.input_aggregation_type,
+			skulist_status = wm.skulist_status,
+			view_item_code = wm.view_item_code,
+			item_list_hierarchy_code = wm.item_list_hierarchy_code,
+			year_code = wm.year_code,
+			view_year_type = wm.view_year_type,
+			season_code = wm.season_code,
+			detail_season_code = wm.detail_season_code,
+			skulist_pattern_code = wm.skulist_pattern_code,
+			set_object_auto_update_flag = cast(wm.set_object_auto_update_type as boolean),
+			update_user_id = #{ updateUserId },
+			update_datetime = #{ updateDatetime },
+			update_program_id = #{ updateProgramId }
+		from (
+			select
+				m.system_brand_code,
+				btrim(to_char(w.business_code,'9999999999')) business_code,
+				w.country_code,
+				btrim(to_char(w.skulist_code,'99999999')) skulist_code,
+				w.item_list_name,
+				btrim(to_char(w.parent_skulist_code,'99999999')) parent_skulist_code,
+				w.color_code,
+				w.size_code,
+				w.pattern_length_code,
+				btrim(to_char(w.major_category_code,'9999')) major_category_code,
+				btrim(to_char(w.class_code,'9999')) class_code,
+				btrim(to_char(w.middle_category_code,'9999')) middle_category_code,
+				w.uda_value,
+				w.initial_selling_price, 
+				w.regular_item_type,
+				w.core_attribute_type,
+				w.out_of_stock_judge_quantity,
+				w.line_up_type_code, 
+				w.input_aggregation_type,
+				w.skulist_status,
+				w.view_item_code,
+				w.item_list_hierarchy_code,
+				w.year_code,
+				w.view_year_type,
+				w.season_code,
+				w.detail_season_code,
+				w.skulist_pattern_code,
+				w.set_object_auto_update_type
+			from
+				w_skulist_parent w, m_trans_business_code m
+			where btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+				and w.country_code = m.system_country_code
+				and w.lot_number = #{ lotNumber }
+				and w.eai_update_type = '2'
+			) wm
+		where
+			m_item_list_head.system_brand_code = wm.system_brand_code
+			and m_item_list_head.system_country_code = wm.country_code
+			and m_item_list_head.skulist_code = wm.skulist_code
+	</update>
+	
+	<update id="updateAllBySkulistParentWork">
+		update /* ItemListHeaderMasterOptionalMapper-003 */ m_item_list_head
+		set 
+			system_business_code = wm.business_code,
+			item_list_name = wm.item_list_name,
+			parent_skulist_code = wm.parent_skulist_code,
+			color_code = wm.color_code,
+			size_code = wm.size_code,
+			pattern_length_code = wm.pattern_length_code,
+			major_category_code = wm.major_category_code,
+			class_code = wm.class_code,
+			middle_category_code = wm.middle_category_code,
+			small_category_value  = wm.uda_value,
+			initial_selling_price = wm.initial_selling_price, 
+			regular_item_flag = cast(wm.regular_item_type as boolean),
+			core_attribute_flag = cast(wm.core_attribute_type as boolean),
+			out_of_stock_judge_quantity = wm.out_of_stock_judge_quantity,
+			line_up_type_code = wm.line_up_type_code,
+			input_aggregation_type = wm.input_aggregation_type,
+			skulist_status = wm.skulist_status,
+			view_item_code = wm.view_item_code,
+			item_list_hierarchy_code = wm.item_list_hierarchy_code,
+			year_code = wm.year_code,
+			view_year_type = wm.view_year_type,
+			season_code = wm.season_code,
+			detail_season_code = wm.detail_season_code,
+			skulist_pattern_code = wm.skulist_pattern_code,
+			set_object_auto_update_flag = cast(wm.set_object_auto_update_type as boolean),
+			create_user_id = #{ updateUserId },
+			create_datetime = #{ updateDatetime },
+			create_program_id = #{ updateProgramId },
+			update_user_id = #{ updateUserId },
+			update_datetime = #{ updateDatetime },
+			update_program_id = #{ updateProgramId }
+		from (
+			select
+				m.system_brand_code,
+				btrim(to_char(w.business_code,'9999999999')) business_code,
+				w.country_code,
+				btrim(to_char(w.skulist_code,'99999999')) skulist_code,
+				w.item_list_name,
+				btrim(to_char(w.parent_skulist_code,'99999999')) parent_skulist_code,
+				w.color_code,
+				w.size_code,
+				w.pattern_length_code,
+				btrim(to_char(w.major_category_code,'9999')) major_category_code,
+				btrim(to_char(w.class_code,'9999')) class_code,
+				btrim(to_char(w.middle_category_code,'9999')) middle_category_code,
+				w.uda_value,
+				w.initial_selling_price, 
+				w.regular_item_type,
+				w.core_attribute_type,
+				w.out_of_stock_judge_quantity,
+				w.line_up_type_code, 
+				w.input_aggregation_type,
+				w.skulist_status,
+				w.view_item_code,
+				w.item_list_hierarchy_code,
+				w.year_code,
+				w.view_year_type,
+				w.season_code,
+				w.detail_season_code,
+				w.skulist_pattern_code,
+				w.set_object_auto_update_type
+			from
+				w_skulist_parent w, m_trans_business_code m
+			where btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+				and w.country_code = m.system_country_code
+				and w.lot_number = #{ lotNumber }
+				and w.eai_update_type in ('1','9')
+			) wm
+		where
+			m_item_list_head.system_brand_code = wm.system_brand_code
+			and m_item_list_head.system_country_code = wm.country_code
+			and m_item_list_head.skulist_code = wm.skulist_code
+	</update>
+	
+	<delete id="deleteBySkulistParentWork">
+		delete from /* ItemListHeadMasterOptionalMapper-004 */ m_item_list_head
+		using (
+			select * 
+			from 
+				w_skulist_parent w, m_trans_business_code m
+			where
+				btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+				and w.country_code = m.system_country_code
+				and w.lot_number = #{ lotNumber }
+				and w.eai_update_type = '3'
+			) wm
+		where
+			m_item_list_head.system_brand_code = wm.system_brand_code
+			and m_item_list_head.system_country_code = wm.country_code
+			and m_item_list_head.skulist_code = btrim(to_char(wm.skulist_code,'9999999999'))
+	</delete>
+	
+	<select id="getSystemBrandCode"  resultMap="BaseResultMap">
+	select /* ItemListHeaderMasterOptionalMapper_005 */  m.system_brand_code
+	from 
+		w_skulist_parent w
+		left outer join m_trans_business_code m
+		on btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+			and w.country_code = m.system_country_code
+	where w.lot_number = #{ lotNumber }
+		and w.eai_update_type in ('1', '2','9')
+	</select>
+</mapper>

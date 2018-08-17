@@ -1,0 +1,82 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesPayoffUnmatchListOptionalMapper">
+     <resultMap id="BaseResultMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesPayoffUnmatchOptionalEntity">
+	    <result column="system_brand_code" jdbcType="VARCHAR" property="systemBrandCode" />
+	    <result column="system_brand_name" jdbcType="VARCHAR" property="systemBrandName" />
+   		<result column="system_country_code" jdbcType="VARCHAR" property="systemCountryCode" />
+		<result column="view_store_code" jdbcType="VARCHAR" property="viewStoreCode" />
+		<result column="store_code" jdbcType="VARCHAR" property="storeCode" />
+		<result column="store_name" jdbcType="VARCHAR" property="storeName" />
+	    <result column="cash_register_no" jdbcType="NUMERIC" property="cashRegisterNo" />
+	    <result column="payoff_date" jdbcType="VARCHAR" property="payoffDate" />
+	    <result column="integrity_check_type" jdbcType="VARCHAR" property="integrityCheckType" />
+	    <result column="error_contents" jdbcType="VARCHAR" property="errorContents" />
+	    <result column="data_alteration_status_name" jdbcType="VARCHAR" property="dataAlterationStatusName" />
+     </resultMap>
+     <select id="selectSalesPayoffUnmatchOptionalByCondition" resultMap="BaseResultMap">
+		SELECT /* SalesPayoffUnmatchListOptionalMapper-001 */
+			cm01.name_1 as system_brand_name
+			,cm02.name_1 as system_country_name
+			,tpod1.store_code
+			,mtsc.store_name
+			,tpod1.cash_register_no
+			,tpod1.payoff_date
+			,tpod1.integrity_check_type
+			,for_error_info.name_1 as error_contents
+			,tpod1.data_alteration_status
+			,for_data_status.name_1
+			,CASE 
+			 WHEN tpod1.data_alteration_status = '2' THEN  for_data_status.name_1
+			 END as data_alteration_status_name
+		FROM
+			t_pay_off_data tpod1
+			, m_trans_store_code mtsc
+			, m_common_code_master cm01
+			, m_common_code_master cm02
+			, m_common_code_master as for_error_info
+			, m_common_code_master as for_data_status
+		WHERE
+			cm01.type_id = 'system_brand_code'
+			AND cm01.type_value = tpod1.system_brand_code
+			AND cm02.type_id = 'system_country_code'
+			AND cm02.type_value = tpod1.system_country_code
+			AND tpod1.store_code = mtsc.store_code
+			AND for_error_info.type_id = 'integrity_check_type'
+			AND for_error_info.type_value = tpod1.integrity_check_type
+			AND for_data_status.type_id = 'data_alteration_status'
+			AND for_data_status.type_value = tpod1.data_alteration_status
+			AND tpod1.data_alteration_status &lt;&gt; '1'
+			<if test="systemBrandCode != null">
+			AND tpod1.system_brand_code = #{systemBrandCode}
+			</if>
+			<if test="systemCountryCode != null">
+			AND tpod1.system_country_code = #{systemCountryCode}
+			</if>
+			<if test="viewStoreCode != null">
+			 AND mtsc.view_store_code = #{viewStoreCode}
+			</if>
+			<if test="cashRegisterNo != null">
+			AND tpod1.cash_register_no = #{cashRegisterNo}
+			</if>
+			<if test="payoffDateFrom != null">
+			<![CDATA[
+			AND tpod1.payoff_date >= #{payoffDateFrom,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<if test="payoffDateTo != null">
+			<![CDATA[
+			AND tpod1.payoff_date <= #{payoffDateTo,jdbcType=VARCHAR}
+			]]>
+			</if>
+			<choose>
+				<when test="integrityCheckType != null">
+				AND tpod1.integrity_check_type = #{integrityCheckType}
+				</when>
+				<otherwise>
+				AND tpod1.integrity_check_type IN ('2', '3')
+				</otherwise>
+			</choose>
+     </select>
+</mapper>

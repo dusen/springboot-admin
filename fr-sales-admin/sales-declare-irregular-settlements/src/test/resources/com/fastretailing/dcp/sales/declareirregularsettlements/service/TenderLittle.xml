@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <m_tender 
+        store_code="sc001"
+        tender_name=" "
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="1001"
+        ims_tender_group="TCASH"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="$10_Coupon"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5008"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+
+    <m_tender 
+        store_code="sc001"
+        tender_name="Amex"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4004"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+
+</dataset>

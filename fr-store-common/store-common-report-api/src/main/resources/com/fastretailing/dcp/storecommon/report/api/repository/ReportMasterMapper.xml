@@ -1,0 +1,24 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.storecommon.report.api.repository.ReportMasterMapper">
+
+    <select id="select" resultType="com.fastretailing.dcp.storecommon.report.api.entity.ReportMaster">
+        SELECT /* ReportMasterMapper_001 */
+            report_form_bucket_name
+            , report_form_key_name
+            , report_title
+            , report_preservation_period
+            , printer_name
+            , outer_command_execute_flag
+            , auto_print_server_ip_address
+        FROM
+            m_report_master 
+        WHERE
+            report_id = #{report_id}
+        AND report_type = #{report_type}
+        AND country_code = #{country_code}
+        <![CDATA[
+        AND apply_start_date <= now()
+        AND apply_end_date >= now()
+        ]]>
+    </select>
+</mapper>

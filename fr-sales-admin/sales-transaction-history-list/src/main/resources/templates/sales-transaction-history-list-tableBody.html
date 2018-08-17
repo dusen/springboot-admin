@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(salesTransactionHistoryList)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width3em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width20em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width5em">
+			<col class="width15em">
+			<col class="width10em">
+			<col class="width30em">
+			<col class="width15em">
+			<col class="width15em">
+			<col class="width15em">
+			<col class="width10em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle"
+				th:each="info , stat: ${salesTransactionHistoryList}">
+				<td class="text-center"><a th:text="${stat.index + 1}"
+					onclick="forDetail(this)" class="noLink"></a><input type="hidden"
+					class="checkFlagInput"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].checkFlag}">
+					<input type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].salesTransactionErrorId}">
+				<td class="text-center"><label
+					th:text="${info != null ? info.brandCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].brandCode}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.countryCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].countryCode}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.storeCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].storeCode}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.storeName:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].storeName}">
+				</td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.cashRegisterNo:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].cashRegisterNo}">
+				</td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.receiptNo:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].receiptNo}">
+				</td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.salesTransactionType:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].salesTransactionType}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.dataCreationDate:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].dataCreationDate}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.businessDate:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].businessDate}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.errorContents:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].errorContents}">
+				</td>
+				<td class="text-right"><label
+					th:text="${info != null ? info.correctorCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].correctorCode}">
+				</td>
+				<td class="text-right"><label
+					th:text="${info != null ? info.correctionDate:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].correctionDate}"></td>
+				<td class="text-right"><label
+					th:text="${info != null ? info.reflect:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].reflect}">
+				</td>
+				<td class="text-right"><label
+					th:text="${info != null ? info.updateType:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionHistoryList[__${stat.index}__].updateType}"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

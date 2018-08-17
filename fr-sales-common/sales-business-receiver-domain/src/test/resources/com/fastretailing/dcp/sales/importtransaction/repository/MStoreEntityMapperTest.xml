@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<m_store store_code="1" store_name="1" store_name_kana="1"
+		store_addr1="1" store_addr2="1" store_city="1" county="1" state_code="1"
+		system_country_code="1" postal_code="1" fax_number="1" phone_number="1"
+		store_type_code="1" open_date="2010-03-15 00:00:00" close_date="2010-03-15 00:00:00"
+		renewal_open_date="2010-03-15 00:00:00" vat_region_code="1"
+		channel_id="1" area_code="1" order_start_date="1" order_end_date="1"
+		currency_code="1" language_code="1" shipment_logistics_district_code="1"
+		store_scale_pattern_code="1" existing_store_type_code="1"
+		inventory_object_type_code="1" register_cat_interlock_type_code="1"
+		ss_store_manager_store_type_code="1" renewal_before_close_date="2010-03-15 00:00:00"
+		open_term_number="1" store_inspection_start_date="2010-03-15 00:00:00"
+		store_inspection_end_date="2010-03-15 00:00:00" close_type_code="1"
+		direct_management_fc_store_type_code="1" consignment_store_type_code="1"
+		system_machine_removal_date="2010-03-15 00:00:00"
+		sale_channel_type_code="1" transfer_out_control_exclude_flag="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" system_brand_code="1" system_business_code="1"/>
+
+</dataset>

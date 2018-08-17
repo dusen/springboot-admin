@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{store-transaction-inquiry.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/store-transaction-inquiry.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/store-transaction-inquiry.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{store-transaction-inquiry.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents scroll-block v-hheight" style="max-height: 850px;"
+		id="main" th:object="${storeTransactionInquiryForm}">
+		<input type="hidden" id="E_SLS_66000137" name="E_SLS_66000137"
+			th:value="#{E_SLS_66000137}" /> <input type="hidden"
+			th:field="*{countIndex}" /> <input type="hidden"
+			th:field="*{showDetail}" />
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{store-transaction-inquiry.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<p class="mr-left-20 fz45 mb15"
+				th:text="#{store-transaction-inquiry.title}"></p>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width100">
+						<label th:utext="#{store-transaction-inquiry.brandLabel}"></label>
+					</div>
+					<div class="mr-left-15"></div>
+					<div class="width100">
+						<div class="selectbox" id="brandSelect">
+							<div class="selectbox-text">
+								<div class="input-elem">
+									<input type="text" readonly
+										th:placeholder="#{placeholder.brand}"
+										th:field="*{systemBrandName}"> <input type="hidden"
+										th:field="*{systemBrandCode}">
+								</div>
+							</div>
+							<div class="select-elem">
+								<ul class="brand" id="groupBrand"
+									th:each="brand : ${storeTransactionInquiryForm.brandList}">
+									<li th:data-value="${brand.key}" th:data-name="${brand.value}"><span
+										th:text="${brand.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="mr-left-15"></div>
+					<div class="width100">
+						<label th:utext="#{store-transaction-inquiry.countryLabel}"></label>
+					</div>
+					<div class="mr-left-15"></div>
+					<div class="width100">
+						<div class="selectbox" id="countrySelect">
+							<div class="selectbox-text">
+								<div class="input-elem">
+									<input type="text" readonly
+										th:placeholder="#{placeholder.country}"
+										th:field="*{systemCountryName}"> <input type="hidden"
+										th:field="*{systemCountryCode}">
+								</div>
+							</div>
+							<div class="select-elem">
+								<ul class="country" id="groupCountry"
+									th:each="country : ${storeTransactionInquiryForm.countryList}">
+									<li th:data-value="${country.key}"
+										th:data-name="${country.value}"><span
+										th:text="${country.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="mr-left-15"></div>
+					<div class="width100">
+						<label th:utext="#{store-transaction-inquiry.storeLabel}"></label>
+					</div>
+					<div class="mr-left-15"></div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input id="storeCode"
+								type="text" class="textbox width160 numerickeybord"
+								maxlength="6" th:field="*{storeCode}"><span
+								class="input-clear fade-action"></span></span>
+						</p>
+					</div>
+					<div class="mr-left-15"></div>
+					<div class="width100">
+						<label th:utext="#{store-transaction-inquiry.businessDateLabel}"></label>
+					</div>
+					<div class="mr-left-15"></div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{businessDate}"></span><span
+						class="input-clear fade-action"></span>
+				</div>
+			</div>
+
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width100">
+						<label th:utext="#{store-transaction-inquiry.registerNoLabel}"></label>
+					</div>
+					<div class="mr-left-5"></div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybord" maxlength="4"
+								th:field="*{cashRegisterNo}"><span
+								class="input-clear fade-action"></span></span>
+						</p>
+					</div>
+					<div class="width100">
+						<label
+							th:utext="#{store-transaction-inquiry.dataCreationDateTimeLabel}"></label>
+					</div>
+					<div class="mr-left-10"></div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{dataCreationDateFrom}"></span><span
+						class="input-clear fade-action"></span>
+					<div class="mr-left-15"></div>
+					<span class="numerickeybord-wrap"><input type="text"
+						class="textbox width100 numerickeybord" maxlength="4"
+						th:field="*{dataCreationTimeFrom}"> <span
+						class="input-clear fade-action"></span></span><span class="mr-left-15">～</span>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text mrMedium" th:field="*{dataCreationDateTo}">
+					</span><span class="numerickeybord-wrap"><input type="text"
+						class="textbox width100 numerickeybord" maxlength="4"
+						th:field="*{dataCreationTimeTo}"><span
+						class="input-clear fade-action"></span></span>
+				</div>
+			</div>
+			<br>
+			<div class="width100">
+				<label
+					th:utext="#{store-transaction-inquiry.salesTransactionTypeLabel}"></label>
+				<label class="mr-left-150"
+					th:utext="#{store-transaction-inquiry.casherLabel}"></label> <label
+					class="mr-left-180"
+					th:utext="#{store-transaction-inquiry.membershipIDLabel}"></label>
+			</div>
+
+			<div class="input-wrap">
+				<div class="input-elem">
+					<div class="selectbox" id="salesTransactionTypeSelect">
+						<div class="selectbox-text">
+							<input type="text" th:field="*{salesTransactionType}">
+						</div>
+						<div class="select-elem">
+							<ul class="category">
+								<li data-value="-1" data-name=""><span
+									th:text="#{store-transaction-inquiry.select.clear}"></span></li>
+								<li th:each="salesTransactionType : *{salesTransactionTypeMap}"
+									th:data-value="${salesTransactionType.key}"
+									th:data-name="${salesTransactionType.value}"><span
+									th:text="${salesTransactionType.value}"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="mr-left-80"></div>
+				<div class="input-elem">
+					<p>
+						<span class="numeric-keypad-wrap"><input type="text"
+							class="textbox width160 numerickeybord" th:field="*{casherCode}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+				<div class="mr-left-45"></div>
+				<div class="input-elem">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox width160 numerickeybord"
+							th:field="*{membershipId}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+			</div>
+
+			<div class="width100">
+				<label th:utext="#{store-transaction-inquiry.receiptNoLabel}"></label>
+			</div>
+			<div class="input-wrap">
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox width160th numerickeybord" placeholder=""
+							th:field="*{receiptNoFrom}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+				<p>～&nbsp;&nbsp;&nbsp;</p>
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{receiptNoTo}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+			</div>
+
+			<div class="width100">
+				<label
+					th:utext="#{store-transaction-inquiry.paymentTenderGroupLabel}"></label>
+				<label class="mr-left-45"
+					th:utext="#{store-transaction-inquiry.paymentTenderIDLabel}"></label>
+				<label class="mr-left-110"
+					th:utext="#{store-transaction-inquiry.paymentAmountLabel}"></label>
+			</div>
+
+			<div class="input-wrap">
+				<div class="input-elem">
+					<div class="selectbox" id="paymentTenderGroupSelect">
+						<div class="selectbox-text">
+							<div class="input-elem">
+								<input type="text" readonly th:field="*{paymentTenderGroup}">
+								<input type="hidden" th:field="*{paymentImsTenderGroup}">
+							</div>
+						</div>
+						<div class="select-elem">
+							<ul class="paymentTenderGroup" id="groupPaymentTenderGroup"
+								th:each="paymentTenderGroup : ${storeTransactionInquiryForm.paymentTenderGroupList}">
+								<li th:data-value="${paymentTenderGroup.key}"
+									th:data-name="${paymentTenderGroup.value}"><span
+									th:text="${paymentTenderGroup.value}"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-elem">
+					<div class="selectbox" id="paymentTenderIdSelect">
+						<div class="selectbox-text">
+							<input type="text" readonly th:field="*{paymentTenderId}">
+							<input type="hidden" th:field="*{paymentImsTenderId}">
+						</div>
+						<div class="select-elem">
+							<ul class="paymentTenderId" id="groupPaymentTenderId"
+								th:each="paymentTenderId : ${storeTransactionInquiryForm.paymentTenderIdList}">
+								<li th:data-value="${paymentTenderId.key}"
+									th:data-name="${paymentTenderId.value}"><span
+									th:text="${paymentTenderId.value}"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="mr-left-45"></div>
+				<div class="input-elem">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{paymentAmountFrom}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+				<p>～&nbsp;&nbsp;&nbsp;</p>
+				<div class="input-elem">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{paymentAmountTo}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+			</div>
+
+			<div class="width200">
+				<label th:utext="#{store-transaction-inquiry.depositAmountLabel}"></label>
+				<label class="mr-left-325"
+					th:utext="#{store-transaction-inquiry.changeAmountLabel}"></label>
+			</div>
+
+			<div class="input-wrap">
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{depositAmountFrom}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+				<p>～&nbsp;&nbsp;&nbsp;</p>
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{depositAmountTo}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+				<div class="mr-left-45"></div>
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{changeAmountFrom}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+				<p>～&nbsp;&nbsp;&nbsp;</p>
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" placeholder=""
+							th:field="*{changeAmountTo}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+			</div>
+
+			<div class="width100">
+				<label th:utext="#{store-transaction-inquiry.taxationTypeLabel}"></label>
+			</div>
+			<div class="input-wrap">
+				<div class="width160 mrMedium">
+					<div class="selectbox" id="taxationTypeSelect">
+						<div class="selectbox-text">
+							<input type="text" th:field="*{taxationType}">
+						</div>
+						<div class="select-elem">
+							<ul class="category">
+								<li data-value="-1" data-name=""><span
+									th:text="#{store-transaction-inquiry.select.clear}"></span></li>
+								<li th:each="taxationType : *{taxationTypeMap}"
+									th:data-value="${taxationType.key}"
+									th:data-name="${taxationType.value}"><span
+									th:text="${taxationType.value}"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="width100">
+				<label
+					th:utext="#{store-transaction-inquiry.nonMerchandiseItemLabel}"></label>
+				<label class="mr-left-120"
+					th:utext="#{store-transaction-inquiry.itemLabel}"></label>
+			</div>
+			<div class="input-wrap">
+				<div class="input-elem" id="nonMerchandiseItemMap">
+					<div class="selectbox width160 modal-trigger"
+						data-open-modal="select-catelory" id="nonMerchandiseItemSelect">
+						<div class="selectbox-text">
+							<div class="input-elem">
+								<input type="text" readonly th:field="*{nonMerchandiseItemName}">
+								<input type="hidden" th:field="*{nonMerchandiseItemCode}">
+							</div>
+						</div>
+
+						<div class="select-elem">
+							<ul class="nonMerchandiseItem" id="groupNonMerchandiseItem"
+								th:each="nonMerchandiseItem : ${storeTransactionInquiryForm.nonMerchandiseItemList}">
+								<li th:data-value="${nonMerchandiseItem.key}"
+									th:data-name="${nonMerchandiseItem.value}"><span
+									th:text="${nonMerchandiseItem.value}"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="mr-left-80"></div>
+				<div class="input-elem width20">
+					<p>
+						<span class="numerickeybord-wrap"><input type="text"
+							class="textbox numerickeybord" maxlength="6"
+							th:field="*{itemCode}"><span
+							class="input-clear fade-action"></span></span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="width100">
+			<label th:utext="#{store-transaction-inquiry.discountTypeLabel}"></label>
+		</div>
+
+		<div class="input-wrap space-between fz13 mb15">
+			<div class="width160 mrMedium">
+				<div class="selectbox" id="discountTypeSelect">
+					<div class="selectbox-text">
+						<input type="text" th:field="*{discountType}">
+					</div>
+					<div class="select-elem">
+						<ul class="category">
+							<li data-value="-1" data-name=""><span
+								th:text="#{store-transaction-inquiry.select.clear}"></span></li>
+							<li th:each="discountType : *{discountTypeMap}"
+								th:data-value="${discountType.key}"
+								th:data-name="${discountType.value}"><span
+								th:text="${discountType.value}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap mb0">
+				<a href="javascript:void(0)" id="clearButton"
+					class="button skeleton cancel small mrMedium"
+					th:text="#{store-transaction-inquiry.clearButton}"></a> <a
+					href="javascript:void(0)" class="button skeleton primary small"
+					id="searchButton" onclick="javascript:searchButtonClick(this);"
+					th:attr="data-url=@{/{brand}/{region}/screen/{store_code}/store-transaction-inquiry/list(brand=${brand},region=${region},store_code=*{loginStoreCode})}"
+					th:text="#{store-transaction-inquiry.searchButton}"></a>
+			</div>
+		</div>
+
+
+		<div class="width80per">
+			<div id="divTableBody">
+				<div th:replace="store-transaction-inquiry-detail"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="footer" class="footer">
+		<div class="right-options"></div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

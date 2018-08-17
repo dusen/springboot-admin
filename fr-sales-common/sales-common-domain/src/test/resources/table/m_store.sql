@@ -1,0 +1,57 @@
+DROP TABLE IF EXISTS sales-dev6.m_store CASCADE;
+CREATE TABLE sales-dev6.m_store(
+ store_code varchar(10) NOT NULL,
+ store_name varchar(150) NOT NULL,
+ store_name_kana varchar(150),
+ store_addr1 varchar(120) NOT NULL,
+ store_addr2 varchar(120),
+ store_city varchar(120) NOT NULL,
+ county varchar(250),
+ state_code varchar(4),
+ system_country_code varchar(3) NOT NULL,
+ postal_code varchar(10),
+ fax_number varchar(20),
+ phone_number varchar(20),
+ store_type_code varchar(1) NOT NULL,
+ open_date timestamptz NOT NULL,
+ close_date timestamptz,
+ renewal_open_date timestamptz,
+ vat_region_code varchar(4),
+ channel_id varchar(4),
+ area_code varchar(10),
+ order_start_date numeric(3) NOT NULL,
+ order_end_date numeric(3),
+ currency_code varchar(3) NOT NULL,
+ language_code varchar(6) NOT NULL,
+ shipment_logistics_district_code varchar(2),
+ store_scale_pattern_code varchar(6),
+ existing_store_type_code varchar(6),
+ inventory_object_type_code varchar(6),
+ register_cat_interlock_type_code varchar(6),
+ ss_store_manager_store_type_code varchar(6),
+ renewal_before_close_date timestamptz,
+ open_term_number numeric(2),
+ store_inspection_start_date timestamptz,
+ store_inspection_end_date timestamptz,
+ close_type_code varchar(6),
+ direct_management_fc_store_type_code varchar(6),
+ consignment_store_type_code varchar(6),
+ system_machine_removal_date timestamptz,
+ sale_channel_type_code varchar(6),
+ transfer_out_control_exclude_flag boolean DEFAULT FALSE NOT NULL,
+ system_brand_code varchar(4) NOT NULL,
+ system_business_code varchar(10) NOT NULL,
+ create_user_id varchar(30),
+ create_datetime timestamptz NOT NULL,
+ create_program_id varchar(30),
+ update_user_id varchar(30),
+ update_datetime timestamptz,
+ update_program_id varchar(30),
+  CONSTRAINT m_store_pk
+   PRIMARY KEY(store_code)
+)
+WITH (OIDS=FALSE,FILLFACTOR=90)
+;
+
+
+commit;

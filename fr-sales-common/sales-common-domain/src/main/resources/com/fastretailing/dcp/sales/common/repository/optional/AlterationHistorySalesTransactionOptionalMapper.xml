@@ -1,0 +1,1497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.fastretailing.dcp.sales.common.repository.optional.AlterationHistorySalesTransactionOptionalMapper">
+    <resultMap id="TransactionDataMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.TransactionImportData">
+        <id property="integratedOrderId" column="integrated_order_id" />
+        <result column="update_type" property="updateType" />
+        <result column="error_check_type" property="errorCheckType" />
+        <result column="data_alteration_sales_linkage_type" property="dataAlterationSalesLinkageType" />
+        <result column="data_alteration_backbone_linkage_type"
+            property="dataAlterationBackboneLinkageType" />
+        <result column="order_barcode_number" property="orderBarcodeNumber" />
+        <result column="channel_code" property="channelCode" />
+        <result column="store_code" property="storeCode" />
+        <result column="system_brand_code" property="systemBrandCode" />
+        <result column="system_business_code" property="systemBusinessCode" />
+        <result column="system_country_code" property="systemCountryCode" />
+        <result column="customer_id" property="customerId" />
+        <result column="order_confirmation_business_date" property="orderConfirmationBusinessDate" />
+        <result column="order_confirmation_date_time" property="orderConfirmationDateTime" />
+        <result column="data_correction_editing_flag" property="dataCorrectionEditingFlag" />
+        <result column="data_correction_user_id" property="dataCorrectionUserId" />
+        <collection javaType="ArrayList" property="transactionList"
+            autoMapping="true"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.Transaction">
+            <id property="orderSubNumber" column="header_order_sub_number" />
+            <id property="salesTransactionId" column="header_sales_transaction_id" />
+            <id property="transactionSerialNumber" column="header_transaction_serial_number" />
+            <result property="storeCode" column="header_store_code" />
+            <result column="header_integrated_order_id" property="integratedOrderId" />
+            <result column="header_token_code" property="tokenCode" />
+            <result column="header_sales_transaction_type" property="transactionType" />
+            <result column="header_sales_linkage_type" property="salesLinkageType" />
+            <result column="header_return_type" property="returnType" />
+            <result column="header_system_brand_code" property="systemBrandCode" />
+            <result column="header_system_business_code" property="systemBusinessCode" />
+            <result column="header_system_country_code" property="systemCountryCode" />
+            <result column="header_channel_code" property="channelCode" />
+            <result column="header_data_creation_business_date" property="dataCreationBusinessDate" />
+            <result column="header_data_creation_date_time" property="dataCreationDateTime" />
+            <result column="header_order_status_last_update_date_time"
+                property="orderStatusLastUpdateDateTime" />
+            <result column="header_order_status_update_date" property="orderStatusUpdateDate" />
+            <result column="header_order_status_last_update_date_time"
+                property="orderStatusLastUpdateDateTime" />
+            <result column="header_cash_register_no" property="cashRegisterNo" />
+            <result column="header_receipt_no" property="receiptNo" />
+            <result column="header_order_number_for_store_payment"
+                property="orderNumberForStorePayment" />
+            <result column="header_advance_received_store_code" property="advanceReceivedStoreCode" />
+            <result column="header_advance_received_store_system_brand_code"
+                property="advanceReceivedStoreSystemBrandCode" />
+            <result column="header_advance_received_store_system_business_code"
+                property="advanceReceivedStoreSystemBusinessCode" />
+            <result column="header_advance_received_store_system_country_code"
+                property="advanceReceivedStoreSystemCountryCode" />
+            <result column="header_operator_code" property="operatorCode" />
+            <result column="header_original_transaction_id" property="originalTransactionId" />
+            <result column="header_original_receipt_no" property="originalReceiptNo" />
+            <result column="header_original_cash_register_no" property="originalCashRegisterNo" />
+            <result column="header_receipt_no_for_credit_card_cancellation"
+                property="receiptNoForCreditCardCancellation" />
+            <result column="header_receipt_no_for_credit_card" property="receiptNoForCreditCard" />
+            <result column="header_payment_store_code" property="paymentStoreCode" />
+            <result column="header_payment_store_system_brand_code"
+                property="paymentStoreSystemBrandCode" />
+            <result column="header_payment_store_system_business_code"
+                property="paymentStoreSystemBusinessCode" />
+            <result column="header_payment_store_system_country_code"
+                property="paymentStoreSystemCountryCode" />
+            <result column="header_receipt_issued_flag" property="receiptIssuedFlag" />
+            <result column="header_processing_company_code" property="processingCompanyCode" />
+            <result column="header_order_cancellation_date" property="orderCancellationDate" />
+            <result column="header_order_status" property="orderStatus" />
+            <result column="header_order_substatus" property="orderSubstatus" />
+            <result column="header_payment_status" property="paymentStatus" />
+            <result column="header_shipment_status" property="shipmentStatus" />
+            <result column="header_receiving_status" property="receivingStatus" />
+            <result column="header_transfer_out_status" property="transferOutStatus" />
+            <result column="header_booking_store_code" property="bookingStoreCode" />
+            <result column="header_booking_store_system_brand_code"
+                property="bookingStoreSystemBrandCode" />
+            <result column="header_booking_store_system_business_code"
+                property="bookingStoreSystemBusinessCode" />
+            <result column="header_booking_store_system_country_code"
+                property="bookingStoreSystemCountryCode" />
+            <result column="header_shipment_store_code" property="shipmentStoreCode" />
+            <result column="header_shipment_store_system_brand_code"
+                property="shipmentStoreSystemBrandCode" />
+            <result column="header_shipment_store_system_business_code"
+                property="shipmentStoreSystemBusinessCode" />
+            <result column="header_shipment_store_system_country_code"
+                property="shipmentStoreSystemCountryCode" />
+            <result column="header_receipt_store_code" property="receiptStoreCode" />
+            <result column="header_receipt_store_system_brand_code"
+                property="receiptStoreSystemBrandCode" />
+            <result column="header_receipt_store_system_business_code"
+                property="receiptStoreSystemBusinessCode" />
+            <result column="header_receipt_store_system_country_code"
+                property="receiptStoreSystemCountryCode" />
+            <result column="header_customer_id" property="customerId" />
+            <result column="header_customer_type" property="customerType" />
+            <result column="header_corporate_id" property="corporateId" />
+            <result column="header_sales_transaction_discount_flag"
+                property="salesTransactionDiscountFlag" />
+            <result column="header_sales_transaction_discount_type"
+                property="salesTransactionDiscountType" />
+            <result column="header_consistency_sales_flag" property="consistencySalesFlag" />
+            <result column="header_employee_sale_flag" property="employeeSaleFlag" />
+            <result column="header_e_receipt_target_flag" property="eReceiptTargetFlag" />
+            <association property="deposit"
+				javaType="com.fastretailing.dcp.storecommon.dto.Price">
+				<result property="currencyCode" column="header_deposit_currency_code"
+					typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+				<result property="value" column="header_deposit_value" />
+			</association>
+			<association property="change"
+				javaType="com.fastretailing.dcp.storecommon.dto.Price">
+				<result property="currencyCode" column="header_change_currency_code"
+					typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+				<result property="value" column="header_change_value" />
+			</association>
+			<association property="salesTransactionDiscountAmountRate"
+				javaType="com.fastretailing.dcp.storecommon.dto.Price">
+				<result property="currencyCode" column="header_sales_transaction_discount_amount_rate_currency_code"
+					typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+				<result property="value" column="header_sales_transaction_discount_amount_rate_value" />
+			</association>
+            <collection resultMap="itemDetailMap" javaType="ArrayList"
+                property="transactionItemDetailList" notNullColumn="item_detail_sub_number"
+                ofType="com.fastretailing.dcp.sales.importtransaction.dto.TransactionItemDetail">
+            </collection>
+            <collection resultMap="nmItemDetailMap" javaType="ArrayList"
+                property="nonItemDetailList" notNullColumn="nitem_non_item_detail_sub_number" 
+                ofType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDetail">
+            </collection>
+            <collection resultMap="transactionTenderListMap" javaType="ArrayList"
+                property="salesTransactionTenderList" notNullColumn="tender_tender_sub_number"
+                ofType="com.fastretailing.dcp.sales.importtransaction.dto.SalesTransactionTender">
+            </collection>
+            <collection resultMap="transactionTaxDetailMap" javaType="ArrayList"
+                property="salesTransactionTaxDetailList" notNullColumn="tax_tax_sub_number"
+                ofType="com.fastretailing.dcp.sales.importtransaction.dto.SalesTransactionTaxDetail">
+            </collection>
+            <collection resultMap="transactionTotalListMap" javaType="ArrayList"
+                property="salesTransactionTotalList" notNullColumn="total_total_type"
+                ofType="com.fastretailing.dcp.sales.importtransaction.dto.SalesTransactionTotal">
+            </collection>
+        </collection>
+    </resultMap>
+    <resultMap id="transactionTaxDetailMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.SalesTransactionTaxDetail"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="detailSubNumber" column="detail_sub_number" />
+        <id property="taxGroup" column="tax_tax_group" />
+        <id property="taxSubNumber" column="tax_tax_sub_number" />
+        <result column="tax_tax_amount_sign" property="taxAmountSign" />
+        <result column="tax_tax_rate" property="taxRate" />
+        <association property="taxAmount"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="tax_tax_amount_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="tax_tax_amount_value" />
+        </association>
+    </resultMap>
+    <resultMap id="transactionTotalListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.SalesTransactionTotal"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="totalType" column="total_total_type" />
+        <result column="total_total_amount_sub_number" property="totalAmountSubNumber" />
+        <result column="total_consumption_tax_rate" property="consumptionTaxRate" />
+        <result column="total_sales_transaction_information_1"
+            property="salesTransactionInformation1" />
+        <result column="total_sales_transaction_information_2"
+            property="salesTransactionInformation2" />
+        <result column="total_sales_transaction_information_3"
+            property="salesTransactionInformation3" />
+        <association property="totalAmountTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="total_total_amount_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="total_total_amount_tax_excluded_value" />
+        </association>
+        <association property="totalAmountTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="total_total_amount_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="total_total_amount_tax_included_value" />
+        </association>
+    </resultMap>
+    <resultMap id="transactionTenderListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.SalesTransactionTender"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="tenderGroupId" column="tender_tender_group_id" />
+        <id property="tenderId" column="tender_tender_id" />
+        <id property="tenderSubNumber" column="tender_tender_sub_number" />
+        <result column="tender_payment_sign" property="paymentSign" />
+        <association property="taxIncludedPaymentAmount"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="tender_tax_included_payment_amount_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="tender_tax_included_payment_amount_value" />
+        </association>
+        <association property="tenderInfoList"
+            javaType="com.fastretailing.dcp.sales.importtransaction.dto.TenderInfo">
+            <result column="tender_info_discount_rate" property="discountRate" />
+            <result column="tender_info_discount_code_id_corporate_id"
+                property="discountCodeIdCorporateId" />
+            <result column="tender_info_coupon_type" property="couponType" />
+            <result column="tender_info_coupon_user_id" property="couponUserId" />
+            <result column="tender_info_card_no" property="cardNo" />
+            <result column="tender_info_credit_approval_code" property="creditApprovalCode" />
+            <result column="tender_info_credit_processing_serial_number"
+                property="creditProcessingSerialNumber" />
+            <result column="tender_info_credit_payment_type" property="creditPaymentType" />
+            <result column="tender_info_credit_payment_count" property="creditPaymentCount" />
+            <result column="tender_info_credit_affiliated_store_number"
+                property="creditAffiliatedStoreNumber" />
+            <association property="discountAmount"
+                javaType="com.fastretailing.dcp.storecommon.dto.Price">
+                <result property="currencyCode" column="tender_info_discount_amount_currency_code"
+                    typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+                <result property="value" column="tender_info_discount_amount_value" />
+            </association>
+            <association property="couponDiscountAmountSetting"
+                javaType="com.fastretailing.dcp.storecommon.dto.Price">
+                <result property="currencyCode"
+                    column="tender_info_coupon_discount_amount_setting_currency_code"
+                    typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+                <result property="value"
+                    column="tender_info_coupon_discount_amount_setting_value" />
+            </association>
+            <association property="couponMinUsageAmountThreshold"
+                javaType="com.fastretailing.dcp.storecommon.dto.Price">
+                <result property="currencyCode"
+                    column="tender_info_coupon_min_usage_amount_threshold_currency_code"
+                    typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+                <result property="value"
+                    column="tender_info_coupon_min_usage_amount_threshold_value" />
+            </association>
+        </association>
+    </resultMap>
+    <resultMap id="itemDetailMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.TransactionItemDetail"
+        autoMapping="true">
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="detailSubNumber" column="item_detail_sub_number" />
+        <result column="item_system_brand_code" property="systemBrandCode" />
+        <result column="item_detail_list_sales_transaction_type"
+            property="detailListSalesTransactionType" />
+        <result column="item_l2_item_code" property="l2ItemCode" />
+        <result column="item_view_l2_item_code" property="viewL2ItemCode" />
+        <result column="item_l2_product_name" property="l2ProductName" />
+        <result column="item_l3_item_code" property="l3ItemCode" />
+        <result column="item_l3_pos_product_name" property="l3PosProductName" />
+        <result column="item_epc_code" property="epcCode" />
+        <result column="item_g_department_code" property="gDepartmentCode" />
+        <result column="item_dept_code" property="deptCode" />
+        <result column="item_quantity_code" property="quantityCode" />
+        <result column="item_item_qty" property="itemQty" />
+        <result column="item_order_status_update_date" property="orderStatusUpdateDate" />
+        <result column="item_order_status_last_update_date_time"
+            property="orderStatusLastUpdateDateTime" />
+        <result column="item_order_status" property="orderStatus" />
+        <result column="item_order_substatus" property="orderSubstatus" />
+        <result column="item_booking_store_code" property="bookingStoreCode" />
+        <result column="item_booking_store_system_brand_code" property="bookingStoreSystemBrandCode" />
+        <result column="item_booking_store_system_business_code"
+            property="bookingStoreSystemBusinessCode" />
+        <result column="item_booking_store_system_country_code"
+            property="bookingStoreSystemCountryCode" />
+        <result column="item_shipment_store_code" property="shipmentStoreCode" />
+        <result column="item_shipment_store_system_brand_code"
+            property="shipmentStoreSystemBrandCode" />
+        <result column="item_shipment_store_system_business_code"
+            property="shipmentStoreSystemBusinessCode" />
+        <result column="item_shipment_store_system_country_code"
+            property="shipmentStoreSystemCountryCode" />
+        <result column="item_receipt_store_code" property="receiptStoreCode" />
+        <result column="item_receipt_store_system_brand_code" property="receiptStoreSystemBrandCode" />
+        <result column="item_receipt_store_system_business_code"
+            property="receiptStoreSystemBusinessCode" />
+        <result column="item_receipt_store_system_country_code"
+            property="receiptStoreSystemCountryCode" />
+        <result column="item_contribution_sales_representative"
+            property="contributionSalesRepresentative" />
+        <result column="item_customer_id" property="customerId" />
+        <result column="item_bundle_purchase_qty" property="bundlePurchaseQty" />
+        <result column="item_bundle_purchase_index" property="bundlePurchaseIndex" />
+        <result column="item_limited_amount_promotion_count" property="limitedAmountPromotionCount" />
+        <result column="item_calculation_unavailable_type" property="calculationUnavailableType" />
+        <result column="item_item_mount_discount_type" property="itemMountDiscountType" />
+        <result column="item_set_sales_flag" property="bundleSalesFlag" />
+        <result column="item_set_sales_detail_index" property="bundleSalesDetailIndex" />
+        <result column="item_item_detail_number" property="itemDetailNumber" />
+        <result column="item_item_taxation_type" property="itemTaxationType" />
+        <result column="item_item_tax_kind" property="itemTaxKind" />
+        <association property="itemCost"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_item_cost_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_cost_value" />
+        </association>
+        <association property="initialSellingPrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_initial_selling_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_initial_selling_price_value" />
+        </association>
+        <association property="bItemSellingPrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="b_item_selling_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="b_item_selling_price_value" />
+        </association>
+        <association property="itemNewPrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_item_new_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_new_price_value" />
+        </association>
+        <association property="itemUnitPriceTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="item_item_unit_price_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_unit_price_tax_excluded_value" />
+        </association>
+        <association property="itemUnitPriceTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="item_item_unit_price_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_unit_price_tax_included_value" />
+        </association>
+        <association property="itemSalesAmtTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="item_item_sales_amt_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_sales_amt_tax_excluded_value" />
+        </association>
+        <association property="itemSalesAmtTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="item_item_sales_amt_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_sales_amt_tax_included_value" />
+        </association>
+        <association property="bundlePurchasePrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_bundle_purchase_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_bundle_purchase_price_value" />
+        </association>
+        <association property="itemDiscountAmount"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_item_discount_amount_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_item_discount_amount_value" />
+        </association>
+        <association property="bundleSalesPrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_set_sales_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_set_sales_price_value" />
+        </association>
+        <collection resultMap="subNmItemDetailMap" javaType="ArrayList"
+            property="nonItemDetailListByItem" notNullColumn="sub_nitem_detail_sub_number"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDetail">
+        </collection>
+        <collection resultMap="itemDiscountDetailListMap" javaType="ArrayList"
+            property="itemDiscountList" notNullColumn="item_discount_item_discount_sub_number"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.ItemDiscount">
+        </collection>
+        <collection resultMap="itemTaxDetailListMap" javaType="ArrayList"
+            property="itemTaxDetailList" notNullColumn="item_tax_item_tax_sub_number"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.ItemTaxDetail">
+        </collection>
+    </resultMap>
+    <resultMap id="itemDiscountDetailListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.ItemDiscount"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="itemDiscountDetailSubNumber" column="item_discount_item_discount_detail_sub_number" />
+        <id property="itemPromotionType" column="item_discount_item_promotion_type" />
+        <id property="itemPromotionNumber" column="item_discount_item_promotion_number" />
+        <id property="itemStoreDiscountType" column="item_discount_item_store_discount_type" />
+        <result column="item_discount_item_discount_sub_number" property="itemDiscountSubNumber" />
+        <association property="itemDiscountAmtTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_discount_item_discount_amt_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_discount_item_discount_amt_tax_excluded_value" />
+        </association>
+        <association property="itemDiscountAmtTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_discount_item_discount_amt_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_discount_item_discount_amt_tax_included_value" />
+        </association>
+    </resultMap>
+    <resultMap id="itemTaxDetailListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.ItemTaxDetail"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="itemTaxDetailSubNumber" column="item_tax_item_tax_detail_sub_number" />
+        <id property="itemTaxType" column="item_tax_item_tax_type" />
+        <id property="itemTaxName" column="item_tax_item_tax_name" />
+        <result column="item_tax_item_tax_sub_number" property="itemTaxSubNumber" />
+        <result column="item_tax_item_tax_amount_sign" property="itemTaxAmountSign" />
+        <result column="item_tax_item_tax_rate" property="itemTaxRate" />
+        <association property="itemTaxAmt"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="item_tax_item_tax_amt_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="item_tax_item_tax_amt_value" />
+        </association>
+    </resultMap>
+<!--  The nmItem in item detail start -->   
+    <resultMap id="subNmItemDetailMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDetail"
+        autoMapping="true">
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="detailSubNumber" column="sub_nitem_detail_sub_number" />
+        <result column="sub_nitem_non_md_type" property="nonMdType" />
+        <result column="sub_nitem_non_item_code" property="nonItemCode" />
+        <result column="sub_nitem_service_code" property="serviceCode" />
+        <result column="sub_nitem_pos_non_item_name" property="posNonItemName" />
+        <result column="sub_nitem_quantity_code" property="quantityCode" />
+        <result column="sub_nitem_non_item_qty" property="nonItemQty" />
+        <result column="sub_nitem_non_calculation_non_item_type" property="nonCalculationNonItemType" />
+        <result column="sub_nitem_order_status_update_date" property="orderStatusUpdateDate" />
+        <result column="sub_nitem_order_status_last_update_date_time"
+            property="orderStatusLastUpdateDateTime" />
+        <result column="sub_nitem_order_status" property="orderStatus" />
+        <result column="sub_nitem_order_substatus" property="orderSubstatus" />
+        <result column="sub_nitem_booking_store_code" property="bookingStoreCode" />
+        <result column="sub_nitem_booking_store_system_brand_code"
+            property="bookingStoreSystemBrandCode" />
+        <result column="sub_nitem_booking_store_system_business_code"
+            property="bookingStoreSystemBusinessCode" />
+        <result column="sub_nitem_booking_store_system_country_code"
+            property="bookingStoreSystemCountryCode" />
+        <result column="sub_nitem_shipment_store_code" property="shipmentStoreCode" />
+        <result column="sub_nitem_shipment_store_system_brand_code"
+            property="shipmentStoreSystemBrandCode" />
+        <result column="sub_nitem_shipment_store_system_business_code"
+            property="shipmentStoreSystemBusinessCode" />
+        <result column="sub_nitem_shipment_store_system_country_code"
+            property="shipmentStoreSystemCountryCode" />
+        <result column="sub_nitem_receipt_store_code" property="receiptStoreCode" />
+        <result column="sub_nitem_receipt_store_system_brand_code"
+            property="receiptStoreSystemBrandCode" />
+        <result column="sub_nitem_receipt_store_system_business_code"
+            property="receiptStoreSystemBusinessCode" />
+        <result column="sub_nitem_receipt_store_system_country_code"
+            property="receiptStoreSystemCountryCode" />
+        <result column="sub_nitem_contribution_sales_representative"
+            property="contributionSalesRepresentative" />
+        <result column="sub_nitem_non_item_detail_number" property="nonItemDetailNumber" />
+        <result column="sub_nitem_non_item_taxation_type" property="nonItemTaxationType" />
+        <result column="sub_nitem_non_item_tax_kind" property="nonItemTaxKind" />
+        <association property="nonItemUnitPriceTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="sub_nitem_non_item_unit_price_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value"
+                column="sub_nitem_non_item_unit_price_tax_excluded_value" />
+        </association>
+        <association property="nonItemUnitPriceTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="sub_nitem_non_item_unit_price_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value"
+                column="sub_nitem_non_item_unit_price_tax_included_value" />
+        </association>
+        <association property="nonItemSalesAmtTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="sub_nitem_non_item_sales_amt_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="sub_nitem_non_item_sales_amt_tax_excluded_value" />
+        </association>
+        <association property="nonItemSalesAmtTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="sub_nitem_non_item_sales_amt_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="sub_nitem_non_item_sales_amt_tax_included_value" />
+        </association>
+        <association property="nonItemNewPrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="sub_nitem_non_item_new_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="sub_nitem_non_item_new_price_value" />
+        </association>
+        <association property="nonItemInfo"
+            javaType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemInfo">
+            <id property="transactionId" column="transaction_id" />
+            <id property="orderSubNumber" column="order_sub_number" />
+            <id property="salesTransactionId" column="sales_transaction_id" />
+            <id property="detailSubNumber" column=" sub_nitem_info_detail_sub_number" />
+            <result column="sub_nitem_info_item_detail_sub_number" property="itemDetailSubNumber" />
+            <result column="sub_nitem_info_key_code" property="keyCode" />
+            <result column="sub_nitem_info_code_value_1" property="codeValue1" />
+            <result column="sub_nitem_info_code_value_2" property="codeValue2" />
+            <result column="sub_nitem_info_code_value_3" property="codeValue3" />
+            <result column="sub_nitem_info_code_value_4" property="codeValue4" />
+            <result column="sub_nitem_info_name_1" property="name1" />
+            <result column="sub_nitem_info_name_2" property="name2" />
+            <result column="sub_nitem_info_name_3" property="name3" />
+            <result column="sub_nitem_info_name_4" property="name4" />
+        </association>
+        <collection resultMap="subNmItemDiscountDetailListMap"
+            javaType="ArrayList" property="nonItemDiscountDetailList" notNullColumn="sub_nitem_discount_non_item_discount_sub_number"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDiscountDetail">
+        </collection>
+        <collection resultMap="subNmItemTaxDetailListMap" javaType="ArrayList"
+            property="nonItemTaxDetailList" notNullColumn="sub_nitem_tax_non_item_tax_discount_sub_number"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemTaxDetail">
+        </collection>
+    </resultMap>
+    <resultMap id="subNmItemDiscountDetailListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDiscountDetail"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="detailSubNumber" column="sub_nitem_discount_non_item_discount_detail_sub_number" />
+        <id property="nonItemPromotionType" column="sub_nitem_discount_non_item_promotion_type" />
+        <id property="promotionNo" column="promotion_no" />
+        <id property="nonItemStoreDiscountType" column="sub_nitem_discount_non_item_store_discount_type" />
+        <result column="sub_nitem_discount_non_item_discount_sub_number" property="nonItemDiscountSubNumber" />
+        <result column="sub_nitem_discount_non_item_quantity_code" property="nonItemQuantityCode" />
+        <result column="sub_nitem_discount_non_item_discount_qty" property="nonItemDiscountQty" />
+        <association property="nonItemDiscountAmtTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="sub_nitem_discount_non_item_discount_amt_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="sub_nitem_discount_non_item_discount_amt_tax_excluded_value" />
+        </association>
+        <association property="nonItemDiscountAmtTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="sub_nitem_discount_non_item_discount_amt_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="sub_nitem_discount_non_item_discount_amt_tax_included_value" />
+        </association>
+    </resultMap>
+    <resultMap id="subNmItemTaxDetailListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.NonItemTaxDetail"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="nonItemTaxDetailSubNumber" column="sub_nitem_tax_non_item_tax_detail_sub_number" />
+        <id property="nonItemTaxType" column="sub_nitem_tax_non_item_tax_type" />
+        <id property="nonItemTaxDiscountSubNumber" column="sub_nitem_tax_non_item_tax_discount_sub_number" />
+        <result column="sub_nitem_tax_non_item_tax_name" property="nonItemTaxName" />
+        <result column="sub_nitem_tax_non_item_tax_amount_sign" property="nonItemTaxAmountSign" />
+        <result column="sub_nitem_tax_non_item_tax_rate" property="nonItemTaxRate" />
+        <association property="nonItemTaxAmt"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="sub_nitem_tax_non_item_tax_amt_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="sub_nitem_tax_non_item_tax_amt_value" />
+        </association>
+    </resultMap>
+<!--  The nmItem in item detail end -->
+    <resultMap id="nmItemDetailMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDetail"
+        autoMapping="true">
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="detailSubNumber" column="nitem_non_item_detail_sub_number" />
+        <result column="nitem_non_md_detail_list_sales_transaction_type"
+            property="nonMdDetailListSalesTransactionType" />
+        <result column="nitem_non_md_type" property="nonMdType" />
+        <result column="nitem_non_item_code" property="nonItemCode" />
+        <result column="nitem_service_code" property="serviceCode" />
+        <result column="nitem_pos_non_item_name" property="posNonItemName" />
+        <result column="nitem_quantity_code" property="quantityCode" />
+        <result column="nitem_non_item_qty" property="nonItemQty" />
+        <result column="nitem_non_calculation_non_item_type" property="nonCalculationNonItemType" />
+        <result column="nitem_order_status_update_date" property="orderStatusUpdateDate" />
+        <result column="nitem_order_status_last_update_date_time"
+            property="orderStatusLastUpdateDateTime" />
+        <result column="nitem_order_status" property="orderStatus" />
+        <result column="nitem_order_substatus" property="orderSubstatus" />
+        <result column="nitem_booking_store_code" property="bookingStoreCode" />
+        <result column="nitem_booking_store_system_brand_code"
+            property="bookingStoreSystemBrandCode" />
+        <result column="nitem_booking_store_system_business_code"
+            property="bookingStoreSystemBusinessCode" />
+        <result column="nitem_booking_store_system_country_code"
+            property="bookingStoreSystemCountryCode" />
+        <result column="nitem_shipment_store_code" property="shipmentStoreCode" />
+        <result column="nitem_shipment_store_system_brand_code"
+            property="shipmentStoreSystemBrandCode" />
+        <result column="nitem_shipment_store_system_business_code"
+            property="shipmentStoreSystemBusinessCode" />
+        <result column="nitem_shipment_store_system_country_code"
+            property="shipmentStoreSystemCountryCode" />
+        <result column="nitem_receipt_store_code" property="receiptStoreCode" />
+        <result column="nitem_receipt_store_system_brand_code"
+            property="receiptStoreSystemBrandCode" />
+        <result column="nitem_receipt_store_system_business_code"
+            property="receiptStoreSystemBusinessCode" />
+        <result column="nitem_receipt_store_system_country_code"
+            property="receiptStoreSystemCountryCode" />
+        <result column="nitem_contribution_sales_representative"
+            property="contributionSalesRepresentative" />
+        <result column="nitem_item_detail_sub_number" property="itemDetailSubNumber" />
+        <result column="nitem_non_item_taxation_type" property="nonItemTaxationType" />
+        <result column="nitem_non_item_tax_kind" property="nonItemTaxKind" />
+        <association property="nonItemUnitPriceTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="nitem_non_item_unit_price_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value"
+                column="nitem_non_item_unit_price_tax_excluded_value" />
+        </association>
+        <association property="nonItemUnitPriceTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="nitem_non_item_unit_price_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value"
+                column="nitem_non_item_unit_price_tax_included_value" />
+        </association>
+        <association property="nonItemSalesAmtTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="nitem_non_item_sales_amt_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="nitem_non_item_sales_amt_tax_excluded_value" />
+        </association>
+        <association property="nonItemSalesAmtTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="nitem_non_item_sales_amt_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="nitem_non_item_sales_amt_tax_included_value" />
+        </association>
+        <association property="nonItemNewPrice"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="nitem_non_item_new_price_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="nitem_non_item_new_price_value" />
+        </association>
+        <association property="nonItemInfo"
+            javaType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemInfo">
+            <id property="transactionId" column="transaction_id" />
+            <id property="orderSubNumber" column="order_sub_number" />
+            <id property="salesTransactionId" column="sales_transaction_id" />
+            <id property="detailSubNumber" column=" nitem_info_detail_sub_number" />
+            <result column="nitem_info_item_detail_sub_number" property="itemDetailSubNumber" />
+            <result column="nitem_info_key_code" property="keyCode" />
+            <result column="nitem_info_code_value_1" property="codeValue1" />
+            <result column="nitem_info_code_value_2" property="codeValue2" />
+            <result column="nitem_info_code_value_3" property="codeValue3" />
+            <result column="nitem_info_code_value_4" property="codeValue4" />
+            <result column="nitem_info_name_1" property="name1" />
+            <result column="nitem_info_name_2" property="name2" />
+            <result column="nitem_info_name_3" property="name3" />
+            <result column="nitem_info_name_4" property="name4" />
+        </association>
+        <collection resultMap="nmItemDiscountDetailListMap"
+            javaType="ArrayList" property="nonItemDiscountDetailList"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDiscountDetail">
+        </collection>
+        <collection resultMap="nmItemTaxDetailListMap" javaType="ArrayList"
+            property="nonItemTaxDetailList"
+            ofType="com.fastretailing.dcp.sales.importtransaction.dto.NonItemTaxDetail">
+        </collection>
+    </resultMap>
+    <resultMap id="nmItemDiscountDetailListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.NonItemDiscountDetail"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="detailSubNumber" column="nitem_discount_non_item_discount_detail_sub_number" />
+        <id property="nonItemPromotionType" column="nitem_discount_non_item_promotion_type" />
+        <id property="promotionNo" column="promotion_no" />
+        <id property="nonItemStoreDiscountType" column="nitem_discount_non_item_store_discount_type" />
+        <result column="nitem_discount_non_item_discount_sub_number" property="nonItemDiscountSubNumber" />
+        <result column="nitem_discount_non_item_quantity_code" property="nonItemQuantityCode" />
+        <result column="nitem_discount_non_item_discount_qty" property="nonItemDiscountQty" />
+        <association property="nonItemDiscountAmtTaxExcluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="nitem_discount_non_item_discount_amt_tax_excluded_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="nitem_discount_non_item_discount_amt_tax_excluded_value" />
+        </association>
+        <association property="nonItemDiscountAmtTaxIncluded"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode"
+                column="nitem_discount_non_item_discount_amt_tax_included_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="nitem_discount_non_item_discount_amt_tax_included_value" />
+        </association>
+    </resultMap>
+    <resultMap id="nmItemTaxDetailListMap"
+        type="com.fastretailing.dcp.sales.importtransaction.dto.NonItemTaxDetail"
+        autoMapping="true">
+        <id property="transactionId" column="transaction_id" />
+        <id property="orderSubNumber" column="order_sub_number" />
+        <id property="salesTransactionId" column="sales_transaction_id" />
+        <id property="nonItemTaxDetailSubNumber" column="nitem_tax_non_item_tax_detail_sub_number" />
+        <id property="nonItemTaxType" column="nitem_tax_non_item_tax_type" />
+        <id property="nonItemTaxDiscountSubNumber" column="nitem_tax_non_item_tax_discount_sub_number" />
+        <result column="nitem_tax_non_item_tax_name" property="nonItemTaxName" />
+        <result column="nitem_tax_non_item_tax_amount_sign" property="nonItemTaxAmountSign" />
+        <result column="nitem_tax_non_item_tax_rate" property="nonItemTaxRate" />
+        <association property="nonItemTaxAmt"
+            javaType="com.fastretailing.dcp.storecommon.dto.Price">
+            <result property="currencyCode" column="nitem_tax_non_item_tax_amt_currency_code"
+                typeHandler="com.fastretailing.dcp.storecommon.typehandler.CurrencyTypeHandler" />
+            <result property="value" column="nitem_tax_non_item_tax_amt_value" />
+        </association>
+    </resultMap>
+    <select id="selectByErrorTransactionId" resultMap="TransactionDataMap">
+        SELECT
+        root.update_type update_type,
+        root.error_check_type error_check_type,
+        root.data_alteration_sales_linkage_type
+        data_alteration_sales_linkage_type,
+        root.data_alteration_backbone_linkage_type
+        ｄata_alteration_backbone_linkage_type,
+        root.transaction_id
+        sales_transaction_error_id,
+        root.integrated_order_id
+        integrated_order_id,
+        root.order_barcode_number order_barcode_number,
+        root.channel_code channel_code,
+        root.store_code store_code,
+        root.system_brand_code system_brand_code,
+        root.system_business_code
+        system_business_code,
+        root.system_country_code system_country_code,
+        root.customer_id customer_id,
+        to_char(to_date(root.order_confirmation_business_date, 'YYYYMMDD'),
+        'YYYY-MM-DD') order_confirmation_business_date,
+        root.order_confirmation_date_time order_confirmation_date_time,
+        root.data_alteration_editing_flag::int ｄata_correction_editing_flag,
+        root.data_alteration_user_id data_correction_user_id,
+        tran.sales_transaction_sub_number header_transaction_serial_number,
+        tran.integrated_order_id header_integrated_order_id,
+        tran.order_sub_number header_order_sub_number,
+        tran.sales_transaction_id header_sales_transaction_id,
+        tran.token_code
+        header_token_code,
+        tran.sales_transaction_type
+        header_sales_transaction_type,
+        tran.sales_linkage_type
+        header_sales_linkage_type,
+        tran.return_type header_return_type,
+        tran.system_brand_code header_system_brand_code,
+        tran.system_business_code header_system_business_code,
+        tran.system_country_code header_system_country_code,
+        tran.store_code
+        header_store_code,
+        tran.channel_code header_channel_code,
+        to_char(to_date(tran.data_creation_business_date, 'YYYYMMDD'),
+        'YYYY-MM-DD') header_data_creation_business_date,
+        tran.data_creation_date_time header_data_creation_date_time,
+        to_char(to_date(tran.order_status_update_date, 'YYYYMMDD'),
+        'YYYY-MM-DD') header_order_status_update_date,
+        tran.order_status_last_update_date_time
+        header_order_status_last_update_date_time,
+        tran.cash_register_no
+        header_cash_register_no,
+        tran.receipt_no header_receipt_no,
+        tran.order_number_for_store_payment
+        header_order_number_for_store_payment,
+        tran.advance_received_store_code header_advance_received_store_code,
+        tran.advance_received_store_system_brand_code
+        header_advance_received_store_system_brand_code,
+        tran.advance_received_store_system_business_code
+        header_advance_received_store_system_business_code,
+        tran.advance_received_store_system_country_code
+        header_advance_received_store_system_country_code,
+        tran.operator_code
+        header_operator_code,
+        tran.original_transaction_id
+        header_original_transaction_id,
+        tran.original_receipt_no
+        header_original_receipt_no,
+        tran.original_cash_register_no
+        header_original_cash_register_no,
+        tran.deposit_currency_code
+        header_deposit_currency_code,
+        tran.deposit_value header_deposit_value,
+        tran.change_currency_code header_change_currency_code,
+        tran.change_value header_change_value,
+        tran.receipt_no_for_credit_card_cancellation
+        header_receipt_no_for_credit_card_cancellation,
+        tran.receipt_no_for_credit_card header_receipt_no_for_credit_card,
+        tran.payment_store_code header_payment_store_code,
+        tran.payment_store_system_brand_code
+        header_payment_store_system_brand_code,
+        tran.payment_store_system_business_code
+        header_payment_store_system_business_code,
+        tran.payment_store_system_country_code
+        header_payment_store_system_country_code,
+        tran.receipt_issued_flag::int header_receipt_issued_flag,
+        tran.processing_company_code header_processing_company_code,
+        tran.order_cancelled_date_time header_order_cancellation_date,
+        tran.order_status header_order_status,
+        tran.order_substatus
+        header_order_substatus,
+        tran.payment_status header_payment_status,
+        tran.shipment_status header_shipment_status,
+        tran.receiving_status
+        header_receiving_status,
+        tran.transfer_out_status
+        header_transfer_out_status,
+        tran.booking_store_code
+        header_booking_store_code,
+        tran.booking_store_system_brand_code
+        header_booking_store_system_brand_code,
+        tran.booking_store_system_business_code
+        header_booking_store_system_business_code,
+        tran.booking_store_system_country_code
+        header_booking_store_system_country_code,
+        tran.shipment_store_code
+        header_shipment_store_code,
+        tran.shipment_store_system_brand_code
+        header_shipment_store_system_brand_code,
+        tran.shipment_store_system_business_code
+        header_shipment_store_system_business_code,
+        tran.shipment_store_system_country_code
+        header_shipment_store_system_country_code,
+        tran.receipt_store_code
+        header_receipt_store_code,
+        tran.receipt_store_system_brand_code
+        header_receipt_store_system_brand_code,
+        tran.receipt_store_system_business_code
+        header_receipt_store_system_business_code,
+        tran.receipt_store_system_country_code
+        header_receipt_store_system_country_code,
+        tran.customer_id
+        header_customer_id,
+        tran.customer_type header_customer_type,
+        tran.corporate_id header_corporate_id,
+        tran.sales_transaction_discount_flag::int
+        header_sales_transaction_discount_flag,
+        tran.sales_transaction_discount_type
+        header_sales_transaction_discount_type,
+        tran.sales_transaction_discount_amount_rate_currency_code
+        header_sales_transaction_discount_amount_rate_currency_code,
+        tran.sales_transaction_discount_amount_rate
+        header_sales_transaction_discount_amount_rate_value,
+        tran.consistency_sales_flag::int header_consistency_sales_flag,
+        tran.employee_sale_flag::int header_employee_sale_flag,
+        tran.e_receipt_target_flag::int header_e_receipt_target_flag,
+        item.system_brand_code item_system_brand_code,
+        item.detail_sub_number
+        item_detail_sub_number,
+        item.sales_transaction_type
+        item_detail_list_sales_transaction_type,
+        item.l2_item_code
+        item_l2_item_code,
+        item.display_l2_item_code item_view_l2_item_code,
+        item.l2_product_name item_l2_product_name,
+        item.l3_item_code
+        item_l3_item_code,
+        item.l3_pos_product_name item_l3_pos_product_name,
+        item.epc_code item_epc_code,
+        item.g_department_code
+        item_g_department_code,
+        item.major_category_code item_dept_code,
+        item.quantity_code item_quantity_code,
+        item.detail_quantity
+        item_item_qty,
+        item.item_cost_currency_code
+        item_item_cost_currency_code,
+        item.item_cost_value
+        item_item_cost_value,
+        item.initial_selling_price_currency_code
+        item_initial_selling_price_currency_code,
+        item.initial_selling_price
+        item_initial_selling_price_value,
+        item.bclass_price_currency_code
+        item_b_item_selling_price_currency_code,
+        item.bclass_price
+        item_b_item_selling_price_value,
+        item.new_price_currency_code
+        item_item_new_price_currency_code,
+        item.new_price
+        item_item_new_price_value,
+        item.retail_unit_price_tax_excluded_currency_code
+        item_item_unit_price_tax_excluded_currency_code,
+        item.retail_unit_price_tax_excluded
+        item_item_unit_price_tax_excluded_value,
+        item.retail_unit_price_tax_included_currency_code
+        item_item_unit_price_tax_included_currency_code,
+        item.retail_unit_price_tax_included
+        item_item_unit_price_tax_included_value,
+        item.sales_amount_tax_excluded_currency_code
+        item_item_sales_amt_tax_excluded_currency_code,
+        item.sales_amount_tax_excluded item_item_sales_amt_tax_excluded_value,
+        item.sales_amount_tax_included_currency_code
+        item_item_sales_amt_tax_included_currency_code,
+        item.sales_amount_tax_included item_item_sales_amt_tax_included_value,
+        to_char(to_date(item.order_status_update_date, 'YYYYMMDD'),
+        'YYYY-MM-DD') item_order_status_update_date,
+        item.order_status_last_update_date_time
+        item_order_status_last_update_date_time,
+        item.order_status
+        item_order_status,
+        item.order_substatus item_order_substatus,
+        item.booking_store_code item_booking_store_code,
+        item.booking_store_system_brand_code
+        item_booking_store_system_brand_code,
+        item.booking_store_system_business_code
+        item_booking_store_system_business_code,
+        item.booking_store_system_country_code
+        item_booking_store_system_country_code,
+        item.shipment_store_code
+        item_shipment_store_code,
+        item.shipment_store_system_brand_code
+        item_shipment_store_system_brand_code,
+        item.shipment_store_system_business_code
+        item_shipment_store_system_business_code,
+        item.shipment_store_system_country_code
+        item_shipment_store_system_country_code,
+        item.receipt_store_code
+        item_receipt_store_code,
+        item.receipt_store_system_brand_code
+        item_receipt_store_system_brand_code,
+        item.receipt_store_system_business_code
+        item_receipt_store_system_business_code,
+        item.receipt_store_system_country_code
+        item_receipt_store_system_country_code,
+        item.contribution_sales_representative
+        item_contribution_sales_representative,
+        item.customer_id
+        item_customer_id,
+        item.bundle_purchase_applicable_quantity
+        item_bundle_purchase_qty,
+        item.bundle_purchase_applicable_price_currency_code
+        item_bundle_purchase_price_currency_code,
+        item.bundle_purchase_applicable_price
+        item_bundle_purchase_price_value,
+        item.bundle_purchase_index
+        item_bundle_purchase_index,
+        item.limited_amount_promotion_count
+        item_limited_amount_promotion_count,
+        item.calculation_unavailable_type
+        item_calculation_unavailable_type,
+        item.store_item_discount_type
+        item_item_mount_discount_type,
+        item.store_item_discount_currency_code
+        item_item_discount_amount_currency_code,
+        item.store_item_discount_setting item_item_discount_amount_value,
+        item.store_bundle_sale_flag::int item_set_sales_flag,
+        item.store_bundle_sale_price_currency_code
+        item_set_sales_price_currency_code,
+        item.store_bundle_sale_price
+        item_set_sales_price_value,
+        item.set_sales_detail_index
+        item_set_sales_detail_index,
+        item.item_detail_sub_number
+        item_item_detail_number,
+        item.taxation_type item_item_taxation_type,
+        item.tax_system_type item_item_tax_kind,
+        subnitem.detail_sub_number
+        sub_nitem_detail_sub_number,
+        subnitem.non_md_type
+        sub_nitem_non_md_type,
+        subnitem.non_md_code sub_nitem_non_item_code,
+        subnitem.service_code sub_nitem_service_code,
+        subnitem.l3_pos_product_name sub_nitem_pos_non_item_name,
+        subnitem.quantity_code sub_nitem_quantity_code,
+        subnitem.detail_quantity sub_nitem_non_item_qty,
+        subnitem.retail_unit_price_tax_excluded_currency_code
+        sub_nitem_non_item_unit_price_tax_excluded_currency_code,
+        subnitem.retail_unit_price_tax_excluded
+        sub_nitem_non_item_unit_price_tax_excluded_value,
+        subnitem.retail_unit_price_tax_included_currency_code
+        sub_nitem_non_item_unit_price_tax_included_currency_code,
+        subnitem.retail_unit_price_tax_included
+        sub_nitem_non_item_unit_price_tax_included_value,
+        subnitem.sales_amount_tax_excluded_currency_code
+        sub_nitem_non_item_sales_amt_tax_excluded_currency_code,
+        subnitem.sales_amount_tax_excluded
+        sub_nitem_non_item_sales_amt_tax_excluded_value,
+        subnitem.sales_amount_tax_included_currency_code
+        sub_nitem_non_item_sales_amt_tax_included_currency_code,
+        subnitem.sales_amount_tax_included
+        sub_nitem_non_item_sales_amt_tax_included_value,
+        subnitem.new_price_currency_code
+        sub_nitem_non_item_new_price_currency_code,
+        subnitem.new_price
+        sub_nitem_non_item_new_price_value,
+        subnitem.calculation_unavailable_type
+        sub_nitem_non_calculation_non_item_type,
+        to_char(to_date(subnitem.order_status_update_date, 'YYYYMMDD'),
+        'YYYY-MM-DD') sub_nitem_order_status_update_date,
+        subnitem.order_status_last_update_date_time
+        sub_nitem_order_status_last_update_date_time,
+        subnitem.order_status
+        sub_nitem_order_status,
+        subnitem.order_substatus
+        sub_nitem_order_substatus,
+        subnitem.booking_store_code
+        sub_nitem_booking_store_code,
+        subnitem.booking_store_system_brand_code
+        sub_nitem_booking_store_system_brand_code,
+        subnitem.booking_store_system_business_code
+        sub_nitem_booking_store_system_business_code,
+        subnitem.booking_store_system_country_code
+        sub_nitem_booking_store_system_country_code,
+        subnitem.shipment_store_code sub_nitem_shipment_store_code,
+        subnitem.shipment_store_system_brand_code
+        sub_nitem_shipment_store_system_brand_code,
+        subnitem.shipment_store_system_business_code
+        sub_nitem_shipment_store_system_business_code,
+        subnitem.shipment_store_system_country_code
+        sub_nitem_shipment_store_system_country_code,
+        subnitem.receipt_store_code sub_nitem_receipt_store_code,
+        subnitem.receipt_store_system_brand_code
+        sub_nitem_receipt_store_system_brand_code,
+        subnitem.receipt_store_system_business_code
+        sub_nitem_receipt_store_system_business_code,
+        subnitem.receipt_store_system_country_code
+        sub_nitem_receipt_store_system_country_code,
+        subnitem.contribution_sales_representative
+        sub_nitem_contribution_sales_representative,
+        subnitem.item_detail_sub_number sub_nitem_non_item_detail_number,
+        subnitem.taxation_type sub_nitem_non_item_taxation_type,
+        subnitem.tax_system_type sub_nitem_non_item_tax_kind,
+        subniteminfo.detail_sub_number sub_nitem_info_detail_sub_number,
+        subniteminfo.item_detail_sub_number
+        sub_nitem_info_item_detail_sub_number,
+        subniteminfo.key_code
+        sub_nitem_info_key_code,
+        subniteminfo.code_value_1
+        sub_nitem_info_code_value_1,
+        subniteminfo.code_value_2
+        sub_nitem_info_code_value_2,
+        subniteminfo.code_value_3
+        sub_nitem_info_code_value_3,
+        subniteminfo.code_value_4
+        sub_nitem_info_code_value_4,
+        subniteminfo.name_1 sub_nitem_info_name_1,
+        subniteminfo.name_2 sub_nitem_info_name_2,
+        subniteminfo.name_3
+        sub_nitem_info_name_3,
+        subniteminfo.name_4 sub_nitem_info_name_4,
+        subnitemdiscount.detail_sub_number
+        sub_nitem_discount_non_item_discount_detail_sub_number,
+        subnitemdiscount.item_discount_sub_number
+        sub_nitem_discount_non_item_discount_sub_number,
+        subnitemdiscount.promotion_type
+        sub_nitem_discount_non_item_promotion_type,
+        subnitemdiscount.store_discount_type
+        sub_nitem_discount_non_item_store_discount_type,
+        subnitemdiscount.quantity_code
+        sub_nitem_discount_non_item_quantity_code,
+        subnitemdiscount.discount_quantity
+        sub_nitem_discount_non_item_discount_qty,
+        subnitemdiscount.discount_amount_tax_excluded_currency_code
+        sub_nitem_discount_non_item_discount_amt_tax_excluded_currency_code,
+        subnitemdiscount.discount_amount_tax_excluded
+        sub_nitem_discount_non_item_discount_amt_tax_excluded_value,
+        subnitemdiscount.discount_amount_tax_included_currency_code
+        sub_nitem_discount_non_item_discount_amt_tax_included_currency_code,
+        subnitemdiscount.discount_amount_tax_included
+        sub_nitem_discount_non_item_discount_amt_tax_included_value,
+        subnitemtax.detail_sub_number
+        sub_nitem_tax_non_item_tax_detail_sub_number,
+        subnitemtax.tax_sub_number
+        sub_nitem_tax_non_item_tax_discount_sub_number,
+        subnitemtax.tax_group
+        sub_nitem_tax_non_item_tax_type,
+        subnitemtax.tax_name
+        sub_nitem_tax_non_item_tax_name,
+        subnitemtax.tax_amount_sign
+        sub_nitem_tax_non_item_tax_amount_sign,
+        subnitemtax.tax_amount_currency_code
+        sub_nitem_tax_non_item_tax_amt_currency_code,
+        subnitemtax.tax_amount_value sub_nitem_tax_non_item_tax_amt_value,
+        subnitemtax.tax_rate sub_nitem_tax_non_item_tax_rate,
+        itemdiscount.detail_sub_number
+        item_discount_item_discount_detail_sub_number,
+        itemdiscount.item_discount_sub_number
+        item_discount_item_discount_sub_number,
+        itemdiscount.promotion_type
+        item_discount_item_promotion_type,
+        itemdiscount.promotion_no
+        item_discount_item_promotion_number,
+        itemdiscount.store_discount_type
+        item_discount_item_store_discount_type,
+        itemdiscount.quantity_code
+        item_discount_item_quantity_code,
+        itemdiscount.discount_quantity
+        item_discount_item_discount_qty,
+        itemdiscount.discount_amount_tax_excluded_currency_code
+        item_discount_item_discount_amt_tax_excluded_currency_code,
+        itemdiscount.discount_amount_tax_excluded
+        item_discount_item_discount_amt_tax_excluded_value,
+        itemdiscount.discount_amount_tax_included_currency_code
+        item_discount_item_discount_amt_tax_included_currency_code,
+        itemdiscount.discount_amount_tax_included
+        item_discount_item_discount_amt_tax_included_value,
+        itemtax.detail_sub_number item_tax_item_tax_detail_sub_number,
+        itemtax.tax_sub_number item_tax_item_tax_sub_number,
+        itemtax.tax_group
+        item_tax_item_tax_type,
+        itemtax.tax_name item_tax_item_tax_name,
+        itemtax.tax_amount_sign item_tax_item_tax_amount_sign,
+        itemtax.tax_amount_currency_code item_tax_item_tax_amt_currency_code,
+        itemtax.tax_amount_value item_tax_item_tax_amt_value,
+        itemtax.tax_rate
+        item_tax_item_tax_rate,
+        nitem.detail_sub_number
+        nitem_non_item_detail_sub_number,
+        nitem.sales_transaction_type
+        nitem_non_md_detail_list_sales_transaction_type,
+        nitem.non_md_type
+        nitem_non_md_type,
+        nitem.non_md_code nitem_non_item_code,
+        nitem.service_code nitem_service_code,
+        nitem.l3_pos_product_name
+        nitem_pos_non_item_name,
+        nitem.quantity_code nitem_quantity_code,
+        nitem.detail_quantity nitem_non_item_qty,
+        nitem.retail_unit_price_tax_excluded_currency_code
+        nitem_non_item_unit_price_tax_excluded_currency_code,
+        nitem.retail_unit_price_tax_excluded
+        nitem_non_item_unit_price_tax_excluded_value,
+        nitem.retail_unit_price_tax_included_currency_code
+        nitem_non_item_unit_price_tax_included_currency_code,
+        nitem.retail_unit_price_tax_included
+        nitem_non_item_unit_price_tax_included_value,
+        nitem.sales_amount_tax_excluded_currency_code
+        nitem_non_item_sales_amt_tax_excluded_currency_code,
+        nitem.sales_amount_tax_excluded
+        nitem_non_item_sales_amt_tax_excluded_value,
+        nitem.sales_amount_tax_included_currency_code
+        nitem_non_item_sales_amt_tax_included_currency_code,
+        nitem.sales_amount_tax_included
+        nitem_non_item_sales_amt_tax_included_value,
+        nitem.new_price_currency_code nitem_non_item_new_price_currency_code,
+        nitem.new_price nitem_non_item_new_price_value,
+        nitem.calculation_unavailable_type
+        nitem_non_calculation_non_item_type,
+        to_char(to_date(nitem.order_status_update_date, 'YYYYMMDD'),
+        'YYYY-MM-DD') nitem_order_status_update_date,
+        to_char(nitem.order_status_last_update_date_time,
+        'YYYY-MM-DD"T"HH24:MI:SS"Z"')
+        nitem_order_status_last_update_date_time,
+        nitem.order_status
+        nitem_order_status,
+        nitem.order_substatus nitem_order_substatus,
+        nitem.booking_store_code nitem_booking_store_code,
+        nitem.booking_store_system_brand_code
+        nitem_booking_store_system_brand_code,
+        nitem.booking_store_system_business_code
+        nitem_booking_store_system_business_code,
+        nitem.booking_store_system_country_code
+        nitem_booking_store_system_country_code,
+        nitem.shipment_store_code
+        nitem_shipment_store_code,
+        nitem.shipment_store_system_brand_code
+        nitem_shipment_store_system_brand_code,
+        nitem.shipment_store_system_business_code
+        nitem_shipment_store_system_business_code,
+        nitem.shipment_store_system_country_code
+        nitem_shipment_store_system_country_code,
+        nitem.receipt_store_code
+        nitem_receipt_store_code,
+        nitem.receipt_store_system_brand_code
+        nitem_receipt_store_system_brand_code,
+        nitem.receipt_store_system_business_code
+        nitem_receipt_store_system_business_code,
+        nitem.receipt_store_system_country_code
+        nitem_receipt_store_system_country_code,
+        nitem.contribution_sales_representative
+        nitem_contribution_sales_representative,
+        nitem.item_detail_sub_number
+        nitem_item_detail_sub_number,
+        nitem.taxation_type
+        nitem_non_item_taxation_type,
+        nitem.tax_system_type
+        nitem_non_item_tax_kind,
+        niteminfo.detail_sub_number
+        nitem_info_detail_sub_number,
+        niteminfo.item_detail_sub_number
+        nitem_info_item_detail_sub_number,
+        niteminfo.key_code
+        nitem_info_key_code,
+        niteminfo.code_value_1 nitem_info_code_value_1,
+        niteminfo.code_value_2 nitem_info_code_value_2,
+        niteminfo.code_value_3
+        nitem_info_code_value_3,
+        niteminfo.code_value_4
+        nitem_info_code_value_4,
+        niteminfo.name_1 nitem_info_name_1,
+        niteminfo.name_2 nitem_info_name_2,
+        niteminfo.name_3 nitem_info_name_3,
+        niteminfo.name_4 nitem_info_name_4,
+        nitemdiscount.detail_sub_number
+        nitem_discount_non_item_discount_detail_sub_number,
+        nitemdiscount.item_discount_sub_number
+        nitem_discount_non_item_discount_sub_number,
+        nitemdiscount.promotion_type nitem_discount_non_item_promotion_type,
+        nitemdiscount.store_discount_type
+        nitem_discount_non_item_store_discount_type,
+        nitemdiscount.quantity_code nitem_discount_non_item_quantity_code,
+        nitemdiscount.discount_quantity nitem_discount_non_item_discount_qty,
+        nitemdiscount.discount_amount_tax_excluded_currency_code
+        nitem_discount_non_item_discount_amt_tax_excluded_currency_code,
+        nitemdiscount.discount_amount_tax_excluded
+        nitem_discount_non_item_discount_amt_tax_excluded_value,
+        nitemdiscount.discount_amount_tax_included_currency_code
+        nitem_discount_non_item_discount_amt_tax_included_currency_code,
+        nitemdiscount.discount_amount_tax_included
+        nitem_discount_non_item_discount_amt_tax_included_value,
+        nitemtax.detail_sub_number nitem_tax_non_item_tax_detail_sub_number,
+        nitemtax.tax_sub_number nitem_tax_non_item_tax_discount_sub_number,
+        nitemtax.tax_group nitem_tax_non_item_tax_type,
+        nitemtax.tax_name
+        nitem_tax_non_item_tax_name,
+        nitemtax.tax_amount_sign
+        nitem_tax_non_item_tax_amount_sign,
+        nitemtax.tax_amount_currency_code
+        nitem_tax_non_item_tax_amt_currency_code,
+        nitemtax.tax_amount_value
+        nitem_tax_non_item_tax_amt_value,
+        nitemtax.tax_rate
+        nitem_tax_non_item_tax_rate,
+        tender.tender_sub_number
+        tender_tender_sub_number,
+        tender.tender_group tender_tender_group_id,
+        tender.tender_id tender_tender_id,
+        tender.payment_sign
+        tender_payment_sign,
+        tender.tax_included_payment_amount_currency_code
+        tender_tax_included_payment_amount_currency_code,
+        tender.tax_included_payment_amount_value
+        tender_tax_included_payment_amount_value,
+        tenderinfo.discount_value_currency_code
+        tender_info_discount_amount_currency_code,
+        tenderinfo.discount_value
+        tender_info_discount_amount_value,
+        tenderinfo.discount_rate
+        tender_info_discount_rate,
+        tenderinfo.discount_code_id_corporate_id
+        tender_info_discount_code_id_corporate_id,
+        tenderinfo.coupon_type
+        tender_info_coupon_type,
+        tenderinfo.coupon_discount_amount_setting_currency_code
+        tender_info_coupon_discount_amount_setting_currency_code,
+        tenderinfo.coupon_discount_amount_setting_value
+        tender_info_coupon_discount_amount_setting_value,
+        tenderinfo.coupon_min_usage_amount_threshold_currency_code
+        tender_info_coupon_min_usage_amount_threshold_currency_code,
+        tenderinfo.coupon_min_usage_amount_threshold_value
+        tender_info_coupon_min_usage_amount_threshold_value,
+        tenderinfo.coupon_user_id tender_info_coupon_user_id,
+        tenderinfo.card_no tender_info_card_no,
+        tenderinfo.credit_approval_code tender_info_credit_approval_code,
+        tenderinfo.credit_processing_serial_number
+        tender_info_credit_processing_serial_number,
+        tenderinfo.credit_payment_type tender_info_credit_payment_type,
+        tenderinfo.credit_payment_count tender_info_credit_payment_count,
+        tenderinfo.credit_affiliated_store_number
+        tender_info_credit_affiliated_store_number,
+        tax.tax_sub_number
+        tax_tax_sub_number,
+        tax.tax_group tax_tax_group,
+        tax.tax_amount_sign
+        tax_tax_amount_sign,
+        tax.tax_amount_currency_code
+        tax_tax_amount_currency_code,
+        tax.tax_amount_value
+        tax_tax_amount_value,
+        tax.tax_rate tax_tax_rate,
+        total.total_amount_sub_number total_total_amount_sub_number,
+        total.total_type total_total_type,
+        total.total_amount_tax_excluded_currency_code
+        total_total_amount_tax_excluded_currency_code,
+        total.total_amount_tax_excluded_value
+        total_total_amount_tax_excluded_value,
+        total.total_amount_tax_included_currency_code
+        total_total_amount_tax_included_currency_code,
+        total.total_amount_tax_included_value
+        total_total_amount_tax_included_value,
+        total.tax_rate
+        total_consumption_tax_rate,
+        total.sales_transaction_information_1
+        total_sales_transaction_information_1,
+        total.sales_transaction_information_2
+        total_sales_transaction_information_2,
+        total.sales_transaction_information_3
+        total_sales_transaction_information_3
+        FROM
+        t_alteration_history_order_information as root
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_header tran
+        ON root.transaction_id =
+        tran.transaction_id
+        AND root.history_type = tran.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_detail item
+        ON tran.transaction_id =
+        item.transaction_id
+        AND tran.order_sub_number = item.order_sub_number
+        AND tran.sales_transaction_id = item.sales_transaction_id
+        AND
+        item.product_classification = 'ITEM'
+        AND tran.history_type = item.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_detail subnitem
+        ON item.transaction_id
+        = subnitem.transaction_id
+        AND item.order_sub_number =
+        subnitem.order_sub_number
+        AND item.sales_transaction_id =
+        subnitem.sales_transaction_id
+        AND item.item_detail_sub_number =
+        subnitem.item_detail_sub_number
+        AND item.history_type = subnitem.history_type
+        AND subnitem.product_classification =
+        'NMITEM'
+        LEFT OUTER JOIN t_alteration_history_sales_transaction_detail_info
+        subniteminfo
+        ON subnitem.transaction_id = subniteminfo.transaction_id
+        AND subnitem.order_sub_number = subniteminfo.order_sub_number
+        AND
+        subnitem.sales_transaction_id = subniteminfo.sales_transaction_id
+        AND
+        subnitem.detail_sub_number = subniteminfo.detail_sub_number
+        AND subnitem.history_type = subniteminfo.history_type
+        LEFT OUTER
+        JOIN t_alteration_history_sales_transaction_discount subnitemdiscount
+        ON
+        subnitem.transaction_id = subnitemdiscount.transaction_id
+        AND
+        subnitem.order_sub_number = subnitemdiscount.order_sub_number
+        AND
+        subnitem.sales_transaction_id = subnitemdiscount.sales_transaction_id
+        AND subnitem.detail_sub_number = subnitemdiscount.detail_sub_number
+        AND subnitem.history_type = subnitemdiscount.history_type
+        LEFT OUTER JOIN t_alteration_history_sales_transaction_tax subnitemtax
+        ON
+        subnitem.transaction_id = subnitemtax.transaction_id
+        AND
+        subnitem.order_sub_number = subnitemtax.order_sub_number
+        AND
+        subnitem.sales_transaction_id = subnitemtax.sales_transaction_id
+        AND
+        subnitem.detail_sub_number = subnitemtax.detail_sub_number
+        AND subnitem.history_type = subnitemtax.history_type
+        LEFT OUTER
+        JOIN t_alteration_history_sales_transaction_discount itemdiscount
+        ON
+        item.transaction_id = itemdiscount.transaction_id
+        AND
+        item.order_sub_number = itemdiscount.order_sub_number
+        AND
+        item.sales_transaction_id = itemdiscount.sales_transaction_id
+        AND
+        item.detail_sub_number = itemdiscount.detail_sub_number
+        AND item.history_type = itemdiscount.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_tax itemtax
+        ON item.transaction_id =
+        itemtax.transaction_id
+        AND item.order_sub_number =
+        itemtax.order_sub_number
+        AND item.sales_transaction_id =
+        itemtax.sales_transaction_id
+        AND item.detail_sub_number =
+        itemtax.detail_sub_number
+        AND item.history_type = itemtax.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_detail nitem
+        ON tran.transaction_id =
+        nitem.transaction_id
+        AND tran.order_sub_number = nitem.order_sub_number
+        AND tran.sales_transaction_id = nitem.sales_transaction_id
+        AND tran.history_type = nitem.history_type
+        AND
+        nitem.product_classification = 'NMITEM'
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_detail_info niteminfo
+        ON
+        nitem.transaction_id = niteminfo.transaction_id
+        AND
+        nitem.order_sub_number = niteminfo.order_sub_number
+        AND
+        nitem.sales_transaction_id = niteminfo.sales_transaction_id
+        AND
+        nitem.detail_sub_number = niteminfo.detail_sub_number
+        AND nitem.history_type = niteminfo.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_discount nitemdiscount
+        ON
+        nitem.transaction_id = nitemdiscount.transaction_id
+        AND
+        nitem.order_sub_number = nitemdiscount.order_sub_number
+        AND
+        nitem.sales_transaction_id = nitemdiscount.sales_transaction_id
+        AND
+        nitem.detail_sub_number = nitemdiscount.detail_sub_number
+        AND nitem.history_type = nitemdiscount.history_type
+        LEFT OUTER
+        JOIN t_alteration_history_sales_transaction_tax nitemtax
+        ON
+        nitem.transaction_id = nitemtax.transaction_id
+        AND
+        nitem.order_sub_number = nitemtax.order_sub_number
+        AND
+        nitem.sales_transaction_id = nitemtax.sales_transaction_id
+        AND
+        nitem.detail_sub_number = nitemtax.detail_sub_number
+        AND nitem.history_type = nitemtax.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_tender tender
+        ON
+        tran.transaction_id = tender.transaction_id
+        AND tran.order_sub_number =
+        tender.order_sub_number
+        AND tran.sales_transaction_id =
+        tender.sales_transaction_id
+        AND tran.history_type = tender.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_tender_info
+        tenderinfo
+        ON
+        tender.transaction_id = tenderinfo.transaction_id
+        AND
+        tender.order_sub_number = tenderinfo.order_sub_number
+        AND
+        tender.sales_transaction_id = tenderinfo.sales_transaction_id
+        AND
+        tender.tender_group = tenderinfo.tender_group
+        AND tender.tender_id =
+        tenderinfo.tender_id
+        AND tender.tender_sub_number =
+        tenderinfo.tender_sub_number
+        AND tender.history_type = tenderinfo.history_type
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_tax tax
+        ON tran.transaction_id =
+        tax.transaction_id
+        AND tran.order_sub_number = tax.order_sub_number
+        AND
+        tran.sales_transaction_id = tax.sales_transaction_id
+        AND tran.history_type = tax.history_type
+        AND
+        tax.detail_sub_number = 0
+        LEFT OUTER JOIN
+        t_alteration_history_sales_transaction_total_amount total
+        ON
+        tran.transaction_id = total.transaction_id
+        AND tran.order_sub_number =
+        total.order_sub_number
+        AND tran.sales_transaction_id =
+        total.sales_transaction_id
+        AND tran.history_type = total.history_type
+        WHERE
+        root.transaction_id =
+        #{salesTransactionId}
+        AND root.history_type = #{historyType}
+    </select>
+</mapper>

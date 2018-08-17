@@ -1,0 +1,46 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+<t_pile_up_pay_off_data
+  store_code="sc01"
+  payoff_date="20180308"
+  payoff_type_code="ptc01"
+  payoff_type_sub_number_code="ptsnc01"
+  cash_register_no="1"
+  payoff_amount_currency_code="c01"
+  payoff_amount="123.45"
+  payoff_quantity="67.8"
+  payoff_processing_flag="false"
+  batch_region="1"
+  system_brand_code="sbc1"
+  system_business_code="sbuc01"
+  system_country_code="sc1"
+  advance_received_store_code="sc0009"
+  create_user_id="BATCH"
+  create_datetime="2018-03-08 05:13:53"
+  create_program_id="SLS1300301"
+  update_user_id="BATCH"
+  update_datetime="2018-03-08 05:13:53"
+  update_program_id="SLS1300301"
+/>
+
+<m_business_country_state_setting
+  system_brand_code="sbc1"
+  system_business_code="sbuc01"
+  system_country_code="sc1"
+  state_code="0001"
+  store_code="sc01"
+  code_l1="SALESINTEGRITYCHECKTYPE"
+  code_l2="TARGETTYPE"
+  code_l3="ptc02"
+  code_value="ptc01"
+  variable_type="1"
+  display_order="01"
+  create_user_id="BATCH"
+  create_datetime="2018-03-08 05:13:53"
+  create_program_id="SLS1300301"
+  update_user_id="BATCH"
+  update_datetime="2018-03-08 05:13:53"
+  update_program_id="SLS1300301"
+/>
+
+</dataset>

@@ -1,0 +1,56 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SIV
+    full: inventory
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+
+spring:
+
+  messages:
+    basename: i18n/messages,messages-report-api
+    cache-seconds: -1
+    encoding: UTF-8
+  datasource:
+    url: jdbc:postgresql://172.31.11.63:5432/unittest
+    username: nec
+    password: nec
+    driverClassName: org.postgresql.Driver
+  transaction:
+    default-timeout: 60
+
+logging:
+  level:
+    com.fastretailing.dcp: DEBUG
+    org.springframework.web: INFO
+  path: logs
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+version:
+  aws: 1.11.228
+  
+hmac: 
+ report: 
+    clientId: <sales_client_id>
+    clientSecret: <sales_client_secret_key>
+
+report: 
+  rest-url:
+    report-api-host: http://localhost:8080/inventory/{version}
+    version: v1
+  time-zone:
+    table-name: m_store_general_purpose
+    target-field: code
+    condition-field: general_purpose_type
+    general-purpose-type: time_zone
+  

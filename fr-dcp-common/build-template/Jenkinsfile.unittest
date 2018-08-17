@@ -1,0 +1,69 @@
+//------------------------------------------------------------------------------
+// JenkinsFile
+//------------------------------------------------------------------------------
+// Build Constant
+def CONST_ENVIRONMENT_DEPENDENT_CONFIG = "environment_dependent_config"
+
+// Build Variable
+def artifactId
+def build_environment
+def aws_account
+
+pipeline {
+    agent any
+    options {
+        ansiColor colorMapName: 'XTerm'
+    }
+    tools { 
+        jdk 'openjdk-1.8.0'
+        maven 'maven3.5.2'
+    }
+    stages {
+        stage('init') {
+            steps {
+                script {
+                    aws_account = sh (script:"aws sts get-caller-identity | jq -r '.Account'", returnStdout: true).trim()
+                    def config = readJSON file: "build-template/config.json"
+                    build_config = config[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account]
+                    build_environment = build_config.build_environment
+                    def pom = readMavenPom file: "pom.xml"
+                    artifactId = pom.artifactId
+                }
+            }
+        }
+        stage('Unittest') {
+            steps {
+                script {
+                    dir("${WORKSPACE}") {
+                        // unit test
+                        sh "rm -rf ./.repository/com/fastretailing"
+                        sh "mvn -B -f pom.xml -s ./build-template/${build_environment}/setting.xml clean jacoco:prepare-agent jxr:jxr checkstyle:checkstyle findbugs:findbugs test jacoco:report site -Dmaven.repo.local=./.repository"
+
+                        // make report zip files
+                        sh "mkdir -p target/report"
+                        findFiles(glob: '**/site/index.html').collect{(it.path =~ /^([^\/]*)\/?target\/site\//)[0][1]}.each {
+                            local fromCopyDirName = ""
+                            local toCopyDirName = ""
+                            if ( it == '' ) {
+                                fromCopyDirName = ""
+                                toCopyDirName = "${artifactId}-parent"
+                            } else {
+                                fromCopyDirName = it + "/"
+                                toCopyDirName = it
+                            }
+
+                            // copy report directory
+                            sh "cp -Rp ${fromCopyDirName}target/site target/report/${toCopyDirName}"
+
+                            // archive report directory to zip
+                            zip zipFile:"target/report/${toCopyDirName}.zip", dir:"target/report/${toCopyDirName}", archive: true
+                        }
+
+                        // archive report
+                        archiveArtifacts("target/report/*.zip")
+                    }
+                }
+            }
+        }
+    }
+}

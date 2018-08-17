@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div id="scrollTest" class="scroll-block th-fixed-body v-hheight body-height" th:fragment="tableBody(tenderPaymentInformationList)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle"
+				th:each="info , stat: ${tenderPaymentInformationList}">
+				<td class="text-left"><label
+					th:text="${info != null ? info.tenderGroup:''}"></label> <input
+					type="hidden"
+					th:field="*{tenderPaymentInformationList[__${stat.index}__].tenderGroup}">
+				</td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.tenderId:''}"></label> <input
+					type="hidden"
+					th:field="*{tenderPaymentInformationList[__${stat.index}__].tenderId}">
+				</td>
+				<td class="text-right"><label
+					th:text="${info != null ? info.value:''}"></label> <input
+					type="hidden"
+					th:field="*{tenderPaymentInformationList[__${stat.index}__].value}">
+				</td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.currencyCode:''}"></label> <input
+					type="hidden"
+					th:field="*{tenderPaymentInformationList[__${stat.index}__].currencyCode}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<m_common_code_master type_id="system_country_code"
+		type_value="01" display_order="1" name_1="Japan" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="02" display_order="2" name_1="UK" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="03" display_order="3" name_1="China" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="04" display_order="4" name_1="U.S.A." name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="05" display_order="5" name_1="Korea" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="06" display_order="6" name_1="Hong Kong" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="07" display_order="7" name_1="France" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="08" display_order="8" name_1="Singapore" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="09" display_order="9" name_1="Russia" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="10" display_order="10" name_1="Taiwan" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="11" display_order="11" name_1="Thailand" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="12" display_order="12" name_1="Philippines" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="13" display_order="13" name_1="Indonesia" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="14" display_order="14" name_1="Australia" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="15" display_order="15" name_1="Germany" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="16" display_order="16" name_1="Spain" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="17" display_order="17" name_1="Canada" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="26" display_order="18" name_1="Macau" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="27" display_order="19" name_1="Malaysia" name_2="1"
+		name_3="1" name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="32" display_order="20" name_1="Belgium" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_brand_code"
+		type_value="0001" display_order="1" name_1="UQ" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_brand_code"
+		type_value="0005" display_order="2" name_1="GU" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_trans_store_code store_code="112081" store_name="SSC"
+		view_store_code="9720" integrate_db_store_code="1" system_brand_code="0001"
+		system_business_code="0017" business_name="UNIQLO" block_code="1"
+		block_name="1" area_code="1" area_name="1" system_country_code="17"
+		country_name="CANADA" batch_region="1" integrate_db_business_code="1"
+		store_device_rmvl_date="2018-05-23 5:05:12" send_target_store_flag="true"
+		create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<t_alteration_history_pay_off_data store_code="112081" payoff_date="20180523"
+		payoff_type_code="0005" payoff_type_sub_number_code="0001AAA"
+		cash_register_no="111" history_type="0" correction_history_sub_number="2"
+		payoff_type_name="0001_name" payoff_type_sub_number_name="0001AAA_name"
+		system_brand_code="0001" system_business_code="1" system_country_code="17"
+		payoff_amount="100010001000.35" payoff_quantity="200020002000.59"
+		create_user_id="mygration" create_datetime="2018-05-23 5:05:12"
+		create_program_id="mygration" update_user_id="BATCH" update_datetime="2018-05-23 5:05:12"
+		update_program_id="mygration" />
+	<t_alteration_history_pay_off_data store_code="112081" payoff_date="20180523"
+		payoff_type_code="0005" payoff_type_sub_number_code="0001AAA"
+		cash_register_no="111" history_type="1" correction_history_sub_number="2"
+		payoff_type_name="0001_name" payoff_type_sub_number_name="0001AAA_name"
+		system_brand_code="0001" system_business_code="1" system_country_code="17"
+		payoff_amount="100010001000.95" payoff_quantity="200020002000.59"
+		create_user_id="mygration" create_datetime="2018-05-23 5:05:12"
+		create_program_id="mygration" update_user_id="BATCH" update_datetime="2018-05-23 5:05:12"
+		update_program_id="mygration" />
+</dataset>

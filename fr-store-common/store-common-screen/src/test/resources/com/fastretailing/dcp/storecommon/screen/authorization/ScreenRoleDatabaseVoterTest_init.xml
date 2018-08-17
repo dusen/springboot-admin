@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+  <!-- m_screen -->
+  <m_screen screen_name="TST0100101001" create_user_id="userC"
+    create_datetime="2018-06-01 00:00:00" update_user_id="userU"
+    update_datetime="2018-06-01 00:00:00" />
+  <m_screen screen_name="TST0100101002" create_user_id="userC"
+    create_datetime="2018-06-01 00:00:00" update_user_id="userU"
+    update_datetime="2018-06-01 00:00:00" />
+  <m_screen screen_name="TST0100101003" create_user_id="userC"
+    create_datetime="2018-06-01 00:00:00" update_user_id="userU"
+    update_datetime="2018-06-01 00:00:00" />
+  <m_screen screen_name="TST0100101004" create_user_id="userC"
+    create_datetime="2018-06-01 00:00:00" update_user_id="userU"
+    update_datetime="2018-06-01 00:00:00" />
+  <m_screen screen_name="TST0100101005" create_user_id="userC"
+    create_datetime="2018-06-01 00:00:00" update_user_id="userU"
+    update_datetime="2018-06-01 00:00:00" />
+
+  <!-- m_menu_screen -->
+  <m_menu_screen menu_name="TEST_MENU01" screen_name="TST0100101001"
+    display_order="0" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_menu_screen menu_name="TEST_MENU01" screen_name="TST0100101002"
+    display_order="0" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_menu_screen menu_name="TEST_MENU01" screen_name="TST0100101003"
+    display_order="0" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+
+  <!-- m_role_accessible_screen -->
+  <m_role_accessible_screen role="ROLE01"
+    screen_name="TST0100101001" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_role_accessible_screen role="ROLE02"
+    screen_name="TST0100101001" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_role_accessible_screen role="ROLE03"
+    screen_name="TST0100101002" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_role_accessible_screen role="ROLE01"
+    screen_name="TST0100101003" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_role_accessible_screen role="ROLE03"
+    screen_name="TST0100101003" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_role_accessible_screen role="ROLE04"
+    screen_name="TST0100101003" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_role_accessible_screen role="ROLE04"
+    screen_name="TST0100101004" create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+
+  <!-- m_screen_path -->
+  <m_screen_path screen_name="TST0100101001" path="/path01"
+    create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_screen_path screen_name="TST0100101001" path="/path01/detail"
+    create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_screen_path screen_name="TST0100101002" path="/path02"
+    create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_screen_path screen_name="TST0100101003" path="/path02/detail"
+    create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+  <m_screen_path screen_name="TST0100101005" path="/path05"
+    create_user_id="userC" create_datetime="2018-06-01 00:00:00"
+    update_user_id="userU" update_datetime="2018-06-01 00:00:00" />
+</dataset>

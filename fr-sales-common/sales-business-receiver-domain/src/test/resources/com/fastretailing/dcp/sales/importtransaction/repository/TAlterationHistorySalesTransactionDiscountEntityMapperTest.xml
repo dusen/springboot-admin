@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<t_alteration_history_sales_transaction_discount
+		transaction_id="0" order_sub_number="0" sales_transaction_id="0"
+		detail_sub_number="0" promotion_type="0" promotion_no="0"
+		store_discount_type="0" history_type="0" sales_transaction_error_id="0"
+		item_discount_sub_number="0" quantity_code="0" discount_quantity="0"
+		discount_amount_tax_excluded_currency_code="0"
+		discount_amount_tax_excluded="0"
+		discount_amount_tax_included_currency_code="0"
+		discount_amount_tax_included="0" create_user_id="0" create_datetime="2010-03-15 00:00:00"
+		create_program_id="0" update_user_id="0" update_datetime="2018-03-15 00:00:00"
+		update_program_id="0" />
+</dataset>

@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesreportManagementOptionalMapper">
+    <select id="selectByPrimaryKey"
+        resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesreportManagementOptional">
+        SELECT /* SalesreportManagementOptionalMapper-001 */
+        store_code,
+        business_date,
+        reception_number
+        FROM
+        t_salesreport_management
+        WHERE
+        store_code = #{storeCode}
+        AND business_date = #{businessDate}
+    </select>
+</mapper>

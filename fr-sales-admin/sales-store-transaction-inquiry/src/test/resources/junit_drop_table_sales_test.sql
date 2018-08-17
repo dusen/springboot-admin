@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS public.m_business_country_state_setting;
+DROP TABLE IF EXISTS public.m_common_code_master;
+DROP TABLE IF EXISTS public.m_item;
+DROP TABLE IF EXISTS public.m_non_item;
+DROP TABLE IF EXISTS public.m_trans_store_code;
+DROP TABLE IF EXISTS public.m_trans_tender;
+DROP TABLE IF EXISTS public.t_sales_report_transaction_detail;
+DROP TABLE IF EXISTS public.t_sales_report_transaction_discount;
+DROP TABLE IF EXISTS public.t_sales_report_transaction_header;
+DROP TABLE IF EXISTS public.t_sales_report_transaction_tax;
+DROP TABLE IF EXISTS public.t_sales_report_transaction_tender;

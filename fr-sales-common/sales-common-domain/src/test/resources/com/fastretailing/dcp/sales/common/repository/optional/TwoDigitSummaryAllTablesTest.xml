@@ -1,0 +1,154 @@
+<?xml version= "1.0" encoding = "UTF-8"?>
+<dataset>
+
+	<t_sales_report_transaction_header
+		sales_transaction_id="1234567890" store_code="1234567890"
+		system_country_code="123" system_brand_code="1234"
+		sales_transaction_type="SALE" order_status_last_update_date_time="2018-05-29 13:42:26.963"
+		order_number_for_store_payment="123456789012345678901234567"
+		ims_linkage_date="20180529" integrated_order_id="123456789012345678901234567"
+		sales_transaction_sub_number="1234" cash_register_no="123" receipt_no="1234"
+		receipt_issued_flag="false" e_receipt_target_flag="false"
+		employee_sale_flag="false" consistency_sales_flag="false"
+		sales_transaction_discount_flag="false" ims_linkage_flag="false"
+		hourly_sales_by_item_summary_flag="false" hourly_summary_flag="false"
+		transaction_summary_flag="false" department_summary_flag="false"
+		inventory_updated_flag="false" heming_linkage_flag="false"
+		original_transaction_id="1234567891" create_user_id="TEST001"
+		create_datetime="2018-02-23 13:42:26.963" create_program_id="SLS1000104"
+		update_user_id="TEST001" update_datetime="2018-02-23 13:42:26.963"
+		update_program_id="SLS1000104" />
+
+	<t_sales_report_transaction_header
+		sales_transaction_id="1234567891" store_code="1234567890"
+		system_country_code="123" system_brand_code="1234"
+		sales_transaction_type="PVOID" order_status_last_update_date_time="2018-05-29 13:42:26.963"
+		order_number_for_store_payment="123456789012345678901234567"
+		ims_linkage_date="20180529" integrated_order_id="123456789012345678901234567"
+		sales_transaction_sub_number="1234" cash_register_no="123" receipt_no="1234"
+		receipt_issued_flag="false" e_receipt_target_flag="false"
+		employee_sale_flag="false" consistency_sales_flag="false"
+		sales_transaction_discount_flag="false" ims_linkage_flag="false"
+		hourly_sales_by_item_summary_flag="false" hourly_summary_flag="false"
+		transaction_summary_flag="false" department_summary_flag="false"
+		inventory_updated_flag="false" heming_linkage_flag="false"
+		original_transaction_id="1234567890" create_user_id="TEST001"
+		create_datetime="2018-02-23 13:42:26.963" create_program_id="SLS1000104"
+		update_user_id="TEST001" update_datetime="2018-02-23 13:42:26.963"
+		update_program_id="SLS1000104" />
+
+	<m_business_country_state_setting
+		system_brand_code="1234" system_business_code="1234567890"
+		system_country_code="123" state_code="1234" store_code="1234567890"
+		code_l1="TAXTYPE" code_l2="TAXTYPE" code_l3="RTLOG" code_value="SLSTX"
+		variable_type="A" display_order="01" create_user_id="TEST001"
+		create_datetime="2018-02-23 13:42:26.963" create_program_id="SLS1000104"
+		update_user_id="TEST001" update_datetime="2018-02-23 13:42:26.963"
+		update_program_id="SLS1000104" />
+
+	<m_business_country_state_setting
+		system_brand_code="1234" system_business_code="1234567890"
+		system_country_code="123" state_code="1234" store_code="1234567890"
+		code_l1="PAYOFFDATA" code_l2="CALCULATIONTYPE" code_l3="PILEUPPAYOFFDATA"
+		code_value="0" variable_type="1" display_order="01" create_user_id="TEST001"
+		create_datetime="2018-02-23 13:42:26.963" create_program_id="SLS1000104"
+		update_user_id="TEST001" update_datetime="2018-02-23 13:42:26.963"
+		update_program_id="SLS1000104" />
+
+	<m_pay_off_summary_mapping mapping_pattern="0"
+		payoff_type_code="E001" mapping_sub_pattern="123" system_brand_code="1234"
+		create_user_id="TEST001" create_datetime="2018-02-23 13:42:26.963"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26.963" update_program_id="SLS1000104" />
+
+	<t_sales_report_transaction_detail
+		sales_transaction_id="1234567890" detail_sub_number="1234"
+		item_detail_sub_number="1234" sales_transaction_type="SALE"
+		product_classification="123456" quantity_code="1" detail_quantity="12345"
+		g_department_code="123456" sales_amount_tax_excluded="123456"
+		sales_amount_tax_included="123456" store_bundle_sale_flag="false"
+		ims_linkage_flag="false" inventory_updated_flag="false"
+		l3_item_code="1234567890123456789012345" return_complete_flag="false"
+		create_user_id="TEST001" create_datetime="2018-02-23 13:42:26.963"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26.963" update_program_id="SLS1000104" />
+
+	<t_sales_report_transaction_discount
+		sales_transaction_id="1234567890" detail_sub_number="1234"
+		promotion_type="1234" promotion_no="1234567890" store_discount_type="01"
+		item_discount_sub_number="1234" quantity_code="1" discount_quantity="01"
+		discount_amount_tax_excluded="123456" discount_amount_tax_included="123456"
+		create_user_id="TEST001" create_datetime="2018-02-23 13:42:26.963"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26.963" update_program_id="SLS1000104" />
+
+
+	<m_common_code_master type_id="system_brand_code"
+		type_value="1234" display_order="12345" name_1="1234"
+		name_2="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		name_3="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		name_4="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		name_5="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		create_user_id="TEST001" create_datetime="2018-02-23 13:42:26.963"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26.963" update_program_id="SLS1000104" />
+
+	<m_common_code_master type_id="system_country_code"
+		type_value="123" display_order="12345" name_1="123"
+		name_2="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		name_3="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		name_4="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		name_5="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+		create_user_id="TEST001" create_datetime="2018-02-23 13:42:26.963"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26.963" update_program_id="SLS1000104" />
+
+	<m_item system_country_code="123" system_brand_code="1234"
+		system_business_code="1234567890" item_code="1234567890123456789012345"
+		view_year_type="1" color_code="1234567890" size_code="1234567890"
+		pattern_length_code="1234567890" item_level="1" pack_flag="false"
+		simple_item_pack_flag="false" sellable_flag="false" orderable_flag="false"
+		cost_price_sequence="123" picking_shipment_flag="false"
+		regular_item_flag="false" color_size_management_flag="false"
+		b_item_return_possible_flag="false" taxation_flag="false"
+		major_category_code="-1" class_code="-1" middle_category_code="-1"
+		batch_region="10" create_user_id="TEST001" create_datetime="2018-02-23 13:42:26.963"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26.963" update_program_id="SLS1000104" />
+
+	<t_store_hourly_two_digit_category_result
+		business_code="123" store_code="1234567890" business_date="20180529"
+		time_local="1045" system_brand_code="1234" 
+		tran_create_date="20180529" time_utc="1330" major_category_code="-1"
+		class_code="-1" middle_category_code="-1"
+		sales_result_amount_of_money="12345" sales_quantity="123456"
+		sales_return_amount="12345" sales_discount_amount="1234567"
+		non_item_sales_amount="12345" create_user_id="TEST001"
+		create_datetime="2018-02-23 13:42:26.963" create_program_id="SLS1000104"
+		update_user_id="TEST001" update_datetime="2018-02-23 13:42:26.963"
+		update_program_id="SLS1000104" />
+
+	<t_store_hourly_two_digit_category_result
+		business_code="123" store_code="123456" business_date="20180529"
+		time_local="1045" system_brand_code="1234" 
+		tran_create_date="20180529" time_utc="1330" major_category_code="-1"
+		class_code="-1" middle_category_code="-1"
+		sales_result_amount_of_money="12345678901234567890" sales_quantity="123456789012"
+		sales_return_amount="12345678901234567890" sales_discount_amount="123456789012"
+		non_item_sales_amount="12345678901234567890" create_user_id="TEST001"
+		create_datetime="2018-02-23 13:42:26.963" create_program_id="SLS1000104"
+		update_user_id="TEST001" update_datetime="2018-02-23 13:42:26.963"
+		update_program_id="SLS1000104" />
+
+	<m_store_general_purpose general_purpose_type="time_zone"
+		store_code="1234567890" system_country_code="123" system_brand_code="1234"
+		code="1" create_user_id="TEST001" create_datetime="2018-02-23 13:42:26"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26" update_program_id="SLS1000104" />
+
+	<m_store_general_purpose general_purpose_type="time_zone"
+		store_code="1234567890" system_country_code="321" system_brand_code="4321"
+		code="1" create_user_id="TEST001" create_datetime="2018-02-23 13:42:26"
+		create_program_id="SLS1000104" update_user_id="TEST001"
+		update_datetime="2018-02-23 13:42:26" update_program_id="SLS1000104" />
+</dataset>

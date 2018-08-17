@@ -1,0 +1,30 @@
+.vertical-align-middle{
+	vertical-align:middle;
+}
+
+.font-weight-bold{
+	font-weight: bold;
+}
+
+.font-weight-bold-cancel{
+	margin:0px 16px 0px 0px;
+	font-weight: bold;
+}
+
+
+.text-align-right{
+	text-align:right;
+}
+
+.display-inline-block{
+	display:inline-block;
+}
+
+.height-100-per{
+	height:100%
+}
+
+.pageLinked-button-30px{
+	min-width: 30px;
+	margin-top: 3px;
+}

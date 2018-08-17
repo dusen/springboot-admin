@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <m_store_general_purpose general_purpose_type="time_zone" 
+        store_code="111111" system_country_code="17"
+        system_brand_code="0001" code="Europe/Rome"
+        create_user_id="TEST001" create_datetime="2017-04-09 06:00:09"
+        create_program_id="PRC1700102" update_user_id="TEST001"
+        update_datetime="2017-04-09 06:00:09" update_program_id="PRC1700102" />
+</dataset>

@@ -1,0 +1,9 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+	<m_store_control store_code="123456" system_brand_code="01"
+		system_business_code="01" system_country_code="01" fc_store_type="1"
+		business_date="20180620" language_type="01" business_end_of_date="20180621"
+		tax_rate="01" create_user_id="BATCH" create_datetime="2010-03-15 00:00:00"
+		create_program_id="SLS0000009" update_user_id="BATCH" update_datetime="2017-01-15 00:00:00"
+		update_program_id="SLS0000009" />
+</dataset>

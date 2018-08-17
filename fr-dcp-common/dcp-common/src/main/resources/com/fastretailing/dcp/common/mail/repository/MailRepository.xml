@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastretailing.dcp.common.mail.repository.MailRepository">
+
+    <select id="findTemplate" resultType="com.fastretailing.dcp.common.mail.entity.MailTemplateEntity">
+        SELECT
+              t2.mail_template_id         AS "mailTemplateId"
+            , t2.mail_encode              AS "mailEncode"
+            , t2.mail_host                AS "mailHost"
+            , t2.smtp_mail_host           AS "smtpMailHost"
+            , t2.sender_mail_address      AS "senderMailAddress"
+            , t2.sender_display_name      AS "senderDisplayName"
+            , t2.destination_cc           AS "destinationCc"
+            , t2.destination_bcc          AS "destinationBcc"
+            , t2.destination_reply_to     AS "destinationReplyTo"
+            , t2.destination_return_path  AS "destinationReturnPath"
+            , t2.content_type             AS "contentType"
+            , t2.mail_title               AS "mailTitle"
+            , t2.text_template            AS "textTemplate"
+            , t2.send_group               AS "sendGroup"
+            , t2.send_shift_minute        AS "sendShiftMinute"
+            , t2.template_explanation     AS "templateExplanation"
+            , t2.registration_datetime    AS "registrationDatetime"
+            , t2.registrant_by            AS "registrantBy"
+            , t2.updated_datetime         AS "updatedDatetime"
+            , t2.last_updated_by          AS "lastUpdatedBy"
+        FROM
+            ${schemaName}m_mail_template_rule t1
+        INNER JOIN
+            ${schemaName}m_mail_template t2
+        ON
+            t1.mail_template_id = t2.mail_template_id
+        WHERE
+            t1.brand_code = #{brandCode}
+        <if test="regionCode != null and regionCode != '' and regionCode != 'null'">
+            AND
+                t1.region_code = #{regionCode}
+        </if>
+        AND
+            t1.language_code = #{languageCode}
+        AND
+            t1.mail_type = #{mailType}
+        AND
+            t1.payment_type = #{paymentType}
+        AND
+            t1.delivery_type = #{deliveryType}
+        AND
+            t1.receive_type = #{receiveType}
+    </select>
+
+    <select id="findMailsFromMailPool" resultType="com.fastretailing.dcp.common.mail.entity.MailListEntity">
+        SELECT
+              queue_id                AS "queueId"
+            , mail_encode             AS "mailEncode"
+            , mail_host               AS "mailHost"
+            , smtp_mail_host          AS "smtpMailHost"
+            , sender_mail_address     AS "senderMailAddress"
+            , sender_display_name     AS "senderDisplayName"
+            , destination_to          AS "destinationTo"
+            , destination_cc          AS "destinationCc"
+            , destination_bcc         AS "destinationBcc"
+            , destination_reply_to    AS "destinationReplyTo"
+            , destination_return_path AS "destinationReturnPath"
+            , mail_title              AS "mailTitle"
+            , mail_text               AS "mailText"
+            , content_type            AS "contentType"
+            , send_status             AS "sendStatus"
+            , send_group              AS "sendGroup"
+            , retry_count             AS "retryCount"
+            , send_plan_datetime      AS "sendPlanDatetime"
+            , order_no                AS "orderNo"
+            , customer_no             AS "customerNo"
+            , registration_datetime   AS "registrationDatetime"
+            , registrant_by           AS "registrantBy"
+            , updated_datetime        AS "updatedDatetime"
+            , last_updated_by         AS "lastUpdatedBy"
+        FROM
+             ${schemaName}t_mail_list
+        WHERE
+            send_status = #{sendStatus}
+        AND
+            send_group = #{sendGroup}
+        AND
+            <![CDATA[
+                send_plan_datetime <= #{sendPlanDatetime}
+            ]]>
+        ORDER BY
+            send_plan_datetime ASC
+        LIMIT
+            #{maxLimit}
+    </select>
+
+
+    <insert id="saveMailToMailPool" parameterType="com.fastretailing.dcp.common.mail.entity.MailListEntity">
+        INSERT INTO ${schemaName}t_mail_list (
+              queue_id
+            , mail_encode
+            , mail_host
+            , smtp_mail_host
+            , sender_mail_address
+            , sender_display_name
+            , destination_to
+            , destination_cc
+            , destination_bcc
+            , destination_reply_to
+            , destination_return_path
+            , mail_title
+            , mail_text
+            , content_type
+            , send_status
+            , send_group
+            , retry_count
+            , send_plan_datetime
+            , order_no
+            , customer_no
+            , registration_datetime
+            , registrant_by
+            , updated_datetime
+            , last_updated_by
+        ) VALUES (
+              nextval('${schemaName}seq_mail_que_id')
+            , #{input.mailEncode}
+            , #{input.mailHost}
+            , #{input.smtpMailHost}
+            , #{input.senderMailAddress}
+            , #{input.senderDisplayName}
+            , #{input.destinationTo}
+            , #{input.destinationCc}
+            , #{input.destinationBcc}
+            , #{input.destinationReplyTo}
+            , #{input.destinationReturnPath}
+            , #{input.mailTitle}
+            , #{input.mailText}
+            , #{input.contentType}
+            , #{input.sendStatus}
+            , #{input.sendGroup}
+            , #{input.retryCount}
+            , #{input.sendPlanDatetime}
+            , #{input.orderNo}
+            , #{input.customerNo}
+            , #{input.registrationDatetime}
+            , #{input.registrantBy}
+            , #{input.updatedDatetime}
+            , #{input.lastUpdatedBy}
+        )
+    </insert>
+
+    <update id="updateMailStatus" parameterType="com.fastretailing.dcp.common.mail.entity.MailListEntity">
+        UPDATE ${schemaName}t_mail_list
+        SET
+            send_status = #{input.sendStatus}
+            <if test="input.sendPlanDatetime != null">
+                , send_plan_datetime = #{input.sendPlanDatetime}
+            </if>
+            , updated_datetime = #{input.updatedDatetime}
+        WHERE
+            queue_id = #{input.queueId}
+    </update>
+
+</mapper>

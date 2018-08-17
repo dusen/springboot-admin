@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-transaction-error-list.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/sales-transaction-error-list.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/sales-transaction-error-list.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-transaction-error-list.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main"
+		th:object="${salesTransactionErrorListForm}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{sales-transaction-error-list.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div id="hidden_list">
+			<input id="E_SLS_66000102" type="hidden" data-error="E_SLS_66000102" th:value="#{E_SLS_66000102}" />
+			<input id="E_SLS_66000104" type="hidden" data-error="E_SLS_66000104" th:value="#{E_SLS_66000104}" />
+			<input id="I_SLS_06000103" type="hidden" data-error="I_SLS_06000103" th:value="#{I_SLS_06000103}" />
+			<input id="E_SLS_66000105" type="hidden" data-error="E_SLS_66000105" th:value="#{E_SLS_66000105}" />
+			<input id="I_SLS_06000104" type="hidden" data-error="I_SLS_06000104" th:value="#{I_SLS_06000104}" />
+			<input id="E_SLS_66000106" type="hidden" data-error="E_SLS_66000106" th:value="#{E_SLS_66000106}" />
+			<input id="I_SLS_06000105" type="hidden" data-error="I_SLS_06000105" th:value="#{I_SLS_06000105}" />
+			<input id="E_SLS_66000112" type="hidden" data-error="E_SLS_66000112" th:value="#{E_SLS_66000112}" />
+			<input id="I_SLS_06000106" type="hidden" data-error="I_SLS_06000106" th:value="#{I_SLS_06000106}" />
+			<input id="I_SLS_06000101" type="hidden" data-error="I_SLS_06000101" th:value="#{I_SLS_06000101}" />
+		</div>
+		<div class="option-block">
+			<p class="mr-left-20 fz40 mb15"
+				th:text="#{sales-transaction-error-list.title}"></p>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+                        <label th:utext="#{sales-transaction-error-list.brandLabel}"></label>
+                    </div>
+                    <div class="width160 mrMedium">
+                        <div class="selectbox" id="brandSelect">
+                            <div class="selectbox-text">
+                                <input type="text" readonly/>
+                                <input type="hidden" th:field="*{systemBrandCode}"/>
+                            </div>
+                            <div class="select-elem">
+                                <ul class="category">
+                                    <li data-value="-1" data-name=""
+                                        th:utext="#{sales-transaction-error-list.select.clear}"></li>
+                                    <li th:each="selectitem : *{brandList}" th:data-value="${selectitem.value}"
+                                        th:text="${selectitem.name}" th:data-name="${selectitem.name}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="width120">
+                        <label th:utext="#{sales-transaction-error-list.countryLabel}"></label>
+                    </div>
+                    <div class="width160 mrMedium">
+                        <div class="selectbox" id="countrySelect">
+                            <div class="selectbox-text">
+                                <input type="text" readonly />
+                                <input type="hidden" th:field="*{systemCountryCode}" />
+                            </div>
+                            <div class="select-elem">
+                                <ul class="category">
+                                    <li data-value="-1" data-name=""><span
+                                        th:text="#{sales-transaction-error-list.select.clear}"></span></li>
+                                    <li th:each="selectitem : *{countryList}" th:data-value="${selectitem.value}"
+                                        th:data-name="${selectitem.name}"><span th:text="${selectitem.name}"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-error-list.storeLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160" maxlength="4" th:field="*{storeCode}"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<input th:field="*{loginUserId}" type="hidden">
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-error-list.cashRegisterNoLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybord" maxlength="3"
+								th:field="*{cashRegisterNo}"> </span>
+						</p>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-error-list.receiptNoLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybord" maxlength="4"
+								th:field="*{receiptNo}"></span>
+						</p>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-error-list.salesTransactionTypeLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="salesTransactionTypeSelect">
+							<div class="selectbox-text">
+								<input type="text" readonly > <input type="hidden" th:field="*{salesTransactionType}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-error-list.select.clear}"></span></li>
+									<li th:each="salesTransactionType : *{salesTransactionTypeMap}"
+										th:data-value="${salesTransactionType.key}"
+										th:data-name="${salesTransactionType.value}"><span
+										th:text="${salesTransactionType.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-error-list.dataCreationDateLabel}"></label>
+					</div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{dataCreationDateFrom}"></span><span
+						class="input-clear fade-action"></span><span class="mr-left-20">～</span>
+					<span class="datepicker-span mr-left-20"><input type="text"
+						class="datepicker-text mrMedium" th:field="*{dataCreationDateTo}">
+					</span>
+					<div class="width120 mr-left-170">
+						<label
+							th:utext="#{sales-transaction-error-list.businessDateLabel}"></label>
+					</div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{businessDateFrom}"></span><span
+						class="input-clear"></span><span class="mr-left-20">～</span> <span
+						class="datepicker-span mr-left-20"><input type="text"
+						class="datepicker-text" th:field="*{businessDateTo}"> </span>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-error-list.errorContentsLabel}"></label>
+					</div>
+					<div class="width350">
+						<div class="selectbox" id="errorContentsSelect">
+							<div class="selectbox-text">
+								<input type="text" readonly > <input type="hidden" th:field="*{errorContents}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-error-list.select.clear}"></span></li>
+									<li th:each="errorContents : *{errorContentsMap}"
+										th:data-value="${errorContents.key}"
+										th:data-name="${errorContents.value}"><span
+										th:text="${errorContents.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-right mb10">
+				<a href="javascript:void(0)" id="clearButton"
+					class="button skeleton cancel small mrMedium"
+					th:text="#{sales-transaction-error-list.clearButton}"></a> <a
+					href="javascript:void(0)" class="button skeleton primary small"
+					id="searchButton" 
+					th:attr="data-url=@{/sales-transaction-error-list/list}"
+					th:text="#{sales-transaction-error-list.searchButton}"></a>
+			</p>
+			
+			<p class="text-right mb10 must_action_p">
+				<a href="javascript:void(0)" id="deleteButton"
+					class="button skeleton skeleton small mrMedium"
+					th:text="#{sales-transaction-error-list.deleteButton}"></a> <a
+					href="javascript:void(0)" id="uploadButton"
+					class="button skeleton skeleton small mrMedium"
+					th:text="#{sales-transaction-error-list.uploadButton}"></a> <a
+					href="javascript:void(0)" class="button skeleton primary small"
+					id="downloadButton" 
+					th:text="#{sales-transaction-error-list.downloadButton}"></a>
+			</p>
+		</div>
+		<div class="width100per">
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width10em">
+							<col class="width3em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width20em">
+							<col class="width8em">
+							<col class="width8em">
+							<col class="width5em">
+							<col class="width15em">
+							<col class="width10em">
+							<col class="width30em">
+							<col class="width15em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th class="text-center">
+									<div style="font-size: 1.5em">select</div>
+									<div class="checkbox">
+										<div class="checkbox">
+											<input id="checkbox_parent" type="checkbox"> 
+											<label class="fz13" for="checkbox_parent"></label>
+										</div>
+									</div>
+								</th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.noLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.brandLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.countryLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.storeLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.storeNameLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.cashRegisterNoLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.receiptNoLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.salesTransactionTypeLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.dataCreationDateLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.businessDateLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.errorContentsLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-error-list.table.statusLabel}"></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id="divTableBody">
+					<div
+						th:replace="sales-transaction-error-list-tableBody :: tableBody(*{salesTransactionErrorList})"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options"></div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

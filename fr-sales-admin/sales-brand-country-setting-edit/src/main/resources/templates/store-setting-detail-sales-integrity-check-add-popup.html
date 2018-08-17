@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript"
+	th:src="@{static/js/store-setting-detail-add-popup.js}"></script>
+<div class=" width100per modal-trigger"
+	th:object="${storeSettingDetailAddForm}">
+	<input type="hidden" th:field="*{temporaryData}">
+	<table class="common-table width100per mb50">
+		<colgroup>
+			<col class="width10em">
+			<col class="width10em">
+		</colgroup>
+		<thead>
+			<tr class="v-align-middle">
+				<th class="text-center"
+					th:utext="#{store-setting-detail.payOffCodeLabel}"></th>
+				<th class="text-center"
+					th:utext="#{store-setting-detail.positiveNegativeLabel}"></th>
+		<tbody>
+			<tr class="v-align-middle">
+				<td class="text-center">
+					<div class="width160 mrMedium">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly th:field="*{codeL3}"> <input
+									id="payOffList" type="hidden" th:field="*{codeL2}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-history-list.select.clear}"></li>
+									<li th:each="payOffList : ${payOffList}"
+										th:data-value="${payOffList.codeL2}"
+										th:text="${payOffList.codeL3}"
+										th:data-name="${payOffList.codeL3}"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</td>
+				<td class="text-center">
+					<div class="width160 mrMedium">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" th:field="*{codeValue}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-history-list.select.clear}"></li>
+									<li th:each="quantityList : ${quantityList}"
+										th:data-value="${quantityList}" th:text="${quantityList}"
+										th:data-name="${quantityList}"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<div class="right-options input-wrap">
+			<div class="right-options">
+				<ul>
+					<li><a href="#" id="closeButton"
+						class="button cancel modal-close"
+						th:text="#{store-setting-detail.cancelButton}"></a></li>
+				</ul>
+			</div>
+			<div class="right-options">
+				<ul>
+					<li><a href="#" id="confirmButton" class="button action"
+						th:text="#{store-setting-detail.comfirmButton}"
+						onclick="PopUpUtil.util.doTransition(this.id,
+						'/brand-country-setting-edit/back')"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

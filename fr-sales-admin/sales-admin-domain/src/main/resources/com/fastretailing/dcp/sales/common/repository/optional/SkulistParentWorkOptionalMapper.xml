@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.SkulistParentWorkOptionalMapper">
+	<resultMap id="BaseResultMap" type="java.lang.String">
+	    <result column="eai_update_type" jdbcType="VARCHAR" property="eaiUpdateType" />
+	</resultMap>	
+	<select id="getEaiUpdateType"  resultMap="BaseResultMap">
+	select /* SkulistParentWorkOptionalMapper_001 */  distinct eai_update_type
+	from 
+		w_skulist_parent		
+	where lot_number = #{ lotNumber }
+	</select>
+</mapper>

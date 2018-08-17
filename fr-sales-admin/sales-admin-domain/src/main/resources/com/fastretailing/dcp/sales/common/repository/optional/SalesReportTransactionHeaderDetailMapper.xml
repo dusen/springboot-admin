@@ -1,0 +1,102 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesReportTransactionHeaderDetailMapper">
+	<update id="updateSalesReportTransactionHeader">
+		UPDATE /* SLS0300202-001 */
+		t_sales_report_transaction_header
+		SET
+		department_summary_flag=#{departmentSummaryFlag},
+		update_user_id=#{updateUserId},
+		update_program_id=#{updateProgramId},
+		update_datetime=#{updateDatetime}
+		WHERE
+		department_summary_flag = false
+		AND sales_transaction_id =
+		#{salesTransactionId}
+	</update>
+
+	<select id="selectSalesReportTransactionHeaderByStoreCode"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionHeaderDetailOptional">
+		select /* SLS0300202-002 */
+		sales_transaction_id,
+		store_code,
+		sales_transaction_type,
+		system_brand_code,
+		system_country_code,
+		system_business_code,
+		order_status_last_update_date_time,
+		order_number_for_store_payment,
+		original_transaction_id,
+		ims_linkage_date,
+		department_summary_flag
+		FROM
+		t_sales_report_transaction_header
+		WHERE
+		store_code =
+		#{storeCode} AND
+		sales_transaction_type IN ('SALE','RETURN','PVOID')
+		AND
+		department_summary_flag = false AND
+		ims_linkage_date is not null
+	</select>
+
+	<select id="selectSalesReportTransactionHeader"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionHeaderDetailOptional">
+		select /* SLS0300202-003 */
+		sales_transaction_id,
+		store_code,
+		sales_transaction_type,
+		system_brand_code,
+		system_country_code,
+		system_business_code,
+		order_status_last_update_date_time,
+		order_number_for_store_payment,
+		original_transaction_id,
+		ims_linkage_date,
+		department_summary_flag
+		FROM
+		t_sales_report_transaction_header
+		WHERE
+		sales_transaction_type IN
+		('SALE','RETURN','PVOID') AND
+		department_summary_flag = false AND
+		ims_linkage_date is not null
+	</select>
+
+	<select id="selectSalesReportTransactionHeaderByKey"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionHeaderDetailOptional">
+		select /* SLS0300202-004 */
+		sales_transaction_id,
+		store_code,
+		sales_transaction_type,
+		system_brand_code,
+		system_country_code,
+		system_business_code,
+		order_status_last_update_date_time,
+		order_number_for_store_payment,
+		original_transaction_id,
+		ims_linkage_date,
+		department_summary_flag
+		FROM
+		t_sales_report_transaction_header
+		WHERE
+		sales_transaction_id =
+		#{originalTransactionId}
+	</select>
+
+	<select id="selectMaxReceiptNumber"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionHeaderOptional"
+		resultType="java.lang.Integer">
+		SELECT /* SalesTransactionHeaderDetailMapper-001 */
+		MAX(TO_NUMBER(receipt_no, '0000'))
+		FROM
+		t_sales_report_transaction_header
+		WHERE
+		store_code = #{ storeCode }
+		AND ims_linkage_date = #{ imsLinkageDate }
+		AND transaction_summary_flag is true
+		AND cash_register_no = #{ cashRegisterNo }
+	</select>
+</mapper>

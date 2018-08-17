@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(storeSettingList)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width3em">
+			<col class="width15em">
+			<col class="width5em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle" th:each="info , stat: ${storeSettingList}"
+				th:data-showStatusColor="${info != null ? info.statusColor:''}"
+				th:data-settingItem="${info != null ? info.settingItem:''}">
+				<td class="text-center"><a href="#" class="for-detail"
+					onclick="setValueAndTransition(this, '/brand-country-setting-edit/detail')"
+					th:text="${stat.index + 1}"></a></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.settingItem:''}"></label></td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.status:''}"></label></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

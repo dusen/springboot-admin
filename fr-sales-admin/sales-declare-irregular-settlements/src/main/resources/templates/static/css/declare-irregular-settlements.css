@@ -1,0 +1,21 @@
+.mr-left-60 {
+	margin-left: 60px;
+}
+
+.mr-right-70 {
+    margin-right: 70px;
+}
+
+.body-height {
+    height: 528px;
+}
+
+.left-div-height {
+    height: 548px;
+}
+
+.div-bottom-line {
+	border-bottom-color: black;
+	border-bottom-width: 1px; 
+	border-bottom-style: solid;
+}

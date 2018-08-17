@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div id="scrollDiv"
+	class="scroll-block th-fixed-body v-hheight max-height-500"
+	th:fragment="tableBody(brandCountrySettingEditList)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width3em">
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width15em">
+			<col class="width8em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle"
+				th:each="info , stat: ${brandCountrySettingEditList}"
+				th:data-showStatusColor="${info != null ? info.statusColor:''}"
+				th:attr="data-brand=${info != null  ? info.brand:''},
+				data-country=${info != null  ? info.country:''},
+				data-business=${info != null  ? info.businessCode:''},
+				data-state=${info != null  ? info.stateCode:''},
+				data-store=${info != null  ? info.store:''}">
+				<td class="text-center"><a href="#" class="for-store-list"
+					th:text="${stat.index + 1}"
+					onclick="setValueAndTransition(this,'/brand-country-setting-edit/list');"></a></td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.brandName:''}"></label></td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.countryName:''}"></label></td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.viewStoreCode:''}"></label></td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.storeName:''}"></label></td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.status:''}"></label>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

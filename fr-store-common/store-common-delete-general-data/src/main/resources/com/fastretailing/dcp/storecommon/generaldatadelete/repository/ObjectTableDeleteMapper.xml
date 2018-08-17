@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.storecommon.generaldatadelete.repository.ObjectTableDeleteMapper">
+    
+    <delete id="delete" >
+    DELETE
+    /* CMN9900201_002 */
+    FROM
+    ${generalDataDelete.deleteTargetTable}
+    WHERE
+    1 = 1
+    <![CDATA[
+    AND ${generalDataDelete.dateItem} <= TO_TIMESTAMP(#{limitedDate},'yyyy-MM-ddTHH:mi:ssZ')
+    ]]>
+    <if test="generalDataDelete.systemBrandCode != null and generalDataDelete.systemBrandCode != ''">
+        AND system_brand_code = #{generalDataDelete.systemBrandCode}
+    </if>
+    <if test="generalDataDelete.systemCountryCode != null and generalDataDelete.systemCountryCode != ''">
+        AND system_country_code = #{generalDataDelete.systemCountryCode}
+    </if>
+    <if test="generalDataDelete.storeCode != null and generalDataDelete.storeCode != ''">
+        AND store_code = #{generalDataDelete.storeCode}
+    </if>
+
+    </delete>
+</mapper> 

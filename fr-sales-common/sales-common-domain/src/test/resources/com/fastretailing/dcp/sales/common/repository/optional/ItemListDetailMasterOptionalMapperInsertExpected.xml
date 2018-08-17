@@ -1,0 +1,16 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+
+	<m_item_list_detail system_brand_code="1"
+		system_business_code="17" system_country_code="17" skulist_code="39019383"
+		item_code="2000084654265" item_level="3" inventory_management_level="0"
+		pack_ind="0" main_item_flag="false" />
+	<m_item_list_detail system_brand_code="1"
+		system_business_code="17" system_country_code="17" skulist_code="49019383"
+		item_code="2000084654265" item_level="3" inventory_management_level="0"
+		pack_ind="0" main_item_flag="false" />
+	<m_item_list_detail system_brand_code="1"
+		system_business_code="17" system_country_code="17" skulist_code="79019383"
+		item_code="2000084654265" item_level="3" inventory_management_level="0"
+		pack_ind="0" main_item_flag="false" />	
+</dataset>

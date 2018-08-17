@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html-base-template-head(title, links, scripts)">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title th:text="${title}"></title>
+<link th:href="@{static/css/common.css}" rel="stylesheet" />
+<link th:href="@{static/css/numerickeypad.css}" rel="stylesheet" />
+<link th:href="@{static/css/common-extend.css}" rel="stylesheet" />
+<link th:href="@{static/css/messagebox.css}" rel="stylesheet" />
+<link th:href="@{static/css/jquery-ui.css}" rel="stylesheet" />
+<link th:href="@{static/css/tooltip.css}" rel="stylesheet" />
+<link th:href="@{static/css/html-popup-template.css}" rel="stylesheet" />
+<th:block th:replace="${links} ?: ~{}" />
+<script type="text/javascript" th:src="@{static/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/numerickeypad.js}"></script>
+<script type="text/javascript" th:src="@{static/js/common.js}"></script>
+<script type="text/javascript" th:src="@{static/js/tabindex.js}"></script>
+<script type="text/javascript" th:src="@{static/js/popup.js}"></script>
+<script type="text/javascript" th:src="@{static/js/jquery-ui.js}"></script>
+<script type="text/javascript" th:src="@{static/js/pagination.js}"></script>
+<script type="text/javascript" th:src="@{static/js/html-base-template.js}"></script>
+<th:block th:replace="${scripts} ?: ~{}" />
+</head>
+<body th:fragment="html-base-template-body(title, main, footer, popup)">
+<div id="root">
+<form id="base_form" action="#" method="post" class="height-100-per">
+<input type="hidden" id="menuName" name="menuName" th:value="${commonBaseForm.menuName}" />
+<input type="hidden" id="countryCode" name="countryCode" th:value="${commonBaseForm.countryCode}" />
+<input type="hidden" id="defaultLocale" name="defaultLocale" th:value="${commonBaseForm.defaultLocale}" />
+<input type="hidden" id="specifyLocale" name="specifyLocale" th:value="${commonBaseForm.specifyLocale}" />
+<input type="hidden" id="brandCode" name="brandCode" th:value="${commonBaseForm.brandCode}" />
+<input type="hidden" id="urlBasePath" name="urlBasePath" th:value="${commonBaseForm.urlBasePath}" />
+<!-- set thymeleaf variable for JS -->
+<input type="hidden" id="detailErrorObject" th:value="${commonBaseForm.detailError != null ? commonBaseForm.detailError.toJsonString() : null}">
+<input type="hidden" id="iPad_stylesheet_src" th:value="@{static/css/scrollbar.css}">
+<input type="hidden" id="common_message_progressing" th:value="#{common.message.progressing}">
+<input type="hidden" id="datepicker_button_image_src" th:value="@{static/images/common/calendar.png}">
+<div class="header">
+	<a href="#" id="sp-nav-toggle-btn"><span class="icon"></span></a>
+	<div id="global-navi">
+		<ul>
+			<li th:each="menu : ${commonBaseForm.menuList}">
+				<a href="#" th:onclick="'PopUpUtil.util.doTransition(this.id, \'' + ${menu.url} + '\');'" th:text="#{${menu.menuId}}" class="menu">Product inquiry</a>
+			</li>
+			<li><a href="#" onclick="closeMenu();" th:text="#{common.button.close}" class="menu">Close</a></li>
+		</ul>
+	</div>
+	<div id="global-navi-bg"></div>
+	<h1 class="title" th:text="${title}"></h1>
+	<div id="site-logo"><a th:href="#{common.home}"><img th:src="@{static/images/common/head_logo.png}" alt="HOME"></a></div>
+</div>
+<div th:replace="${main}">
+</div>
+<div th:replace="${footer}">
+</div>
+<div th:replace="${popup}"></div>
+</form>
+</div>
+</body>
+</html>

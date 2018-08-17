@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<t_alteration_history_sales_transaction_detail_info
+		transaction_id="0" order_sub_number="0" sales_transaction_id="0"
+		detail_sub_number="0" history_type="0" sales_transaction_error_id="0"
+		item_detail_sub_number="0" key_code="0" code_value_1="0" code_value_2="0"
+		code_value_3="0" code_value_4="0" name_1="0" name_2="0" name_3="0"
+		name_4="0" create_user_id="0" create_datetime="2010-03-15 00:00:00"
+		create_program_id="0" update_user_id="0" update_datetime="2018-03-15 00:00:00"
+		update_program_id="0" />
+</dataset>

@@ -1,0 +1,16 @@
+spring:
+  main:
+    banner-mode: 'off'
+  profiles:
+    active: dev
+    
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b    
+    
+platform:
+  name: store-item-manager
+
+version: 
+  aws: 1.11.228

@@ -1,0 +1,31 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+ <t_sales_error_order_information 
+transaction_id="123456" 
+integrated_order_id="123456"
+order_barcode_number="123456"
+store_code="01"
+system_brand_code="01"
+system_business_code="01"
+system_country_code="01"
+channel_type="01"
+channel_code="01"
+update_type="CORRECTION"
+customer_id="123456"
+order_confirmation_business_date="20150101"
+order_confirmation_date_time="2010-03-15 00:00:00"
+error_check_type="0"
+data_alteration_sales_linkage_type="0"
+data_alteration_backbone_linkage_type="0"
+data_correction_editing_flag="0"
+data_correction_user_id="123456"
+error_realtime_notification_flag="0"
+error_notification_flag="0"
+create_user_id="123456"
+create_datetime="2010-03-15 00:00:00"
+create_program_id="123456"
+update_user_id="123456"
+update_datetime="2010-03-15 00:00:00"
+update_program_id="123456"
+ />
+</dataset>

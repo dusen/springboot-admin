@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesPayoffDataUpdateOptionalMapper">
+     <resultMap id="BaseResultMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesPayoffDataUpdateOptionalEntity">
+	    <result column="payoff_type_code" jdbcType="VARCHAR" property="payoffTypeCode" />
+	    <result column="payoff_type_sub_number_code" jdbcType="VARCHAR" property="payoffTypeSubNumberCode" />
+	    <result column="payoff_amount" jdbcType="NUMERIC" property="payoffAmount" />
+	    <result column="payoff_quantity" jdbcType="NUMERIC" property="payoffQuantity" />
+	    <result column="integrity_check_type" jdbcType="VARCHAR" property="integrityCheckType" />
+	    <result column="pile_up_payoff_amount" jdbcType="NUMERIC" property="pileUpPayoffAmount" />
+	    <result column="pile_up_payoff_quantity" jdbcType="NUMERIC" property="pileUpPayoffQuantity" />
+     </resultMap>       
+     <select id="selectSalesPayoffDataUpdateErrorStatus" parameterType="com.fastretailing.dcp.sales.common.entity.optional.SalesPayoffDataUpdateErrorStatusOptionalCondition" resultType="java.lang.Integer">
+        SELECT /* SalesPayoffDataUpdateMapper-001 */ 
+		  count(1)
+		FROM t_sales_transaction_error_detail t1,t_sales_error_sales_transaction_header t2
+	   WHERE
+	    t1.sales_transaction_error_id = t2.transaction_id 
+	    AND t1.store_code = #{storeCode}
+	    AND t1.system_brand_code = #{systemBrandCode}
+	    AND t1.system_country_code = #{systemCountryCode}
+	    AND t1.data_alteration_status_type = '0'
+	    AND t2.cash_register_no = #{cashRegisterNo}
+	    AND t2.sales_linkage_type = 0
+     </select>
+     <select id="selectSalesPayoffDataUpdateList" parameterType="com.fastretailing.dcp.sales.common.entity.optional.SalesPayoffDataUpdateOptionalCondition" resultMap="BaseResultMap">
+        SELECT /* SalesPayoffDataUpdateMapper-002 */ 
+		  t1.payoff_type_code
+		  , t1.payoff_type_sub_number_code
+		  , t1.payoff_amount
+		  , t1.payoff_quantity
+		  , t1.integrity_check_type
+		  , t2.payoff_amount pile_up_payoff_amount
+		  , t2.payoff_quantity pile_up_payoff_quantity
+		FROM t_pay_off_data t1,t_pile_up_pay_off_data t2
+	    WHERE
+		t1.store_code = t2.store_code
+		AND t1.payoff_date = t2.payoff_date
+		AND t1.payoff_type_code = t2.payoff_type_code
+		AND t1.payoff_type_sub_number_code = t2.payoff_type_sub_number_code 
+		AND t1.cash_register_no = t2.cash_register_no
+	    AND t1.store_code = #{storeCode}
+	    AND t1.payoff_date = #{payoffDate}
+	    AND t1.cash_register_no = #{cashRegisterNo}
+		ORDER BY
+		    t1.store_code
+		    , t1.payoff_date
+		    , t1.cash_register_no
+		    , t1.payoff_type_code
+		    , t1.payoff_type_sub_number_code
+     </select>
+</mapper>

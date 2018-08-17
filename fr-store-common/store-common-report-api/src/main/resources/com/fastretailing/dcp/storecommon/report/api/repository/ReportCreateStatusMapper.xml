@@ -1,0 +1,98 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.storecommon.report.api.repository.ReportCreateStatusMapper">
+
+    <sql id="selectFields">
+        receipt_number
+        , report_id
+        , report_type
+        , store_code
+        , create_report_status
+        , auto_print_status
+        , created_report_bucket_name
+        , created_report_key_name
+        , create_report_business_day
+        , delete_report_business_day
+        , printer_name
+        , outer_command_execute_flag
+    </sql>
+
+    <select id="selectByReceiptNumber" resultType="com.fastretailing.dcp.storecommon.report.api.entity.ReportCreateStatus">
+        SELECT /* ReportCreateStatusMapper_001 */
+          <include refid="selectFields"/>
+        FROM
+          t_report_create_status
+        WHERE
+            receipt_number=#{receipt_number}
+        <if test="create_report_datetime != null">
+        AND create_datetime >= #{create_report_datetime}
+        </if>
+    </select>
+
+    <select id="selectByBusinessDay" resultType="com.fastretailing.dcp.storecommon.report.api.entity.ReportCreateStatus">
+        SELECT /* ReportCreateStatusMapper_002 */
+          <include refid="selectFields"/>
+        FROM
+          t_report_create_status
+        WHERE
+            report_id=#{report_id}
+        AND store_code=#{store_code}
+        AND create_report_business_day between #{business_day_from} and #{business_day_to}
+        <if test="create_report_datetime != null">
+        AND create_datetime >= #{create_report_datetime}
+        </if>
+    </select>
+
+    <insert id="insertReportCreateStatus">
+        INSERT INTO /* ReportCreateStatusMapper_003 */
+          t_report_create_status
+        (   receipt_number, report_id, report_type, store_code, create_report_status, 
+            auto_print_status, create_report_business_day, delete_report_business_day, 
+            printer_name, outer_command_execute_flag, create_datetime
+        )
+        VALUES
+        (   #{status.receiptNumber}, #{status.reportId}, #{status.reportType}, #{status.storeCode}, #{status.createReportStatus}, 
+            0, #{status.createReportBusinessDay}, #{status.deleteReportBusinessDay}, 
+            #{status.printerName}, #{status.outerCommandExecuteFlag}, #{status.createDatetime}
+        )
+    </insert>
+
+    <update id="updateCreateStatus">
+        UPDATE /* ReportCreateStatusMapper_004 */
+         t_report_create_status SET 
+            create_report_status = #{status.createReportStatus},
+            <if test="status.createdReportBucketName != null">
+            created_report_bucket_name = #{status.createdReportBucketName},
+            </if>
+            <if test="status.createdReportKeyName != null">
+            created_report_key_name = #{status.createdReportKeyName},
+            </if>
+            update_datetime = #{status.updateDatetime}
+        WHERE receipt_number = #{status.receiptNumber}
+    </update>
+
+    <update id="updateAutoPrintStatus">
+        UPDATE /* ReportCreateStatusMapper_005 */
+          t_report_create_status SET 
+            auto_print_status = #{status.autoPrintStatus},
+            update_datetime = #{status.updateDatetime}
+        WHERE receipt_number = #{status.receiptNumber}
+    </update>
+
+    <select id="selectByDeleteReportBusinessDay" resultType="com.fastretailing.dcp.storecommon.report.api.entity.ReportCreateStatus">
+        SELECT /* ReportCreateStatusMapper_006 */
+          <include refid="selectFields"/>
+        FROM
+          t_report_create_status
+        WHERE
+            create_report_status=#{create_report_status}
+            <![CDATA[
+        	AND delete_report_business_day <= #{delete_report_business_day}
+        	]]>
+    </select>
+    
+    <delete id="deleteByReceiptNumber" parameterType="java.lang.String">
+    	DELETE /* ReportCreateStatusMapper_007 */
+    	FROM t_report_create_status 
+    	WHERE t_report_create_status.receipt_number=#{receipt_number}
+    </delete>
+</mapper>

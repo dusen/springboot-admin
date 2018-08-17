@@ -1,0 +1,10 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+	<t_error_evacuation_sales_transaction_detail_info
+		transaction_id="1" order_sub_number="1" sales_transaction_id="1"
+		detail_sub_number="1" sales_transaction_error_id="1"
+		item_detail_sub_number="1" key_code="1" code_value_1="1" code_value_2="1"
+		code_value_3="1" code_value_4="1" name_1="1" name_2="1" name_3="1"
+		name_4="1" create_user_id="1" create_datetime="2010-03-15 00:00:00" create_program_id="1"
+		update_user_id="1" update_datetime="2018-03-15 00:00:00" update_program_id="1" />
+</dataset>

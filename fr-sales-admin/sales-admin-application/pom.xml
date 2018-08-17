@@ -1,0 +1,175 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>sales-admin</artifactId>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.fastretailing.dcp</groupId>
+		<artifactId>sales-admin-parent</artifactId>
+		<version>0.4.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.fastretailing.dcp.sales</groupId>
+			<artifactId>sales-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp.sales</groupId>
+			<artifactId>sales-common-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-admin-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-admin-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-admin-index</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-alteration-data-upload</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-brand-country-setting-edit</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-business-daily-report-output</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-declare-irregular-settlements</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-settlement-correction-history</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-store-transaction-inquiry</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-transaction-correction</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-transaction-error-list</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-transaction-history-list</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-payoff-unmatch-list</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fastretailing.dcp</groupId> -->
+<!-- 			<artifactId>sales-payoff-data-update</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>sales-transaction-correction-history-detail</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- Dcp common -->
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>dcp-common-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>dcp-common-web</artifactId>
+		</dependency>
+
+		<!-- Store common -->
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>store-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fastretailing.dcp</groupId>
+			<artifactId>store-common-screen</artifactId>
+		</dependency>
+
+
+		<!-- Library -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.springtestdbunit</groupId>
+			<artifactId>spring-test-dbunit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.fastretailing.dcp.sales.SalesAdminApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

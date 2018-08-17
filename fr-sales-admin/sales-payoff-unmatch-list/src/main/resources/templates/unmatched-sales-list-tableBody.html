@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div class="scroll-block th-fixed-body v-hheight-list"  th:fragment="tableBody(salesPayoffUnmatchList)">
+	<table id="dataTable" class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width3em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width20em">
+			<col class="width5em">
+			<col class="width10em">
+			<col class="width40em">
+			<col class="width5em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle" th:each="info , stat: ${salesPayoffUnmatchList}">
+
+				<span th:if="${info.dataAlterationStatusName != null}" >
+					<td class="text-center grayedout">
+						<label th:text="${stat.index + 1}"></label>
+					</td>
+					<td class="text-center grayedout">
+						<label th:text="${info != null ? info.brandName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].brandName}">
+					</td>
+					<td class="text-center grayedout">
+						<label th:text="${info != null ? info.countryName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].countryName}">
+					</td>
+					<td class="text-center grayedout">
+						<label th:text="${info != null ? info.storeCode:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].storeCode}">
+					</td>
+					<td class="text-center grayedout">
+						<label th:text="${info != null ? info.storeName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].storeName}">
+					</td>
+					<td class="text-left grayedout">
+						<label th:text="${info != null ? info.cashRegisterNo:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].cashRegisterNo}">
+					</td>
+					<td class="text-center grayedout">
+						<label th:text="${info != null ? info.payoffDate:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].payoffDate}">
+					</td>
+					<td class="text-center grayedout">
+						<label th:text="${info != null ? info.errorContents:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].errorContents}">
+					</td>
+					<td class="text-right grayedout red">
+						<label th:text="${info.dataAlterationStatusName}">Correcting</label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].dataAlterationStatusName}">
+					</td>
+					<td th:if="${stat.last}" style="display:none">
+					</td>
+				</span>
+
+				<span th:unless="${info.dataAlterationStatusName != null}" >
+					<td class="text-center" style="color:red ;">
+						<a href="#" onclick="linkButtonClick(this)">
+							<label th:text="${stat.index + 1}" id="numList"></label>
+						</a>
+					</td>
+					<td class="text-center">
+						<label th:text="${info != null ? info.brandName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].brandName}">
+					</td>
+					<td class="text-center">
+						<label th:text="${info != null ? info.countryName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].countryName}">
+					</td>
+					<td class="text-center">
+						<label th:text="${info != null ? info.storeCode:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].storeCode}">
+					</td>
+					<td class="text-center">
+						<label th:text="${info != null ? info.storeName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].storeName}">
+					</td>
+					<td class="text-left">
+						<label th:text="${info != null ? info.cashRegisterNo:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].cashRegisterNo}">
+					</td>
+					<td class="text-center">
+						<label th:text="${info != null ? info.payoffDate:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].payoffDate}">
+					</td>
+					<td class="text-center">
+						<label th:text="${info != null ? info.errorContents:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].errorContents}">
+					</td>
+					<td class="text-right">
+						<label th:text="${info != null ? info.dataAlterationStatusName:''}"></label>
+						<input type="hidden" th:field="*{salesPayoffUnmatchList[__${stat.index}__].dataAlterationStatusName}">
+					</td>
+					<td th:if="${stat.last}" style="display:none">
+					</td>
+				</span>
+			</tr>
+			<script th:inline="javascript">
+			/*<![CDATA[*/
+				tableBodyLastIndexEvent();
+			/*]]>*/
+			</script>
+		</tbody>
+	</table>
+</div>
+</html>

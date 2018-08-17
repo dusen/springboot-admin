@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div class="selectbox" id="paymentTenderGroupSelect"
+	th:object="${storeTransactionInquiryForm}">
+	<div class="selectbox-text">
+		<div class="input-elem">
+			<input type="text" readonly th:field="*{paymentTenderGroup}">
+			<input type="hidden" th:field="*{paymentImsTenderGroup}">
+		</div>
+	</div>
+	<div class="select-elem">
+		<ul class="paymentTenderGroup" id="groupPaymentTenderGroup"
+			th:each="paymentTenderGroup : ${storeTransactionInquiryForm.paymentTenderGroupList}">
+			<li th:data-value="${paymentTenderGroup.key}"
+				th:data-name="${paymentTenderGroup.value}"><span
+				th:text="${paymentTenderGroup.value}"></span></li>
+		</ul>
+	</div>
+</div>
+</html>

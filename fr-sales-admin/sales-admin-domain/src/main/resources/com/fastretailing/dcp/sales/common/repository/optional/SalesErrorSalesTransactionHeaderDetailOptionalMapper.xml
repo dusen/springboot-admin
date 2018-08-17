@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesErrorSalesTransactionHeaderDetailOptionalMapper">
+    <resultMap id="BaseResultMap"
+        type="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionHeaderDetailOptional">
+        <id column="view_store_code" jdbcType="VARCHAR" property="storeCode" />
+        <result column="cash_register_no" jdbcType="NUMERIC" property="cashRegisterNo" />
+        <result column="receipt_no" jdbcType="VARCHAR" property="receiptNo" />
+        <result column="sales_transaction_type" jdbcType="VARCHAR" property="salesTransactionType" />
+        <result column="sales_linkage_type" jdbcType="VARCHAR" property="salesLinkageType" />
+        <result column="data_creation_date_time" jdbcType="VARCHAR" property="dataCreationDateTime" />
+        <result column="data_creation_business_date" jdbcType="VARCHAR" property="dataCreationBusinessDate" />
+        <result column="order_status_update_date" jdbcType="VARCHAR" property="orderStatusUpdateDate" />
+        <result column="order_status_last_update_date_time" jdbcType="TIMESTAMP" property="orderStatusLastUpdateDateTime" />
+        <result column="employee_sale_flag" jdbcType="VARCHAR" property="employeeSaleFlag" />
+        <result column="consistency_sales_flag" jdbcType="VARCHAR" property="consistencySalesFlag" />
+        <result column="corporate_id" jdbcType="VARCHAR" property="corporateId" />
+        <result column="sales_transaction_discount_flag" jdbcType="VARCHAR" property="salesTransactionDiscountFlag" />
+        <result column="sales_transaction_discount_amount_rate_currency_code" jdbcType="VARCHAR" property="salesTransactionDiscountAmountRateCurrencyCode" />
+        <result column="sales_transaction_discount_amount_rate" jdbcType="NUMERIC" property="salesTransactionDiscountAmountRate" />
+        <collection javaType="ArrayList" property="salesErrorSalesTransactionDetailList" resultMap="salesErrorSalesTransactionDetailListMap" />
+        <collection javaType="ArrayList" property="salesErrorSalesTransactionTaxList" resultMap="salesErrorSalesTransactionTaxListMap" />
+        <collection javaType="ArrayList" property="salesErrorSalesTransactionTenderList" resultMap="salesErrorSalesTransactionTenderListMap" />
+        <collection javaType="ArrayList" property="salesErrorSalesTransactionTotalAmountList" resultMap="salesErrorSalesTransactionTotalAmountListMap" />
+    </resultMap>
+    
+     <resultMap id="salesErrorSalesTransactionDetailListMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionItemDetailOptional">
+       <id column="item_detail_transaction_id" jdbcType="VARCHAR" property="transactionId" />
+        <id column="item_detail_order_sub_number" jdbcType="NUMERIC" property="orderSubNumber" />
+        <id column="item_detail_sales_transaction_id" jdbcType="VARCHAR" property="salesTransactionId" />
+        <id column="item_detail_detail_sub_number" jdbcType="NUMERIC" property="detailSubNumber" />
+        <result column="product_classification" jdbcType="VARCHAR" property="productClassification" />
+        <result column="product_classification_name" jdbcType="VARCHAR" property="productClassificationName" />
+        <result column="l3_item_code" jdbcType="VARCHAR" property="l3ItemCode" />
+        <result column="l3_pos_product_name" jdbcType="VARCHAR" property="l3PosProductName" />
+        <result column="service_code" jdbcType="VARCHAR" property="serviceCode" />
+        <result column="non_md_code" jdbcType="VARCHAR" property="nonMdCode" />
+        <result column="g_department_code" jdbcType="VARCHAR" property="gdepartmentCode" />
+        <result column="retail_unit_price_tax_excluded_currency_code" jdbcType="VARCHAR" property="retailUnitPriceTaxExcludedCurrencyCode" />
+        <result column="retail_unit_price_tax_excluded" jdbcType="NUMERIC" property="retailUnitPriceTaxExcluded" />
+        <result column="retail_unit_price_tax_included" jdbcType="NUMERIC" property="retailUnitPriceTaxIncluded" />
+        <result column="quantity_code" jdbcType="VARCHAR" property="quantityCode" />
+        <result column="detail_quantity" jdbcType="NUMERIC" property="detailQuantity" />
+        <result column="sales_amount_tax_excluded" jdbcType="NUMERIC" property="salesAmountTaxExcluded" />
+        <result column="sales_amount_tax_included" jdbcType="NUMERIC" property="salesAmountTaxIncluded" />
+        <result column="taxation_type" jdbcType="VARCHAR" property="taxationType" />
+        <result column="tax_system_type" jdbcType="VARCHAR" property="taxSystemType" />
+        <result column="detail_order_status_update_date" jdbcType="VARCHAR" property="orderStatusUpdateDate" />
+        <result column="detail_order_status_last_update_date_time" jdbcType="TIMESTAMP" property="orderStatusLastUpdateDateTime" />
+    </resultMap>
+    
+    <resultMap id="salesErrorSalesTransactionTaxListMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionTaxDetailOptional">
+        <id column="tax_group" jdbcType="VARCHAR" property="taxGroup" />
+        <result column="tax_name" jdbcType="VARCHAR" property="taxName" />
+        <result column="tax_amount_currency_code" jdbcType="VARCHAR" property="taxAmountCurrencyCode" />
+        <result column="tax_amount_sign" jdbcType="VARCHAR" property="taxAmountSign" />
+        <result column="tax_amount_value" jdbcType="NUMERIC" property="taxAmountValue" />
+        <result column="tax_rate" jdbcType="NUMERIC" property="taxRate" />
+    </resultMap>
+    
+    <resultMap id="salesErrorSalesTransactionTenderListMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionTenderDetailOptional">
+        <id column="ims_tender_id" jdbcType="VARCHAR" property="imsTenderId" />
+        <result column="ims_tender_group" jdbcType="VARCHAR" property="imsTenderGroup" />
+        <result column="tender_name" jdbcType="VARCHAR" property="tenderName" />
+        <result column="tax_included_payment_amount_currency_code" jdbcType="VARCHAR" property="taxIncludedPaymentAmountCurrencyCode" />
+        <result column="payment_sign" jdbcType="VARCHAR" property="paymentSign" />
+        <result column="tax_included_payment_amount_value" jdbcType="NUMERIC" property="taxIncludedPaymentAmountValue" />
+    </resultMap>
+    
+     <resultMap id="salesErrorSalesTransactionTotalAmountListMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionTotalAmountDetailOptional">
+        <id column="total_type" jdbcType="VARCHAR" property="totalType" />
+        <result column="total_amount_tax_excluded_currency_code" jdbcType="VARCHAR" property="totalAmountTaxExcludedCurrencyCode" />
+        <result column="total_amount_tax_excluded_value" jdbcType="NUMERIC" property="totalAmountTaxExcludedValue" />
+        <result column="total_amount_tax_included_value" jdbcType="NUMERIC" property="totalAmountTaxIncludedValue" />
+    </resultMap>
+    
+    <select id="selectSalesErrorSalesTransactionHeaderDetailByCondition"
+        parameterType="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionHeaderDetailOptionalCondition" resultMap="BaseResultMap">
+        with t00 as (select * from m_common_code_master) 
+        select /* SalesErrorSalesTransactionHeaderDetailMapper-001 */
+          ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'transaction_type' 
+              and type_value = t01.sales_transaction_type
+          ) as sales_transaction_type
+          , t01.view_store_code
+          , t01.cash_register_no
+          , t01.receipt_no
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'sales_linkage_type' 
+              and type_value = cast(t01.sales_linkage_type as char (1))
+          ) as sales_linkage_type
+          , t01.data_creation_date_time
+          , t01.data_creation_business_date
+          , t01.order_status_update_date
+          , t01.order_status_last_update_date_time
+          , cast(t01.employee_sale_flag as varchar) as employee_sale_flag
+          , cast(t01.consistency_sales_flag as varchar) as consistency_sales_flag
+          , t01.corporate_id
+          , cast(t01.sales_transaction_discount_flag as varchar) as sales_transaction_discount_flag
+          , t01.sales_transaction_discount_amount_rate_currency_code
+          , t01.sales_transaction_discount_amount_rate
+          , t02.transaction_id as item_detail_transaction_id
+          , t02.order_sub_number as item_detail_order_sub_number
+          , t02.sales_transaction_id as item_detail_sales_transaction_id
+          , t02.detail_sub_number as item_detail_detail_sub_number
+          , t02.product_classification
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'PRODUCT_CLASSIFICATION' 
+              and type_value = t02.product_classification
+          ) as product_classification_name
+          , t02.l3_item_code
+          , t02.l3_pos_product_name
+          , t02.service_code
+          , t02.non_md_code
+          , t02.g_department_code
+          , t02.retail_unit_price_tax_excluded_currency_code
+          , t02.retail_unit_price_tax_excluded
+          , t02.retail_unit_price_tax_included
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'quantity_code' 
+              and type_value = t02.quantity_code
+          ) as quantity_code
+          , t02.detail_quantity
+          , t02.sales_amount_tax_excluded
+          , t02.sales_amount_tax_included
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'TAXATION_TYPE' 
+              and type_value = t02.taxation_type
+          ) as taxation_type
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'TAX_KIND' 
+              and type_value = t02.tax_system_type
+          ) as tax_system_type
+          , t02.order_status_update_date as detail_order_status_update_date
+          , t02.order_status_last_update_date_time as detail_order_status_last_update_date_time
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'tax_group' 
+              and type_value = t03.tax_group
+          ) as tax_group
+          , t03.tax_name
+          , t03.tax_amount_currency_code
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'amount_sign' 
+              and type_value = t03.tax_group
+          ) as tax_amount_sign
+          , t03.tax_amount_value
+          , t03.tax_rate
+          , t04.ims_tender_id
+          , t04.ims_tender_group
+          , t04.tender_name
+          , t04.tax_included_payment_amount_currency_code
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'payment_sign' 
+              and type_value = t04.payment_sign
+          ) as payment_sign
+          , t04.tax_included_payment_amount_value
+          , ( 
+            select
+              name_1 
+            from
+              t00 
+            where
+              type_id = 'total_type' 
+              and type_value = t05.total_type
+          ) as total_type
+          , t05.total_amount_tax_excluded_currency_code
+          , t05.total_amount_tax_excluded_value
+          , t05.total_amount_tax_included_value 
+        from
+          ( 
+            select
+              t01.transaction_id
+              , t01.order_sub_number
+              , t01.sales_transaction_id
+              , t01.sales_transaction_type
+              , t02.view_store_code
+              , t01.cash_register_no
+              , t01.receipt_no
+              , t01.sales_linkage_type
+              , t01.data_creation_date_time
+              , t01.data_creation_business_date
+              , t01.order_status_update_date
+              , t01.order_status_last_update_date_time
+              , t01.employee_sale_flag
+              , t01.consistency_sales_flag
+              , t01.corporate_id
+              , t01.sales_transaction_discount_flag
+              , t01.sales_transaction_discount_amount_rate_currency_code 
+              , t01.sales_transaction_discount_amount_rate
+            from
+              t_sales_error_sales_transaction_header t01 
+              left outer join m_trans_store_code t02 
+                on t02.store_code = t01.store_code 
+            where
+              transaction_id = #{transactionId} 
+              and sales_transaction_id = #{salesTransactionId}
+          ) t01 
+          left outer join t_sales_error_sales_transaction_detail t02 
+            on t02.transaction_id = t01.transaction_id 
+            and t02.order_sub_number = t01.order_sub_number 
+            and t02.sales_transaction_id = t01.sales_transaction_id 
+          left outer join t_sales_error_sales_transaction_tax t03 
+            on t03.transaction_id = t01.transaction_id 
+            and t03.order_sub_number = t01.order_sub_number 
+            and t03.sales_transaction_id = t01.sales_transaction_id 
+            and t03.detail_sub_number = 0 
+          left outer join ( 
+            select
+              t01.transaction_id
+              , t01.order_sub_number
+              , t01.sales_transaction_id
+              , t01.tender_sub_number
+              , t03.ims_tender_id
+              , t03.ims_tender_group
+              , t03.tender_name
+              , t02.store_code
+              , t02.tender_id
+              , t01.tax_included_payment_amount_currency_code
+              , t01.payment_sign
+              , t01.tax_included_payment_amount_value 
+            from
+              t_sales_error_sales_transaction_tender t01 
+              left outer join m_trans_tender t02 
+                on t02.tender_id = t01.tender_id 
+              left outer join m_tender t03 
+                on t03.store_code = t02.store_code 
+                and t03.ims_tender_id = t02.ims_tender_id 
+                and t03.store_code = #{storeCode} 
+            where
+              t02.store_code is not null 
+              and t02.tender_id is not null 
+              and t03.ims_tender_id is not null 
+              and t03.ims_tender_group is not null
+          ) t04 
+            on t04.transaction_id = t01.transaction_id 
+            and t04.order_sub_number = t01.order_sub_number 
+            and t04.sales_transaction_id = t01.sales_transaction_id 
+          left outer join t_sales_error_sales_transaction_total_amount t05 
+            on t05.transaction_id = t01.transaction_id 
+            and t05.order_sub_number = t01.order_sub_number 
+            and t05.sales_transaction_id = t01.sales_transaction_id 
+        order by
+          t02.detail_sub_number asc
+          , t03.tax_sub_number asc
+          , t04.tender_sub_number asc
+          , t05.total_amount_sub_number asc
+    </select>
+</mapper>

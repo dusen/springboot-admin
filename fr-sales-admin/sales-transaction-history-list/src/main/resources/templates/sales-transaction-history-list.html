@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-transaction-history-list.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/sales-transaction-history-list.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/sales-transaction-history-list.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-transaction-history-list.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main"
+		th:object="${salesTransactionHistoryListForm}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{sales-transaction-history-list.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<p class="mr-left-20 fz40 mb15"
+				th:text="#{sales-transaction-history-list.title}"></p>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-transaction-history-list.brandLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="brandSelect">
+							<div class="selectbox-text">
+								<input type="text" readonly/>
+								<input type="hidden" th:field="*{systemBrandCode}"/>
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-history-list.select.clear}"></li>
+									<li th:each="selectitem : *{brandList}" th:data-value="${selectitem.value}"
+										th:text="${selectitem.name}" th:data-name="${selectitem.name}"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-history-list.countryLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="countrySelect">
+							<div class="selectbox-text">
+								<input type="text" readonly />
+								<input type="hidden" th:field="*{systemCountryCode}" />
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-history-list.select.clear}"></span></li>
+									<li th:each="selectitem : *{countryList}" th:data-value="${selectitem.value}"
+										th:data-name="${selectitem.name}"><span th:text="${selectitem.name}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-history-list.storeLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160" maxlength="4" th:field="*{storeCode}"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-history-list.cashRegisterNoLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybord" maxlength="3"
+								th:field="*{cashRegisterNo}"> </span>
+						</p>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-history-list.receiptNoLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybord" maxlength="4"
+								th:field="*{receiptNo}"></span>
+						</p>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-history-list.salesTransactionTypeLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="salesTransactionTypeSelect">
+							<div class="selectbox-text">
+								<input type="text" readonly>
+								<input type="hidden" th:field="*{salesTransactionType}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-history-list.select.clear}"></span></li>
+									<li th:each="salesTransactionType : *{salesTransactionTypeMap}"
+										th:data-value="${salesTransactionType.key}"
+										th:data-name="${salesTransactionType.value}"><span
+										th:text="${salesTransactionType.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-history-list.dataCreationDateLabel}"></label>
+					</div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{dataCreationDateFrom}"></span><span
+						class="input-clear fade-action"></span><span class="mr-left-20">～</span>
+					<span class="datepicker-span mr-left-20"><input type="text"
+						class="datepicker-text mrMedium" th:field="*{dataCreationDateTo}">
+					</span>
+					<div class="width120 mr-left-170">
+						<label
+							th:utext="#{sales-transaction-history-list.businessDateLabel}"></label>
+					</div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{businessDateFrom}"></span><span
+						class="input-clear"></span><span class="mr-left-20">～</span> <span
+						class="datepicker-span mr-left-20"><input type="text"
+						class="datepicker-text" th:field="*{businessDateTo}"> </span>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-history-list.correctorCodeLabel}"></label>
+					</div>
+					<div class="input-elem mrMedium">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybord" maxlength="30"
+								th:field="*{correctorCode}"> </span>
+						</p>
+					</div>
+					<div class="width120 mr-left-302">
+						<label
+							th:utext="#{sales-transaction-history-list.correctionDateLabel}"></label>
+					</div>
+					<span class="datepicker-span"><input type="text"
+						class="datepicker-text" th:field="*{correctionDateFrom}"></span><span
+						class="input-clear fade-action"></span><span class="mr-left-20">～</span>
+					<span class="datepicker-span mr-left-20"><input type="text"
+						class="datepicker-text" th:field="*{correctionDateTo}"> </span>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-history-list.errorContentsLabel}"></label>
+					</div>
+					<div class="width350">
+						<div class="selectbox" id="errorContentsSelect">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									th:field="*{errorContents}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-history-list.select.clear}"></span></li>
+									<li th:each="errorContents : *{errorContentsMap}"
+										th:data-value="${errorContents.key}"
+										th:data-name="${errorContents.value}"><span
+										th:text="${errorContents.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-right mb10">
+				<a href="javascript:void(0)" id="clearButton"
+					class="button skeleton cancel small mrMedium"
+					th:text="#{sales-transaction-history-list.clearButton}"></a> <a
+					href="javascript:void(0)" class="button skeleton primary small"
+					id="searchButton" onclick="javascript:searchButtonClick(this);"
+					th:attr="data-url=@{/sales-transaction-history-list/list}"
+					th:text="#{sales-transaction-history-list.searchButton}"></a>
+			</p>
+		</div>
+		<div class="width100per">
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width3em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width20em">
+							<col class="width8em">
+							<col class="width8em">
+							<col class="width5em">
+							<col class="width15em">
+							<col class="width10em">
+							<col class="width30em">
+							<col class="width15em">
+							<col class="width15em">
+							<col class="width15em">
+							<col class="width10em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th class="text-center"
+									th:utext="#{sales-transaction-history-list.table.noLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-history-list.table.brandLabel}"></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-history-list.table.countryLabel}"></th>
+								<th class="text-center"><label
+									th:utext="#{sales-transaction-history-list.table.storeLabel}"></label>
+									<input type="hidden" th:field="*{sortItem}" /> <input
+									type="hidden" th:field="*{orderByClause}" /></th>
+								<th class="text-center"
+									th:utext="#{sales-transaction-history-list.table.storeNameLabel}"></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.cashRegisterNoLabel}"
+									onclick="javascript:sortThis('cashRegisterNo')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.receiptNoLabel}"
+									onclick="javascript:sortThis('receiptNo')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.salesTransactionTypeLabel}"
+									onclick="javascript:sortThis('salesTransactionType')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.dataCreationDateLabel}"
+									onclick="javascript:sortThis('dataCreationDate')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.businessDateLabel}"
+									onclick="javascript:sortThis('businessDate')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.errorContentsLabel}"
+									onclick="javascript:sortThis('errorContents')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.correctorCodeLabel}"
+									onclick="javascript:sortThis('correctorCode')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.correctionDateLabel}"
+									onclick="javascript:sortThis('correctionDate')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.reflectLabel}"
+									onclick="javascript:sortThis('reflect')"></a></th>
+								<th class="text-center"><a href="javascript:void(0)"
+									class="sort-icon"
+									th:utext="#{sales-transaction-history-list.table.updateTypeLabel}"
+									onclick="javascript:sortThis('updateType');"></a></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id="divTableBody">
+					<div
+						th:replace="sales-transaction-history-list-tableBody :: tableBody(*{salesTransactionHistoryList})"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options"></div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

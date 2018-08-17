@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-reprint-daily-sales-report.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/sales-reprint-daily-sales-report.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/sales-reprint-daily-sales-report.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-reprint-daily-sales-report.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main"
+		th:object="${reprintDailySalesReportForm}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator"></p>
+				<p th:text="#{sales-reprint-daily-sales-report.breadcrumbs}"></p>
+			</div>
+		</div>
+		<input type="hidden" th:field="*{storeCode}" /> <input
+			th:if="*{storeFlag}" type="hidden" th:field="*{businessDate}" />
+		<div class="option-block">
+			<p class="mr-left-20 fz40 mb15"
+				th:text="#{sales-reprint-daily-sales-report.title}"></p>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-reprint-daily-sales-report.brandLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="brandSelect">
+							<div class="selectbox-text">
+								<div class="input-elem">
+									<input type="text" readonly th:field="*{systemBrandCode}" />
+								</div>
+							</div>
+							<div class="select-elem" th:if="*{!storeFlag}">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:utext="#{sales-reprint-daily-sales-report.select.clear}"></span></li>
+									<li th:each="name : *{brandList}" th:data-value="${name}"
+										th:text="${name}" th:data-name="${name}"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-reprint-daily-sales-report.countryLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="countrySelect">
+							<div class="selectbox-text">
+								<div class="input-elem">
+									<input type="text" readonly th:field="*{systemCountryCode}" />
+								</div>
+							</div>
+							<div class="select-elem" th:if="*{!storeFlag}">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-reprint-daily-sales-report.select.clear}"></span></li>
+									<li th:each="name : *{countryList}" th:data-value="${name}"
+										th:data-name="${name}"><span th:text="${name}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-reprint-daily-sales-report.storeLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span th:if="*{storeFlag}" class="numerickeybord-wrap"><input
+								type="text" readonly th:errorclass="field-error"
+								class="textbox width160 numerickeybord" maxlength="6"
+								th:field="*{displayStoreCode}"></span> <span
+								th:unless="*{storeFlag}" class="numerickeybord-wrap"><input
+								type="text" th:errorclass="field-error"
+								class="textbox width160 numerickeybord" maxlength="6"
+								th:field="*{displayStoreCode}"></span>
+						</p>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-reprint-daily-sales-report.businessDateLabel}"></label>
+					</div>
+					<div class="input-wrap">
+						<label th:if="*{businessDateFlag}" th:text="*{businessDate}"></label>
+						<span th:unless="*{businessDateFlag}" class="datepicker-span"><input
+							type="text" class="datepicker-text" th:field="*{businessDate}">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="text-right mb10">
+			<a href="javascript:void(0)" id="clearButton"
+				class="button skeleton cancel small mrMedium"
+				th:text="#{sales-reprint-daily-sales-report.clearButton}"></a> <a
+				href="javascript:void(0)" class="button skeleton primary small"
+				id="searchButton" onclick="javascript:searchButtonClick(this);"
+				th:text="#{sales-reprint-daily-sales-report.searchButton}"></a>
+		</p>
+		<div class="width-all"></div>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options">
+			<a href="#" class="button skeleton primary small" id="printButton"
+				onclick="javascript:printButtonClick(this);"
+				th:text="#{sales-reprint-daily-sales-report.print}"></a>
+		</div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

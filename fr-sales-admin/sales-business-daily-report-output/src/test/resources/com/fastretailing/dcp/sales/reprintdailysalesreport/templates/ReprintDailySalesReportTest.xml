@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<m_common_code_master type_id="system_country_code"
+		type_value="01" display_order="1" name_1="Japan" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="02" display_order="2" name_1="UK" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_brand_code"
+		type_value="0001" display_order="1" name_1="UQ" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_brand_code"
+		type_value="0005" display_order="2" name_1="GU" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_trans_store_code store_code="1234567890"
+		store_name="東京二号店" view_store_code="002" integrate_db_store_code="1"
+		system_brand_code="0001" system_business_code="011" business_name="11"
+		block_code="1" block_name="1" area_code="1" area_name="1"
+		system_country_code="01" country_name="1" batch_region="1"
+		integrate_db_business_code="1" store_device_rmvl_date="2018-05-23 5:05:12"
+		send_target_store_flag="true" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_store_control store_code="1234567890"
+		system_brand_code="0001" system_business_code="1" system_country_code="123"
+		fc_store_type="1" business_date="20180621" closing_store_time="213059"
+		create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<t_salesreport_management store_code="002"
+		system_brand_code="0001" system_business_code="1" system_country_code="123"
+		business_date="20180621" reception_number="1" create_user_id="1"
+		create_datetime="2018-05-23 5:05:12" create_program_id="1"
+		update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+</dataset>

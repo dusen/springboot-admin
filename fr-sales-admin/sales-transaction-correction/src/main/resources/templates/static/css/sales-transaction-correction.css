@@ -1,0 +1,33 @@
+.mr-left-20 {
+	margin-left: 20px;
+}
+
+.mr-left-170 {
+	margin-left: 170px;
+}
+
+.mr-left-302 {
+	margin-left: 302px;
+}
+
+.width20 {
+	width: 20px !important;
+}
+
+.width350 {
+	width: 350px !important;
+}
+
+p .height23 {
+	height: 23px !important;
+}
+
+.padding5 {
+	padding: 5px 5px 5px 5px !important;
+}
+.hidden_box{
+	display:none!important;
+}
+.background_gr{
+	background-color:#D3D3D3!important;
+}

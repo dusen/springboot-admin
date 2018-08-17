@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(salesTransactionHeader)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width12em">
+			<col class="width12em">
+			<col class="width12em">
+			<col class="width12em">
+		</colgroup>
+		<tbody id="paymentTbody" th:class="|tender_table_${stat.index}|">
+			<th:block
+				th:each="itemDetail, itemStat : ${transaction.salesTransactionTenderList}">
+				<div th:class="|transaction_tender_${stat.index}_${itemStat.index}|">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].imsTenderGroup}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderId}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderName}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderSubNumber}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.discountRate}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.discountAmount.currencyCode}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.discountAmount.value}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.discountCodeIdCorporateId}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.couponType}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.couponDiscountAmountSetting.currencyCode}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.couponDiscountAmountSetting.value}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.couponMinUsageAmountThreshold.currencyCode}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.couponMinUsageAmountThreshold.value}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.couponUserId}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.cardNo}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.creditApprovalCode}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.creditProcessingSerialNumber}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.creditPaymentType}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.creditPaymentCount}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderInfoList.creditAffiliatedStoreNumber}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderGroupId}">
+				</div>
+				<tr id="paymentListTr"
+					th:class="|v-align-middle item_tender_del_target_${stat.index}|"
+					th:data-inputclass="|.transaction_tender_${stat.index}_${itemStat.index}|">
+					<td class="text-center">
+						<div class="checkbox">
+							<input class="deleteFlag"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].deleteCheckFlag}"
+								th:value="0" /> <input
+								th:id="|header_${stat.index}_tenderList_${itemStat.index}.cancleButton|"
+								class="detail_item_check" type="checkbox"> <label
+								class="fz13"
+								th:for="|header_${stat.index}_tenderList_${itemStat.index}.cancleButton|">
+							</label>
+						</div>
+					</td>
+					<td class="text-center"><label>&#10003;</label></td>
+					<td class="text-center"
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].imsTenderGroup}">
+					</td>
+					<td class="text-center"><input type="text" class="textbox"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].imsTenderId}">
+					</td>
+					<td class="text-center"
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderName}">
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].taxIncludedPaymentAmount.currencyCode}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="currencyCode : *{currencyCodeMap}"
+										th:selected="${currencyCode.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].taxIncludedPaymentAmount.currencyCode}"
+										th:data-value="${currencyCode.key}"
+										th:data-name="${currencyCode.value}"><span
+										th:text="${currencyCode.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].paymentSign}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="paymentSign : *{paymentSignMap}"
+										th:selected="${paymentSign.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].paymentSign}"
+										th:data-value="${paymentSign.key}"
+										th:data-name="${paymentSign.value}"><span
+										th:text="${paymentSign.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center"><input type="text" class="textbox"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].taxIncludedPaymentAmount.value}">
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+</html>

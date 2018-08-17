@@ -1,0 +1,14 @@
+cloud.aws:
+    credentials:
+      accessKey: 
+      secretKey: 
+    region:
+      serviceEndpoint: 127.0.0.1
+      static: ap-northeast-1
+    s3:
+      expirationSeconds: 300
+
+spring:
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

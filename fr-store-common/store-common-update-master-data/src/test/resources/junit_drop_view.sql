@@ -1,0 +1,2 @@
+DROP VIEW IF EXISTS v_type;
+DROP VIEW IF EXISTS v_tender;

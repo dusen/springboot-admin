@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesErrorSalesOrderInformationDetailOptionalMapper">
+    <resultMap id="BaseResultMap"
+        type="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesOrderDetailInformationOptional">
+        <id column="view_store_code" jdbcType="VARCHAR" property="storeCode" />
+        <result column="register_no" jdbcType="VARCHAR" property="registerNo" />
+        <result column="receipt_no" jdbcType="VARCHAR" property="receiptNo" />
+        <result column="order_confirmation_business_date" jdbcType="VARCHAR" property="orderConfirmationBusinessDate" />
+        <result column="order_confirmation_date_time" jdbcType="VARCHAR" property="orderConfirmationDateTime" />
+    </resultMap>
+    <select id="selectOrderInformationDetailByTransactionId"
+        parameterType="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesOrderInformationOptionalKey" resultMap="BaseResultMap">
+        select /* SalesErrorSalesOrderInformationDetailMapper-001 */
+          t02.view_store_code
+          , SUBSTR(t01.integrated_order_id, 21, 3) as register_no
+          , SUBSTR(t01.integrated_order_id, 24, 3) as receipt_no
+          , t01.order_confirmation_business_date
+          , t01.order_confirmation_date_time 
+        from
+          ( 
+            select
+              store_code
+              , integrated_order_id
+              , order_confirmation_business_date
+              , order_confirmation_date_time 
+            from
+              t_sales_error_sales_order_information 
+            where
+              transaction_id = #{transactionId}
+          ) t01 
+          left outer join m_trans_store_code t02 
+            on t02.store_code = t01.store_code
+    </select>
+</mapper>

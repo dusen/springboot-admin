@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(salesTransactionHeader)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width8em">
+		</colgroup>
+		<tbody id="taxTbody" th:class="|tax_table_${stat.index}|">
+			<th:block
+				th:each="itemDetail, itemStat : ${transaction.salesTransactionTaxDetailList}">
+				<div th:class="|transaction_tax_${stat.index}_${itemStat.index}|">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxSubNumber}">
+					<input type="hidden"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxRate}">
+				</div>
+				<tr id="taxListTr"
+					th:class="|v-align-middle item_tax_del_target_${stat.index}|"
+					th:data-inputclass="|.transaction_tax_${stat.index}_${itemStat.index}|">
+					<td class="text-center">
+						<div class="checkbox">
+							<input class="deleteFlag"
+								th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].deleteCheckFlag}"
+								th:value="0" /> <input
+								th:id="|header_${stat.index}_taxList_${itemStat.index}.cancleButton|"
+								class="detail_item_check" type="checkbox"> <label
+								class="fz13"
+								th:for="|header_${stat.index}_taxList_${itemStat.index}.cancleButton|">
+							</label>
+						</div>
+					</td>
+					<td class="text-center"><label>&#10003;</label></td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxGroup}">
+							</div>
+							<div class="select-elem">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="taxCroup : *{taxGroupMap}"
+										th:selected="${taxCroup.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxGroup}"
+										th:data-value="${taxCroup.key}"
+										th:data-name="${taxCroup.value}"><span
+										th:text="${taxCroup.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center"></td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxAmount.currencyCode}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="currencyCode : *{currencyCodeMap}"
+										th:selected="${currencyCode.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxAmount.currencyCode}"
+										th:data-value="${currencyCode.key}"
+										th:data-name="${currencyCode.value}"><span
+										th:text="${currencyCode.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxAmountSign}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="amountSign : *{amountSignMap}"
+										th:selected="${amountSign.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxAmountSign}"
+										th:data-value="${amountSign.key}"
+										th:data-name="${amountSign.value}"><span
+										th:text="${amountSign.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center"><input type="text" class="textbox"
+						th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxAmount.value}">
+					</td>
+					<td class="text-center"
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTaxDetailList[__${itemStat.index}__].taxRate}">
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+</html>

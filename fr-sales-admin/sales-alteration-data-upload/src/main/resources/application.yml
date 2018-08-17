@@ -1,0 +1,167 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SLS
+    full: sales
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+  error:
+    whitelabel:
+      enabled: false
+spring:
+
+  messages:
+    basename: ValidationMessages,messages-screen-common,i18n/messages-sales-admin,i18n/userinterface
+    cache-seconds: -1
+    encoding: UTF-8
+    
+  jackson:
+    date-format: yyyyMMdd
+        
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+
+  transaction:
+    default-timeout: 60
+    
+  mvc:
+    throw-exception-if-no-handler-found: true
+    
+  resources:
+    add-mappings: false
+    
+  thymeleaf: 
+    mode: HTML
+    cache: false
+    cache-period: 0
+  
+  template:
+    cache: false
+
+  session:
+    store-type: none
+
+logging:
+  level:
+    com.fastretailing.dcp.sales.repository: debug
+    
+mybatis: 
+  configuration:
+    map-underscore-to-camel-case: true
+
+system:
+  defaultlanguage: ja
+
+version:
+  aws: 1.11.228
+
+screen:
+  authentication:
+    storeCode: 112326
+    userId: testUser
+    develop:
+      develop-mode-enabled: true
+      user-id: testUser
+      store-code: 11223344
+      roles:
+        - ROLED
+        - ROLE1
+    saml:
+      idp-server-name: localhost
+      idp-metadata-path: classpath:/metadata/FederationMetadata.xml
+      sp-schema: https
+      sp-server-name: localhost
+      sp-https-port: 443
+      sp-context-path: ${server.context-path}
+      entity-base-url: ${screen.authentication.saml.sp-schema}://${screen.authentication.saml.sp-server-name}${screen.authentication.saml.sp-context-path}
+      entity-id: ${screen.authentication.saml.entity-base-url}/saml/${platform.name.full}
+      success-login-default-url: ${screen.authentication.saml.entity-base-url}/@@Brand@@/@@Region@@/screen/sales-correction-menu
+      login-url-map:
+        /sales-correction-menu: ${screen.authentication.saml.entity-base-url}/@@Brand@@/@@Region@@/screen/sales-correction-menu
+      success-logout-url: ${screen.authentication.saml.entity-base-url}/common-error
+      failed-login-default-url: ${screen.authentication.saml.entity-base-url}/common-error
+      permit-all-paths:
+        - /**/static/** 
+        - /common-error
+        - /error
+      # Max assertion time :: default value = 3000[s]
+      max-assertion-time: 3000
+      # Response skew :: default value = 60[s]
+      response-skew: 80000
+      # Max authentication age :: default value = 7200[s]
+      max-authentication-age: 7200
+  authorization:
+    exclusion-path-list:
+      - /static/
+      - /version
+      - /common-error
+      - /error
+  audit:
+    exclusion-path-list:
+      - /version
+      - /common-error
+      - /error
+  error:
+    systemException: 
+      page: common-error
+      title: common.error.systemError.title
+      message: common.error.systemError.message
+    businessException:
+      page: common-error
+      title: common.error.businessError.title
+
+menuConfig:
+  menuList:
+    -
+     menuId: sales-alteration-data-upload.menu01
+     url: /sales-alteration-data-upload
+hmac:
+  price:
+     clientId: 7654321
+     clientSecret: price
+  storeInventory:
+     clientId: 7654321
+     clientSecret: storeInventory
+  sales:
+     clientId: 7654321
+     clientSecret: sales     
+
+client:
+  baseConfig:
+    connectTimeout: 5000
+    readTimeout: 5000
+    retryCount: 3
+    retryInterval: 5000
+    proxyHost:
+    proxyPort:
+    proxyUser:
+    proxyPassword:
+  apiConfig:
+    sales:
+      host:
+        admin: localhost:8080
+        consumer: localhost:8080
+      platform: sales
+      version: v1
+      uri:
+        base:
+          admin: http://${client.apiConfig.sales.host.admin}/${client.apiConfig.sales.platform}/${client.apiConfig.sales.version}
+          consumer: http://${client.apiConfig.sales.host.consumer}/${client.apiConfig.sales.platform}/${client.apiConfig.sales.version}
+        apis:
+          transactionImport:
+            post:
+              admin: ${client.apiConfig.sales.uri.base.admin}/{brand}/{region}/pos-open-close-check/{store_code}
+              consumer: ${client.apiConfig.sales.uri.base.consumer}/{brand}/{region}/transaction-import/{channel_code}/{store_code}/{integrated_order_id}/{order_sub_number}/{update_type}
+
+sales-business-receiver:
+  transaction-error-exception: true

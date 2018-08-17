@@ -1,0 +1,28 @@
+{
+"pay_off_data_form_list":[
+{
+"store_code":"222",
+cash_register_no:"134",
+"payoff_date":"20180512",
+"data_correction_user_id":"liuyumin",
+ "payoff_type_list":[
+    {
+      "payoff_type_code" : "123456",
+      "payoff_type_sub_number_code" : "numbercode",
+       "amount_code" : "amountcode",
+       "payoff_amount":[{"currency_code":"jp","value":"1"},{"currency_code":"cn","value":"2"}],
+       "payoff_quantity":"22",
+       "quantity_code":"11"
+     },
+    {
+      "payoff_type_code" : "123457",
+      "payoff_type_sub_number_code" : "numbercode",
+       "amount_code" : "amountcode",
+       "payoff_amount":[{"currency_code":"jp","value":"1"}],
+       "payoff_quantity":"22",
+       "quantity_code":"22"
+     }
+   ]     
+}
+]
+}

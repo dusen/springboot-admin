@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastretailing.dcp.storecommon.generaldatadelete.repository.GeneralDataDeleteConfigMapper">
+ 
+    <select id="selectByProcessingTargetType"  resultType="com.fastretailing.dcp.storecommon.generaldatadelete.dto.GeneralDataDeleteEntity">
+       SELECT
+             /* CMN9900201_001 */ 
+             processing_target_type,
+             processing_no,
+             delete_target_table,
+             date_item,
+             saved_days,
+             system_brand_code,
+             system_country_code,
+             store_code 
+         FROM
+             m_general_delete_setting
+         WHERE
+             processing_target_type = #{processingTargetType}
+         ORDER BY 
+             processing_no  
+    </select>
+</mapper>

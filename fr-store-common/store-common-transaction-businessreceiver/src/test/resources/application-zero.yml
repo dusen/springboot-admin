@@ -1,0 +1,31 @@
+spring:
+  main:
+    banner-mode: 'off'
+  profiles:
+    active: zero
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+    
+transaction-dispatch: 
+  aws-region: ap-northeast-1
+  channel-code: 10
+  max-number-of-message: 1
+  wait-time-out-seconds: 10
+  business-receiver-name: testService
+  sqs: 
+    queue-name: TransactionQueue
+    connection-timeout: 0
+    request-timeout: 0
+    backoff-strategy: default
+    max-error-retry: 1
+  dynamodb: 
+    region: ap-northeast-1
+    transaction-status-table: TransactionStatus
+    expiration-days: 60
+    connection-timeout: 10000
+    request-timeout: 10000
+    backoff-strategy: default
+    max-error-retry: 3

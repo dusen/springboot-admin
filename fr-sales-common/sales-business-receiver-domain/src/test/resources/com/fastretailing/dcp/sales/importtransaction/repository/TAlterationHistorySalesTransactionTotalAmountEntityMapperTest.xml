@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<t_alteration_history_sales_transaction_total_amount
+		transaction_id="0" order_sub_number="0" sales_transaction_id="0"
+		total_type="0" history_type="0" sales_transaction_error_id="0"
+		total_amount_tax_excluded_currency_code="0"
+		total_amount_tax_excluded_value="0"
+		total_amount_tax_included_currency_code="0"
+		total_amount_tax_included_value="0" tax_rate="0"
+		sales_transaction_information_1="0" sales_transaction_information_2="0"
+		sales_transaction_information_3="0" total_amount_sub_number="0"
+		create_user_id="0" create_datetime="2010-03-15 00:00:00"
+		create_program_id="0" update_user_id="0" update_datetime="2018-03-15 00:00:00"
+		update_program_id="0" />
+</dataset>

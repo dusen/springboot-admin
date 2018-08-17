@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<dataset>
+    <columns
+    	table_name = "w_type"
+    	column_name = "system_country_code"
+    	data_type = "character varying"
+	/>
+
+</dataset>

@@ -1,0 +1,31 @@
+.mr-left-20 {
+	margin-left: 20px;
+}
+
+.mr-left-170 {
+	margin-left: 170px;
+}
+
+.mr-left-302 {
+	margin-left: 302px;
+}
+
+.width350 {
+	width: 350px !important;
+}
+
+.tableListColor
+{
+	style=background : gray;
+	color:blue ;
+}
+
+td.grayedout
+{
+	background-color : #e6e6e6;
+}
+
+td.red
+{
+	color:#ff0000;
+}

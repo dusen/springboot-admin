@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-payoff-data-update.title},~{::link}, ~{::script})">
+<script type="text/javascript"
+    th:src="@{static/js/sales-payoff-data-update.js}"></script>
+<link th:href="@{static/css/sales-payoff-data-update.css}"
+	rel="stylesheet" />
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-payoff-data-update.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main"
+		th:object="${salesPayoffDataUpdateListForm}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Unmatch List</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{sales-payoff-data-update.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="right-options">
+			<ul>
+				<li><a href="#" id="return" onclick="returnBack();"
+					th:text="#{sales-payoff-data-update.returnBack}"> </a></li>
+			</ul>
+			<div class="height10"></div>
+		</div>
+        <div class="option-block">
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-payoff-data-update.payOffDate}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<label th:utext="*{payoffDate}"></label> <input type="hidden"
+							th:field="*{payoffDate}">
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-payoff-data-update.brand}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<label th:utext="*{brandName}"></label> <input type="hidden"
+							th:field="*{brandName}">
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-payoff-data-update.country}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<label th:utext="*{countryName}"></label> <input type="hidden"
+							th:field="*{countryName}">
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-payoff-data-update.store}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<label th:utext="*{storeCode}"></label> <input type="hidden"
+							th:field="*{storeCode}">
+					</div>
+					<div class="width160">
+						<label th:utext="*{storeName}"></label> <input type="hidden"
+							th:field="*{storeName}">
+					</div>
+					<div class="width120 mrMedium"></div>
+					<div class="width120">
+						<label th:utext="#{sales-payoff-data-update.registerNo}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<label th:utext="*{cashRegisterNumber}"></label> <input type="hidden"
+							th:field="*{cashRegisterNumber}">
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-payoff-data-update.errorContents}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<label th:utext="*{errorContent}"></label> <input type="hidden"
+							th:field="*{errorContent}">
+					</div>
+					<div class="width160 mrMedium">
+						<label
+							th:utext="#{sales-payoff-data-update.salesTransactionErrorStatus}"></label>
+					</div>
+					<div class="width120">
+						<label th:utext="*{salesTransactionErrorStatus}"></label> <input
+							type="hidden" th:field="*{salesTransactionErrorStatus}">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="width100per">
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width5em">
+							<col class="width8em">
+							<col class="width5em">
+							<col class="width8em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width5em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th rowspan="2" class="text-center"
+									style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffTypeCode}"></th>
+								<th rowspan="2" class="text-center"
+									style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffTypeName}"></th>
+								<th rowspan="2" class="text-center"
+									style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffTypeSubNumberCode}"></th>
+								<th rowspan="2" class="text-center"
+									style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffTypeSubNumberName}"></th>
+								<th colspan="2" class="text-center"
+									style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.pileUpPayoffData}"></th>
+								<th colspan="2" class="text-center"
+									style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffData}"></th>
+							</tr>
+							<tr>
+								<th class="text-center" style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.pileUpPayoffAmount}"></th>
+								<th class="text-center" style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.pileUpPayoffQuantity}"></th>
+								<th class="text-center" style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffAmount}"></th>
+								<th class="text-center" style="word-break: break-all;"
+									th:utext="#{sales-payoff-data-update.payoffQuantity}"></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id="divTableBody">
+					<div>
+						<table id="dataTable"
+							class="common-table width100per cell-color-change">
+							<colgroup>
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width5em">
+								<col class="width5em">
+								<col class="width5em">
+								<col class="width5em">
+							</colgroup>
+							<tbody>
+								<tr th:each="info , stat: *{salesPayoffDataList}">
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3' or ${info.pileUpPayoffDataSameDecideFlag}=='1'? 'background-color:#FFF2F2' : ''"
+										class="text-left-align"><label
+										th:text="${info != null ? info.payoffTypeCode:''}"></label> <input
+										type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].payoffTypeCode}">
+										<input type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].integrityCheckType}">
+										<input type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].pileUpPayoffDataSameDecideFlag}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3' or ${info.pileUpPayoffDataSameDecideFlag}=='1' ? 'background-color:#FFF2F2' : ''"
+										class="text-left-align"><label
+										th:text="${info != null ? info.payoffTypeName:''}"></label> <input
+										type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].payoffTypeName}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3'  or ${info.pileUpPayoffDataSameDecideFlag}=='1'? 'background-color:#FFF2F2' : ''"
+										class="text-left-align"><label
+										th:text="${info != null ? info.payoffTypeSubNumberCode:''}"></label>
+										<input type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].payoffTypeSubNumberCode}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3'  or ${info.pileUpPayoffDataSameDecideFlag}=='1'? 'background-color:#FFF2F2' : ''"
+										class="text-left-align"><label
+										th:text="${info != null ? info.payoffTypeSubNumberName:''}"></label>
+										<input type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].payoffTypeSubNumberName}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3'  or ${info.pileUpPayoffDataSameDecideFlag}=='1' ? 'background-color:#FFF2F2' : ''"
+										class="text-right-align"><label
+										th:text="${info != null ? info.pileUpPayoffAmount:''}"></label>
+										<input type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].pileUpPayoffAmount}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3'  or ${info.pileUpPayoffDataSameDecideFlag}=='1' ? 'background-color:#FFF2F2' : ''"
+										class="text-right-align"><label
+										th:text="${info != null ? info.pileUpPayoffQuantity:''}"></label>
+										<input type="hidden"
+										th:field="*{salesPayoffDataList[__${stat.index}__].pileUpPayoffQuantity}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3'  or ${info.pileUpPayoffDataSameDecideFlag}=='1' ? 'background-color:#FFF2F2' : ''"
+										class="text-right-align"><input
+										th:readonly="*{salesTransactionErrorStatus}=='Error Exists'"
+										type="text" class="text-right-align"
+										th:field="*{salesPayoffDataList[__${stat.index}__].payoffAmount}">
+									</td>
+									<td
+										th:style="${info.integrityCheckType}=='2' or ${info.integrityCheckType}=='3'  or ${info.pileUpPayoffDataSameDecideFlag}=='1' ? 'background-color:#FFF2F2' : ''"
+										class="text-right-align"><input
+										th:readonly="*{salesTransactionErrorStatus}=='Error Exists'"
+										type="text" class="text-right-align"
+										th:field="*{salesPayoffDataList[__${stat.index}__].payoffQuantity}">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer" class="footer"
+		th:object="${salesPayoffDataUpdateListForm}">
+		<div class="right-options">
+			<ul>
+				<li><a href="#"
+					th:disabled="*{salesTransactionErrorStatus}=='Error Exists' or *{salesPayoffDataListHaveDataFlag}=='0' "
+					class="button submit" id="updateButton" onclick="clickRegister();"
+					th:text="#{sales-payoff-data-update.update}"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="popup" th:replace="/static/html-popup-template.html::popup"></div>
+</body>
+</html>

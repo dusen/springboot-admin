@@ -1,0 +1,37 @@
+{
+    "environment_dependent_config":{
+        "557256225786":{
+            "build_environment":"dev",
+            "nexus_protcol":"http",
+            "nexus_domain":"oms-repo-ue1.testoms.jp",
+            "nexus_port":"80"
+        },
+        "203010965826":{
+            "build_environment":"dev_nec",
+            "nexus_protcol":"http",
+            "nexus_domain":"172.31.2.136",
+            "nexus_port":"8081"
+        },
+        "177578532027":{
+            "build_environment":"stg",
+            "nexus_protcol":"http",
+            "nexus_domain":"nexus.ap-northeast-1.maintenance",
+            "nexus_port":"8081"
+        },
+        "174683876178":{
+            "build_environment":"prd",
+            "nexus_protcol":"http",
+            "nexus_domain":"nexus.ap-northeast-1.maintenance",
+            "nexus_port":"8081"
+        }
+    },
+    "aws_ecs_config":{
+        "repository_region_list":[
+          "ap-northeast-1"
+        ],
+        "fr-sales-admin":{
+          "artifactid":"sales-admin",
+          "ecr_repository":[{"name":"sales/admin"}]
+        }
+    }
+}

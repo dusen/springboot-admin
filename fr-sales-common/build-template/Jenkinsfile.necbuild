@@ -1,0 +1,56 @@
+//------------------------------------------------------------------------------
+// JenkinsFile
+//------------------------------------------------------------------------------
+// Build Constant
+def CONST_BUILD_TEMPLATE_PATH = "build-template"
+def CONST_ENVIRONMENT_DEPENDENT_CONFIG = "environment_dependent_config"
+
+// Build Variable
+def build_environment
+def nexus_protcol
+def nexus_domain
+def nexus_port
+def aws_account
+def buildConfig
+def git_repository_name
+def pom_version
+def common_name = "-trash"
+
+
+pipeline {
+    agent any
+    tools { 
+        jdk 'openjdk-1.8.0'
+        maven 'maven3.5.2'
+    }
+    stages {
+        stage('init') {
+            steps {
+                script {
+                    git_repository_name = sh (script:"echo -n ${env.GIT_URL} | sed -e 's|^.*/\\(.\\+\\)\\.git\$|\\1|g'", returnStdout: true)
+                    aws_account = sh (script:"aws sts get-caller-identity | jq -r '.Account'", returnStdout: true).trim()
+
+                    buildConfig = readJSON file: "${WORKSPACE}/${CONST_BUILD_TEMPLATE_PATH}/config.json"
+                    build_environment = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].build_environment
+                    nexus_protcol = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_protcol
+                    nexus_domain = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_domain
+                    nexus_port = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_port
+                    
+                    pom_version = sh (script:"mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '^\\[' | grep -v 'Download'", returnStdout: true).trim()
+                    sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml versions:set -DnewVersion=${pom_version}${common_name}"
+
+                }
+            }
+        }
+        stage('Deploy src') {
+            steps {
+                script {
+                    dir("${WORKSPACE}") {
+                        sh "rm -rf ./.repository"
+                        sh "mvn -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean deploy -Dmaven.test.skip=true -DuniqVersion=true -DaltDeploymentRepository=snapshots::default::${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/content/repositories/releases -Dsettings.security=${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/settings-security.xml -Dmaven.repo.local=./.repository"
+                    }
+                }
+            }
+        }
+    }
+}

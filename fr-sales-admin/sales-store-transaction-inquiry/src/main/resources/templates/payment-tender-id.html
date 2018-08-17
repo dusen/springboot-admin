@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div class="selectbox" id="paymentTenderIdSelect"
+	th:object="${storeTransactionInquiryForm}">
+	<div class="selectbox-text">
+		<input type="text" readonly th:field="*{paymentTenderId}"> <input
+			type="hidden" th:field="*{paymentImsTenderId}">
+	</div>
+	<div class="select-elem">
+		<ul class="paymentTenderId" id="groupPaymentTenderId"
+			th:each="paymentTenderId : ${storeTransactionInquiryForm.paymentTenderIdList}">
+			<li th:data-value="${paymentTenderId.key}"
+				th:data-name="${paymentTenderId.value}"><span
+				th:text="${paymentTenderId.value}"></span></li>
+		</ul>
+	</div>
+</div>
+</html>

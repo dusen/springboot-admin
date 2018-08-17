@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(${commonBaseForm.detailError.errorMessageTitle},null, null)">
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(${commonBaseForm.detailError.errorMessageTitle},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main" th:object="${expectedDeliveryListByItemForm}">
+	[[${commonBaseForm.detailError.errorMessage}]]
+	</div>
+	<!-- ボタン配置エリア -->
+	<div id="footer" class="footer">
+	</div>
+	<div id="popup"></div>
+</body>
+</html>

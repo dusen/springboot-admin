@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<dataset>
+	<w_tender eai_update_datetime="2018-2-9 15:00:00"
+		eai_update_type="1" eai_send_status="1" eai_send_datetime="2018-2-9 15:00:00"
+		tender_id="000001" tender_name="T11" receipt_tender_name="R1111"
+		tender_group="ABAB" valid_date="2018-2-9 15:00:00" currency_code="JPY"
+		kid="ABC" change_flag="1" current_deposit_flag="0"
+		credit_company_code="COM" store_code="A0001" batch_region="01"
+		lot_number="A001" />
+	<m_trans_store_code store_code="A0001" store_name="AAA"
+		view_store_code="AA" integrate_db_store_code="1" system_brand_code="1"
+		system_country_code="1" system_business_code="1" business_name="AAA"
+		block_code="1" block_name="1" area_code="1" area_name="1"
+		country_name="1" batch_region="1" integrate_db_business_code="1"
+		send_target_store_flag="1" create_user_id="1" create_datetime="2018-2-9 15:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-2-9 15:00:00"
+		update_program_id="1" />
+	<m_store_general_purpose general_purpose_type="time_zone"
+		store_code="A0001" system_country_code="1" system_brand_code="1" code="America/New_York"
+		create_user_id="1" create_datetime="2018-2-9 15:00:00" create_program_id="1" update_user_id="1"
+		update_datetime="2018-2-9 15:00:00" update_program_id="1" />
+</dataset>

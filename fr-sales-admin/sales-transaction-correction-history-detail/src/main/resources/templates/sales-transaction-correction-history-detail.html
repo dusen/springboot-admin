@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{sales-transaction-correction.title},~{::link}, ~{::script})">
+<link
+	th:href="@{static/css/sales-transaction-correction-history-detail.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/sales-transaction-correction-history-detail.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{sales-transaction-correction.title},~{::#main},~{::#footer},~{::#popup})">
+	<div id="main" class="contents scroll-block v-hheight"
+		th:object="${salesTransactionCorrectionHistoryDetailForm}">
+		<!-- information dialog two button -->
+		<div class="hiddeh-message">
+			<input id="E_SLS_66000140" type="hidden" th:value="#{E_SLS_66000140}" />
+			<input id="afterCorrectionTitle" type="hidden"
+				th:value="#{sales-transaction-correction-history-detail.afterCorrectionTitle}" />
+		</div>
+		<div id="upload-option"
+			style="display: none; position: absolute; z-index: 999999; background: #fff">
+			<div class="modal-title modal-title-information">
+				<p>
+					<img id="informationImg" class="vertical-align-middle"
+						th:src="@{/static/images/common/white_check_icon.png}"> <span
+						id="box-title" class="vertical-align-middle"
+						th:text="#{sales-transaction-correction.select.option}">Option</span>
+				</p>
+				<a href="#" class="close modal-close">&nbsp;</a>
+			</div>
+			<div id="box-body" class="modal-inner">
+				<div class="option-block">
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption1" value="0"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnAll}"
+							for="uploadOption1">1</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption2" value="1"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnlyOnIMSLinkage}"
+							for="uploadOption2">2</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption3" value="2"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.uploadWithoutCorrection}"
+							for="uploadOption3">3</label>
+					</div>
+					<div class="radio-btn">
+						<input type="radio" id="uploadOption4" value="3"
+							name="uploadOption"> <label
+							th:text="#{sales-transaction-correction.select.reflectOnlyOnReceipt}"
+							for="uploadOption4">4</label>
+					</div>
+				</div>
+			</div>
+			<div class="message-btns">
+				<a href="#"
+					class="button skeleton cancel small close modal-close font-weight-bold-cancel"
+					th:text="#{common.button.cancel}">Cancel</a> <a href="#"
+					class="button skeleton primary small confirm-btn font-weight-bold"
+					th:text="#{common.button.ok}">OK</a>
+			</div>
+		</div>
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p
+					th:utext="#{sales-transaction-correction-history-list.breadcrumbs}"></p>
+				<p class="separator">＞</p>
+				<p
+					th:utext="#{sales-transaction-correction-history-detail.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap mb0">
+					<input type="hidden" th:field="*{transactionId}"> <input
+						type="hidden" th:field="*{salesTransactionErrorId}"> <input
+						type="hidden" th:field="*{orderSubNumber}"> <input
+						type="hidden" th:field="*{detailSubNumber}"> <input
+						type="hidden" id="discountPopupTitle"
+						th:value="#{sales-transaction-correction.discountTitle}">
+					<input type="hidden" id="taxPopupTitle"
+						th:value="#{sales-transaction-correction.taxTitle}">
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.brandLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{systemBrandCode != null ? systemBrandCode:''}"></label>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.countryLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:text="*{systemCountryCode != null ? systemCountryCode:''}"></label>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.storeLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{storeCode != null ? storeCode:''}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{storeName != null ? storeName:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.registerNoLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{cashRegisterNo != null ? cashRegisterNo:''}"></label>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-transaction-correction.receiptNoLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{receiptNo != null ? receiptNo:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.dataCreationDateLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{dataCreationDate != null ? dataCreationDate:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.errorContentsLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{errorContents != null ? errorContents:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.businessDateLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{correctionDate != null ? correctionDate:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.transactionTypeLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{transactionType != null ? transactionType:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction.errorDetailLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction-history-detail.openDate}"></label><label></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap">
+					<div class="width120"></div>
+					<label
+						th:utext="#{sales-transaction-correction-history-detail.orderStatusUpdateDate}"></label><label></label>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction-history-detail.correctionDateLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{correctionDate != null ? correctionDate:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction-history-detail.correctorLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{correctorCode != null ? correctorCode:''}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb5">
+				<div class="input-wrap">
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction-history-detail.reflectLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{reflect != null ? reflect:''}"></label>
+					</div>
+					<div class="width120">
+						<label
+							th:utext="#{sales-transaction-correction-history-detail.updateTypeLabel1}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{updateType != null ? updateType:''}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<a href="javascript:void(0)" class="tablinks active padding5"
+				for="orderInformationTab"
+				th:utext="#{sales-transaction-correction.orderInformationTab}"></a>
+			<th:block
+				th:each="transaction, stat: *{transactionImportData.transactionList}">
+				<a href="javascript:void(0)"
+					class="tablinks padding5 salesTransactionHeaderTab"
+					th:for="|salesTransactionHeaderTab_${stat.index+1}|"
+					th:utext="#{sales-transaction-correction.salesTransactionHeaderTab}"></a>
+			</th:block>
+		</div>
+		<!-- Tab content -->
+		<div id="orderInformationTab" class="tabcontent">
+			<div class="width100per">
+				<div class="th-fixed">
+					<div class="th-fixed-head">
+						<table class="common-table width100per">
+							<colgroup>
+								<col class="width4em">
+								<col class="width3em">
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width12em">
+								<col class="width5em">
+							</colgroup>
+							<thead>
+								<tr class="v-align-middle">
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction-history-detail.historyLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.storeLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.registerNoLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.receiptNoLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderConfirmationBusinessDateLabel2}"></th>
+									<th rowspan=2 class="text-center"
+										th:utext="#{sales-transaction-correction.orderConfirmationDateTimeLabel2}"></th>
+							</thead>
+						</table>
+					</div>
+					<div class="scroll-block th-fixed-body v-hheight"
+						style="max-height: 150px">
+						<table
+							class="common-table width100per cell-color-change orderInformationTabTable">
+							<colgroup>
+								<col class="width4em">
+								<col class="width3em">
+								<col class="width5em">
+								<col class="width8em">
+								<col class="width12em">
+								<col class="width5em">
+							</colgroup>
+							<tbody>
+								<tr class="v-align-middle"
+									th:if="*{transactionImportData != null}">
+									<td class="text-center">
+										<div class="historyBefore block-item">
+											<label id="historyBefore"
+												th:text="#{sales-transaction-correction-history-detail.historyBefore}"></label>
+										</div>
+										<div class="historyAfter hide-elem">
+											<label id="historyAfter"
+												th:text="#{sales-transaction-correction-history-detail.historyAfter}"></label>
+										</div>
+									</td>
+									<td class="text-center"><label
+										th:text="*{transactionImportData.storeCode}"></label></td>
+									<td class="text-center"><label
+										th:text="${#strings.substring(salesTransactionCorrectionHistoryDetailForm.transactionImportData.integratedOrderId,20,23)}"></label></td>
+									<td class="text-center"><label
+										th:text="${#strings.substring(salesTransactionCorrectionHistoryDetailForm.transactionImportData.integratedOrderId,23,27)}"></label></td>
+									<td class="text-center"><label
+										th:text="*{transactionImportData.formatOrderConfirmationBusinessDate}"></label></td>
+									<td class="text-center"><label
+										th:text="*{transactionImportData.formatOrderConfirmationDateTime}"></label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block
+			th:each="transaction, stat: *{transactionImportData.transactionList}">
+			<!-- Sales Transaction Header Tab -->
+			<div th:id="|salesTransactionHeaderTab_${stat.index+1}|"
+				class="tabcontent">
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap mb0 salesTransationHeaderOne">
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.noLabel3}"></label>
+						</div>
+						<div class="width120 one">
+							<label th:utext="${stat.index+1}"></label>
+						</div>
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.tranTypeLabel3}"></label>
+						</div>
+						<div class="width120 two">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].transactionType}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="#{sales-transaction-correction.salesLinkageTypeLabel3}"></label>
+						</div>
+						<div class="width120 three">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].salesLinkageType}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap mb0">
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.storeLabel3}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].storeCode}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="#{sales-transaction-correction.registerNoLabel3}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].cashRegisterNo}"></label>
+						</div>
+						<div class="width120">
+							<label th:utext="#{sales-transaction-correction.receiptNoLabel3}"></label>
+						</div>
+						<div class="width120">
+							<label
+								th:utext="*{transactionImportData.transactionList[__${stat.index}__].receiptNo}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.dataCreationBusinessDateLabel3}"></label>
+						</div>
+						<label class="width233"
+							th:text="*{transactionImportData.transactionList[__${stat.index}__].formatDataCreationBusinessDate}"></label>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.dataCreationDateTimeLabel3}"></label>
+						</div>
+						<div class="width210 input-elem">
+							<label
+								th:text="*{transactionImportData.transactionList[__${stat.index}__].formatDataCreationDateTime}">
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.orderStatusUpdateDateLabel3}"></label>
+						</div>
+						<label class="width233"
+							th:text="*{transactionImportData.transactionList[__${stat.index}__].formatOrderStatusUpdateDate}"></label>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.orderStatusLastUpdateDateTimeLabel3}"></label>
+						</div>
+						<div class="width210 input-elem">
+							<label
+								th:text="*{transactionImportData.transactionList[__${stat.index}__].formatOrderStatusLastUpdateDateTime}">
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.employeeSaleFlagLabel3}"></label>
+						</div>
+						<div class="width210 mrMedium">
+							<div class="selectbox" id="employeeSaleFlagSelect">
+								<div class="selectbox-text">
+									<input type="text" readonly> <input type="hidden"
+										th:field="*{transactionImportData.transactionList[__${stat.index}__].employeeSaleFlag}">
+								</div>
+								<div class="hidden select-elem">
+									<ul class="category">
+										<li data-value="-1" data-name=""><span
+											th:text="#{sales-transaction-correction.select.clear}"></span></li>
+										<li th:each="employeeSaleFlag : *{employeeSaleFlagMap}"
+											th:selected="${#strings.toLowerCase(employeeSaleFlag.key)} == *{transactionImportData.transactionList[__${stat.index}__].employeeSaleFlag}"
+											th:data-value="${#strings.toLowerCase(employeeSaleFlag.key)}"
+											th:data-name="${employeeSaleFlag.value}"><span
+											th:text="${employeeSaleFlag.value}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.corporateSaleFlagLabel3}"></label>
+						</div>
+						<div class="width210 mrMedium">
+							<div class="selectbox" id="corporateSaleFlagSelect">
+								<div class="selectbox-text">
+									<input type="text" readonly> <input type="hidden"
+										th:field="*{transactionImportData.transactionList[__${stat.index}__].consistencySalesFlag}">
+								</div>
+								<div class="hidden select-elem">
+									<ul class="category">
+										<li data-value="-1" data-name=""><span
+											th:text="#{sales-transaction-correction.select.clear}"></span></li>
+										<li th:each="corporateSalesFlag : *{corporateSalesFlagMap}"
+											th:selected="${#strings.toLowerCase(corporateSalesFlag.key)} == *{transactionImportData.transactionList[__${stat.index}__].consistencySalesFlag}"
+											th:data-value="${#strings.toLowerCase(corporateSalesFlag.key)}"
+											th:data-name="${corporateSalesFlag.value}"><span
+											th:text="${corporateSalesFlag.value}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width210">
+							<label
+								th:utext="#{sales-transaction-correction.corporateIdLabel3}"></label>
+						</div>
+						<label class="width233"
+							th:text="*{transactionImportData.transactionList[__${stat.index}__].corporateId}">
+						</label>
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.salesTransactionDiscountFlagLabel3}"></label>
+						</div>
+
+						<div class="width210 mrMedium">
+							<div class="selectbox" id="salesTransactionDiscountFlagSelect">
+								<div class="selectbox-text">
+									<input type="text" readonly> <input type="hidden"
+										th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountFlag}">
+								</div>
+								<div class=" hidden select-elem">
+									<ul class="category">
+										<li data-value="-1" data-name=""><span
+											th:text="#{sales-transaction-correction.select.clear}"></span></li>
+										<li
+											th:each="salesTransactionDiscountFlag : *{salesTransactionDiscountFlagMap}"
+											th:selected="${#strings.toLowerCase(salesTransactionDiscountFlag.key)} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionDiscountFlag}"
+											th:data-value="${#strings.toLowerCase(salesTransactionDiscountFlag.key)}"
+											th:data-name="${salesTransactionDiscountFlag.value}"><span
+											th:text="${salesTransactionDiscountFlag.value}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="input-wrap space-between fz13 mb5">
+					<div class="input-wrap">
+						<div class="width275">
+							<label
+								th:utext="#{sales-transaction-correction.salesTransactionDiscountAmountRateLabel3}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="width100per">
+					<div class="tab">
+						<a href="javascript:void(0)"
+							class="tablinks active padding5 itemDetails"
+							th:for="|itemDetailsTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.itemDetailsTab}"></a> <a
+							href="javascript:void(0)" class="tablinks padding5 tax"
+							th:for="|salesTransactionTaxTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.salesTransationTaxTab}"></a>
+						<a href="javascript:void(0)" class="tablinks padding5 payment"
+							th:for="|salesTransactionPaymentTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.salesTransactionPaymentTab}"></a>
+						<a href="javascript:void(0)" class="tablinks padding5 total"
+							th:for="|salesTransactionTotalTab_${stat.index}|"
+							th:utext="#{sales-transaction-correction.salesTransactionTotalTab}"></a>
+					</div>
+					<!-- Tab content -->
+					<div th:id="|itemDetailsTab_${stat.index}|" class="tabcontent">
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width7em">
+											<col class="width7em">
+											<col class="width7em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width15em">
+											<col class="width15em">
+											<!-- 										<col class="width8em"> -->
+											<!-- 										<col class="width8em"> -->
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction-history-detail.historyLabel2}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.productClassificationLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.productCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.productNameLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.nonMdCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.gDepartmentCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel4}"></th>
+												<th colspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.retailUnitPriceLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.quantityCodeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.detailQuantityLabel4}"></th>
+												<th colspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.salesAmountLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxationTypeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxKindLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.orderStatusUpdateDateLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.orderStatusLastUpdateDateTimeLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.discountLabel4}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxLabel4}"></th>
+											</tr>
+											<tr class="v-align-middle">
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxExcludedLabel4}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedLabel4}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxExcludedLabel4}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedLabel4}"></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-history-detail-header-itemdetails-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div th:id="|salesTransactionTaxTab_${stat.index}|"
+						class="tabcontent">
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+											<col class="width8em">
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction-history-detail.historyLabel2}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxGroupLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxNameLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxAmountSignLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxAmountLabel7}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxRateLabel7}"></th>
+										</thead>
+									</table>
+								</div>
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-history-detail-header-tax-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div th:id="|salesTransactionPaymentTab_${stat.index}|"
+						class="tabcontent">
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width12em">
+											<col class="width12em">
+											<col class="width12em">
+											<col class="width12em">
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction-history-detail.historyLabel2}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.iMSTenderGroupLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.iMSTenderIDLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.tenderNameLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.paymentSignLabel8}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedPaymentAmountValueLabel8}"></th>
+										</thead>
+									</table>
+								</div>
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-history-detail-header-payment-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div th:id="|salesTransactionTotalTab_${stat.index}|"
+						class="tabcontent">
+						<div class="width100per">
+							<div class="th-fixed">
+								<div class="th-fixed-head">
+									<table class="common-table width100per">
+										<colgroup>
+											<col class="width5em">
+											<col class="width5em">
+											<col class="width8em">
+											<col class="width12em">
+											<col class="width12em">
+										</colgroup>
+										<thead>
+											<tr class="v-align-middle">
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction-history-detail.historyLabel2}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.totalTypeLabel10}"></th>
+												<th rowspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.currencyCodeLabel10}"></th>
+												<th colspan=2 class="text-center"
+													th:utext="#{sales-transaction-correction.totalAmountLabel10}"></th>
+											</tr>
+											<tr class="v-align-middle">
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxExcludedLabel10}"></th>
+												<th class="text-center"
+													th:utext="#{sales-transaction-correction.taxIncludedLabel10}"></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+								<div id="divTableBody">
+									<div
+										th:replace="sales-transaction-correction-history-detail-header-total-tableBody :: tableBody(*{transactionImportData})"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pageLink" style="width: 100%; text-align: center"></div>
+			</div>
+		</th:block>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options">
+			<ul>
+				<li><a class="button submit"
+					th:utext="#{sales-transaction-correction-history-detail.afterCorrection}"
+					id="afterCorrection"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

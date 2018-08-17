@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(salesTransactionHeader)" class="scroll-block height100">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width12em">
+			<col class="width12em">
+			<col class="width12em">
+			<col class="width12em">
+		</colgroup>
+		<tbody class="paymentTbody">
+			<th:block
+				th:each="itemDetail, itemStat : ${transaction.salesTransactionTenderList}">
+				<tr id="paymentListTr"
+					th:class="|v-align-middle item_tender_del_target_${stat.index}|"
+					th:data-inputclass="|.transaction_tender_${stat.index}_${itemStat.index}|">
+					<td class="text-center">
+						<div class="historyBefore block-item">
+							<label id="historyBefore"
+								th:text="#{sales-transaction-correction-history-detail.historyBefore}"></label>
+						</div>
+						<div class="historyAfter hide-elem">
+							<label id="historyAfter"
+								th:text="#{sales-transaction-correction-history-detail.historyAfter}"></label>
+						</div>
+					</td>
+					<td class="text-center"
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].imsTenderGroup}">
+					</td>
+					<td class="text-center"><label
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].imsTenderId}"></label>
+					</td>
+					<td class="text-center"
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].tenderName}">
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].taxIncludedPaymentAmount.currencyCode}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="currencyCode : *{currencyCodeMap}"
+										th:selected="${currencyCode.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].taxIncludedPaymentAmount.currencyCode}"
+										th:data-value="${currencyCode.key}"
+										th:data-name="${currencyCode.value}"><span
+										th:text="${currencyCode.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].paymentSign}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="paymentSign : *{paymentSignMap}"
+										th:selected="${paymentSign.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].paymentSign}"
+										th:data-value="${paymentSign.key}"
+										th:data-name="${paymentSign.value}"><span
+										th:text="${paymentSign.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center"><label
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTenderList[__${itemStat.index}__].taxIncludedPaymentAmount.value}"></label>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+</html>

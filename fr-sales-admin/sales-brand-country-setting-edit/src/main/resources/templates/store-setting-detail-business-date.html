@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{brand-country-setting-edit.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/brand-country-setting-edit.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/store-setting-detail.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{brand-country-setting-edit.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main" th:object="${storeSettingDetailForm}">
+		<input type="hidden" id="detailErrorMsg"
+			th:value="*{detailError != null ? detailError.toJsonString() : null}" />
+		<input type="hidden" th:field="*{storeBrandCode}"> <input
+			type="hidden" th:field="*{storeCountryCode}"> <input
+			type="hidden" th:field="*{storeCode}"> <input type="hidden"
+			th:field="*{businessCode}"> <input type="hidden"
+			th:field="*{stateCode}"><input type="hidden"
+			th:field="*{count}"><input type="hidden"
+			th:field="*{brandName}"><input type="hidden"
+			th:field="*{countryName}"><input type="hidden"
+			th:field="*{viewStoreCode}"><input type="hidden"
+			th:field="*{storeName}"><input type="hidden"
+			th:field="*{codeL1}"><input type="hidden"
+			th:field="*{pageData}"><input type="hidden"
+			th:field="*{count}"><input type="hidden"
+			id="businessDateUpdateTimeVariableType"
+			th:value="*{brandCountrySettingEditList[0].variableType}"> <input
+			type="hidden" id="beforeStoreOpenVariableType"
+			th:value="*{brandCountrySettingEditList[1].variableType}"> <input
+			type="hidden" id="afterStoreClosingVariableType"
+			th:value="*{brandCountrySettingEditList[2].variableType}"> <input
+			type="hidden" id="closedBusinessDateVariableType"
+			th:value="*{brandCountrySettingEditList[3].variableType}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p>
+					<a href="#" th:onclick="'PopUpUtil.util.doTransition(this.id, \'/brand-country-setting-edit/backListSearch\');'"
+					 	th:text="#{brand-country-setting-edit.breadcrumbs}"></a>
+				</p>
+				<p class="separator">＞</p>
+				<p>
+					<a href="#" th:onclick="'PopUpUtil.util.doTransition(this.id, \'/brand-country-setting-edit/backList\');'"
+					 	th:text="#{store-setting-list.breadcrumbs}"></a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{store-setting-detail.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<div class="mb50"></div>
+			<div class="input-wrap space-between fz13 mb50">
+				<div class="input-wrap mb0">
+					<div class="width120 text-center">
+						<label th:utext="#{brand-country-setting-edit.brandLabel}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:text="*{brandName}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:utext="#{brand-country-setting-edit.countryLabel}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:text="*{countryName}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:utext="#{brand-country-setting-edit.storeLabel}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:text="*{viewStoreCode}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{storeName}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="width50per input-left">
+			<div class="input-wrap space-between">
+				<label class="text-left"
+					th:text="#{store-setting-detail.businessDateLabel}"></label>
+			</div>
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width10em">
+							<col class="width10em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th class="text-center"
+									th:utext="#{store-setting-detail.settingItemlabel}"></th>
+								<th class="text-center"
+									th:utext="#{store-setting-detail.valueLabel}"></th>
+						<tbody>
+							<tr class="v-align-middle">
+								<td th:utext="#{store-setting-detail.businessDateUpdateTime}">
+								<td class="text-center"><input type="text"
+									class="businessDateUpdateTime"
+									th:field="*{brandCountrySettingEditList[0].codeValue}"><label
+									th:utext="#{store-setting-detail.hLabel}"></label><input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[0].codeL1}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[0].codeL3}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[0].codeL2}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[0].updateDatetime}"></td>
+							</tr>
+							<tr class="v-align-middle">
+								<td th:utext="#{store-setting-detail.beforeStoreOpen}">
+								<td class="text-center"><input type="text"
+									class="beforeStoreOpen"
+									th:field="*{brandCountrySettingEditList[1].codeValue}"><label
+									th:utext="#{store-setting-detail.dayLabel}"></label><input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[1].codeL1}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[1].codeL3}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[1].codeL2}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[1].updateDatetime}"></td>
+							</tr>
+							<tr class="v-align-middle">
+								<td th:utext="#{store-setting-detail.afterStoreClosing}">
+								<td class="text-center"><input type="text"
+									class="afterStoreClosing"
+									th:field="*{brandCountrySettingEditList[2].codeValue}"><label
+									th:utext="#{store-setting-detail.dayLabel}"></label><input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[2].codeL1}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[2].codeL3}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[2].codeL2}"> <input
+									type="hidden"
+									th:field="*{brandCountrySettingEditList[2].updateDatetime}"></td>
+							</tr>
+							<tr class="v-align-middle">
+								<td th:utext="#{store-setting-detail.closedBusinessDate}">
+								<td class="text-center"><div class="input-wrap">
+										<input type="hidden"
+											th:field="*{brandCountrySettingEditList[3].codeL1}">
+										<input type="hidden"
+											th:field="*{brandCountrySettingEditList[3].codeL3}">
+										<input type="hidden"
+											th:field="*{brandCountrySettingEditList[3].codeL2}">
+										<input type="hidden"
+											th:field="*{brandCountrySettingEditList[3].updateDatetime}">
+										<div class="radio-btn-wrap">
+											<div class="radio-btn">
+												<input type="radio" id="closedBusinessDateOne"
+													name="closedBusinessDate" value="0"
+													th:field="*{brandCountrySettingEditList[3].codeValue}"><label
+													for="closedBusinessDateOne"
+													th:text="#{store-setting-detail.checkLabel}"></label>
+											</div>
+											<div class="radio-btn">
+												<input type="radio" id="closedBusinessDateTwo"
+													name="closedBusinessDate" value="1"
+													th:field="*{brandCountrySettingEditList[3].codeValue}"><label
+													for="closedBusinessDateTwo"
+													th:text="#{store-setting-detail.notCheckLabel}"></label>
+											</div>
+										</div>
+									</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options">
+			<ul>
+				<li><a href="#" id="close" class="button submit"
+					onclick="doRegister()"
+					th:text="#{store-setting-detail.registerButton}"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

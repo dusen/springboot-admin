@@ -1,0 +1,131 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesPayoffIntegrityCheckOptionalMapper">
+     <resultMap id="BaseResultMap" type="com.fastretailing.dcp.sales.common.entity.optional.SalesPayoffIntegrityCheckOptional">
+	    <result column="store_code" jdbcType="VARCHAR" property="storeCode" />
+	    <result column="payoff_date" jdbcType="VARCHAR" property="payoffDate" />
+	    <result column="payoff_type_code" jdbcType="VARCHAR" property="payoffTypeCode" />
+	    <result column="payoff_type_sub_number_code" jdbcType="VARCHAR" property="payoffTypeSubNumberCode" />
+	    <result column="cash_register_no" jdbcType="NUMERIC" property="cashRegisterNo" />
+	    <result column="payoff_amount" jdbcType="NUMERIC" property="payoffAmount" />
+	    <result column="payoff_quantity" jdbcType="NUMERIC" property="payoffQuantity" />
+	    <result column="payoff_type_check_target_flag" jdbcType="VARCHAR" property="payoffTypeCheckTargetFlag" />
+	    <result column="balance_type" jdbcType="VARCHAR" property="balanceType" />
+	    <result column="amount_code" jdbcType="VARCHAR" property="amountCode" />
+	    <result column="advance_received_store_code" jdbcType="VARCHAR" property="advanceReceivedStoreCode" />
+     </resultMap>
+     <select id="selectSalesPayoffIntegrityListFromScreen" resultMap="BaseResultMap">
+        SELECT /* SalesPayoffIntegrityCheckOptionalMapper_001 */ 
+		  tpod3.store_code
+		  , tpod3.payoff_date
+		  , tpod3.payoff_type_code
+		  , tpod3.payoff_type_sub_number_code
+		  , tpod3.cash_register_no
+		  , tpod3.payoff_amount
+		  , tpod3.payoff_quantity
+		  , CASE 
+		    WHEN tpod3.payoff_type_code = mbcss1.code_value 
+		      THEN '1' 
+		    ELSE '0' 
+		    END payoff_type_check_target_flag
+		  , mbcss2.code_l2 balance_type
+		  , mbcss2.code_value amount_code
+		  , tpod3.advance_received_store_code
+		FROM
+		  ( 
+		    SELECT
+		      tpod1.store_code
+		      , tpod1.payoff_date
+		      , tpod1.payoff_type_code
+		      , tpod1.payoff_type_sub_number_code
+		      , tpod1.cash_register_no
+		      , tpod1.payoff_amount
+		      , tpod1.payoff_quantity
+		      , tpod1.advance_received_store_code
+		    FROM
+		      t_pay_off_data tpod1 
+		    WHERE
+		      EXISTS ( 
+		        SELECT
+		          'X' 
+		        FROM
+		          t_pay_off_data tpod2 
+		        WHERE
+		          ( 
+		            tpod2.integrity_check_type = '2' 
+		            OR tpod2.integrity_check_type = '3'
+		          ) 
+		          AND tpod2.store_code = tpod1.store_code 
+		          AND tpod2.payoff_date = tpod1.payoff_date 
+		          AND tpod2.cash_register_no = tpod1.cash_register_no
+		      )
+		  ) tpod3 
+		  LEFT JOIN m_business_country_state_setting mbcss1 
+		    ON mbcss1.code_l1 = 'SALESINTEGRITYCHECKTYPE' 
+		    AND mbcss1.code_l2 = 'TARGETTYPE' 
+		    AND mbcss1.store_code = tpod3.store_code 
+		    AND mbcss1.code_l3 = tpod3.payoff_type_code 
+		  LEFT JOIN m_business_country_state_setting mbcss2 
+		    ON mbcss2.code_l1 = 'SALESINTEGRITYCHECK' 
+		    AND mbcss2.store_code = tpod3.store_code 
+		    AND mbcss2.code_l3 = tpod3.payoff_type_code
+		  ORDER BY
+		    tpod3.store_code
+		    , tpod3.payoff_date
+		    , tpod3.cash_register_no
+		    , tpod3.payoff_type_code
+		    , tpod3.payoff_type_sub_number_code
+     </select>
+     
+     <select id="selectSalesPayoffIntegrityListFromEndOfDayProcess" parameterType="com.fastretailing.dcp.sales.common.entity.optional.SalesPayoffIntegrityCheckOptionalCondition" resultMap="BaseResultMap">
+        SELECT /* SalesPayoffIntegrityCheckOptionalMapper_002 */ 
+		  tpod2.store_code
+		  , tpod2.payoff_date
+		  , tpod2.payoff_type_code
+		  , tpod2.payoff_type_sub_number_code
+		  , tpod2.cash_register_no
+		  , tpod2.payoff_amount
+		  , tpod2.payoff_quantity
+		  , CASE 
+		    WHEN tpod2.payoff_type_code = mbcss1.code_value 
+		      THEN '1' 
+		    ELSE '0' 
+		    END payoff_type_check_target_flag
+		  , mbcss2.code_l2 balance_type
+		  , mbcss2.code_value amount_code
+		  , tpod2.advance_received_store_code
+		FROM
+		  ( 
+		    SELECT
+		      tpod1.store_code
+		      , tpod1.payoff_date
+		      , tpod1.payoff_type_code
+		      , tpod1.payoff_type_sub_number_code
+		      , tpod1.cash_register_no
+		      , tpod1.payoff_amount
+		      , tpod1.payoff_quantity
+		      , tpod1.advance_received_store_code 
+		    FROM
+		      t_pay_off_data tpod1 
+		    WHERE
+		      tpod1.store_code = #{storeCode}
+		      AND tpod1.payoff_date = #{payoffDate}
+		  ) tpod2 
+		  LEFT JOIN m_business_country_state_setting mbcss1 
+		    ON mbcss1.code_l1 = 'SALESINTEGRITYCHECKTYPE' 
+		    AND mbcss1.code_l2 = 'TARGETTYPE' 
+		    AND mbcss1.store_code = tpod2.store_code 
+		    AND mbcss1.code_l3 = tpod2.payoff_type_code 
+		  LEFT JOIN m_business_country_state_setting mbcss2 
+		    ON mbcss2.code_l1 = 'SALESINTEGRITYCHECK' 
+		    AND mbcss2.store_code = tpod2.store_code 
+		    AND mbcss2.code_l3 = tpod2.payoff_type_code
+		  ORDER BY
+		    tpod2.store_code
+		    , tpod2.payoff_date
+		    , tpod2.cash_register_no
+		    , tpod2.payoff_type_code
+		    , tpod2.payoff_type_sub_number_code
+     </select>
+</mapper>

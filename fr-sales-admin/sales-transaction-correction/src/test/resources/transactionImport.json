@@ -1,0 +1,250 @@
+{
+"update_type": "INSERT",
+"error_check_type": 0,
+
+"integrated_order_id": "0111142661801221200-0709001",
+"order_barcode_number": "11426618012212000709001",
+"channel_code": "STORE",
+"store_code": "114266",
+"customer_id": "customer_id_11",
+"order_confirmation_business_date":"2018-07-02",
+"order_confirmation_date_time": "2018-07-02T12:00:00Z",
+
+"transaction_list": [{
+"transaction_serial_number": 1,
+"integrated_order_id": "0111142661801221200-0709001",
+"order_sub_number": 1,
+"sales_transaction_id": "0111142661801221200-0709001-01",
+
+"transaction_type": "SALE",
+"sales_linkage_type": 0,
+
+"store_code": "114266",
+"channel_code": "STORE",
+"data_creation_business_date":"2018-07-02",
+"data_creation_date_time": "2018-07-02T12:00:00Z",
+"order_status_update_date":"2018-07-02",
+"order_status_last_update_date_time": "2018-07-02T12:00:00Z",
+"cash_register_no": "0",
+"receipt_no": 0,
+"operator_code": "0",
+"receipt_issued_flag": 0,
+"order_status": "SHIPMENT_CONFIRMED",
+"order_substatus": "NONE",
+"customer_id": "customer_id_01",
+"customer_type": "0",
+"consistency_sales_flag": 0,
+"employee_sale_flag": 0,
+"e_receipt_target_flag": 0,
+
+"transaction_item_detail_list": [{
+	"system_brand_code": "UQ",
+	"detail_list_sales_transaction_type": "SALE",
+	"l2_item_code": "12345678",
+	"view_l2_item_code": "12345678901234567890",
+	"l2_product_name": "L2 W's JWAPJ high rise",
+	"l3_item_code": "2000111642326",
+	"l3_pos_product_name": "W's JWAPJ high rise",
+	"g_department_code": "34",
+	"quantity_code": "P",
+	"item_qty": 1,
+	"item_cost": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"initial_selling_price": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_unit_price_tax_excluded": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_unit_price_tax_included": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_sales_amt_tax_excluded": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_sales_amt_tax_included": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+
+	"order_status_update_date":"2018-07-02",
+
+	"item_taxation_type": "Y",
+	"item_tax_kind": "OUT",
+
+	"non_item_detail_list_by_item": [],
+
+	"item_discount_list": [],
+
+	"item_tax_detail_list": [{
+	"item_tax_type": "PST",
+	"item_tax_amount_sign": "P",
+	"item_tax_amt": {
+	"currency_code": "CAD",
+	"value": 0.8000}
+	}]
+}],
+"non_item_detail_list": [],
+
+"sales_transaction_tax_detail_list": [{
+	"tax_group": "PST",
+	"tax_amount_sign": "P",
+	"tax_amount": {
+	"currency_code": "CAD",
+	"value": 0.8000},
+	"tax_rate": 1.0800
+}],
+
+"sales_transaction_tender_list": [{
+	"tender_group_id": "CCARD",
+	"tender_id": "4001",
+	"payment_sign": "P",
+	"tax_included_payment_amount": {
+	"currency_code": "CAD",
+	"value": 10.8000},
+
+	"tender_info_list": {
+	"card_no": "123456789xx1",
+	"credit_approval_code": "123456789xx2",
+	"credit_processing_serial_number": "123456789xx3",
+	"credit_payment_type": "10",
+	"credit_payment_count": 1,
+	"credit_affiliated_store_number": "123456789xx4"}
+}],
+
+"sales_transaction_total_list": [{
+	"total_type": "ITEM",
+	"total_amount_tax_excluded": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"total_amount_tax_included": {
+	"currency_code": "CAD",
+	"value": 10.8000}
+}]
+}]
+=======
+{
+"update_type": "INSERT",
+"error_check_type": 0,
+
+"integrated_order_id": "0111142661801221200-0709001",
+"order_barcode_number": "11426618012212000709001",
+"channel_code": "STORE",
+"store_code": "114266",
+"customer_id": "customer_id_11",
+"order_confirmation_business_date":"2018-07-02",
+"order_confirmation_date_time": "2018-07-02T12:00:00Z",
+
+"transaction_list": [{
+"transaction_serial_number": 1,
+"integrated_order_id": "0111142661801221200-0709001",
+"order_sub_number": 1,
+"sales_transaction_id": "0111142661801221200-0709001-01",
+
+"transaction_type": "SALE",
+"sales_linkage_type": 0,
+
+"store_code": "114266",
+"channel_code": "STORE",
+"data_creation_business_date":"2018-07-02",
+"data_creation_date_time": "2018-07-02T12:00:00Z",
+"order_status_update_date":"2018-07-02",
+"order_status_last_update_date_time": "2018-07-02T12:00:00Z",
+"cash_register_no": "0",
+"receipt_no": 0,
+"operator_code": "0",
+"receipt_issued_flag": 0,
+"order_status": "SHIPMENT_CONFIRMED",
+"order_substatus": "NONE",
+"customer_id": "customer_id_01",
+"customer_type": "0",
+"consistency_sales_flag": 0,
+"employee_sale_flag": 0,
+"e_receipt_target_flag": 0,
+
+"transaction_item_detail_list": [{
+	"system_brand_code": "UQ",
+	"detail_list_sales_transaction_type": "SALE",
+	"l2_item_code": "12345678",
+	"view_l2_item_code": "12345678901234567890",
+	"l2_product_name": "L2 W's JWAPJ high rise",
+	"l3_item_code": "2000111642326",
+	"l3_pos_product_name": "W's JWAPJ high rise",
+	"g_department_code": "34",
+	"quantity_code": "P",
+	"item_qty": 1,
+	"item_cost": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"initial_selling_price": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_unit_price_tax_excluded": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_unit_price_tax_included": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_sales_amt_tax_excluded": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"item_sales_amt_tax_included": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+
+	"order_status_update_date":"2018-07-02",
+
+	"item_taxation_type": "Y",
+	"item_tax_kind": "OUT",
+
+	"non_item_detail_list_by_item": [],
+
+	"item_discount_list": [],
+
+	"item_tax_detail_list": [{
+	"item_tax_type": "PST",
+	"item_tax_amount_sign": "P",
+	"item_tax_amt": {
+	"currency_code": "CAD",
+	"value": 0.8000}
+	}]
+}],
+"non_item_detail_list": [],
+
+"sales_transaction_tax_detail_list": [{
+	"tax_group": "PST",
+	"tax_amount_sign": "P",
+	"tax_amount": {
+	"currency_code": "CAD",
+	"value": 0.8000},
+	"tax_rate": 1.0800
+}],
+
+"sales_transaction_tender_list": [{
+	"tender_group_id": "CCARD",
+	"tender_id": "4001",
+	"payment_sign": "P",
+	"tax_included_payment_amount": {
+	"currency_code": "CAD",
+	"value": 10.8000},
+
+	"tender_info_list": {
+	"card_no": "123456789xx1",
+	"credit_approval_code": "123456789xx2",
+	"credit_processing_serial_number": "123456789xx3",
+	"credit_payment_type": "10",
+	"credit_payment_count": 1,
+	"credit_affiliated_store_number": "123456789xx4"}
+}],
+
+"sales_transaction_total_list": [{
+	"total_type": "ITEM",
+	"total_amount_tax_excluded": {
+	"currency_code": "CAD",
+	"value": 10.0000},
+	"total_amount_tax_included": {
+	"currency_code": "CAD",
+	"value": 10.8000}
+}]
+}]
+}

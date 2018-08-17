@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:fragment="linkedPage(paginationHolder)">
+	<div th:if="${paginationHolder != null && paginationHolder.pageCount > 1}">
+	<div class="width100per option-block">
+	  <ul class="pagination text-align-right">
+	    <li class="display-inline-block" th:if="${!paginationHolder.firstPage}">
+	    	<a th:id="${paginationHolder.pageLinkIdPrefix + 'Prev'}" th:class="${(paginationHolder.firstPage ? 'disabled ' : '') + 'button primary small pageLinked-button-30px'}" 
+	    		href="#">&lt;</a>
+	    </li>
+		<li class="display-inline-block" 
+			th:each="i : ${#numbers.sequence(paginationHolder.firstLinkedPage, paginationHolder.lastLinkedPage)}">
+		<a th:id="${paginationHolder.pageLinkIdPrefix + (i+1)}" 
+			th:class="${(paginationHolder.page == i ? 'disabled' : '') +' button primary small pageLinked-button-30px'}" 
+			href="#">[[${i+1}]]</a>
+		</li>
+	    <li class="display-inline-block" th:if="${!paginationHolder.lastPage}">
+	    	<a th:id="${paginationHolder.pageLinkIdPrefix + 'Next'}" class="button primary small pageLinked-button-30px" 
+	    		href="#">&gt;</a>
+	    </li>
+	    <li class="display-inline-block vertical-align-middle">
+	    	[[${paginationHolder.page+1}]]/[[${paginationHolder.pageCount}]]
+	    </li>
+	  </ul>
+	</div>
+	<input type="hidden" th:id="${paginationHolder.pageLinkIdPrefix + 'Index'}" 
+						th:name="${paginationHolder.pageLinkIdPrefix + 'Index'}"
+						th:value="${paginationHolder.page}">
+	</div>
+</div>
+</body>
+</html>

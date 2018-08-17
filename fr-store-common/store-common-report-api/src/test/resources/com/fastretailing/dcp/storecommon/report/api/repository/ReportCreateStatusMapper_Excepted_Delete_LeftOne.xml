@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <t_report_create_status receipt_number="TestReceptionNumber"
+        report_id="TestReportId" report_type="PDF" store_code="Store001"
+        create_report_status="2" auto_print_status="1"
+        created_report_bucket_name="TestBucket" created_report_key_name="TestKey"
+        create_report_business_day="2017-12-20"
+        delete_report_business_day="2018-2-20"
+        printer_name="testprinter"
+        outer_command_execute_flag="false"
+        create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+    
+    <t_report_create_status receipt_number="TestReceptionNumber2"
+        report_id="TestReportId2" report_type="PDF" store_code="Store001"
+        create_report_status="2" auto_print_status="1"
+        created_report_bucket_name="TestBucket" created_report_key_name="TestKey"
+        create_report_business_day="2017-12-19"
+        delete_report_business_day="2018-2-19"
+        printer_name="testprinter"
+        outer_command_execute_flag="false"
+        create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+
+    <t_report_create_status receipt_number="TestReceptionNumber3"
+        report_id="TestReportId" report_type="PDF" store_code="Store002"
+        create_report_status="2" auto_print_status="1"
+        created_report_bucket_name="TestBucket" created_report_key_name="TestKey"
+        create_report_business_day="2017-12-19"
+        delete_report_business_day="2018-2-19"
+        printer_name="testprinter"
+        outer_command_execute_flag="false"
+        create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+
+    <t_report_create_status receipt_number="TestReceptionNumber4"
+        report_id="TestReportId" report_type="PDF" store_code="Store001"
+        create_report_status="2" auto_print_status="1"
+        created_report_bucket_name="TestBucket" created_report_key_name="TestKey"
+        create_report_business_day="2017-12-18"
+        delete_report_business_day="2018-2-18"
+        printer_name="testprinter"
+        outer_command_execute_flag="false"
+         create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+
+    <t_report_create_status receipt_number="TestReceptionNumber5"
+        report_id="TestReportId" report_type="PDF" store_code="Store001"
+        create_report_status="2" auto_print_status="1"
+        created_report_bucket_name="TestBucket" created_report_key_name="TestKey"
+        create_report_business_day="2017-12-17"
+        delete_report_business_day="2018-2-17"
+        printer_name="testprinter"
+        outer_command_execute_flag="false"
+        create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+              
+    <t_report_create_status receipt_number="TestReceptionNumber6"
+        report_id="TestReportId" report_type="PDF" store_code="Store001"
+        create_report_status="2" auto_print_status="1"
+        created_report_bucket_name="TestBucket" created_report_key_name="TestKey"
+        create_report_business_day="2017-12-21"
+        delete_report_business_day="2018-2-21"
+        printer_name="testprinter"
+        outer_command_execute_flag="false"
+        create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+
+
+</dataset>

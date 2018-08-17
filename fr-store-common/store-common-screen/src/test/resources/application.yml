@@ -1,0 +1,165 @@
+platform:
+  name:
+    short: SPAP
+    full: ScreenProtoAP
+  version: v1
+  
+spring:
+#  mvc:
+#    locale: en
+
+  messages:
+    basename: messages,messages-dcp-common
+    cache-seconds: -1
+    encoding: UTF-8
+    
+  jackson:
+    date-format: yyyyMMdd
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+        
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+  
+  mvc:
+    throw-exception-if-no-handler-found: true
+    
+  resources:
+    add-mappings: false
+    
+  thymeleaf: 
+    mode: HTML
+    cache: false
+    cache-period: 0
+  
+  template:
+    cache: false
+  session:
+    store-type: none
+logging:
+  level:
+     com.fastretailing.dcp: DEBUG
+     org.springframework.security.saml: DEBUG
+#     org.apache.tomcat.jdbc: DEBUG
+#     org.apache.ibatis: DEBUG
+#     org.springframework.security: DEBUG
+  path: logs
+
+server:
+  context-path: /${platform.name.full}/${platform.version}
+  port: 80
+  session:
+    timeout: 3600
+  error:
+    whitelabel:
+      enabled: false
+  
+mybatis: 
+  configuration:
+    map-underscore-to-camel-case: true
+    
+system:
+  defaultlanguage: en
+#  user-cookie-name: userLoginInformation
+#  user-cookie-period: 60
+  
+
+screen:
+  authentication:
+    storeCode: 11223344
+    userId: testUser
+    store-code-length: 6
+    develop:
+      develop-mode-enabled: true
+      user-id: developUser
+      store-code: 888888
+      roles:
+        - ROLED
+        - ROLE1
+    saml:
+      idp-server-name: WIN-C2D4HICAQQ9.ad-local-test.nec-fr-project.local
+      idp-metadata-path: /metadata/FederationMetadata.xml
+      sp-schema: https
+      sp-server-name: alb-fr-dev-yamashitaad.aws-dns-nec.com
+      sp-https-port: 7443
+      sp-context-path: ${server.context-path}
+      entity-base-url: ${screen.authentication.saml.sp-schema}://${screen.authentication.saml.sp-server-name}:${screen.authentication.saml.sp-https-port}${screen.authentication.saml.sp-context-path}
+      success-login-default-url: ${screen.authentication.saml.entity-base-url}/@@Brand@@/@@Region@@/screen/@@StoreCode@@/productList
+      login-url-map:
+        /hogehoge: ${screen.authentication.saml.entity-base-url}/version
+        /ikaika: ${screen.authentication.saml.entity-base-url}/@@Brand@@/@@Region@@/screen/@@StoreCode@@/productList
+      success-logout-url: ${screen.authentication.saml.entity-base-url}/version
+      failed-login-default-url: ${screen.authentication.saml.entity-base-url}/common-error
+      permit-all-paths:
+        - /static/**
+        - /common-error
+      # Max assertion time :: default value = 3000[s]
+      max-assertion-time: 3000
+      # Response skew :: default value = 60[s]
+      response-skew: 80000
+      # Max authentication age :: default value = 7200[s]
+      max-authentication-age: 7200
+  authorization:
+    exclusion-path-list:
+      - /static/
+  audit:
+    exclusion-path-list:
+      - /version
+      - /error
+  error:
+    systemException: 
+      page: common-error
+      title: common.error.systemError.title
+      message: common.error.systemError.message
+    businessException:
+      page: common-error
+      title: common.error.businessError.title
+
+menuConfig:
+  menuList:
+    -
+     menuId: expected-delivery-list-by-item.menu01
+     url: /expected-delivery-list-by-item
+    -
+     menuId: expected-delivery-list-by-item.menu02
+     url: /expected-delivery-list-by-item-detail
+     
+version:
+  aws: 1.11.228
+
+hmac:
+  employee:
+     clientId: 7654321
+     clientSecret: employee
+
+####################################################################################################
+# RestTemplate Setting
+####################################################################################################
+client:
+  baseConfig:
+    connectTimeout: 5000
+    readTimeout: 5000
+    retryCount: 3
+    retryInterval: 5000
+    proxyHost:
+    proxyPort:
+    proxyUser:
+    proxyPassword:
+  apiConfig:
+    employee:
+      host:
+        admin: localhost:8080
+        consumer: localhost:8080
+      platform: employee
+      version: v1
+      uri:
+        base:
+          admin: http://${client.apiConfig.employee.host.admin}/${client.apiConfig.employee.platform}/${client.apiConfig.employee.version}
+          consumer: http://${client.apiConfig.employee.host.consumer}/${client.apiConfig.employee.platform}/${client.apiConfig.employee.version}
+        apis:
+          employeeInformation:
+            get:
+              admin: ${client.apiConfig.employee.uri.base.admin}/{brand}/{region}/employee-information/{employee_code}
+              consumer: ${client.apiConfig.employee.uri.base.consumer}/{brand}/{region}/employee-information/{employee_code}

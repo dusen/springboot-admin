@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:fragment="popup">
+	<div id="window-overlay"></div>
+	<div id="window-overlay-message"></div>
+	<!-- progress -->
+	<div class="modal" id="progress-box">
+		<div id="message-box-body" class="modal-inner">
+			<img id="spinnerImg" class="vertical-align-middle"
+				width="56" height="56"
+					th:src="@{static/images/common/spinner_l.gif}">
+		</div>
+	</div>
+	<!-- error dialog one button -->
+	<div class="modal" id="error-box">
+		<div class="modal-title modal-title-error">
+			<p>
+				<img id="errorImg" class="vertical-align-middle"
+					th:src="@{static/images/common/white_error_icon.png}">	
+				<span id="box-title" class="vertical-align-middle"
+					th:default-title="#{common.errorDialog.title}"></span>
+			</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+		<div class="message-btns">
+			<a href="#" class="button skeleton primary small close modal-close font-weight-bold" 
+				th:text="#{common.button.ok}">Cancel</a>
+		</div>
+	</div>
+	
+	<!-- warning dialog one button -->
+	<div class="modal" id="warning-box">
+		<div class="modal-title modal-title-warning">
+			<p>
+				<img id="warningImg" class="vertical-align-middle"
+					th:src="@{static/images/common/warning_icon.png}">	
+				<span id="box-title" class="vertical-align-middle"
+				th:default-title="#{common.warningDialog.title}"></span>
+			</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+		<div class="message-btns">
+			<a href="#" class="button skeleton primary small close modal-close font-weight-bold" 
+				th:text="#{common.button.ok}">Cancel</a>
+		</div>
+	</div>
+	
+	<!-- warning dialog two button -->
+	<div class="modal" id="warning-confirm-box">
+		<div class="modal-title modal-title-warning">
+			<p>
+				<img id="warningImg" class="vertical-align-middle"
+					th:src="@{static/images/common/warning_icon.png}">	
+				<span id="box-title" class="vertical-align-middle" 
+					th:default-title="#{common.warningDialog.title}"></span>
+			</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+
+		<div class="message-btns">
+			<a href="#" class="button skeleton cancel small close modal-close font-weight-bold-cancel" 
+				th:text="#{common.button.cancel}">Cancel</a>
+			<a href="#" class="button skeleton primary small confirm-btn font-weight-bold" 
+				th:text="#{common.button.ok}">OK</a>
+		</div>
+	</div>
+	
+	<!-- information dialog one button -->
+	<div class="modal" id="information-box">
+		<div class="modal-title modal-title-information">
+			<p>
+				<img id="informationImg" class="vertical-align-middle"
+					th:src="@{static/images/common/white_check_icon.png}">	
+				<span id="box-title" class="vertical-align-middle" 
+					th:default-title="#{common.informationDialog.title}"></span>
+			</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+		<div class="message-btns">
+			<a href="#" class="button skeleton primary small close modal-close font-weight-bold" 
+				th:text="#{common.button.ok}">OK</a>
+		</div>
+	</div>
+	
+	<!-- information dialog two button -->
+	<div class="modal" id="information-confirm-box">
+		<div class="modal-title modal-title-information">
+			<p>
+				<img id="informationImg" class="vertical-align-middle"
+					th:src="@{/static/images/common/white_check_icon.png}">	
+				<span id="box-title" class="vertical-align-middle" 
+					th:default-title="#{common.informationDialog.title}"></span>
+			</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+
+		<div class="message-btns">
+			<a href="#" class="button skeleton cancel small close modal-close font-weight-bold-cancel" 
+			th:text="#{common.button.cancel}">Cancel</a>
+			<a href="#" class="button skeleton primary small confirm-btn font-weight-bold" 
+				th:text="#{common.button.ok}">OK</a>
+		</div>
+	</div>
+	
+	<!-- message -->
+	<div class="modal" id="message-box">
+		<div class="modal-title modal-title-dialog">
+			<p id="box-title">Warning</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+		<div class="modal-btns ">
+			<ul class="text-align-right">
+				<li class="display-inline-block"><a href="#" class="button cancel modal-close" th:text="#{common.button.close}">Cancel</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- dialog -->
+	<div class="modal" id="dialog-box">
+		<div class="modal-title modal-title-dialog">
+			<p id="box-title">Add Product</p>
+			<a href="#" class="close modal-close">&nbsp;</a>
+		</div>
+		<div id="box-body" class="modal-inner"></div>
+	</div>
+</div>
+</body>
+</html>

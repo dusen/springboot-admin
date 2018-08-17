@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{brand-country-setting-edit.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/brand-country-setting-edit.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/brand-country-setting-edit.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{brand-country-setting-edit.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main"
+		th:object="${brandCountrySettingEditForm}">
+		<input type="hidden" th:field="*{storeBrandCode}"> <input
+			type="hidden" th:field="*{storeCountryCode}"> <input
+			type="hidden" th:field="*{stateCode}"> <input type="hidden"
+			th:field="*{storeCode}"> <input type="hidden"
+			th:field="*{businessCode}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{brand-country-setting-edit.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<div class="mb50"></div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{brand-country-setting-edit.brandLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text"> <input type="hidden" id="brandList"
+									th:field="*{brand}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-transaction-history-list.select.clear}"></li>
+									<li th:each="brandList : ${brandList}"
+										th:data-value="${brandList.brand}"
+										th:text="${brandList.brandName}"
+										th:data-name="${brandList.brandName}"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{brand-country-setting-edit.countryLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text"> <input type="hidden"
+									id="countryList" th:field="*{country}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-history-list.select.clear}"></span></li>
+									<li th:each="countryList : ${countryList}"
+										th:data-value="${countryList.country}"
+										th:data-name="${countryList.countryName}"><span
+										th:text="${countryList.countryName}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{brand-country-setting-edit.storeLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								th:errorclass="field-error"
+								class="textbox width160 numerickeybord" maxlength="4"
+								th:field="*{viewStoreCode}"> <span
+								class="input-clear fade-action"></span></span>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<p class="text-right mb10">
+				<a href="#" id="clearButton"
+					class="button skeleton cancel small mrMedium"
+					th:text="#{sales-transaction-history-list.clearButton}"></a> <a
+					href="#" class="button skeleton primary small" id="searchButton"
+					onclick="searchButtonClick(this);"
+					th:text="#{sales-transaction-history-list.searchButton}"></a>
+			</p>
+		</div>
+		<div class="width100per">
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width3em">
+							<col class="width5em">
+							<col class="width8em">
+							<col class="width8em">
+							<col class="width15em">
+							<col class="width8em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.noLabel}"></th>
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.brandLabel}"></th>
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.countryLabel}"></th>
+								<th class="text-center" style="word-break: break-all;"><label
+									th:utext="#{brand-country-setting-edit.table.storeLabel}"></label>
+								</th>
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.storeNameLabel}"></th>
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.statusLabel}"></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id="divTableBody">
+					<div
+						th:replace="brand-country-setting-edit-tableBody :: tableBody(*{brandCountrySettingEditList})"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer" class="footer">
+		<div class="right-options"></div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>

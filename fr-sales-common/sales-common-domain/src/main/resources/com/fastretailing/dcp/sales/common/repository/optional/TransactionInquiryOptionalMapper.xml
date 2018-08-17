@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.fastretailing.dcp.sales.common.repository.optional.TransactionInquiryOptionalMapper">
+    <select id="selectByIntegratedOrderIdInquiryPattern"
+        resultType="com.fastretailing.dcp.sales.common.entity.optional.TransactionInquiryOptional">
+        SELECT 
+        orderInfo.integrated_order_id                               AS integrated_order_id,
+        orderInfo.order_barcode_number                              AS order_barcode_number,
+        orderInfo.store_code                                        AS store_code,
+        orderInfo.system_brand_code                                 AS system_brand_code,
+        orderInfo.system_business_code                              AS system_business_code,
+        orderInfo.system_country_code                               AS system_country_code,
+        orderInfo.channel_code                                      AS channel_code,
+        orderInfo.customer_id                                       AS customer_id,
+        orderInfo.order_confirmation_business_date                  AS order_confirmation_business_date,
+        orderInfo.order_confirmation_date_time                      AS order_confirmation_date_time,
+        orderInfo.data_alteration_sales_linkage_type                AS data_alteration_sales_linkage_type,
+        orderInfo.data_alteration_backbone_linkage_type             AS data_alteration_backbone_linkage_type,
+        orderInfo.data_alteration_flag                              AS data_alteration_flag,
+        orderInfo.data_alteration_user_id                           AS data_alteration_user_id,
+
+        header.order_sub_number                                     AS header_order_sub_number,
+        header.sales_transaction_id                                 AS header_sales_transaction_id,
+        header.integrated_order_id                                  AS header_integrated_order_id,
+        header.sales_transaction_sub_number                         AS header_sales_transaction_sub_number,
+        header.store_code                                           AS header_store_code,
+        header.data_creation_date_time                              AS header_data_creation_date_time,
+        header.data_creation_business_date                          AS header_data_creation_business_date,
+        header.cash_register_no                                     AS header_cash_register_no,
+        header.receipt_no                                           AS header_receipt_no,
+        header.sales_linkage_type                                   AS header_sales_linkage_type,
+        header.sales_transaction_type                               AS header_sales_transaction_type,
+        header.return_type                                          AS header_return_type,
+        header.system_brand_code                                    AS header_system_brand_code,
+        header.system_business_code                                 AS header_system_business_code,
+        header.system_country_code                                  AS header_system_country_code,
+        header.channel_code                                         AS header_channel_code,
+        header.order_status                                         AS header_order_status,
+        header.order_substatus                                      AS header_order_substatus,
+        header.order_status_update_date                             AS header_order_status_update_date,
+        header.order_status_last_update_date_time                   AS header_order_status_last_update_date_time,
+        header.order_cancelled_date_time                            AS header_order_cancelled_date_time,
+        header.booking_store_code                                   AS header_booking_store_code,
+        header.booking_store_system_brand_code                      AS header_booking_store_system_brand_code,
+        header.booking_store_system_business_code                   AS header_booking_store_system_business_code,
+        header.booking_store_system_country_code                    AS header_booking_store_system_country_code,
+        header.payment_status                                       AS header_payment_status,
+        header.payment_store_code                                   AS header_payment_store_code,
+        header.payment_store_system_brand_code                      AS header_payment_store_system_brand_code,
+        header.payment_store_system_business_code                   AS header_payment_store_system_business_code,
+        header.payment_store_system_country_code                    AS header_payment_store_system_country_code,
+        header.transfer_out_status                                  AS header_transfer_out_status,
+        header.shipment_status                                      AS header_shipment_status,
+        header.shipment_store_code                                  AS header_shipment_store_code,
+        header.shipment_store_system_brand_code                     AS header_shipment_store_system_brand_code,
+        header.shipment_store_system_business_code                  AS header_shipment_store_system_business_code,
+        header.shipment_store_system_country_code                   AS header_shipment_store_system_country_code,
+        header.receiving_status                                     AS header_receiving_status,
+        header.receipt_store_code                                   AS header_receipt_store_code,
+        header.receipt_store_system_brand_code                      AS header_receipt_store_system_brand_code,
+        header.receipt_store_system_business_code                   AS header_receipt_store_system_business_code,
+        header.receipt_store_system_country_code                    AS header_receipt_store_system_country_code,
+        header.customer_id                                          AS header_customer_id,
+        header.customer_type                                        AS header_customer_type,
+        header.order_number_for_store_payment                       AS header_order_number_for_store_payment,
+        header.advance_received_store_code                          AS header_advance_received_store_code,
+        header.advance_received_store_system_brand_code             AS header_advance_received_store_system_brand_code,
+        header.advance_received_store_system_business_code          AS header_advance_received_store_system_business_code,
+        header.advance_received_store_system_country_code           AS header_advance_received_store_system_country_code,
+        header.operator_code                                        AS header_operator_code,
+        header.original_transaction_id                              AS header_original_transaction_id,
+        header.original_cash_register_no                            AS header_original_cash_register_no,
+        header.original_receipt_no                                  AS header_original_receipt_no,
+        header.deposit_currency_code                                AS header_deposit_currency_code,
+        header.deposit_value                                        AS header_deposit_value,
+        header.change_currency_code                                 AS header_change_currency_code,
+        header.change_value                                         AS header_change_value,
+        header.receipt_no_for_credit_card_cancellation              AS header_receipt_no_for_credit_card_cancellation,
+        header.receipt_no_for_credit_card                           AS header_receipt_no_for_credit_card,
+        header.receipt_issued_flag                                  AS header_receipt_issued_flag,
+        header.e_receipt_target_flag                                AS header_e_receipt_target_flag,
+        header.processing_company_code                              AS header_processing_company_code,
+        header.employee_sale_flag                                   AS header_employee_sale_flag,
+        header.consistency_sales_flag                               AS header_consistency_sales_flag,
+        header.corporate_id                                         AS header_corporate_id,
+        header.sales_transaction_discount_flag                      AS header_sales_transaction_discount_flag,
+        header.sales_transaction_discount_type                      AS header_sales_transaction_discount_type,
+        header.sales_transaction_discount_amount_rate_currency_code AS header_sales_transaction_discount_amount_rate_currency_code,
+        header.sales_transaction_discount_amount_rate               AS header_sales_transaction_discount_amount_rate,
+        header.token_code                                           AS header_token_code,
+        header.return_complete_flag                                 AS header_return_complete_flag,
+        header.cancelled_flag                                       AS header_cancelled_flag,
+
+        detail.order_sub_number                                     AS detail_order_sub_number,
+        detail.sales_transaction_id                                 AS detail_sales_transaction_id,
+        detail.detail_sub_number                                    AS detail_detail_sub_number,
+        detail.item_detail_sub_number                               AS detail_item_detail_sub_number,
+        detail.sales_transaction_type                               AS detail_sales_transaction_type,
+        detail.system_brand_code                                    AS detail_system_brand_code,
+        detail.system_business_code                                 AS detail_system_business_code,
+        detail.system_country_code                                  AS detail_system_country_code,
+        detail.l2_item_code                                         AS detail_l2_item_code,
+        detail.display_l2_item_code                                 AS detail_display_l2_item_code,
+        detail.l2_product_name                                      AS detail_l2_product_name,
+        detail.l3_item_code                                         AS detail_l3_item_code,
+        detail.l3_pos_product_name                                  AS detail_l3_pos_product_name,
+        detail.product_classification                               AS detail_product_classification,
+        detail.non_md_type                                          AS detail_non_md_type,
+        detail.non_md_code                                          AS detail_non_md_code,
+        detail.service_code                                         AS detail_service_code,
+        detail.epc_code                                             AS detail_epc_code,
+        detail.g_department_code                                    AS detail_g_department_code,
+        detail.major_category_code                                  AS detail_major_category_code,
+        detail.quantity_code                                        AS detail_quantity_code,
+        detail.detail_quantity                                      AS detail_detail_quantity,
+        detail.item_cost_currency_code                              AS detail_item_cost_currency_code,
+        detail.item_cost_value                                      AS detail_item_cost_value,
+        detail.initial_selling_price_currency_code                  AS detail_initial_selling_price_currency_code,
+        detail.initial_selling_price                                AS detail_initial_selling_price,
+        detail.bclass_price_currency_code                           AS detail_bclass_price_currency_code,
+        detail.bclass_price                                         AS detail_bclass_price,
+        detail.new_price_currency_code                              AS detail_new_price_currency_code,
+        detail.new_price                                            AS detail_new_price,
+        detail.retail_unit_price_tax_excluded_currency_code         AS detail_retail_unit_price_tax_excluded_currency_code,
+        detail.retail_unit_price_tax_excluded                       AS detail_retail_unit_price_tax_excluded,
+        detail.retail_unit_price_tax_included_currency_code         AS detail_retail_unit_price_tax_included_currency_code,
+        detail.retail_unit_price_tax_included                       AS detail_retail_unit_price_tax_included,
+        detail.sales_amount_tax_excluded_currency_code              AS detail_sales_amount_tax_excluded_currency_code,
+        detail.sales_amount_tax_excluded                            AS detail_sales_amount_tax_excluded,
+        detail.sales_amount_tax_included_currency_code              AS detail_sales_amount_tax_included_currency_code,
+        detail.sales_amount_tax_included                            AS detail_sales_amount_tax_included,
+        detail.calculation_unavailable_type                         AS detail_calculation_unavailable_type,
+        detail.order_status_update_date                             AS detail_order_status_update_date,
+        detail.order_status_last_update_date_time                   AS detail_order_status_last_update_date_time,
+        detail.order_status                                         AS detail_order_status,
+        detail.order_substatus                                      AS detail_order_substatus,
+        detail.booking_store_code                                   AS detail_booking_store_code,
+        detail.booking_store_system_brand_code                      AS detail_booking_store_system_brand_code,
+        detail.booking_store_system_business_code                   AS detail_booking_store_system_business_code,
+        detail.booking_store_system_country_code                    AS detail_booking_store_system_country_code,
+        detail.shipment_store_code                                  AS detail_shipment_store_code,
+        detail.shipment_store_system_brand_code                     AS detail_shipment_store_system_brand_code,
+        detail.shipment_store_system_business_code                  AS detail_shipment_store_system_business_code,
+        detail.shipment_store_system_country_code                   AS detail_shipment_store_system_country_code,
+        detail.receipt_store_code                                   AS detail_receipt_store_code,
+        detail.receipt_store_system_brand_code                      AS detail_receipt_store_system_brand_code,
+        detail.receipt_store_system_business_code                   AS detail_receipt_store_system_business_code,
+        detail.receipt_store_system_country_code                    AS detail_receipt_store_system_country_code,
+        detail.contribution_sales_representative                    AS detail_contribution_sales_representative,
+        detail.customer_id                                          AS detail_customer_id,
+        detail.bundle_purchase_applicable_quantity                  AS detail_bundle_purchase_applicable_quantity,
+        detail.bundle_purchase_applicable_price_currency_code       AS detail_bundle_purchase_applicable_price_currency_code,
+        detail.bundle_purchase_applicable_price                     AS detail_bundle_purchase_applicable_price,
+        detail.bundle_purchase_index                                AS detail_bundle_purchase_index,
+        detail.limited_amount_promotion_count                       AS detail_limited_amount_promotion_count,
+        detail.store_item_discount_type                             AS detail_store_item_discount_type,
+        detail.store_item_discount_currency_code                    AS detail_store_item_discount_currency_code,
+        detail.store_item_discount_setting                          AS detail_store_item_discount_setting,
+        detail.store_bundle_sale_flag                               AS detail_store_bundle_sale_flag,
+        detail.store_bundle_sale_price_currency_code                AS detail_store_bundle_sale_price_currency_code,
+        detail.store_bundle_sale_price                              AS detail_store_bundle_sale_price,
+        detail.set_sales_detail_index                               AS detail_set_sales_detail_index,
+        detail.taxation_type                                        AS detail_taxation_type,
+        detail.tax_system_type                                      AS detail_tax_system_type,
+        detail.return_complete_flag                                 AS detail_return_complete_flag,
+
+        detailInfo.order_sub_number                                 AS detailInfo_order_sub_number,
+        detailInfo.sales_transaction_id                             AS detailInfo_sales_transaction_id,
+        detailInfo.detail_sub_number                                AS detailInfo_detail_sub_number,
+        detailInfo.item_detail_sub_number                           AS detailInfo_item_detail_sub_number,
+        detailInfo.key_code                                         AS detailInfo_key_code,
+        detailInfo.code_value_1                                     AS detailInfo_code_value_1,
+        detailInfo.code_value_2                                     AS detailInfo_code_value_2,
+        detailInfo.code_value_3                                     AS detailInfo_code_value_3,
+        detailInfo.code_value_4                                     AS detailInfo_code_value_4,
+        detailInfo.name_1                                           AS detailInfo_name_1,
+        detailInfo.name_2                                           AS detailInfo_name_2,
+        detailInfo.name_3                                           AS detailInfo_name_3,
+        detailInfo.name_4                                           AS detailInfo_name_4,
+
+        discount.order_sub_number                                   AS discount_order_sub_number,
+        discount.sales_transaction_id                               AS discount_sales_transaction_id,
+        discount.detail_sub_number                                  AS discount_detail_sub_number,
+        discount.promotion_type                                     AS discount_promotion_type,
+        discount.promotion_no                                       AS discount_promotion_no,
+        discount.store_discount_type                                AS discount_store_discount_type,
+        discount.item_discount_sub_number                           AS discount_item_discount_sub_number,
+        discount.quantity_code                                      AS discount_quantity_code,
+        discount.discount_quantity                                  AS discount_discount_quantity,
+        discount.discount_amount_tax_excluded_currency_code         AS discount_discount_amount_tax_excluded_currency_code,
+        discount.discount_amount_tax_excluded                       AS discount_discount_amount_tax_excluded,
+        discount.discount_amount_tax_included_currency_code         AS discount_discount_amount_tax_included_currency_code,
+        discount.discount_amount_tax_included                       AS discount_discount_amount_tax_included,
+
+        tax.order_sub_number                                        AS tax_order_sub_number,
+        tax.sales_transaction_id                                    AS tax_sales_transaction_id,
+        tax.detail_sub_number                                       AS tax_detail_sub_number,
+        tax.tax_group                                               AS tax_tax_group,
+        tax.tax_name                                                AS tax_tax_name,
+        tax.tax_sub_number                                          AS tax_tax_sub_number,
+        tax.tax_amount_sign                                         AS tax_tax_amount_sign,
+        tax.tax_amount_currency_code                                AS tax_tax_amount_currency_code,
+        tax.tax_amount_value                                        AS tax_tax_amount_value,
+        tax.tax_rate                                                AS tax_tax_rate,
+
+        tender.order_sub_number                                     AS tender_order_sub_number,
+        tender.sales_transaction_id                                 AS tender_sales_transaction_id,
+        tender.tender_group                                         AS tender_tender_group,
+        tender.tender_id                                            AS tender_tender_id,
+        tender.tender_sub_number                                    AS tender_tender_sub_number,
+        tender.payment_sign                                         AS tender_payment_sign,
+        tender.tax_included_payment_amount_currency_code            AS tender_tax_included_payment_amount_currency_code,
+        tender.tax_included_payment_amount_value                    AS tender_tax_included_payment_amount_value,
+
+        tenderInfo.order_sub_number                                 AS tenderInfo_order_sub_number,
+        tenderInfo.sales_transaction_id                             AS tenderInfo_sales_transaction_id,
+        tenderInfo.tender_group                                     AS tenderInfo_tender_group,
+        tenderInfo.tender_id                                        AS tenderInfo_tender_id,
+        tenderInfo.tender_sub_number                                AS tenderInfo_tender_sub_number,
+        tenderInfo.discount_value_currency_code                     AS tenderInfo_discount_value_currency_code,
+        tenderInfo.discount_value                                   AS tenderInfo_discount_value,
+        tenderInfo.discount_rate                                    AS tenderInfo_discount_rate,
+        tenderInfo.discount_code_id_corporate_id                    AS tenderInfo_discount_code_id_corporate_id,
+        tenderInfo.coupon_type                                      AS tenderInfo_coupon_type,
+        tenderInfo.coupon_discount_amount_setting_currency_code     AS tenderInfo_coupon_discount_amount_setting_currency_code,
+        tenderInfo.coupon_discount_amount_setting_value             AS tenderInfo_coupon_discount_amount_setting_value,
+        tenderInfo.coupon_min_usage_amount_threshold_currency_code  AS tenderInfo_coupon_min_usage_amount_threshold_currency_code,
+        tenderInfo.coupon_min_usage_amount_threshold_value          AS tenderInfo_coupon_min_usage_amount_threshold_value,
+        tenderInfo.coupon_user_id                                   AS tenderInfo_coupon_user_id,
+        tenderInfo.card_no                                          AS tenderInfo_card_no,
+        tenderInfo.credit_approval_code                             AS tenderInfo_credit_approval_code,
+        tenderInfo.credit_processing_serial_number                  AS tenderInfo_credit_processing_serial_number,
+        tenderInfo.credit_payment_type                              AS tenderInfo_credit_payment_type,
+        tenderInfo.credit_payment_count                             AS tenderInfo_credit_payment_count,
+        tenderInfo.credit_affiliated_store_number                   AS tenderInfo_credit_affiliated_store_number,
+
+        total.order_sub_number                                      AS total_order_sub_number,
+        total.sales_transaction_id                                  AS total_sales_transaction_id,
+        total.total_type                                            AS total_total_type,
+        total.total_amount_sub_number                               AS total_total_amount_sub_number,
+        total.total_amount_tax_excluded_currency_code               AS total_total_amount_tax_excluded_currency_code,
+        total.total_amount_tax_excluded_value                       AS total_total_amount_tax_excluded_value,
+        total.total_amount_tax_included_currency_code               AS total_total_amount_tax_included_currency_code,
+        total.total_amount_tax_included_value                       AS total_total_amount_tax_included_value,
+        total.tax_rate                                              AS total_tax_rate,
+        total.sales_transaction_information_1                       AS total_sales_transaction_information_1,
+        total.sales_transaction_information_2                       AS total_sales_transaction_information_2,
+        total.sales_transaction_information_3                       AS total_sales_transaction_information_3
+
+        FROM t_transaction_inquiry_order_information orderInfo
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_header header ON (
+        orderInfo.integrated_order_id = header.integrated_order_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_detail detail ON (
+        header.order_sub_number = detail.order_sub_number
+        AND header.sales_transaction_id = detail.sales_transaction_id
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_detail_info detailInfo ON (
+        detail.order_sub_number = detailInfo.order_sub_number
+        AND detail.sales_transaction_id = detailInfo.sales_transaction_id
+        AND detail.detail_sub_number = detailInfo.detail_sub_number
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_discount discount ON (
+        detail.order_sub_number = discount.order_sub_number
+        AND detail.sales_transaction_id = discount.sales_transaction_id
+        AND detail.detail_sub_number = discount.detail_sub_number
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_tax tax ON (
+        header.order_sub_number = tax.order_sub_number
+        AND header.sales_transaction_id = tax.sales_transaction_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_tender tender ON (
+        header.order_sub_number = tender.order_sub_number
+        AND header.sales_transaction_id = tender.sales_transaction_id
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_tender_info tenderInfo ON (
+        header.order_sub_number = tenderInfo.order_sub_number
+        AND header.sales_transaction_id = tenderInfo.sales_transaction_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_total_amount total ON (
+        header.order_sub_number = total.order_sub_number
+        AND header.sales_transaction_id = total.sales_transaction_id
+        )
+
+        WHERE orderInfo.integrated_order_id = #{integratedOrderId}
+        <if test="inquiryPattern == 'INITIAL'">
+            AND header.order_sub_number = 1        
+        </if>
+        <if test="inquiryPattern == 'LATEST'">
+            AND header.order_sub_number IN (SELECT MAX(order_sub_number) AS order_sub_number FROM t_transaction_inquiry_sales_transaction_header WHERE integrated_order_id = #{integratedOrderId} GROUP BY integrated_order_id ORDER BY order_sub_number DESC LIMIT 1)        
+        </if>
+        <if test="inquiryPattern == 'BOTH'">
+            AND header.order_sub_number IN (1,(SELECT MAX(order_sub_number) AS order_sub_number FROM t_transaction_inquiry_sales_transaction_header WHERE integrated_order_id = #{integratedOrderId} GROUP BY integrated_order_id ORDER BY order_sub_number DESC LIMIT 1))
+        </if>
+
+        ORDER BY
+            header.order_sub_number ASC, header.sales_transaction_sub_number ASC, detail.detail_sub_number ASC,
+            discount.item_discount_sub_number ASC, tender.tender_sub_number ASC,
+            tax.tax_sub_number ASC, total.total_amount_sub_number ASC
+    </select>
+
+    <select id="selectByIntegratedOrderIdOrderSubNumber"
+        resultType="com.fastretailing.dcp.sales.common.entity.optional.TransactionInquiryOptional">
+        SELECT 
+        orderInfo.integrated_order_id                               AS integrated_order_id,
+        orderInfo.order_barcode_number                              AS order_barcode_number,
+        orderInfo.store_code                                        AS store_code,
+        orderInfo.system_brand_code                                 AS system_brand_code,
+        orderInfo.system_business_code                              AS system_business_code,
+        orderInfo.system_country_code                               AS system_country_code,
+        orderInfo.channel_code                                      AS channel_code,
+        orderInfo.customer_id                                       AS customer_id,
+        orderInfo.order_confirmation_business_date                  AS order_confirmation_business_date,
+        orderInfo.order_confirmation_date_time                      AS order_confirmation_date_time,
+        orderInfo.data_alteration_sales_linkage_type                AS data_alteration_sales_linkage_type,
+        orderInfo.data_alteration_backbone_linkage_type             AS data_alteration_backbone_linkage_type,
+        orderInfo.data_alteration_flag                              AS data_alteration_flag,
+        orderInfo.data_alteration_user_id                           AS data_alteration_user_id,
+
+        header.order_sub_number                                     AS header_order_sub_number,
+        header.sales_transaction_id                                 AS header_sales_transaction_id,
+        header.integrated_order_id                                  AS header_integrated_order_id,
+        header.sales_transaction_sub_number                         AS header_sales_transaction_sub_number,
+        header.store_code                                           AS header_store_code,
+        header.data_creation_date_time                              AS header_data_creation_date_time,
+        header.data_creation_business_date                          AS header_data_creation_business_date,
+        header.cash_register_no                                     AS header_cash_register_no,
+        header.receipt_no                                           AS header_receipt_no,
+        header.sales_linkage_type                                   AS header_sales_linkage_type,
+        header.sales_transaction_type                               AS header_sales_transaction_type,
+        header.return_type                                          AS header_return_type,
+        header.system_brand_code                                    AS header_system_brand_code,
+        header.system_business_code                                 AS header_system_business_code,
+        header.system_country_code                                  AS header_system_country_code,
+        header.channel_code                                         AS header_channel_code,
+        header.order_status                                         AS header_order_status,
+        header.order_substatus                                      AS header_order_substatus,
+        header.order_status_update_date                             AS header_order_status_update_date,
+        header.order_status_last_update_date_time                   AS header_order_status_last_update_date_time,
+        header.order_cancelled_date_time                            AS header_order_cancelled_date_time,
+        header.booking_store_code                                   AS header_booking_store_code,
+        header.booking_store_system_brand_code                      AS header_booking_store_system_brand_code,
+        header.booking_store_system_business_code                   AS header_booking_store_system_business_code,
+        header.booking_store_system_country_code                    AS header_booking_store_system_country_code,
+        header.payment_status                                       AS header_payment_status,
+        header.payment_store_code                                   AS header_payment_store_code,
+        header.payment_store_system_brand_code                      AS header_payment_store_system_brand_code,
+        header.payment_store_system_business_code                   AS header_payment_store_system_business_code,
+        header.payment_store_system_country_code                    AS header_payment_store_system_country_code,
+        header.transfer_out_status                                  AS header_transfer_out_status,
+        header.shipment_status                                      AS header_shipment_status,
+        header.shipment_store_code                                  AS header_shipment_store_code,
+        header.shipment_store_system_brand_code                     AS header_shipment_store_system_brand_code,
+        header.shipment_store_system_business_code                  AS header_shipment_store_system_business_code,
+        header.shipment_store_system_country_code                   AS header_shipment_store_system_country_code,
+        header.receiving_status                                     AS header_receiving_status,
+        header.receipt_store_code                                   AS header_receipt_store_code,
+        header.receipt_store_system_brand_code                      AS header_receipt_store_system_brand_code,
+        header.receipt_store_system_business_code                   AS header_receipt_store_system_business_code,
+        header.receipt_store_system_country_code                    AS header_receipt_store_system_country_code,
+        header.customer_id                                          AS header_customer_id,
+        header.customer_type                                        AS header_customer_type,
+        header.order_number_for_store_payment                       AS header_order_number_for_store_payment,
+        header.advance_received_store_code                          AS header_advance_received_store_code,
+        header.advance_received_store_system_brand_code             AS header_advance_received_store_system_brand_code,
+        header.advance_received_store_system_business_code          AS header_advance_received_store_system_business_code,
+        header.advance_received_store_system_country_code           AS header_advance_received_store_system_country_code,
+        header.operator_code                                        AS header_operator_code,
+        header.original_transaction_id                              AS header_original_transaction_id,
+        header.original_cash_register_no                            AS header_original_cash_register_no,
+        header.original_receipt_no                                  AS header_original_receipt_no,
+        header.deposit_currency_code                                AS header_deposit_currency_code,
+        header.deposit_value                                        AS header_deposit_value,
+        header.change_currency_code                                 AS header_change_currency_code,
+        header.change_value                                         AS header_change_value,
+        header.receipt_no_for_credit_card_cancellation              AS header_receipt_no_for_credit_card_cancellation,
+        header.receipt_no_for_credit_card                           AS header_receipt_no_for_credit_card,
+        header.receipt_issued_flag                                  AS header_receipt_issued_flag,
+        header.e_receipt_target_flag                                AS header_e_receipt_target_flag,
+        header.processing_company_code                              AS header_processing_company_code,
+        header.employee_sale_flag                                   AS header_employee_sale_flag,
+        header.consistency_sales_flag                               AS header_consistency_sales_flag,
+        header.corporate_id                                         AS header_corporate_id,
+        header.sales_transaction_discount_flag                      AS header_sales_transaction_discount_flag,
+        header.sales_transaction_discount_type                      AS header_sales_transaction_discount_type,
+        header.sales_transaction_discount_amount_rate_currency_code AS header_sales_transaction_discount_amount_rate_currency_code,
+        header.sales_transaction_discount_amount_rate               AS header_sales_transaction_discount_amount_rate,
+        header.token_code                                           AS header_token_code,
+        header.return_complete_flag                                 AS header_return_complete_flag,
+        header.cancelled_flag                                       AS header_cancelled_flag,
+
+        detail.order_sub_number                                     AS detail_order_sub_number,
+        detail.sales_transaction_id                                 AS detail_sales_transaction_id,
+        detail.detail_sub_number                                    AS detail_detail_sub_number,
+        detail.item_detail_sub_number                               AS detail_item_detail_sub_number,
+        detail.sales_transaction_type                               AS detail_sales_transaction_type,
+        detail.system_brand_code                                    AS detail_system_brand_code,
+        detail.system_business_code                                 AS detail_system_business_code,
+        detail.system_country_code                                  AS detail_system_country_code,
+        detail.l2_item_code                                         AS detail_l2_item_code,
+        detail.display_l2_item_code                                 AS detail_display_l2_item_code,
+        detail.l2_product_name                                      AS detail_l2_product_name,
+        detail.l3_item_code                                         AS detail_l3_item_code,
+        detail.l3_pos_product_name                                  AS detail_l3_pos_product_name,
+        detail.product_classification                               AS detail_product_classification,
+        detail.non_md_type                                          AS detail_non_md_type,
+        detail.non_md_code                                          AS detail_non_md_code,
+        detail.service_code                                         AS detail_service_code,
+        detail.epc_code                                             AS detail_epc_code,
+        detail.g_department_code                                    AS detail_g_department_code,
+        detail.major_category_code                                  AS detail_major_category_code,
+        detail.quantity_code                                        AS detail_quantity_code,
+        detail.detail_quantity                                      AS detail_detail_quantity,
+        detail.item_cost_currency_code                              AS detail_item_cost_currency_code,
+        detail.item_cost_value                                      AS detail_item_cost_value,
+        detail.initial_selling_price_currency_code                  AS detail_initial_selling_price_currency_code,
+        detail.initial_selling_price                                AS detail_initial_selling_price,
+        detail.bclass_price_currency_code                           AS detail_bclass_price_currency_code,
+        detail.bclass_price                                         AS detail_bclass_price,
+        detail.new_price_currency_code                              AS detail_new_price_currency_code,
+        detail.new_price                                            AS detail_new_price,
+        detail.retail_unit_price_tax_excluded_currency_code         AS detail_retail_unit_price_tax_excluded_currency_code,
+        detail.retail_unit_price_tax_excluded                       AS detail_retail_unit_price_tax_excluded,
+        detail.retail_unit_price_tax_included_currency_code         AS detail_retail_unit_price_tax_included_currency_code,
+        detail.retail_unit_price_tax_included                       AS detail_retail_unit_price_tax_included,
+        detail.sales_amount_tax_excluded_currency_code              AS detail_sales_amount_tax_excluded_currency_code,
+        detail.sales_amount_tax_excluded                            AS detail_sales_amount_tax_excluded,
+        detail.sales_amount_tax_included_currency_code              AS detail_sales_amount_tax_included_currency_code,
+        detail.sales_amount_tax_included                            AS detail_sales_amount_tax_included,
+        detail.calculation_unavailable_type                         AS detail_calculation_unavailable_type,
+        detail.order_status_update_date                             AS detail_order_status_update_date,
+        detail.order_status_last_update_date_time                   AS detail_order_status_last_update_date_time,
+        detail.order_status                                         AS detail_order_status,
+        detail.order_substatus                                      AS detail_order_substatus,
+        detail.booking_store_code                                   AS detail_booking_store_code,
+        detail.booking_store_system_brand_code                      AS detail_booking_store_system_brand_code,
+        detail.booking_store_system_business_code                   AS detail_booking_store_system_business_code,
+        detail.booking_store_system_country_code                    AS detail_booking_store_system_country_code,
+        detail.shipment_store_code                                  AS detail_shipment_store_code,
+        detail.shipment_store_system_brand_code                     AS detail_shipment_store_system_brand_code,
+        detail.shipment_store_system_business_code                  AS detail_shipment_store_system_business_code,
+        detail.shipment_store_system_country_code                   AS detail_shipment_store_system_country_code,
+        detail.receipt_store_code                                   AS detail_receipt_store_code,
+        detail.receipt_store_system_brand_code                      AS detail_receipt_store_system_brand_code,
+        detail.receipt_store_system_business_code                   AS detail_receipt_store_system_business_code,
+        detail.receipt_store_system_country_code                    AS detail_receipt_store_system_country_code,
+        detail.contribution_sales_representative                    AS detail_contribution_sales_representative,
+        detail.customer_id                                          AS detail_customer_id,
+        detail.bundle_purchase_applicable_quantity                  AS detail_bundle_purchase_applicable_quantity,
+        detail.bundle_purchase_applicable_price_currency_code       AS detail_bundle_purchase_applicable_price_currency_code,
+        detail.bundle_purchase_applicable_price                     AS detail_bundle_purchase_applicable_price,
+        detail.bundle_purchase_index                                AS detail_bundle_purchase_index,
+        detail.limited_amount_promotion_count                       AS detail_limited_amount_promotion_count,
+        detail.store_item_discount_type                             AS detail_store_item_discount_type,
+        detail.store_item_discount_currency_code                    AS detail_store_item_discount_currency_code,
+        detail.store_item_discount_setting                          AS detail_store_item_discount_setting,
+        detail.store_bundle_sale_flag                               AS detail_store_bundle_sale_flag,
+        detail.store_bundle_sale_price_currency_code                AS detail_store_bundle_sale_price_currency_code,
+        detail.store_bundle_sale_price                              AS detail_store_bundle_sale_price,
+        detail.set_sales_detail_index                               AS detail_set_sales_detail_index,
+        detail.taxation_type                                        AS detail_taxation_type,
+        detail.tax_system_type                                      AS detail_tax_system_type,
+        detail.return_complete_flag                                 AS detail_return_complete_flag,
+
+        detailInfo.order_sub_number                                 AS detailInfo_order_sub_number,
+        detailInfo.sales_transaction_id                             AS detailInfo_sales_transaction_id,
+        detailInfo.detail_sub_number                                AS detailInfo_detail_sub_number,
+        detailInfo.item_detail_sub_number                           AS detailInfo_item_detail_sub_number,
+        detailInfo.key_code                                         AS detailInfo_key_code,
+        detailInfo.code_value_1                                     AS detailInfo_code_value_1,
+        detailInfo.code_value_2                                     AS detailInfo_code_value_2,
+        detailInfo.code_value_3                                     AS detailInfo_code_value_3,
+        detailInfo.code_value_4                                     AS detailInfo_code_value_4,
+        detailInfo.name_1                                           AS detailInfo_name_1,
+        detailInfo.name_2                                           AS detailInfo_name_2,
+        detailInfo.name_3                                           AS detailInfo_name_3,
+        detailInfo.name_4                                           AS detailInfo_name_4,
+
+        discount.order_sub_number                                   AS discount_order_sub_number,
+        discount.sales_transaction_id                               AS discount_sales_transaction_id,
+        discount.detail_sub_number                                  AS discount_detail_sub_number,
+        discount.promotion_type                                     AS discount_promotion_type,
+        discount.promotion_no                                       AS discount_promotion_no,
+        discount.store_discount_type                                AS discount_store_discount_type,
+        discount.item_discount_sub_number                           AS discount_item_discount_sub_number,
+        discount.quantity_code                                      AS discount_quantity_code,
+        discount.discount_quantity                                  AS discount_discount_quantity,
+        discount.discount_amount_tax_excluded_currency_code         AS discount_discount_amount_tax_excluded_currency_code,
+        discount.discount_amount_tax_excluded                       AS discount_discount_amount_tax_excluded,
+        discount.discount_amount_tax_included_currency_code         AS discount_discount_amount_tax_included_currency_code,
+        discount.discount_amount_tax_included                       AS discount_discount_amount_tax_included,
+
+        tax.order_sub_number                                        AS tax_order_sub_number,
+        tax.sales_transaction_id                                    AS tax_sales_transaction_id,
+        tax.detail_sub_number                                       AS tax_detail_sub_number,
+        tax.tax_group                                               AS tax_tax_group,
+        tax.tax_name                                                AS tax_tax_name,
+        tax.tax_sub_number                                          AS tax_tax_sub_number,
+        tax.tax_amount_sign                                         AS tax_tax_amount_sign,
+        tax.tax_amount_currency_code                                AS tax_tax_amount_currency_code,
+        tax.tax_amount_value                                        AS tax_tax_amount_value,
+        tax.tax_rate                                                AS tax_tax_rate,
+
+        tender.order_sub_number                                     AS tender_order_sub_number,
+        tender.sales_transaction_id                                 AS tender_sales_transaction_id,
+        tender.tender_group                                         AS tender_tender_group,
+        tender.tender_id                                            AS tender_tender_id,
+        tender.tender_sub_number                                    AS tender_tender_sub_number,
+        tender.payment_sign                                         AS tender_payment_sign,
+        tender.tax_included_payment_amount_currency_code            AS tender_tax_included_payment_amount_currency_code,
+        tender.tax_included_payment_amount_value                    AS tender_tax_included_payment_amount_value,
+
+        tenderInfo.order_sub_number                                 AS tenderInfo_order_sub_number,
+        tenderInfo.sales_transaction_id                             AS tenderInfo_sales_transaction_id,
+        tenderInfo.tender_group                                     AS tenderInfo_tender_group,
+        tenderInfo.tender_id                                        AS tenderInfo_tender_id,
+        tenderInfo.tender_sub_number                                AS tenderInfo_tender_sub_number,
+        tenderInfo.discount_value_currency_code                     AS tenderInfo_discount_value_currency_code,
+        tenderInfo.discount_value                                   AS tenderInfo_discount_value,
+        tenderInfo.discount_rate                                    AS tenderInfo_discount_rate,
+        tenderInfo.discount_code_id_corporate_id                    AS tenderInfo_discount_code_id_corporate_id,
+        tenderInfo.coupon_type                                      AS tenderInfo_coupon_type,
+        tenderInfo.coupon_discount_amount_setting_currency_code     AS tenderInfo_coupon_discount_amount_setting_currency_code,
+        tenderInfo.coupon_discount_amount_setting_value             AS tenderInfo_coupon_discount_amount_setting_value,
+        tenderInfo.coupon_min_usage_amount_threshold_currency_code  AS tenderInfo_coupon_min_usage_amount_threshold_currency_code,
+        tenderInfo.coupon_min_usage_amount_threshold_value          AS tenderInfo_coupon_min_usage_amount_threshold_value,
+        tenderInfo.coupon_user_id                                   AS tenderInfo_coupon_user_id,
+        tenderInfo.card_no                                          AS tenderInfo_card_no,
+        tenderInfo.credit_approval_code                             AS tenderInfo_credit_approval_code,
+        tenderInfo.credit_processing_serial_number                  AS tenderInfo_credit_processing_serial_number,
+        tenderInfo.credit_payment_type                              AS tenderInfo_credit_payment_type,
+        tenderInfo.credit_payment_count                             AS tenderInfo_credit_payment_count,
+        tenderInfo.credit_affiliated_store_number                   AS tenderInfo_credit_affiliated_store_number,
+
+        total.order_sub_number                                      AS total_order_sub_number,
+        total.sales_transaction_id                                  AS total_sales_transaction_id,
+        total.total_type                                            AS total_total_type,
+        total.total_amount_sub_number                               AS total_total_amount_sub_number,
+        total.total_amount_tax_excluded_currency_code               AS total_total_amount_tax_excluded_currency_code,
+        total.total_amount_tax_excluded_value                       AS total_total_amount_tax_excluded_value,
+        total.total_amount_tax_included_currency_code               AS total_total_amount_tax_included_currency_code,
+        total.total_amount_tax_included_value                       AS total_total_amount_tax_included_value,
+        total.tax_rate                                              AS total_tax_rate,
+        total.sales_transaction_information_1                       AS total_sales_transaction_information_1,
+        total.sales_transaction_information_2                       AS total_sales_transaction_information_2,
+        total.sales_transaction_information_3                       AS total_sales_transaction_information_3
+
+        FROM t_transaction_inquiry_order_information orderInfo
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_header header ON (
+        orderInfo.integrated_order_id = header.integrated_order_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_detail detail ON (
+        header.order_sub_number = detail.order_sub_number
+        AND header.sales_transaction_id = detail.sales_transaction_id
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_detail_info detailInfo ON (
+        detail.order_sub_number = detailInfo.order_sub_number
+        AND detail.sales_transaction_id = detailInfo.sales_transaction_id
+        AND detail.detail_sub_number = detailInfo.detail_sub_number
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_discount discount ON (
+        detail.order_sub_number = discount.order_sub_number
+        AND detail.sales_transaction_id = discount.sales_transaction_id
+        AND detail.detail_sub_number = discount.detail_sub_number
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_tax tax ON (
+        header.order_sub_number = tax.order_sub_number
+        AND header.sales_transaction_id = tax.sales_transaction_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_tender tender ON (
+        header.order_sub_number = tender.order_sub_number
+        AND header.sales_transaction_id = tender.sales_transaction_id
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_tender_info tenderInfo ON (
+        header.order_sub_number = tenderInfo.order_sub_number
+        AND header.sales_transaction_id = tenderInfo.sales_transaction_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_total_amount total ON (
+        header.order_sub_number = total.order_sub_number
+        AND header.sales_transaction_id = total.sales_transaction_id
+        )
+
+        WHERE orderInfo.integrated_order_id = #{integratedOrderId}
+            AND header.order_sub_number = #{orderSubNumber}
+
+        ORDER BY
+            header.order_sub_number ASC, header.sales_transaction_sub_number ASC, detail.detail_sub_number ASC,
+            discount.item_discount_sub_number ASC, tender.tender_sub_number ASC,
+            tax.tax_sub_number ASC, total.total_amount_sub_number ASC
+    </select>
+
+    <select id="selectByTransactionId"
+        resultType="com.fastretailing.dcp.sales.common.entity.optional.TransactionInquiryOptional">
+        SELECT 
+        orderInfo.integrated_order_id                               AS integrated_order_id,
+        orderInfo.order_barcode_number                              AS order_barcode_number,
+        orderInfo.store_code                                        AS store_code,
+        orderInfo.system_brand_code                                 AS system_brand_code,
+        orderInfo.system_business_code                              AS system_business_code,
+        orderInfo.system_country_code                               AS system_country_code,
+        orderInfo.channel_code                                      AS channel_code,
+        orderInfo.customer_id                                       AS customer_id,
+        orderInfo.order_confirmation_business_date                  AS order_confirmation_business_date,
+        orderInfo.order_confirmation_date_time                      AS order_confirmation_date_time,
+        orderInfo.data_alteration_sales_linkage_type                AS data_alteration_sales_linkage_type,
+        orderInfo.data_alteration_backbone_linkage_type             AS data_alteration_backbone_linkage_type,
+        orderInfo.data_alteration_flag                              AS data_alteration_flag,
+        orderInfo.data_alteration_user_id                           AS data_alteration_user_id,
+
+        header.order_sub_number                                     AS header_order_sub_number,
+        header.sales_transaction_id                                 AS header_sales_transaction_id,
+        header.integrated_order_id                                  AS header_integrated_order_id,
+        header.sales_transaction_sub_number                         AS header_sales_transaction_sub_number,
+        header.store_code                                           AS header_store_code,
+        header.data_creation_date_time                              AS header_data_creation_date_time,
+        header.data_creation_business_date                          AS header_data_creation_business_date,
+        header.cash_register_no                                     AS header_cash_register_no,
+        header.receipt_no                                           AS header_receipt_no,
+        header.sales_linkage_type                                   AS header_sales_linkage_type,
+        header.sales_transaction_type                               AS header_sales_transaction_type,
+        header.return_type                                          AS header_return_type,
+        header.system_brand_code                                    AS header_system_brand_code,
+        header.system_business_code                                 AS header_system_business_code,
+        header.system_country_code                                  AS header_system_country_code,
+        header.channel_code                                         AS header_channel_code,
+        header.order_status                                         AS header_order_status,
+        header.order_substatus                                      AS header_order_substatus,
+        header.order_status_update_date                             AS header_order_status_update_date,
+        header.order_status_last_update_date_time                   AS header_order_status_last_update_date_time,
+        header.order_cancelled_date_time                            AS header_order_cancelled_date_time,
+        header.booking_store_code                                   AS header_booking_store_code,
+        header.booking_store_system_brand_code                      AS header_booking_store_system_brand_code,
+        header.booking_store_system_business_code                   AS header_booking_store_system_business_code,
+        header.booking_store_system_country_code                    AS header_booking_store_system_country_code,
+        header.payment_status                                       AS header_payment_status,
+        header.payment_store_code                                   AS header_payment_store_code,
+        header.payment_store_system_brand_code                      AS header_payment_store_system_brand_code,
+        header.payment_store_system_business_code                   AS header_payment_store_system_business_code,
+        header.payment_store_system_country_code                    AS header_payment_store_system_country_code,
+        header.transfer_out_status                                  AS header_transfer_out_status,
+        header.shipment_status                                      AS header_shipment_status,
+        header.shipment_store_code                                  AS header_shipment_store_code,
+        header.shipment_store_system_brand_code                     AS header_shipment_store_system_brand_code,
+        header.shipment_store_system_business_code                  AS header_shipment_store_system_business_code,
+        header.shipment_store_system_country_code                   AS header_shipment_store_system_country_code,
+        header.receiving_status                                     AS header_receiving_status,
+        header.receipt_store_code                                   AS header_receipt_store_code,
+        header.receipt_store_system_brand_code                      AS header_receipt_store_system_brand_code,
+        header.receipt_store_system_business_code                   AS header_receipt_store_system_business_code,
+        header.receipt_store_system_country_code                    AS header_receipt_store_system_country_code,
+        header.customer_id                                          AS header_customer_id,
+        header.customer_type                                        AS header_customer_type,
+        header.order_number_for_store_payment                       AS header_order_number_for_store_payment,
+        header.advance_received_store_code                          AS header_advance_received_store_code,
+        header.advance_received_store_system_brand_code             AS header_advance_received_store_system_brand_code,
+        header.advance_received_store_system_business_code          AS header_advance_received_store_system_business_code,
+        header.advance_received_store_system_country_code           AS header_advance_received_store_system_country_code,
+        header.operator_code                                        AS header_operator_code,
+        header.original_transaction_id                              AS header_original_transaction_id,
+        header.original_cash_register_no                            AS header_original_cash_register_no,
+        header.original_receipt_no                                  AS header_original_receipt_no,
+        header.deposit_currency_code                                AS header_deposit_currency_code,
+        header.deposit_value                                        AS header_deposit_value,
+        header.change_currency_code                                 AS header_change_currency_code,
+        header.change_value                                         AS header_change_value,
+        header.receipt_no_for_credit_card_cancellation              AS header_receipt_no_for_credit_card_cancellation,
+        header.receipt_no_for_credit_card                           AS header_receipt_no_for_credit_card,
+        header.receipt_issued_flag                                  AS header_receipt_issued_flag,
+        header.e_receipt_target_flag                                AS header_e_receipt_target_flag,
+        header.processing_company_code                              AS header_processing_company_code,
+        header.employee_sale_flag                                   AS header_employee_sale_flag,
+        header.consistency_sales_flag                               AS header_consistency_sales_flag,
+        header.corporate_id                                         AS header_corporate_id,
+        header.sales_transaction_discount_flag                      AS header_sales_transaction_discount_flag,
+        header.sales_transaction_discount_type                      AS header_sales_transaction_discount_type,
+        header.sales_transaction_discount_amount_rate_currency_code AS header_sales_transaction_discount_amount_rate_currency_code,
+        header.sales_transaction_discount_amount_rate               AS header_sales_transaction_discount_amount_rate,
+        header.token_code                                           AS header_token_code,
+        header.return_complete_flag                                 AS header_return_complete_flag,
+        header.cancelled_flag                                       AS header_cancelled_flag,
+
+        detail.order_sub_number                                     AS detail_order_sub_number,
+        detail.sales_transaction_id                                 AS detail_sales_transaction_id,
+        detail.detail_sub_number                                    AS detail_detail_sub_number,
+        detail.item_detail_sub_number                               AS detail_item_detail_sub_number,
+        detail.sales_transaction_type                               AS detail_sales_transaction_type,
+        detail.system_brand_code                                    AS detail_system_brand_code,
+        detail.system_business_code                                 AS detail_system_business_code,
+        detail.system_country_code                                  AS detail_system_country_code,
+        detail.l2_item_code                                         AS detail_l2_item_code,
+        detail.display_l2_item_code                                 AS detail_display_l2_item_code,
+        detail.l2_product_name                                      AS detail_l2_product_name,
+        detail.l3_item_code                                         AS detail_l3_item_code,
+        detail.l3_pos_product_name                                  AS detail_l3_pos_product_name,
+        detail.product_classification                               AS detail_product_classification,
+        detail.non_md_type                                          AS detail_non_md_type,
+        detail.non_md_code                                          AS detail_non_md_code,
+        detail.service_code                                         AS detail_service_code,
+        detail.epc_code                                             AS detail_epc_code,
+        detail.g_department_code                                    AS detail_g_department_code,
+        detail.major_category_code                                  AS detail_major_category_code,
+        detail.quantity_code                                        AS detail_quantity_code,
+        detail.detail_quantity                                      AS detail_detail_quantity,
+        detail.item_cost_currency_code                              AS detail_item_cost_currency_code,
+        detail.item_cost_value                                      AS detail_item_cost_value,
+        detail.initial_selling_price_currency_code                  AS detail_initial_selling_price_currency_code,
+        detail.initial_selling_price                                AS detail_initial_selling_price,
+        detail.bclass_price_currency_code                           AS detail_bclass_price_currency_code,
+        detail.bclass_price                                         AS detail_bclass_price,
+        detail.new_price_currency_code                              AS detail_new_price_currency_code,
+        detail.new_price                                            AS detail_new_price,
+        detail.retail_unit_price_tax_excluded_currency_code         AS detail_retail_unit_price_tax_excluded_currency_code,
+        detail.retail_unit_price_tax_excluded                       AS detail_retail_unit_price_tax_excluded,
+        detail.retail_unit_price_tax_included_currency_code         AS detail_retail_unit_price_tax_included_currency_code,
+        detail.retail_unit_price_tax_included                       AS detail_retail_unit_price_tax_included,
+        detail.sales_amount_tax_excluded_currency_code              AS detail_sales_amount_tax_excluded_currency_code,
+        detail.sales_amount_tax_excluded                            AS detail_sales_amount_tax_excluded,
+        detail.sales_amount_tax_included_currency_code              AS detail_sales_amount_tax_included_currency_code,
+        detail.sales_amount_tax_included                            AS detail_sales_amount_tax_included,
+        detail.calculation_unavailable_type                         AS detail_calculation_unavailable_type,
+        detail.order_status_update_date                             AS detail_order_status_update_date,
+        detail.order_status_last_update_date_time                   AS detail_order_status_last_update_date_time,
+        detail.order_status                                         AS detail_order_status,
+        detail.order_substatus                                      AS detail_order_substatus,
+        detail.booking_store_code                                   AS detail_booking_store_code,
+        detail.booking_store_system_brand_code                      AS detail_booking_store_system_brand_code,
+        detail.booking_store_system_business_code                   AS detail_booking_store_system_business_code,
+        detail.booking_store_system_country_code                    AS detail_booking_store_system_country_code,
+        detail.shipment_store_code                                  AS detail_shipment_store_code,
+        detail.shipment_store_system_brand_code                     AS detail_shipment_store_system_brand_code,
+        detail.shipment_store_system_business_code                  AS detail_shipment_store_system_business_code,
+        detail.shipment_store_system_country_code                   AS detail_shipment_store_system_country_code,
+        detail.receipt_store_code                                   AS detail_receipt_store_code,
+        detail.receipt_store_system_brand_code                      AS detail_receipt_store_system_brand_code,
+        detail.receipt_store_system_business_code                   AS detail_receipt_store_system_business_code,
+        detail.receipt_store_system_country_code                    AS detail_receipt_store_system_country_code,
+        detail.contribution_sales_representative                    AS detail_contribution_sales_representative,
+        detail.customer_id                                          AS detail_customer_id,
+        detail.bundle_purchase_applicable_quantity                  AS detail_bundle_purchase_applicable_quantity,
+        detail.bundle_purchase_applicable_price_currency_code       AS detail_bundle_purchase_applicable_price_currency_code,
+        detail.bundle_purchase_applicable_price                     AS detail_bundle_purchase_applicable_price,
+        detail.bundle_purchase_index                                AS detail_bundle_purchase_index,
+        detail.limited_amount_promotion_count                       AS detail_limited_amount_promotion_count,
+        detail.store_item_discount_type                             AS detail_store_item_discount_type,
+        detail.store_item_discount_currency_code                    AS detail_store_item_discount_currency_code,
+        detail.store_item_discount_setting                          AS detail_store_item_discount_setting,
+        detail.store_bundle_sale_flag                               AS detail_store_bundle_sale_flag,
+        detail.store_bundle_sale_price_currency_code                AS detail_store_bundle_sale_price_currency_code,
+        detail.store_bundle_sale_price                              AS detail_store_bundle_sale_price,
+        detail.set_sales_detail_index                               AS detail_set_sales_detail_index,
+        detail.taxation_type                                        AS detail_taxation_type,
+        detail.tax_system_type                                      AS detail_tax_system_type,
+        detail.return_complete_flag                                 AS detail_return_complete_flag,
+
+        detailInfo.order_sub_number                                 AS detailInfo_order_sub_number,
+        detailInfo.sales_transaction_id                             AS detailInfo_sales_transaction_id,
+        detailInfo.detail_sub_number                                AS detailInfo_detail_sub_number,
+        detailInfo.item_detail_sub_number                           AS detailInfo_item_detail_sub_number,
+        detailInfo.key_code                                         AS detailInfo_key_code,
+        detailInfo.code_value_1                                     AS detailInfo_code_value_1,
+        detailInfo.code_value_2                                     AS detailInfo_code_value_2,
+        detailInfo.code_value_3                                     AS detailInfo_code_value_3,
+        detailInfo.code_value_4                                     AS detailInfo_code_value_4,
+        detailInfo.name_1                                           AS detailInfo_name_1,
+        detailInfo.name_2                                           AS detailInfo_name_2,
+        detailInfo.name_3                                           AS detailInfo_name_3,
+        detailInfo.name_4                                           AS detailInfo_name_4,
+
+        discount.order_sub_number                                   AS discount_order_sub_number,
+        discount.sales_transaction_id                               AS discount_sales_transaction_id,
+        discount.detail_sub_number                                  AS discount_detail_sub_number,
+        discount.promotion_type                                     AS discount_promotion_type,
+        discount.promotion_no                                       AS discount_promotion_no,
+        discount.store_discount_type                                AS discount_store_discount_type,
+        discount.item_discount_sub_number                           AS discount_item_discount_sub_number,
+        discount.quantity_code                                      AS discount_quantity_code,
+        discount.discount_quantity                                  AS discount_discount_quantity,
+        discount.discount_amount_tax_excluded_currency_code         AS discount_discount_amount_tax_excluded_currency_code,
+        discount.discount_amount_tax_excluded                       AS discount_discount_amount_tax_excluded,
+        discount.discount_amount_tax_included_currency_code         AS discount_discount_amount_tax_included_currency_code,
+        discount.discount_amount_tax_included                       AS discount_discount_amount_tax_included,
+
+        tax.order_sub_number                                        AS tax_order_sub_number,
+        tax.sales_transaction_id                                    AS tax_sales_transaction_id,
+        tax.detail_sub_number                                       AS tax_detail_sub_number,
+        tax.tax_group                                               AS tax_tax_group,
+        tax.tax_name                                                AS tax_tax_name,
+        tax.tax_sub_number                                          AS tax_tax_sub_number,
+        tax.tax_amount_sign                                         AS tax_tax_amount_sign,
+        tax.tax_amount_currency_code                                AS tax_tax_amount_currency_code,
+        tax.tax_amount_value                                        AS tax_tax_amount_value,
+        tax.tax_rate                                                AS tax_tax_rate,
+
+        tender.order_sub_number                                     AS tender_order_sub_number,
+        tender.sales_transaction_id                                 AS tender_sales_transaction_id,
+        tender.tender_group                                         AS tender_tender_group,
+        tender.tender_id                                            AS tender_tender_id,
+        tender.tender_sub_number                                    AS tender_tender_sub_number,
+        tender.payment_sign                                         AS tender_payment_sign,
+        tender.tax_included_payment_amount_currency_code            AS tender_tax_included_payment_amount_currency_code,
+        tender.tax_included_payment_amount_value                    AS tender_tax_included_payment_amount_value,
+
+        tenderInfo.order_sub_number                                 AS tenderInfo_order_sub_number,
+        tenderInfo.sales_transaction_id                             AS tenderInfo_sales_transaction_id,
+        tenderInfo.tender_group                                     AS tenderInfo_tender_group,
+        tenderInfo.tender_id                                        AS tenderInfo_tender_id,
+        tenderInfo.tender_sub_number                                AS tenderInfo_tender_sub_number,
+        tenderInfo.discount_value_currency_code                     AS tenderInfo_discount_value_currency_code,
+        tenderInfo.discount_value                                   AS tenderInfo_discount_value,
+        tenderInfo.discount_rate                                    AS tenderInfo_discount_rate,
+        tenderInfo.discount_code_id_corporate_id                    AS tenderInfo_discount_code_id_corporate_id,
+        tenderInfo.coupon_type                                      AS tenderInfo_coupon_type,
+        tenderInfo.coupon_discount_amount_setting_currency_code     AS tenderInfo_coupon_discount_amount_setting_currency_code,
+        tenderInfo.coupon_discount_amount_setting_value             AS tenderInfo_coupon_discount_amount_setting_value,
+        tenderInfo.coupon_min_usage_amount_threshold_currency_code  AS tenderInfo_coupon_min_usage_amount_threshold_currency_code,
+        tenderInfo.coupon_min_usage_amount_threshold_value          AS tenderInfo_coupon_min_usage_amount_threshold_value,
+        tenderInfo.coupon_user_id                                   AS tenderInfo_coupon_user_id,
+        tenderInfo.card_no                                          AS tenderInfo_card_no,
+        tenderInfo.credit_approval_code                             AS tenderInfo_credit_approval_code,
+        tenderInfo.credit_processing_serial_number                  AS tenderInfo_credit_processing_serial_number,
+        tenderInfo.credit_payment_type                              AS tenderInfo_credit_payment_type,
+        tenderInfo.credit_payment_count                             AS tenderInfo_credit_payment_count,
+        tenderInfo.credit_affiliated_store_number                   AS tenderInfo_credit_affiliated_store_number,
+
+        total.order_sub_number                                      AS total_order_sub_number,
+        total.sales_transaction_id                                  AS total_sales_transaction_id,
+        total.total_type                                            AS total_total_type,
+        total.total_amount_sub_number                               AS total_total_amount_sub_number,
+        total.total_amount_tax_excluded_currency_code               AS total_total_amount_tax_excluded_currency_code,
+        total.total_amount_tax_excluded_value                       AS total_total_amount_tax_excluded_value,
+        total.total_amount_tax_included_currency_code               AS total_total_amount_tax_included_currency_code,
+        total.total_amount_tax_included_value                       AS total_total_amount_tax_included_value,
+        total.tax_rate                                              AS total_tax_rate,
+        total.sales_transaction_information_1                       AS total_sales_transaction_information_1,
+        total.sales_transaction_information_2                       AS total_sales_transaction_information_2,
+        total.sales_transaction_information_3                       AS total_sales_transaction_information_3
+
+        FROM t_transaction_inquiry_order_information orderInfo
+        
+        INNER JOIN t_transaction_inquiry_sales_transaction_header header ON (
+        orderInfo.integrated_order_id = header.integrated_order_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_detail detail ON (
+        header.order_sub_number = detail.order_sub_number
+        AND header.sales_transaction_id = detail.sales_transaction_id
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_detail_info detailInfo ON (
+        detail.order_sub_number = detailInfo.order_sub_number
+        AND detail.sales_transaction_id = detailInfo.sales_transaction_id
+        AND detail.detail_sub_number = detailInfo.detail_sub_number
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_discount discount ON (
+        detail.order_sub_number = discount.order_sub_number
+        AND detail.sales_transaction_id = discount.sales_transaction_id
+        AND detail.detail_sub_number = discount.detail_sub_number
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_tax tax ON (
+        header.order_sub_number = tax.order_sub_number
+        AND header.sales_transaction_id = tax.sales_transaction_id
+        )
+        
+        INNER JOIN t_transaction_inquiry_sales_transaction_tender tender ON (
+        header.order_sub_number = tender.order_sub_number
+        AND header.sales_transaction_id = tender.sales_transaction_id
+        )
+
+        LEFT OUTER JOIN t_transaction_inquiry_sales_transaction_tender_info tenderInfo ON (
+        header.order_sub_number = tenderInfo.order_sub_number
+        AND header.sales_transaction_id = tenderInfo.sales_transaction_id
+        )
+
+        INNER JOIN t_transaction_inquiry_sales_transaction_total_amount total ON (
+        header.order_sub_number = total.order_sub_number
+        AND header.sales_transaction_id = total.sales_transaction_id
+        )
+
+        WHERE orderInfo.integrated_order_id = #{integratedOrderId}
+            AND header.order_sub_number = #{orderSubNumber}
+            AND header.sales_transaction_id = #{salesTransactionId}
+
+        ORDER BY
+            header.order_sub_number ASC, header.sales_transaction_sub_number ASC, detail.detail_sub_number ASC,
+            discount.item_discount_sub_number ASC, tender.tender_sub_number ASC,
+            tax.tax_sub_number ASC, total.total_amount_sub_number ASC
+    </select>
+
+</mapper>

@@ -1,0 +1,63 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SLS
+    full: sales
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.version}
+
+####################################################################################################
+# Spring Setting
+####################################################################################################
+spring:
+  main:
+    banner-mode: 'off'
+  messages:
+    always-use-message-format: false
+    basename: i18n/messages,messages-canada,ValidationMessages
+    cache-seconds: -1
+    encoding: UTF-8
+    fallback-to-system-locale: true
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jackson:
+      date-format: java.text.SimpleDateFormat
+      default-property-inclusion: non-null
+      property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+  session:
+    store-type: none
+
+  configuration:
+    map-underscore-to-camel-case: true
+####################################################################################################
+# api service
+####################################################################################################
+api-service:
+  name: sales
+
+
+####################################################################################################
+# trace id's version
+####################################################################################################
+version:
+  aws: 1
+
+# Log Level
+logging:
+  level:
+    com.fastretailing.oms: DEBUG
+

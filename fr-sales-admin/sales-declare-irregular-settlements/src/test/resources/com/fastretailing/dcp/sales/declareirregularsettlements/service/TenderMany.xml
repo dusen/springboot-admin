@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <m_tender 
+        store_code="sc001"
+        tender_name=" "
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="1001"
+        ims_tender_group="TCASH"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="$10_Coupon"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5008"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="$20_Coupon"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5009"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="$30_Coupon"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5010"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="$5_Coupon"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5007"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="$50_Coupon"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5011"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="COUPON"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="5001"
+        ims_tender_group="DCOUPN"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Amex"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4004"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="CC Unknown"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4999"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="CUP"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4014"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Debits"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4006"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Diners"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4013"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Discover"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4003"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Dummy"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4101"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="JCB"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4005"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Maestro"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4007"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Master"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4002"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Others"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4009"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="PayPal"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4018"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="VISA"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="4001"
+        ims_tender_group="DCCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Employee discount"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="13002"
+        ims_tender_group="DEMDSC"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <m_tender 
+        store_code="sc001"
+        tender_name="Gift Card"
+        change_flag="0"
+        current_deposit_flag="0"
+        ims_tender_id="17001"
+        ims_tender_group="DGCARD"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+</dataset>

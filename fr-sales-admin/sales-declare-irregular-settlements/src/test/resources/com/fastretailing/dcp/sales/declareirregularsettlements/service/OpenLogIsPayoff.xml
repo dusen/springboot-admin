@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_open_log 
+        store_code="sc001"
+        business_date="20180625"
+        cash_register_no="1"
+        payoff_flag="1"
+        system_brand_code="sbc1"
+        system_business_code="sbusc1"
+        system_country_code="sc1"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <t_open_log 
+        store_code="sc002"
+        business_date="20180625"
+        cash_register_no="1"
+        payoff_flag="0"
+        system_brand_code="sbc2"
+        system_business_code="sbusc2"
+        system_country_code="sc2"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    
+    <t_open_log 
+        store_code="sc003"
+        business_date="20180625"
+        cash_register_no="1"
+        payoff_flag="0"
+        system_brand_code="sbc3"
+        system_business_code="sbusc3"
+        system_country_code="sc3"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+</dataset>

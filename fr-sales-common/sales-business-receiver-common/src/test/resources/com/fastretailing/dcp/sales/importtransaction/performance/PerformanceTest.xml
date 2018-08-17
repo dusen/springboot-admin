@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="BUSINESSDATECHECK" code_l2="CLOSEDBUSINESSDATE"
+		code_l3="1" code_value="0" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2" code_l1="BUSINESSDATECHECK" code_l2="CLOSEDBUSINESSDATE"
+		code_l3="1" code_value="0" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="BUSINESSDATECHECK" code_l2="DATEEXCEEDING"
+		code_l3="1" code_value="5" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2" code_l1="BUSINESSDATECHECK" code_l2="DATEEXCEEDING"
+		code_l3="1" code_value="5" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="BUSINESSDATECHECK" code_l2="BEFORESTOREOPENING"
+		code_l3="1" code_value="4" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2" code_l1="BUSINESSDATECHECK" code_l2="BEFORESTOREOPENING"
+		code_l3="1" code_value="4" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="BUSINESSDATECHECK" code_l2="AFTERSTORECLOSING"
+		code_l3="2" code_value="2" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2" code_l1="BUSINESSDATECHECK" code_l2="AFTERSTORECLOSING"
+		code_l3="2" code_value="2" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="TAXTYPE" code_l2="TAXTYPE"
+		code_l3="RTLOG" code_value="VAT" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2" code_l1="TAXTYPE" code_l2="TAXTYPE"
+		code_l3="RTLOG" code_value="VAT" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2231607102" code_l1="TAXTYPE" code_l2="TAXTYPE"
+		code_l3="RTLOG" code_value="VAT" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+
+	<m_store_control store_code="1" system_brand_code="1"
+		system_business_code="1" system_country_code="1" fc_store_type="1"
+		business_date="20180110" closing_store_time="1" language_type="1"
+		business_end_of_date="20180201" tax_rate="1" create_user_id="1"
+		create_datetime="2010-03-15 00:00:00" create_program_id="1"
+		update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+	<m_store_control store_code="2" system_brand_code="1"
+		system_business_code="1" system_country_code="1" fc_store_type="1"
+		business_date="20180110" closing_store_time="1" language_type="1"
+		business_end_of_date="20180201" tax_rate="1" create_user_id="1"
+		create_datetime="2010-03-15 00:00:00" create_program_id="1"
+		update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+
+	<m_store store_code="1" store_name="1" store_name_kana="1"
+		store_addr1="1" store_addr2="1" store_city="1" county="1" state_code="1"
+		system_country_code="1" postal_code="1" fax_number="1" phone_number="1"
+		store_type_code="1" open_date="2018-01-03 00:00:00" close_date="2018-02-01 00:00:00"
+		renewal_open_date="2010-03-15 00:00:00" vat_region_code="1"
+		channel_id="1" area_code="1" order_start_date="1" order_end_date="1"
+		currency_code="1" language_code="1" shipment_logistics_district_code="1"
+		store_scale_pattern_code="1" existing_store_type_code="1"
+		inventory_object_type_code="1" register_cat_interlock_type_code="1"
+		ss_store_manager_store_type_code="1" renewal_before_close_date="2010-03-15 00:00:00"
+		open_term_number="1" store_inspection_start_date="2010-03-15 00:00:00"
+		store_inspection_end_date="2010-03-15 00:00:00" close_type_code="1"
+		direct_management_fc_store_type_code="1" consignment_store_type_code="1"
+		system_machine_removal_date="2010-03-15 00:00:00"
+		sale_channel_type_code="1" transfer_out_control_exclude_flag="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" system_brand_code="1" system_business_code="1" />
+
+	<m_store store_code="2" store_name="1" store_name_kana="1"
+		store_addr1="1" store_addr2="1" store_city="1" county="1" state_code="1"
+		system_country_code="1" postal_code="1" fax_number="1" phone_number="1"
+		store_type_code="1" open_date="2018-01-03 00:00:00" close_date="2018-02-01 00:00:00"
+		renewal_open_date="2010-03-15 00:00:00" vat_region_code="1"
+		channel_id="1" area_code="1" order_start_date="1" order_end_date="1"
+		currency_code="1" language_code="1" shipment_logistics_district_code="1"
+		store_scale_pattern_code="1" existing_store_type_code="1"
+		inventory_object_type_code="1" register_cat_interlock_type_code="1"
+		ss_store_manager_store_type_code="1" renewal_before_close_date="2010-03-15 00:00:00"
+		open_term_number="1" store_inspection_start_date="2010-03-15 00:00:00"
+		store_inspection_end_date="2010-03-15 00:00:00" close_type_code="1"
+		direct_management_fc_store_type_code="1" consignment_store_type_code="1"
+		system_machine_removal_date="2010-03-15 00:00:00"
+		sale_channel_type_code="1" transfer_out_control_exclude_flag="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" system_brand_code="1" system_business_code="1" />
+
+	<m_store_general_purpose general_purpose_type="time_zone"
+		store_code="1" system_country_code="1" system_brand_code="1" code="Z"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+	<m_store_general_purpose general_purpose_type="time_zone"
+		store_code="2" system_country_code="1" system_brand_code="1" code="Z"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+	<m_store_general_purpose general_purpose_type="ec_flag"
+		store_code="1" system_country_code="1" system_brand_code="1" code="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+	<m_store_general_purpose general_purpose_type="ec_flag"
+		store_code="2840339076" system_country_code="1" system_brand_code="1" code="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+		
+		
+	<m_trans_tender store_code="1" tender_id="1" tender_group="1"
+		valid_date="2010-03-15 00:00:00"
+		ims_tender_id="1" ims_tender_group="1" create_datetime="2010-03-15 00:00:00"/>
+
+	<m_trans_tender store_code="2" tender_id="1" tender_group="1"
+		valid_date="2010-03-15 00:00:00"
+		ims_tender_id="1" ims_tender_group="1" create_datetime="2010-03-15 00:00:00"/>
+	<m_trans_tender store_code="2231607102"
+		tender_id="41777501526499488023554257449285318651765769836702"
+		valid_date="2010-03-15 00:00:00"
+		ims_tender_id="1" ims_tender_group="1" create_datetime="2010-03-15 00:00:00"/>
+		
+
+	<t_pay_off_data store_code="1" payoff_date="1"
+		payoff_type_code="3" payoff_type_sub_number_code="3" cash_register_no="1"
+		payoff_amount="1" payoff_quantity="1"
+		processing_flag="1" integrity_check_type="1" accounting_record_status="1"
+		batch_region="1" system_brand_code="1" system_business_code="1"
+		system_country_code="1"
+		advance_received_store_code="1" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" data_alteration_status="1" daily_summary_error_notification_flag="1" regular_time_error_notification_flag="1"
+		report_output_count="1" />
+
+	<t_pay_off_data store_code="2" payoff_date="20171231"
+		payoff_type_code="3" payoff_type_sub_number_code="3" cash_register_no="1"
+		payoff_amount="1" payoff_quantity="1"
+		processing_flag="1" integrity_check_type="1" accounting_record_status="1"
+		batch_region="1" system_brand_code="1" system_business_code="1"
+		system_country_code="1"
+		advance_received_store_code="1" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" data_alteration_status="1" daily_summary_error_notification_flag="1" regular_time_error_notification_flag="1"
+		report_output_count="1" /> 
+	<m_item />
+</dataset>

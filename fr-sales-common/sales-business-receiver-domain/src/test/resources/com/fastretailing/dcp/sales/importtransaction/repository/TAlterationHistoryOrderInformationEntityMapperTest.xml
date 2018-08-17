@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<t_alteration_history_order_information
+		transaction_id="1" integrated_order_id="1" history_type="1"
+		sales_transaction_error_id="1" order_barcode_number="1" store_code="1"
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		channel_code="1" update_type="1" customer_id="1"
+		order_confirmation_business_date="1" order_confirmation_date_time="2010-03-15 00:00:00"
+		error_check_type="1" data_alteration_sales_linkage_type="1"
+		data_alteration_backbone_linkage_type="1"
+		data_alteration_editing_flag="1" data_alteration_user_id="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+</dataset>

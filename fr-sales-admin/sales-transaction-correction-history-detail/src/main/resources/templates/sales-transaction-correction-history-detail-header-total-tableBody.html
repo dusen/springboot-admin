@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(salesTransactionHeader)" class="scroll-block height100">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width12em">
+			<col class="width12em">
+		</colgroup>
+		<tbody id="totalTbody" th:class="|total_table_${stat.index}|">
+			<th:block
+				th:each="itemDetail, itemStat : ${transaction.salesTransactionTotalList}">
+				<tr id="totalListTr"
+					th:class="|v-align-middle item_total_del_target_${stat.index}|"
+					th:data-headerindex="${stat.index}"
+					th:data-totalindex="${itemStat.index}"
+					th:data-inputclass="|.transaction_total_${stat.index}_${itemStat.index}|">
+					<td class="text-center">
+						<div class="historyBefore block-item">
+							<label id="historyBefore"
+								th:text="#{sales-transaction-correction-history-detail.historyBefore}"></label>
+						</div>
+						<div class="historyAfter hide-elem">
+							<label id="historyAfter"
+								th:text="#{sales-transaction-correction-history-detail.historyAfter}"></label>
+						</div>
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTotalList[__${itemStat.index}__].totalType}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="totalType : *{totalTypeMap}"
+										th:selected="${totalType.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTotalList[__${itemStat.index}__].totalType}"
+										th:data-value="${totalType.key}"
+										th:data-name="${totalType.value}"><span
+										th:text="${totalType.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center">
+						<div class="selectbox">
+							<div class="selectbox-text">
+								<input type="text" readonly> <input type="hidden"
+									class="textbox"
+									th:field="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTotalList[__${itemStat.index}__].totalAmountTaxIncluded.currencyCode}">
+							</div>
+							<div class="select-elem" style="display: none">
+								<ul class="category ">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-transaction-correction.select.clear}"></span></li>
+									<li th:each="currencyCode : *{currencyCodeMap}"
+										th:selected="${currencyCode.key} == *{transactionImportData.transactionList[__${stat.index}__].salesTransactionTotalList[__${itemStat.index}__].totalAmountTaxIncluded.currencyCode}"
+										th:data-value="${currencyCode.key}"
+										th:data-name="${currencyCode.value}"><span
+										th:text="${currencyCode.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+					<td class="text-center"><label
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTotalList[__${itemStat.index}__].totalAmountTaxExcluded.value}"></label>
+					</td>
+					<td class="text-center"><label
+						th:text="*{transactionImportData.transactionList[__${stat.index}__].salesTransactionTotalList[__${itemStat.index}__].totalAmountTaxIncluded.value}"></label>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+</html>

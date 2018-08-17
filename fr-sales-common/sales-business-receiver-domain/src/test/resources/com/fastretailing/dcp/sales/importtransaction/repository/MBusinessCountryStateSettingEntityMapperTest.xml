@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="1" code_l2="1" code_l3="1"
+		code_value="1" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1"/>
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="1" code_l2="1" code_l3="1"
+		code_value="2" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1" />
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="1" code_l1="1" code_l2="1" code_l3="1"
+		code_value="3" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1" />
+
+	<m_business_country_state_setting
+		system_brand_code="1" system_business_code="1" system_country_code="1"
+		state_code="1" store_code="2" code_l1="2" code_l2="2" code_l3="2"
+		code_value="2" create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" variable_type="1" display_order="1" />
+
+</dataset>

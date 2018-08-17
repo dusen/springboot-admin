@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div id="scrollDiv" class="scroll-block th-fixed-body v-hheight body-height" th:fragment="tableBody(settlementCorrectionHistoryList)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width5em">
+			<col class="width10em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width30em">
+			<col class="width10em">
+			<col class="width30em">
+			<col class="width15em">
+			<col class="width15em">
+			<col class="width30em">
+			<col class="width30em">
+			<col class="width10em">
+			<col class="width30em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle"
+				th:each="info , stat: ${settlementCorrectionHistoryList}"
+				th:data-showAmountColor="${info != null ? info.amountDiffFlag:''}"
+				th:data-showQuantityColor="${info != null ? info.quantityDiffFlag:''}">
+				<input type="hidden" th:field="*{settlementCorrectionHistoryList[__${stat.index}__].amountDiffFlag}">
+				<input type="hidden" th:field="*{settlementCorrectionHistoryList[__${stat.index}__].quantityDiffFlag}">
+				<td class="text-left"><label
+					th:text="${info != null ? info.brandCode:''}"></label><input 
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].brandCode}">
+				</td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.countryCode:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].countryCode}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.viewStoreCode:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].viewStoreCode}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.storeName:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].storeName}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.payoffDate:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffDate}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.cashRegisterNo:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].cashRegisterNo}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.payoffTypeCode:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffTypeCode}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.payoffTypeCodeName:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffTypeCodeName}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.payoffTypeSubNumber:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffTypeSubNumber}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.payoffTypeSubNumberName:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffTypeSubNumberName}"></td>
+				<td class="text-right amount"><label
+					th:text="${info != null ? info.payoffAmountBefore:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffAmountBefore}"></td>
+				<td class="text-right amount"><label
+					th:text="${info != null ? info.payoffAmountAfter:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffAmountAfter}"></td>
+				<td class="text-right quantity"><label
+					th:text="${info != null ? info.payoffQuantityBefore:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffQuantityBefore}"></td>
+				<td class="text-right quantity"><label
+					th:text="${info != null ? info.payoffQuantityAfter:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].payoffQuantityAfter}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.corrector:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].corrector}"></td>
+				<td class="text-left"><label
+					th:text="${info != null ? info.correctionDate:''}"></label><input
+					type="hidden"
+					th:field="*{settlementCorrectionHistoryList[__${stat.index}__].correctionDate}"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

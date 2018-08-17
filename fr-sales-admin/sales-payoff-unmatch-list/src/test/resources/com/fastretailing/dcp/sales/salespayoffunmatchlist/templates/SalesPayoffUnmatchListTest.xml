@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<!-- country -->
+	<m_common_code_master type_id="system_country_code"
+		type_value="01" display_order="1" name_1="Japan" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="02" display_order="2" name_1="UK" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="03" display_order="3" name_1="China" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="04" display_order="4" name_1="U.S.A." name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_country_code"
+		type_value="05" display_order="5" name_1="Korea" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<!-- brand -->
+	<m_common_code_master type_id="system_brand_code"
+		type_value="0001" display_order="1" name_1="UQ" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="system_brand_code"
+		type_value="0005" display_order="2" name_1="GU" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<!-- Error Contents	 -->
+<!--
+	<m_common_code_master type_id="integrity_check_type"
+		type_value="0" display_order="0" name_1="未チェック" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="integrity_check_type"
+		type_value="1" display_order="1" name_1="整合済" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+-->
+	<m_common_code_master type_id="integrity_check_type"
+		type_value="2" display_order="2" name_1="区分不一致" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="integrity_check_type"
+		type_value="3" display_order="3" name_1="貸借不一致" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<!-- data_alteration_status -->
+	<m_common_code_master type_id="data_alteration_status"
+		type_value="0" display_order="1" name_1="未補正" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="data_alteration_status"
+		type_value="1" display_order="2" name_1="補正済" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_common_code_master type_id="data_alteration_status"
+		type_value="2" display_order="3" name_1="補正中" name_2="1" name_3="1"
+		name_4="1" name_5="1" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+		
+	<!-- m_trans_store_code -->
+	<m_trans_store_code
+		store_code="112081"  store_name="SSC" view_store_code="9720" integrate_db_store_code="D5403009720"
+		system_brand_code="0001" system_business_code="0017" business_name="UQCD"
+		block_code="97" block_name="UQCD Other(Lv1)" area_code="97" area_name="UQCD Other(Lv2)"
+		system_country_code="17" country_name="Canada" batch_region="23" integrate_db_business_code="16"
+		send_target_store_flag="true" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+	<m_trans_store_code
+		store_code="112226"  store_name="Yorkdale Shopping Center" view_store_code="1" integrate_db_store_code="S5403002001"
+		system_brand_code="0001" system_business_code="0017" business_name="UQCD"
+		block_code="1" block_name="Store Operations EAST Block" area_code="1" area_name="Store Operations Ontario Area"
+		system_country_code="17" country_name="Canada" batch_region="23" integrate_db_business_code="16"
+		send_target_store_flag="true" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1" />
+
+	<!-- t_pay_off_data base. -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180610" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Brand -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180611" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0005" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Country  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180612" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="02" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Store  -->
+	<t_pay_off_data 
+		store_code="112226" payoff_date="20180610" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Register No  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180610" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="101" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Payoff Date  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180604" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Payoff Date  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180605" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Payoff Date  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180625" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Payoff Date  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180626" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="2" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Error Contents  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180613" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="0" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Error Contents  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180614" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="1" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+	<!-- t_pay_off_data different Error Contents  -->
+	<t_pay_off_data 
+		store_code="112081" payoff_date="20180615" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+		cash_register_no="100" 
+		report_output_count="0" processing_flag="false" integrity_check_type="3" 
+		batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+		daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="0"
+		close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+		create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+		update_program_id="1"/>
+    <!-- t_pay_off_data different Status  -->
+    <t_pay_off_data 
+    	store_code="112081" payoff_date="20180616" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+    	cash_register_no="100" 
+    	report_output_count="0" processing_flag="false" integrity_check_type="2" 
+    	batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+    	daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="1"
+    	close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+        create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+        update_program_id="1"/>
+    <!-- t_pay_off_data different Status  -->
+    <t_pay_off_data 
+    	store_code="112081" payoff_date="20180617" payoff_type_code="000001" payoff_type_sub_number_code="0001"
+    	cash_register_no="100" 
+    	report_output_count="0" processing_flag="false" integrity_check_type="2" 
+    	batch_region="1" system_brand_code="0001" system_country_code="01" regular_time_error_notification_flag="false"
+    	daily_summary_error_notification_flag="false" advance_received_store_code="000001" data_alteration_status="2"
+    	close_complete_flag="false" create_user_id="1" create_datetime="2018-05-23 5:05:12"
+        create_program_id="1" update_user_id="1" update_datetime="2018-05-23 5:05:12"
+        update_program_id="1"/>
+</dataset>

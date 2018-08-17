@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+  namespace="com.fastretailing.dcp.storecommon.screen.authorization.repository.ScreenMasterMapper">
+  <select id="selectRoleAccessibleToPath" parameterType="List" 
+    resultType="String">
+    select distinct ras.role
+    from m_screen_path as sp, m_role_accessible_screen as ras
+    where sp.path in
+    <foreach item="path" collection="pathList" open="(" separator="," close=")">
+      #{path}
+    </foreach>
+    and sp.screen_name = ras.screen_name
+    order by ras.role asc
+  </select>
+</mapper>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(evacuatedSalesInformationList)">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width4em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width8em">
+			<col class="width10em">
+			<col class="width20em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width10em">
+			<col class="width20em">
+			<col class="width10em">
+			<col class="width10em">
+			<col class="width15em">
+			<col class="width15em">
+			<col class="width15em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle"
+				th:if="${not #lists.isEmpty(evacuatedSalesInformationList)}"
+				th:each="info , stat: ${evacuatedSalesInformationList}">
+				<td class="text-center"><label
+					th:text="${info != null ? info.store:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].store}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.registerNo:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].registerNo}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.receiptNo:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].receiptNo}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.updateType:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].updateType}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.salesLinkageType:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].salesLinkageType}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.dataCreationBusinessDate:''}"></label>
+					<input type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].dataCreationBusinessDate}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.dataCreationDateTime:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].dataCreationDateTime}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.orderStatus:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].orderStatus}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.orderSubStatus:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].orderSubStatus}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.orderStatusUpdateDate:''}"></label>
+					<input type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].orderStatusUpdateDate}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.orderStatusLastUpdateDateTime:''}"></label>
+					<input type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].orderStatusLastUpdateDateTime}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.employeeSaleFlag:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].employeeSaleFlag}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.corporateSaleFlag:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].corporateSaleFlag}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.corporateId:''}"></label> <input
+					type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].corporateId}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.salesTransactionDiscountFlag:''}"></label>
+					<input type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].salesTransactionDiscountFlag}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.salesTransactionDiscountAmountRate:''}"></label>
+					<input type="hidden"
+					th:field="*{evacuatedSalesInformationList[__${stat.index}__].salesTransactionDiscountAmountRate}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

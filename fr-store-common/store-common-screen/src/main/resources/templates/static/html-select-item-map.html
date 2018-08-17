@@ -1,0 +1,24 @@
+				<div th:fragment="selectItemMap(layout, selectedFieldId, selectMap, selectItem, labelClass, selectBoxClass)" th:remove="tag">
+					<div th:class="__${labelClass}__">
+						<label
+							th:utext="#{__${layout}__.__${selectItem}__Label}"></label>
+					</div>
+					<div th:class="${selectBoxClass}">
+						<div class="selectbox" th:id="__${selectItem}__Select">
+							<div class="selectbox-text">
+								<input type="text" readonly>
+								<input type="hidden" th:field="*{__${selectItem}__}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{__${layout}__.select.clear}"></span></li>
+									<li th:each="__${selectItem}__ : *{__${selectMap}__}"
+										th:data-value="${__${selectItem}__.key}"
+										th:data-name="${__${selectItem}__.value}"><span
+										th:text="${__${selectItem}__.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>

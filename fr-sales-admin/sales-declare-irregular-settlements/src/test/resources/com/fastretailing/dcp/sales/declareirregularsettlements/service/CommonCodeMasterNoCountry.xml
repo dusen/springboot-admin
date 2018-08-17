@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <m_common_code_master 
+        type_id="system_country_code"
+        type_value="sc1"
+        display_order="1"
+        name_1="countryName1"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    <m_common_code_master 
+        type_id="system_country_code"
+        type_value="sc2"
+        display_order="2"
+        name_1="countryName2"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+    <m_common_code_master 
+        type_id="system_country_code"
+        type_value="sc3"
+        display_order="3"
+        name_1="countryName3"
+        create_user_id="BATCH"
+        create_datetime="2018-03-08 05:13:53"
+        create_program_id="SLS1300301"
+        update_user_id="BATCH"
+        update_datetime="2018-03-08 05:13:53"
+        update_program_id="SLS1300301"
+    />
+</dataset>

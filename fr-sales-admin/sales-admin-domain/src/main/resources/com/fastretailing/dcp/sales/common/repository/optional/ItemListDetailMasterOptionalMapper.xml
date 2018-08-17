@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.ItemListDetailMasterOptionalMapper">
+	<insert id="insertBySkulistChildWork">
+		insert into /* ItemListDetailMasterOptionalMapper-001 */ m_item_list_detail
+		select
+			system_brand_code,
+			business_code, 
+			country_code, 
+			skulist_code,
+			item_code,
+			item_level,
+			inventory_management_level,
+			pack_ind, 
+			main_item_flag,
+			#{updateUserId},
+			#{updateDatetime},
+			#{updateProgramId},
+			#{updateUserId},
+			#{updateDatetime},
+			#{updateProgramId}
+		from ( 
+			select
+				m.system_brand_code,
+				btrim(to_char(w.business_code,'9999999999')) business_code,
+				w.country_code, 
+				btrim(to_char(w.skulist_code,'99999999')) skulist_code,
+				w.item_code,
+				w.item_level,
+				w.inventory_management_level,
+				w.pack_ind, 
+				cast(w.main_item_type as boolean) main_item_flag 
+			from 
+				w_skulist_child w, m_trans_business_code m 
+			where
+				w.lot_number = #{ lotNumber }
+				and w.eai_update_type in ('1','2','9') 
+				and btrim(to_char(w.business_code,'9999999999')) = m.system_business_code 
+				and w.country_code = m.system_country_code 
+		except 
+			select
+				system_brand_code,
+				system_business_code,
+				system_country_code, 
+				skulist_code,
+				item_code,
+				item_level,
+				inventory_management_level,
+				pack_ind, 
+				main_item_flag 
+			from
+				m_item_list_detail
+		) total
+	</insert>
+	
+	<update id="updateBySkulistChildWork">
+		update /* ItemListDetailMasterOptionalMapper-002 */ m_item_list_detail
+		set
+			system_business_code = wm.business_code,
+			item_level = wm.item_level,
+			inventory_management_level = wm.inventory_management_level,
+			pack_ind = wm.pack_ind,
+			main_item_flag = cast(wm.main_item_type as boolean),
+			update_user_id = #{ updateUserId },
+			update_datetime = #{ updateDatetime },
+			update_program_id = #{ updateProgramId }
+		from (
+			select
+				m.system_brand_code,
+				w.business_code,
+				w.country_code,
+				w.skulist_code,
+				w.item_code,
+				w.item_level,
+				w.inventory_management_level,
+				w.pack_ind,
+				w.main_item_type
+			from
+				w_skulist_child w, m_trans_business_code m
+			where btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+				and w.country_code = m.system_country_code
+				and w.lot_number = #{ lotNumber }
+				and w.eai_update_type ='2'
+			) wm
+		where
+			m_item_list_detail.system_brand_code = wm.system_brand_code
+			and m_item_list_detail.system_country_code = wm.country_code
+			and m_item_list_detail.skulist_code = btrim(to_char(wm.skulist_code,'99999999'))
+			and m_item_list_detail.item_code = wm.item_code
+	</update>
+	
+	<update id="updateAllBySkulistChildWork">
+		update /* ItemListDetailMasterOptionalMapper-003 */ m_item_list_detail
+		set
+			system_business_code = wm.business_code,
+			item_level = wm.item_level,
+			inventory_management_level = wm.inventory_management_level,
+			pack_ind = wm.pack_ind,
+			main_item_flag = cast(wm.main_item_type as boolean),
+			create_user_id = #{ updateUserId },
+			create_datetime = #{ updateDatetime },
+			create_program_id = #{ updateProgramId },
+			update_user_id = #{ updateUserId },
+			update_datetime = #{ updateDatetime },
+			update_program_id = #{ updateProgramId }
+		from (
+			select
+				m.system_brand_code,
+				w.business_code,
+				w.country_code,
+				w.skulist_code,
+				w.item_code,
+				w.item_level,
+				w.inventory_management_level,
+				w.pack_ind,
+				w.main_item_type
+			from
+				w_skulist_child w, m_trans_business_code m
+			where btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+				and w.country_code = m.system_country_code
+				and w.lot_number = #{ lotNumber }
+				and w.eai_update_type in ('1','9')
+			) wm
+		where
+			m_item_list_detail.system_brand_code = wm.system_brand_code
+			and m_item_list_detail.system_country_code = wm.country_code
+			and m_item_list_detail.skulist_code = btrim(to_char(wm.skulist_code,'99999999'))
+			and m_item_list_detail.item_code = wm.item_code
+	</update>
+	
+	<delete id="deleteBySkulistChildWork">
+		delete from /* ItemListDetailMasterOptionalMapper-004 */ m_item_list_detail
+		using (
+			select * 
+			from 
+				w_skulist_child w, m_trans_business_code m
+			where 
+				btrim(to_char(w.business_code,'9999999999')) = m.system_business_code
+				and w.country_code = m.system_country_code
+				and w.lot_number = #{ lotNumber }
+				and w.eai_update_type = '3'
+			) wm
+		where
+			m_item_list_detail.system_brand_code = wm.system_brand_code
+			and m_item_list_detail.system_country_code = wm.country_code
+			and m_item_list_detail.skulist_code = btrim(to_char(wm.skulist_code,'99999999'))
+			and m_item_list_detail.item_code = wm.item_code
+	</delete>
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.ErrorEvacuationSalesTransactionHeaderDetailOptionalMapper">
+	<resultMap id="BaseResultMap"
+		type="com.fastretailing.dcp.sales.common.entity.optional.ErrorEvacuationSalesTransactionHeaderDetailOptional">
+		<id column="view_store_code" jdbcType="VARCHAR" property="storeCode" />
+		<result column="cash_register_no" jdbcType="NUMERIC" property="cashRegisterNo" />
+		<result column="receipt_no" jdbcType="VARCHAR" property="receiptNo" />
+		<result column="update_type" jdbcType="VARCHAR" property="updateType" />
+		<result column="sales_linkage_type" jdbcType="VARCHAR"
+			property="salesLinkageType" />
+		<result column="data_creation_date_time" jdbcType="VARCHAR"
+			property="dataCreationDateTime" />
+		<result column="data_creation_business_date" jdbcType="VARCHAR"
+			property="dataCreationBusinessDate" />
+		<result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+		<result column="order_substatus" jdbcType="VARCHAR" property="orderSubstatus" />
+		<result column="order_status_update_date" jdbcType="VARCHAR"
+			property="orderStatusUpdateDate" />
+		<result column="order_status_last_update_date_time" jdbcType="TIMESTAMP"
+			property="orderStatusLastUpdateDateTime" />
+		<result column="employee_sale_flag" jdbcType="VARCHAR"
+			property="employeeSaleFlag" />
+		<result column="consistency_sales_flag" jdbcType="VARCHAR"
+			property="consistencySalesFlag" />
+		<result column="corporate_id" jdbcType="VARCHAR" property="corporateId" />
+		<result column="sales_transaction_discount_flag" jdbcType="VARCHAR"
+			property="salesTransactionDiscountFlag" />
+		<result column="sales_transaction_discount_amount_rate_currency_code"
+			jdbcType="VARCHAR" property="salesTransactionDiscountAmountRateCurrencyCode" />
+		<result column="sales_transaction_discount_amount_rate"
+			jdbcType="VARCHAR" property="salesTransactionDiscountAmountRate" />
+	</resultMap>
+	<select id="selectErrorEvacuationHeaderDetailBySalesTransactionId"
+		parameterType="String" resultMap="BaseResultMap">
+		with t00 as (select * from
+		m_common_code_master)
+		select /*
+		ErrorEvacuationSalesTransactionHeaderDetailMapper-001 */
+		t02.view_store_code
+		, t01.cash_register_no
+		, t01.receipt_no
+		, (
+		select
+		name_1
+		from
+		t00
+		where
+		type_id = 'update_type'
+		and type_value =
+		t03.update_type
+		) as update_type
+		, (
+		select
+		name_1
+		from
+		t00
+		where
+		type_id =
+		'sales_linkage_type'
+		and type_value = cast(t01.sales_linkage_type as
+		char (1))
+		) as sales_linkage_type
+		, t01.data_creation_date_time
+		,
+		t01.data_creation_business_date
+		, t01.order_status
+		, t01.order_substatus
+		, t01.order_status_update_date
+		, t01.order_status_last_update_date_time
+		, (
+		select
+		name_1
+		from
+		t00
+		where
+		type_id = 'EMPLOYEE_DISCOUNT_FLAG'
+		and
+		type_value = upper(cast(t01.employee_sale_flag as varchar))
+		) as
+		employee_sale_flag
+		, (
+		select
+		name_1
+		from
+		t00
+		where
+		type_id =
+		'consistency_sales_flag'
+		and t00.type_value =
+		upper(cast(t01.consistency_sales_flag as varchar)
+		)) as consistency_sales_flag
+		, t01.corporate_id
+		, (
+		select
+		name_1
+		from
+		t00
+		where
+		type_id =
+		'sales_transaction_discount_flag'
+		and type_value =
+		cast(t01.sales_transaction_discount_flag as varchar)
+		) as
+		sales_transaction_discount_flag
+		,t01.sales_transaction_discount_amount_rate_currency_code
+		,t01.sales_transaction_discount_amount_rate
+		from
+		(
+		select
+		transaction_id
+		,
+		integrated_order_id
+		, sales_transaction_sub_number
+		, store_code
+		,
+		cash_register_no
+		, receipt_no
+		, sales_linkage_type
+		,
+		data_creation_date_time
+		, data_creation_business_date
+		, order_status
+		,
+		order_substatus
+		, order_status_update_date
+		,
+		order_status_last_update_date_time
+		, employee_sale_flag
+		,
+		consistency_sales_flag
+		, corporate_id
+		, sales_transaction_discount_flag
+		, sales_transaction_discount_amount_rate
+		, sales_transaction_discount_amount_rate_currency_code
+		from
+		t_error_evacuation_sales_transaction_header
+		where
+		sales_transaction_error_id = #{salesTransactionErrorId}
+		) t01
+		left outer
+		join m_trans_store_code t02
+		on t02.store_code = t01.store_code
+		left
+		outer join t_sales_error_sales_order_information t03
+		on
+		t03.transaction_id = t01.transaction_id
+		and t03.integrated_order_id =
+		t01.integrated_order_id
+		order by
+		t01.transaction_id asc
+		,
+		t01.sales_transaction_sub_number asc
+	</select>
+</mapper>

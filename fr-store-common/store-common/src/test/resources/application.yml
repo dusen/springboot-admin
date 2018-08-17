@@ -1,0 +1,17 @@
+platform: 
+  name:
+    short: SLS
+
+spring:
+  main:
+    banner-mode: 'off'
+
+  messages:
+    basename: messages,messages-dcp-common,messages-store-common
+
+    cache-seconds: -1
+    encoding: UTF-8
+
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

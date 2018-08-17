@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+   namespace="com.fastretailing.dcp.sales.common.repository.optional.BusinessCountrySettingMasterOptionalMapper">
+   <resultMap id="BaseResultMap"
+      type="com.fastretailing.dcp.sales.common.entity.optional.BusinessCountrySettingMasterOptional">
+      <id column="store_code" jdbcType="VARCHAR" property="storeCode" />
+      <id column="code_l1" jdbcType="VARCHAR" property="codeL1" />
+      <result column="system_brand_code" jdbcType="VARCHAR" property="systemBrandCode" />
+      <result column="system_country_code" jdbcType="VARCHAR"
+         property="systemCountryCode" />
+      <result column="system_business_code" jdbcType="VARCHAR"
+         property="systemBusinessCode" />
+      <result column="state_code" jdbcType="VARCHAR" property="stateCode" />
+      <result column="store_code" jdbcType="VARCHAR" property="storeCode" />
+      <result column="view_store_code" jdbcType="VARCHAR" property="viewStoreCode" />
+      <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+      <result column="code_l1" jdbcType="VARCHAR" property="codeL1" />
+      <result column="code_l2" jdbcType="VARCHAR" property="codeL2" />
+      <result column="code_l3" jdbcType="VARCHAR" property="codeL3" />
+      <result column="code_value" jdbcType="VARCHAR" property="codeValue" />
+      <result column="variable_type" jdbcType="VARCHAR" property="variableType" />
+      <result column="display_order" jdbcType="VARCHAR" property="displayOrder" />
+   </resultMap>
+   <select id="selectCodeL1List" resultType="String"
+      parameterType="com.fastretailing.dcp.sales.common.entity.optional.BusinessCountrySettingMasterOptionalCondition">
+      SELECT
+      code_l1
+      FROM(
+      SELECT
+      DISTINCT
+      code_l1
+      ,display_order
+      FROM
+      m_business_country_state_setting
+      WHERE
+      system_brand_code =
+      #{systemBrandCode}
+      <if test="systemCountryCode != null ">
+         AND system_country_code = #{systemCountryCode}
+      </if>
+      <if test="storeCode != null ">
+         AND store_code = #{storeCode}
+      </if>
+      ORDER BY
+      display_order ASC
+      )t01
+   </select>
+   <select id="selectStoreList" resultMap="BaseResultMap">
+      SELECT
+        state_code
+      , system_brand_code
+      , system_business_code
+      , system_country_code
+      , store_code
+      , view_store_code
+      , store_name  
+      FROM
+      (SELECT
+      state_code
+      , system_brand_code
+      , system_business_code
+      , system_country_code
+      , store_code
+      ,
+      store_code AS view_store_code
+      ,
+      code_l1 AS store_name
+      FROM
+      m_business_country_state_setting
+      WHERE
+      store_code LIKE '999%'
+	  GROUP BY
+	   system_brand_code
+      ,system_business_code
+      ,system_country_code
+      ,store_code
+      ,state_code
+      ,code_l1
+      ORDER BY
+      system_brand_code
+      ,system_country_code
+      ,store_code ASC
+      )AS store
+      UNION ALL
+      SELECT
+        state_code
+      , system_brand_code
+      , system_business_code
+      , system_country_code
+      , store_code
+      , view_store_code
+      , store_name  
+      FROM
+      (SELECT
+      t03.state_code
+      ,
+      t03.system_brand_code
+      ,
+      t03.system_business_code
+      ,
+      t03.system_country_code
+      , t03.store_code
+      , t03.view_store_code
+      ,
+      t03.store_name
+      FROM
+      (
+      SELECT
+      t01.state_code
+      , t02.system_brand_code
+      ,
+      t02.system_business_code
+      , t02.system_country_code
+      , t02.store_code
+      ,
+      t02.store_name
+      , t02.view_store_code
+      FROM
+      m_store t01
+      INNER JOIN
+      m_trans_store_code t02
+      ON t01.store_code = t02.store_code
+      ) t03
+      LEFT
+      OUTER JOIN
+      m_business_country_state_setting t04
+      ON t03.store_code =
+      t04.store_code
+      AND t03.system_brand_code = t04.system_brand_code
+      AND
+      t03.system_country_code = t04.system_country_code
+      WHERE
+      t03.system_brand_code = #{systemBrandCode}
+      <if test="systemCountryCode != null and systemCountryCode != '' ">
+         AND t03.system_country_code = #{systemCountryCode}
+      </if>
+      <if test="storeCode != null  and storeCode != '' ">
+         AND t03.store_code
+         = #{storeCode}
+      </if>
+       GROUP BY
+	   t03.system_brand_code
+      ,t03.system_business_code
+      ,t03.system_country_code
+      ,t03.store_code
+      ,t03.state_code
+      ,t03.view_store_code
+      ,t03.store_name
+      ORDER BY
+      t03.system_brand_code
+      ,t03.system_country_code
+      ,t03.store_code
+      ASC
+      )AS defaultstore
+   </select>
+   <select id="countByCondition" resultType="int">
+      SELECT
+      COUNT(*)
+      FROM
+      (
+      SELECT DISTINCT
+      code_l1
+      FROM
+      m_business_country_state_setting
+      WHERE
+      store_code = #{storeCode}
+      AND
+      code_l1 IN (
+      'LINKAGETIMING'
+      , 'SALESREPORT'
+      , 'PAYOFFDATA'
+      ,
+      'BUSINESSDATECHECK'
+      , 'TAXTYPE'
+      , 'SALESINTEGRITYCHECK'
+      ,
+      'SALESINTEGRITYCHECKTYPE'
+      , 'DECIMAL'
+      )
+      ) t01
+   </select>
+   <select id="selectStoreCodeL1" resultMap="BaseResultMap">
+      SELECT
+      code_l1
+      , code_l2
+      , code_l3
+      , code_value
+      , variable_type
+      ,
+      display_order
+      FROM
+      m_business_country_state_setting
+      WHERE
+      system_brand_code = #{systemBrandCode}
+      AND
+      code_l1 IN (
+      'LINKAGETIMING'
+      ,
+      'SALESREPORT'
+      , 'PAYOFFDATA'
+      ,
+      'BUSINESSDATECHECK'
+      , 'TAXTYPE'
+      ,
+      'SALESINTEGRITYCHECK'
+      ,
+      'SALESINTEGRITYCHECKTYPE'
+      , 'DECIMAL'
+      )
+      <if test="systemCountryCode != '000' ">
+         AND system_country_code = #{systemCountryCode}
+      </if>
+      AND store_code = #{storeCode}
+      AND variable_type = '1'
+   </select>
+</mapper>

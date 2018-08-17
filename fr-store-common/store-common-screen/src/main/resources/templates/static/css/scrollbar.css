@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.scroll-block::-webkit-scrollbar,
+.select-elem::-webkit-scrollbar {
+	background: #ccc;
+	height: 17px;
+	width: 17px;
+}
+
+.scroll-block::-webkit-scrollbar-thumb,
+.select-elem::-webkit-scrollbar-thumb {
+	background: #aaa;
+}

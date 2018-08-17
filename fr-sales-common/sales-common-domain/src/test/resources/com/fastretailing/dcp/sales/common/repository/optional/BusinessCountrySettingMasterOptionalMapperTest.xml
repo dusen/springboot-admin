@@ -1,0 +1,45 @@
+<?xml version= "1.0" encoding = "UTF-8"?>
+<dataset>
+	<m_business_country_state_setting
+		system_brand_code="0001" system_business_code="0017"
+		system_country_code="17" state_code="0" store_code="112326" code_l1="LINKAGETIMING"
+		code_l2="SALESLINKAGEUNIT" code_l3="LINKAGEUNIT" code_value="0"
+		variable_type="1" display_order="1" create_user_id="mygration"
+		create_datetime="2018-05-31 12:15:41" create_program_id="mygration"
+		update_user_id="mygration" update_datetime="2018-05-31 12:15:41"
+		update_program_id="mygration" />
+
+	<m_business_country_state_setting
+		system_brand_code="0001" system_business_code="0017"
+		system_country_code="17" state_code="0" store_code="112326" code_l1="SALESREPORT"
+		code_l2="SIGNCOLUMN" code_l3="DCASH" code_value="0" variable_type="0"
+		display_order="1" create_user_id="mygration" create_datetime="2018-05-31 12:15:41"
+		create_program_id="mygration" update_user_id="2018-05-31 12:15:41"
+		update_datetime="2018-05-31 12:15:41" update_program_id="mygration" />
+	<m_store store_code="112326" store_name="SSC" store_name_kana="0"
+		store_addr1="6580 Millcreek Drive, Mississauga, Ontario L5N 8B3"
+		store_addr2="0" store_city="1" county="0" state_code="071"
+		system_country_code="17" postal_code="0" fax_number="0" phone_number="+1-416-401-3011"
+		store_type_code="8" open_date="2017-03-01" close_date="2099-12-31"
+		vat_region_code="1" channel_id="1" area_code="96" order_start_date="1"
+		order_end_date="0" currency_code="CAD" language_code="1"
+		shipment_logistics_district_code="99" store_scale_pattern_code="99"
+		existing_store_type_code="9" inventory_object_type_code="1"
+		register_cat_interlock_type_code="1" ss_store_manager_store_type_code="1"
+		open_term_number="1" close_type_code="1"
+		direct_management_fc_store_type_code="1" consignment_store_type_code="99"
+		sale_channel_type_code="1" transfer_out_control_exclude_flag="False"
+		system_brand_code="0001" system_business_code="0017" create_user_id="mygration"
+		create_datetime="2018-05-31 12:15:41" create_program_id="mygration"
+		update_user_id="mygration" update_datetime="2018-05-31 12:15:41"
+		update_program_id="mygration" />
+	<m_trans_store_code store_code="112326" store_name="UQCD_EC"
+		view_store_code="5000" integrate_db_store_code="Z5403000001"
+		system_brand_code="0001" system_business_code="0017" business_name="UQCD"
+		block_code="96" block_name="UQCD_EC(Lv1)'" area_code="96" area_name="UQCD_EC(Lv2)'"
+		system_country_code="17" country_name="Canada" batch_region="23"
+		integrate_db_business_code="16" send_target_store_flag="true"
+		create_user_id="mygration" create_datetime="2018-05-31 12:15:41"
+		create_program_id="mygration" update_user_id="mygration"
+		update_datetime="2018-05-31 12:15:41" update_program_id="mygration" />
+</dataset>

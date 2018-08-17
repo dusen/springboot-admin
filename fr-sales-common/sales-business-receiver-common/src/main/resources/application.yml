@@ -1,0 +1,78 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: SLS
+    full: sales
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+  port: 8081
+  session:
+    timeout: 60
+    
+spring:
+  messages:
+    basename: messages,messages-import-transaction,messages-dcp-common,messages-store-common,i18n/messages-sales-api
+    cache-seconds: -1
+    encoding: UTF-8
+  
+  session:
+    store-type: jdbc
+    
+  datasource:
+    url: ${db_url}
+    username: ${db_user}
+    password: ${db_password}
+    driverClassName: org.postgresql.Driver
+   
+  redis:
+    host: ${redis_url}
+    port: ${redis_port}
+    pool:
+      max-active: 100
+      max-idle: 100
+      min-idle: 0
+      max-wait: -1
+
+  transaction:
+    default-timeout: 60
+
+cloud:
+  aws:
+    stack:
+      auto: false
+
+logging:
+  level:
+    com.fastretailing.dcp: DEBUG
+  file: 
+  path: logs
+  
+version: 
+  aws: 1.11.228
+
+transaction-dispatch: 
+  sqs: 
+    queue-name: ${sqs_queue_name}
+    connection-timeout: 10000
+    request-timeout: 0
+    backoff-strategy: default
+    max-error-retry: 3
+  dynamodb:
+    transaction-status-table: ${dynamo_table_name_status}
+    region: ${aws_region}
+    connection-timeout: 10000
+    request-timeout: 0
+    backoff-strategy: default
+    max-error-retry: 10
+  aws-region: ${aws_region}
+  channel-code: ${redis_channel_code}
+  max-number-of-message: 10
+  with-wait-time-seconds: 20
+  businessReceiverName: ${business_receiver_name}

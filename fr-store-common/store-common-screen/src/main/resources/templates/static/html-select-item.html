@@ -1,0 +1,21 @@
+				<div th:fragment="selectItem(layout, selectedFieldId, selectList, selectItem, labelClass, selectBoxClass)" th:remove="tag">
+					<div th:class="__${labelClass}__">
+						<label th:utext="#{__${layout}__.__${selectItem}__Label}"></label>
+					</div>
+					<div th:class="${selectBoxClass}">
+						<div class="selectbox" th:id="__${selectItem}__Select">
+							<div class="selectbox-text">
+								<input type="text" readonly/>
+								<input type="hidden" th:field="*{__${selectedFieldId}__}"/>
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{__${layout}__.select.clear}"></li>
+									<li th:each="selectitem : *{__${selectList}__}" th:data-value="${selectitem.value}"
+										th:text="${selectitem.name}" th:data-name="${selectitem.name}"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>

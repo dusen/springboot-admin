@@ -1,0 +1,27 @@
+.mr-left-20 {
+	margin-left: 20px;
+}
+
+.mr-left-170 {
+	margin-left: 170px;
+}
+
+.mr-left-302 {
+	margin-left: 302px;
+}
+
+.height10 {
+    height: 10px;
+}
+
+a.disabled{
+    pointer-events: none;
+}
+.text-left-align {
+  text-align: left !important;
+  vertical-align: middle;
+}
+.text-right-align {
+  text-align: right !important;
+  vertical-align: middle;
+}

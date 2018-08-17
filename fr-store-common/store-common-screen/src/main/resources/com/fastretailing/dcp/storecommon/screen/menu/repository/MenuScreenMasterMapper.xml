@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.storecommon.screen.menu.repository.MenuScreenMasterMapper">
+	<select id="selectScreenListByRole"
+		resultType="com.fastretailing.dcp.storecommon.screen.menu.entity.MenuScreenEntity">
+		select /* MenuScreenMasterMapper-001 */ distinct ms.screen_name, sp.path, ms.display_order
+		from m_menu_screen as ms
+		inner join m_role_accessible_screen as ras
+			on ms.screen_name = ras.screen_name
+			and ras.role in
+				<foreach item="role" collection="roles" open="(" separator="," close=")">
+					#{role}
+				</foreach>
+		inner join m_screen_path as sp
+			on sp.screen_name = ras.screen_name
+		where ms.menu_name = #{menuName}
+		order by ms.display_order asc
+	</select>
+</mapper>

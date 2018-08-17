@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:object="${brandCountrySettingEditForm}">
+	<div
+		th:replace="brand-country-setting-edit-tableBody :: tableBody(*{brandCountrySettingEditList})"></div>
+</div>
+</html>

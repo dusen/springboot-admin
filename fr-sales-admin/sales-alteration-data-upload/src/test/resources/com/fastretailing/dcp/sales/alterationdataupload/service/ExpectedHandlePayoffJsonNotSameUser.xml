@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<t_alteration_exclusion_control store_code="222" business_date="20180512" 
+cash_register_no="134" data_alteration_type="2" exclusion_valid_time="0" 
+create_user_id="aa"  create_program_id="cc" 
+update_user_id="bb"  update_program_id="dd" />
+</dataset>

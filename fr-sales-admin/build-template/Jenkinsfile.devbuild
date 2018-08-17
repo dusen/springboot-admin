@@ -1,0 +1,171 @@
+//------------------------------------------------------------------------------
+// JenkinsFile
+//------------------------------------------------------------------------------
+// Library Version Constant
+def FLYWAY_VERSION = "5.0.3"
+def PG_JDBC_VERSION = "42.1.4"
+
+// Build Constant
+def CONST_REPOSITORY_PATH = "/content/groups/public/"
+def CONST_REPOSITORY_GROUPID = "com/fastretailing/dcp/"
+def CONST_BUILD_TEMPLATE_PATH = "build-template"
+def CONST_ECR_DOMAIN = "{0}.dkr.ecr.{1}.amazonaws.com"
+def CONST_REPORT_DIRECTORY_PATH = "target/site"
+def CONST_ARCHIVE_REPORTS_DIRECTORY_PATH = "target/report"
+def CONST_ENVIRONMENT_DEPENDENT_CONFIG = "environment_dependent_config"
+def CONST_AWS_ECS_CONFIG = "aws_ecs_config"
+
+// Build Variable
+def topic_label
+def artifactId
+def build_environment
+def pom_version
+def nexus_protcol
+def nexus_domain
+def nexus_port
+def aws_account
+def aws_ecr_domain
+def aws_ecr_repository_region_list
+def aws_ecr_repository_list
+def aws_ecr_tag
+def isDockerPush = false
+def buildConfig
+def jenkins_build_tag
+def git_repository_name
+
+pipeline {
+    agent any
+    tools { 
+        jdk 'openjdk-1.8.0'
+        maven 'maven3.5.2'
+    }
+    stages {
+        stage('init') {
+            steps {
+                script {
+                    git_repository_name = sh (script:"echo -n ${env.GIT_URL} | sed -e 's|^.*/\\(.\\+\\)\\.git\$|\\1|g'", returnStdout: true)
+                    topic_label = sh (script:"echo -n ${env.GIT_BRANCH} | sed -e 's|^develop||g'", returnStdout: true)
+                    aws_account = sh (script:"aws sts get-caller-identity | jq -r '.Account'", returnStdout: true).trim()
+
+                    buildConfig = readJSON file: "${WORKSPACE}/${CONST_BUILD_TEMPLATE_PATH}/config.json"
+                    build_environment = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].build_environment
+                    nexus_protcol = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_protcol
+                    nexus_domain = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_domain
+                    nexus_port = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_port
+
+                    artifactId = buildConfig[CONST_AWS_ECS_CONFIG][git_repository_name].artifactid
+                    aws_ecr_repository_list = buildConfig[CONST_AWS_ECS_CONFIG][git_repository_name].ecr_repository
+                    aws_ecr_repository_region_list = buildConfig[CONST_AWS_ECS_CONFIG].repository_region_list
+
+                    pom_version = sh (script:"mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '^\\[' | grep -v 'Download'", returnStdout: true).trim()
+                    sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml versions:set -DnewVersion=${pom_version}${topic_label}"
+                    jenkins_build_tag = "${env.BUILD_TAG}"
+                    //if (topic_label == '' || topic_label ==~ /^-sandbox([\d]+)?$/) {
+                    if (topic_label == '' || topic_label ==~ /^-sandbox([\d]+)?$/ || topic_label ==~ /^-[\d].[\d].[\d]$/) {
+                        isDockerPush = true
+                    } else {
+                        isDockerPush = false
+                    }
+
+                    // make aws_ecr_tag.
+                    aws_ecr_tag = pom_version + topic_label
+
+                    // make ecs repositories
+                    aws_ecr_repository_region_list.each { aws_region ->
+                        aws_ecr_repository_list.each { aws_ecr_repository ->
+                            // check exist ecs repository .
+                            def repo_status = sh(script: "aws ecr describe-repositories --repository-names ${aws_ecr_repository.name} --region ${aws_region}", returnStatus: true)
+                            // if not exist, create ecs repository
+                            if(repo_status != 0){
+                                sh "aws ecr create-repository --repository-name ${aws_ecr_repository.name} --region ${aws_region}"
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+//        stage('Unittest') {
+//            steps {
+//                script {
+//                    // unit test
+//                    sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean jacoco:prepare-agent jxr:jxr checkstyle:checkstyle findbugs:findbugs test jacoco:report site -Dmaven.test.failure.ignore=true"
+//
+//                    // make report zip files
+//                    sh "mkdir -p target/report"
+//                    findFiles(glob: '**/site/index.html').collect{(it.path =~ /^([^\/]*)\/?target\/site\//)[0][1]}.each {
+//                        local fromCopyDirName = ""
+//                        local toCopyDirName = ""
+//                        if ( it == '' ) {
+//                            fromCopyDirName = ""
+//                            toCopyDirName = "${artifactId}-parent"
+//                        } else {
+//                            fromCopyDirName = it + "/"
+//                            toCopyDirName = it
+//                        }
+//
+//                        // copy report directory
+//                        sh "cp -Rp ${fromCopyDirName}${CONST_REPORT_DIRECTORY_PATH} ${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/${toCopyDirName}"
+//
+//                        // archive report directory to zip
+//                        zip zipFile:"${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/${toCopyDirName}.zip", dir:"${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/${toCopyDirName}", archive: true
+//                    }
+//
+//                    // archive report
+//                    archiveArtifacts("${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/*.zip")
+//                }
+//            }
+//        }
+        stage('Deploy src') {
+            steps {
+                sh "rm -rf ./.repository"
+                sh "mvn -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean deploy -Dmaven.test.skip=true -DuniqVersion=true -DaltDeploymentRepository=snapshots::default::${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/content/repositories/releases -Dsettings.security=${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/settings-security.xml -Dmaven.repo.local=./.repository"
+                // sh "mvn -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean deploy -Dmaven.test.skip=true -DuniqVersion=true -DaltDeploymentRepository=snapshots::default::${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/content/repositories/releases -Dsettings.security=${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/settings-security.xml"
+            }
+        }
+        stage('Build Docker') {
+            steps {
+                // get library binary [APP]
+                script {
+                    dir("${WORKSPACE}") {
+                        sh "curl -OLs ${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/service/local/repositories/releases/content/com/fastretailing/dcp/${artifactId}/${pom_version}${topic_label}/${artifactId}-${pom_version}${topic_label}.jar"
+                    }
+                }
+
+                // docker build
+                script {
+                    dir("${WORKSPACE}") {
+                        sh "docker build -t ${jenkins_build_tag}:${pom_version}${topic_label} -f ${CONST_BUILD_TEMPLATE_PATH}/Dockerfile --build-arg APP_VERSION=${pom_version}${topic_label} ."
+                    }
+                }
+            }
+        }
+        stage('Push Docker') {
+            steps {
+                script {
+                    try {
+                        // docker login & push
+                        if (isDockerPush) {
+                            aws_ecr_repository_region_list.each { aws_region ->
+                                aws_ecr_domain = CONST_ECR_DOMAIN.replaceFirst("\\{0\\}", aws_account).replaceFirst("\\{1\\}", aws_region)
+                                aws_ecr_repository_list.each { aws_ecr_repository ->
+                                    sh "docker tag ${jenkins_build_tag}:${aws_ecr_tag} ${aws_ecr_domain}/${aws_ecr_repository.name}:${aws_ecr_tag}"
+                                    sh "`aws ecr get-login --no-include-email --region ${aws_region}` && docker push ${aws_ecr_domain}/${aws_ecr_repository.name}:${aws_ecr_tag}"
+                                    sh "docker rmi ${aws_ecr_domain}/${aws_ecr_repository.name}:${aws_ecr_tag}"
+                                }
+                            }
+                        }
+                    } finally {
+                        // docker image delete
+                        sh "docker rmi ${jenkins_build_tag}:${aws_ecr_tag}"
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml versions:revert"
+        }
+    }
+}

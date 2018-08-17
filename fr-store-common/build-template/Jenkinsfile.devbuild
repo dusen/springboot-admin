@@ -1,0 +1,95 @@
+//------------------------------------------------------------------------------
+// JenkinsFile
+//------------------------------------------------------------------------------
+// Build Constant
+def CONST_BUILD_TEMPLATE_PATH = "build-template"
+def CONST_REPORT_DIRECTORY_PATH = "target/site"
+def CONST_ARCHIVE_REPORTS_DIRECTORY_PATH = "target/report"
+def CONST_ENVIRONMENT_DEPENDENT_CONFIG = "environment_dependent_config"
+def CONST_AWS_ECS_CONFIG = "aws_ecs_config"
+
+// Build Variable
+def topic_label
+def artifactId
+def build_environment
+def pom_version
+def nexus_protcol
+def nexus_domain
+def nexus_port
+def aws_account
+def buildConfig
+def git_repository_name
+
+pipeline {
+    agent any
+    tools { 
+        jdk 'openjdk-1.8.0'
+        maven 'maven3.5.2'
+    }
+    stages {
+        stage('init') {
+            steps {
+                script {
+                    git_repository_name = sh (script:"echo -n ${env.GIT_URL} | sed -e 's|^.*/\\(.\\+\\)\\.git\$|\\1|g'", returnStdout: true)
+                    topic_label = sh (script:"echo -n ${env.GIT_BRANCH} | sed -e 's|^develop||g'", returnStdout: true)
+                    aws_account = sh (script:"aws sts get-caller-identity | jq -r '.Account'", returnStdout: true).trim()
+
+                    buildConfig = readJSON file: "${WORKSPACE}/${CONST_BUILD_TEMPLATE_PATH}/config.json"
+                    build_environment = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].build_environment
+                    nexus_protcol = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_protcol
+                    nexus_domain = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_domain
+                    nexus_port = buildConfig[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account].nexus_port
+
+                    artifactId = buildConfig[CONST_AWS_ECS_CONFIG][git_repository_name].artifactid
+
+                   //  pom_version = sh (script:"mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '^\\[' | grep -v 'Download'", returnStdout: true).trim()
+                   //  sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml versions:set -DnewVersion=${pom_version}${topic_label}"
+                }
+            }
+        }
+//        stage('Unittest') {
+//            steps {
+//                script {
+//                    // unit test
+//                    sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean jacoco:prepare-agent jxr:jxr checkstyle:checkstyle findbugs:findbugs test jacoco:report site -Dmaven.test.failure.ignore=true -Dspring.profiles.active=${build_environment}"
+//                    
+//                    // make report zip files
+//                     sh "mkdir -p target/report"
+//                     findFiles(glob: '**/site/index.html').collect{(it.path =~ /^([^\/]*)\/?target\/site\//)[0][1]}.each {
+//                        local fromCopyDirName = ""
+//                        local toCopyDirName = ""
+//                        if ( it == '' ) {
+//                            fromCopyDirName = ""
+//                            toCopyDirName = "${artifactId}-parent"
+//                        } else {
+//                            fromCopyDirName = it + "/"
+//                            toCopyDirName = it
+//                        }
+//
+//                       // copy report directory
+//                        sh "cp -Rp ${fromCopyDirName}${CONST_REPORT_DIRECTORY_PATH} ${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/${toCopyDirName}"
+//
+//                       // archive report directory to zip
+//                        zip zipFile:"${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/${toCopyDirName}.zip", dir:"${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/${toCopyDirName}", archive: true
+//                     }
+//
+//                    // archive report
+//                    archiveArtifacts("${CONST_ARCHIVE_REPORTS_DIRECTORY_PATH}/*.zip")
+//                    
+//                }
+//            }
+//        }
+        stage('Deploy src') {
+            steps {
+                sh "rm -rf ./.repository"
+                sh "mvn -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean deploy -Dmaven.test.skip=true -DuniqVersion=true -DaltDeploymentRepository=snapshots::default::${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/content/repositories/releases -Dsettings.security=${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/settings-security.xml -Dmaven.repo.local=./.repository"
+                //sh "mvn -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml clean deploy -Dmaven.test.skip=true -DuniqVersion=true -DaltDeploymentRepository=snapshots::default::${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/content/repositories/releases -Dsettings.security=${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/settings-security.xml"
+            }
+        }
+    }
+    post {
+        always {
+            sh "mvn -f pom.xml -s ${CONST_BUILD_TEMPLATE_PATH}/${build_environment}/setting.xml versions:revert"
+        }
+    }
+}

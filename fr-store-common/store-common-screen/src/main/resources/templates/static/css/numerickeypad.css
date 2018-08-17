@@ -1,0 +1,181 @@
+.numeric-block {
+  overflow: hidden;
+  background: #fafafa;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #d2d2d2;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #5B68D2;
+  height: 236px;
+  margin-left: -86px;
+  padding: 25px;
+  text-shadow: none;
+  width: 192px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 102 !important;
+}
+
+.numeric-block #numkeyclose:after {
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.numeric-block ul li {
+  background: #fff;
+  float: left;
+  list-style: none;
+  border: none;
+  border: #5B68D2 1px solid;
+  border-radius: 0;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  height: 40px;
+  line-height: 40px;
+  margin: 4px;
+  text-align:center;
+  cursor:pointer;
+  opacity: 1;
+  position: absolute;
+  -moz-border-radius: 5px;    
+  -webkit-border-radius: 5px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  zoom: 1;
+  user-select: none; 
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  width: 42px;
+}
+
+.numeric-block ul li:hover {
+  background: #fff;
+  opacity: .6;
+}
+
+.numeric-block ul li span {
+  display: none;
+}
+
+.numeric-block ul li#numerickey1 {
+  left: 20px;
+  top: 120px;
+}
+
+.numeric-block ul li#numerickey2 {
+  left: 71px;
+  top: 120px;
+}
+
+.numeric-block ul li#numerickey3 {
+  left: 122px;
+  top: 120px;
+}
+
+.numeric-block ul li#numkeyclear {
+  left: 233px;
+  top: 8px;
+}
+
+.numeric-block ul li#numerickey4 {
+  left: 20px;
+  top: 70px;
+}
+
+.numeric-block ul li#numerickey5 {
+  left: 71px;
+  top: 70px;
+}
+
+.numeric-block ul li#numerickey6 {
+  left: 122px;
+  top: 70px;
+}
+
+.numeric-block ul li#numkeyclose {
+  left: 233px;
+  top: 73px;
+}
+
+.numeric-block ul li#numerickey7 {
+  left: 20px;
+  top: 20px;
+}
+
+.numeric-block ul li#numerickey8 {
+  left: 71px;
+  top: 20px;
+}
+
+.numeric-block ul li#numerickey9 {
+  left: 122px;
+  top: 20px;
+}
+
+.numeric-block ul li#numerickey0 {
+  left: 20px;
+  top: 169px;
+}
+
+.numeric-block ul li#numkeyclear {
+  left: 71px;
+  top: 169px;
+}
+
+.numeric-block ul li#numkeyclose {
+  left: 122px;
+  top: 169px;
+}
+
+.numeric-keypad-wrap {
+  position: relative;
+}
+
+.numeric-keypad-wrap.input .input-clear {
+  cursor: pointer;
+  display: block;
+  height: 32px;
+  line-height: 1;
+  margin-top: -16px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 30px;
+}
+
+.i-pad .numeric-keypad-wrap.input .input-clear {
+  margin-top: -14px;
+}
+
+.i-pad table .numeric-keypad-wrap.input .input-clear {
+  margin-top: -16px;
+}
+
+.numeric-keypad-wrap.input .input-clear:after,
+.numeric-keypad-wrap.input .input-clear:before {
+  content: "";
+  margin-top: -1px;
+  position: absolute;
+  top: 50%;
+}
+
+.numeric-keypad-wrap.input .input-clear:before {
+  background: #000;
+  height: 2px;
+  left: 10px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  width: 10px;
+}
+
+.numeric-keypad-wrap.input .input-clear:after {
+  background: #000;
+  height: 2px;
+  left: 10px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  width: 10px;
+}

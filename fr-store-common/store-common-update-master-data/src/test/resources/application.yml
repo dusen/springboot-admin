@@ -1,0 +1,243 @@
+####################################################################################################
+# Current platform's information.
+####################################################################################################
+platform:
+  name:
+    short: CMN
+    full: common
+  version: v1
+
+####################################################################################################
+# Context path of the application.
+####################################################################################################
+server:
+  context-path: /${platform.name.full}/${platform.version}
+
+spring:
+  main:
+    banner-mode: 'off'
+  messages:
+    basename: messages,messages-update-master-data
+    cache-seconds: -1
+    encoding: UTF-8
+
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+    
+  transaction:
+    default-timeout: 60
+    
+logging:
+  level:
+     com.fastretailing.dcp: DEBUG
+     org.springframework.web: INFO
+  file: 
+  path: logs
+  
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    
+version: 
+      aws: 1.11.228
+
+default:  
+  bulk-count:
+   10    
+  properties:
+    OBPF0019E01:
+      if-work-table-name: w_type
+      input-table-name: v_type
+      update-type: 1
+      update-target-table-name: m_type
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    OBPF0019E02:
+      if-work-table-name: w_type
+      input-table-name: v_type
+      update-type: 0
+      update-target-table-name: m_type
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    OBPF0019V01:
+      if-work-table-name: w_type
+      input-table-name: v_type
+      update-type: 1
+      update-target-table-name: m_type
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    TEST0019E01:
+      if-work-table-name: w_type
+      input-table-name: v_type
+      update-type: 1
+      update-target-table-name: m_type
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    TESTEAI1E01:
+      if-work-table-name: m_non_item_if_eaitest1_01
+      input-table-name: m_non_item_if_eaitest1_01
+      update-type: 1
+      update-target-table-name: master_eaitest1_01
+      update-key-item: lot_num  
+    TESTEAI1E02:
+      if-work-table-name: m_non_item_if_eaitest1_02
+      input-table-name: m_non_item_if_eaitest1_02
+      update-type: 1
+      update-target-table-name: master_eaitest1_02
+      update-key-item: lot_num  
+    TESTEAI2E01:
+      if-work-table-name: m_non_item_if_eaitest2_01
+      input-table-name: m_non_item_if_eaitest2_01
+      update-type: 1
+      update-target-table-name: master_eaitest2_01
+      update-key-item: lot_num  
+    TESTEAI2E02:
+      if-work-table-name: m_non_item_if_eaitest2_02
+      input-table-name: m_non_item_if_eaitest2_02
+      update-type: 1
+      update-target-table-name: master_eaitest2_02
+      update-key-item: lot_num  
+    TESTEAI9E01:
+      if-work-table-name: m_non_item_if_eaitest9_01
+      input-table-name: m_non_item_if_eaitest9_01
+      update-type: 1
+      update-target-table-name: master_eaitest9_01
+      update-key-item: lot_num  
+    TESTEAI9E02:
+      if-work-table-name: m_non_item_if_eaitest9_02
+      input-table-name: m_non_item_if_eaitest9_02
+      update-type: 1
+      update-target-table-name: master_eaitest9_02
+      update-key-item: lot_num  
+    TESTEAI3E01:
+      if-work-table-name: m_non_item_if_eaitest3_01
+      input-table-name: m_non_item_if_eaitest3_01
+      update-type: 1
+      update-target-table-name: master_eaitest3_01
+      update-key-item: lot_num  
+    TESTEAIXE01:
+      if-work-table-name: m_non_item_if_eaitest_x_01
+      input-table-name: m_non_item_if_eaitest_x_01
+      update-type: 1
+      update-target-table-name: master_eaitest_x_01
+      update-key-item: lot_num     
+    TESTEAI1A01:
+      if-work-table-name: m_non_item_if_eaitest1_all
+      input-table-name: m_non_item_if_eaitest1_all
+      update-type: 0
+      update-target-table-name: master_eaitest1_all
+      update-key-item: lot_num  
+    TESTEAI2A01:
+      if-work-table-name: m_non_item_if_eaitest2_all
+      input-table-name: m_non_item_if_eaitest2_all
+      update-type: 0
+      update-target-table-name: master_eaitest2_all
+      update-key-item: lot_num  
+    TESTEAI9A01:
+      if-work-table-name: m_non_item_if_eaitest9_all
+      input-table-name: m_non_item_if_eaitest9_all
+      update-type: 0
+      update-target-table-name: master_eaitest9_all
+      update-key-item: lot_num  
+    TESTEAI3A01:
+      if-work-table-name: m_non_item_if_eaitest3_all
+      input-table-name: m_non_item_if_eaitest3_all
+      update-type: 0
+      update-target-table-name: master_eaitest3_all
+      update-key-item: lot_num  
+    TESTEAIXA01:
+      if-work-table-name: m_non_item_if_eaitest_x_all
+      input-table-name: m_non_item_if_eaitest_x_all
+      update-type: 0
+      update-target-table-name: master_eaitest_x_all
+      update-key-item: lot_num   
+    INPUTTBLE01:
+        if-work-table-name: w_type_04                     
+        input-table-name: v_type_04                     
+        update-type: 1                      
+        update-target-table-name: master_test_05                      
+        update-key-item: system_brand_code,system_country_code,code_type,code                       
+    INPUTVIEW01:
+        if-work-table-name: w_type_view_05                     
+        input-table-name: v_type_view_05                     
+        update-type: 1                      
+        update-target-table-name: master_test_05                      
+        update-key-item: system_brand_code,system_country_code,code_type,code
+    OBPF0019A02:                                                          
+      if-work-table-name: w_type                                                          
+      update-type: 1                                                          
+      update-target-table-name: m_type                                                          
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    OBPF0019A04:                                                      
+      if-work-table-name: w_type                                                      
+      input-table-name: v_type                                                      
+      update-type: 1                                                      
+      update-key-item: system_brand_code,system_country_code,code_type,code                                                  
+    OBPF0019A05:                                
+      if-work-table-name: w_type                                
+      input-table-name: v_type  
+      update-type: 1                                
+      update-target-table-name: m_type        
+    OBPF0019A01:                                                      
+      input-table-name: v_type                                                      
+      update-type: 1                                                      
+      update-target-table-name: m_type                                                      
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    OBPF0019A03:                                                    
+      if-work-table-name: w_type                                                    
+      input-table-name: v_type                                                    
+      update-target-table-name: m_type                                                    
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    OBPF412E01:                                                     
+      if-work-table-name: w_type                                                      
+      input-table-name: v_type                                                      
+      update-type: 1                                                      
+      update-target-table-name: master_test_02                                                      
+      update-key-item: system_brand_code,system_country_code,code_type,code                                                     
+    OBPF0019E04:                                                          
+      if-work-table-name: w_type                                                          
+      input-table-name: v_type                                                          
+      update-type: 0                                                          
+      update-target-table-name: m_type                                                          
+      update-key-item: system_brand_code,system_country_code,code_type,code                                                 
+    IFTBLNAMENOTEXIT:                                                          
+      if-work-table-name: XXXXX_XX_XXX                                                          
+      input-table-name: v_type                                                          
+      update-type: 0                                                          
+      update-target-table-name: m_type                                                          
+      update-key-item: system_brand_code,system_country_code,code_type,code
+    INPUTTBLNAMENOTEXIT:                                                          
+      if-work-table-name: w_type                                                              
+      input-table-name: XXX_XXX_X01                                                          
+      update-type: 0                                                          
+      update-target-table-name: master_test_02                                                          
+      update-key-item: system_brand_code,system_country_code,code_type,code                 
+    UPDTTAGTBLNAMENOTEXIT:                                                          
+      if-work-table-name: w_type                                                       
+      input-table-name: v_type                                                          
+      update-type: 0                                                          
+      update-target-table-name: XXX_TEST_UT_01
+      update-key-item: system_brand_code,system_country_code,code_type,code         
+    KEYITEMNOTEXIST:                                                          
+      if-work-table-name: w_type                                                       
+      input-table-name: v_type                                                          
+      update-type: 0                                                          
+      update-target-table-name: m_type
+      update-key-item: xxxaaxxx_code,g_business,non_item_code,apply_start_date  
+    UPDATETYPEWRONG:                                                          
+      if-work-table-name: w_type                                                       
+      input-table-name: v_type                                                          
+      update-type: 10                                                          
+      update-target-table-name: m_type
+      update-key-item: xxxaaxxx_code,system_country_code,code_type,code      
+    UPDATEKEYWRONG:                                                          
+      if-work-table-name: w_type                                                       
+      input-table-name: v_type                                                          
+      update-type: 1                                                        
+      update-target-table-name: m_type
+      update-key-item: lot_num.non_item_code\g_business                                       
+    OSLS0002E01:
+      if-work-table-name: w_type
+      input-table-name: v_type
+      update-type: 1
+      update-target-table-name: m_type
+      update-key-item: system_brand_code,system_country_code,code_type,code   

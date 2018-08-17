@@ -1,0 +1,60 @@
+//------------------------------------------------------------------------------
+// JenkinsFile
+//------------------------------------------------------------------------------
+// Build Constant
+def platform_name = "Dcp Common"
+
+def CONST_ENVIRONMENT_DEPENDENT_CONFIG = "environment_dependent_config"
+
+// Build Variable
+def build_environment
+def nexus_protcol
+def nexus_domain
+def nexus_port
+def aws_account
+
+pipeline {
+    agent {
+        label 'docker-build-slave'
+    }
+    options {
+        ansiColor colorMapName: 'XTerm'
+    }
+    tools { 
+        jdk 'openjdk-1.8.0'
+        maven 'maven3.5.2'
+    }
+    stages {
+        stage('init') {
+            steps {
+                script {
+                    sh "rm -rf ./.repository/com/fastretailing"
+                    aws_account = sh (script:"aws sts get-caller-identity | jq -r '.Account'", returnStdout: true).trim()
+                    def config = readJSON file: "build-template/config.json"
+                    build_config = config[CONST_ENVIRONMENT_DEPENDENT_CONFIG][aws_account]
+                    build_environment = build_config.build_environment
+                    nexus_protcol = build_config.nexus_protcol
+                    nexus_domain = build_config.nexus_domain
+                    nexus_port = build_config.nexus_port
+                    sh 'git rev-parse HEAD > COMMIT_ID'
+                    commit_id = readFile('COMMIT_ID')
+                    echo commit_id
+                }
+            }
+        }
+
+        stage("Source build") {
+            steps {
+                script {
+                    try {
+                        sh "mvn -B -s ./build-template/${build_environment}/setting.xml clean deploy -Dmaven.test.skip=true -DuniqVersion=true -DaltDeploymentRepository=snapshots::default::${nexus_protcol}://${nexus_domain}:${nexus_port}/nexus/content/repositories/releases -Dsettings.security=./build-template/${build_environment}/settings-security.xml -Dmaven.repo.local=./.repository"
+                        build job: 'slack_build_notify', parameters: [string(name: 'build_status', value: "SUCCESS"), string(name: 'message', value: "[${platform_name}] ready to depends repositories build\n${commit_id}")]
+                    } catch(Exception e) {
+                        build job: 'slack_build_notify', parameters: [string(name: 'build_status', value: "${currentBuild.result}"), string(name: 'message', value: "[${platform_name}] failed to build\n${BUILD_URL}")]
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+    }
+}

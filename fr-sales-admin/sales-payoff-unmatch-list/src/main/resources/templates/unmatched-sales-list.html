@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="/static/html-base-template :: html-base-template-head(#{unmatched-sales-list.title},~{::link}, ~{::script})">
+<link th:href="@{/static/css/unmatched-sales-list.css}" rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{/static/js/unmatched-sales-list.js}"></script>
+</head>
+<body name="unmatchedSalesList" id="unmatchedSalesListID"
+	th:replace="/static/html-base-template :: html-base-template-body(#{sales-payoff-unmatch-list.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main"
+		th:object="${salesPayoffUnmatchListForm}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{sales-payoff-unmatch-list.breadcrumbs}"></p>
+			</div>
+		</div>
+
+		<input type="hidden" name="indexValue" id="indexValue"
+			th:field="*{indexValue}">
+
+		<div class="option-block">
+			<p class="mr-left-20 fz40 mb15"
+				th:text="#{sales-payoff-unmatch-list.title}"></p>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-payoff-unmatch-list.brandLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="brandSelect">
+							<div class="selectbox-text">
+								<input type="text" th:field="*{systemBrandName}"> <input
+									type="hidden" th:field="*{systemBrandCode}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""
+										th:utext="#{sales-payoff-unmatch-list.select.clear}"></li>
+									<li
+										th:each="systemBrandCodeBrandName : *{systemBrandCodeBrandNameMap}"
+										th:data-value="${systemBrandCodeBrandName.value}"
+										th:data-name="${systemBrandCodeBrandName.key}"><span
+										th:text="${systemBrandCodeBrandName.key}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-payoff-unmatch-list.countryLabel}"></label>
+					</div>
+					<div class="width160 mrMedium">
+						<div class="selectbox" id="countrySelect">
+							<div class="selectbox-text">
+								<input type="text" th:field="*{systemCountryName}"> <input
+									type="hidden" th:field="*{systemCountryCode}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-payoff-unmatch-list.select.clear}"></span></li>
+									<!-- 									<li th:each="name : *{countryList}" th:data-value="${name}" -->
+									<!-- 										th:data-name="${name}"><span th:text="${name}"></span></li> -->
+									<li
+										th:each="systemCountryCodeCountryName : *{systemCountryCodeCountryNameMap}"
+										th:data-value="${systemCountryCodeCountryName.value}"
+										th:data-name="${systemCountryCodeCountryName.key}"><span
+										th:text="${systemCountryCodeCountryName.key}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="width120">
+						<label th:utext="#{sales-payoff-unmatch-list.storeLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160" maxlength="4"
+								th:field="*{viewStoreCode}"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13 mb15">
+				<div class="input-wrap mb0">
+					<div class="width120">
+						<label th:utext="#{sales-payoff-unmatch-list.cashRegisterNoLabel}"></label>
+					</div>
+					<div class="input-elem">
+						<p>
+							<span class="numerickeybord-wrap"><input type="text"
+								class="textbox width160 numerickeybordre" maxlength="3"
+								th:field="*{cashRegisterNo}"> </span>
+						</p>
+					</div>
+					<div class="input-wrap space-between fz13 mb15">
+						<div class="input-wrap">
+							<div class="width120 mr-left-170">
+								<label th:utext="#{sales-payoff-unmatch-list.payoffDateLabel}"></label>
+							</div>
+							<span class="datepicker-span"><input type="text"
+								class="datepicker-text" th:field="*{payoffDateFrom}"></span><span
+								class="input-clear"></span><span class="mr-left-20">～</span> <span
+								class="datepicker-span mr-left-20"><input type="text"
+								class="datepicker-text" th:field="*{payoffDateTo}"> </span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrap space-between fz13">
+				<div class="input-wrap">
+					<div class="width120">
+						<label th:utext="#{sales-payoff-unmatch-list.errorContentsLabel}"></label>
+					</div>
+					<div class="width350">
+						<div class="selectbox" id="errorContentsSelect">
+							<div class="selectbox-text">
+								<input type="text" th:field="*{errorContentsName}"> <input
+									type="hidden" th:field="*{errorContentsCode}">
+							</div>
+							<div class="select-elem">
+								<ul class="category">
+									<li data-value="-1" data-name=""><span
+										th:text="#{sales-payoff-unmatch-list.select.clear}"></span></li>
+									<li th:each="errorContents : *{errorContentsMap}"
+										th:data-value="${errorContents.key}"
+										th:data-name="${errorContents.value}"><span
+										th:text="${errorContents.value}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-right mb10">
+				<a href="javascript:void(0)" id="clearButton"
+					class="button skeleton cancel small mrMedium"
+					th:text="#{sales-payoff-unmatch-list.clearButton}"></a> <a
+					href="javascript:void(0)" class="button skeleton primary small"
+					id="searchButton" onclick="javascript:searchButtonClick(this);"
+					th:attr="data-url=@{/unmatched-sales-list/list}"
+					th:text="#{sales-payoff-unmatch-list.searchButton}"></a>
+			</p>
+		</div>
+
+		<div class="width100per">
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width3em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width5em">
+							<col class="width20em">
+							<col class="width5em">
+							<col class="width10em">
+							<col class="width40em">
+							<col class="width5em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.noLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.brandLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.countryLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.storeLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.storeNameLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.cashRegisterNoLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.payoffDateLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.errorContentsLabel}"></label></th>
+								<th class="text-center"><label
+									th:utext="#{sales-payoff-unmatch-list.table.statusLabel}"></label></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id="divTableBody">
+					<div
+						th:replace="unmatched-sales-list-tableBody :: tableBody(*{salesPayoffUnmatchList})"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer" class="footer">
+		<div class="right-options">
+			<p class="text-right mb10">
+				<a href="javascript:void(0)" class="button skeleton primary small"
+					id="auditButton" onclick="javascript:auditButtonClick(this);"
+					th:attr="data-url=@{/unmatched-sales-list/}"
+					th:text="#{sales-payoff-unmatch-list.auditButton}"> </a>
+			</p>
+		</div>
+	</div>
+	<div id="popup" th:replace="/static/html-popup-template.html::popup"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fastretailing.dcp.sales.common.repository.optional.TenderPaymentOptionalMapper">
+     <resultMap id="BaseResultMap" type="com.fastretailing.dcp.sales.common.entity.optional.TenderPaymentOptional">
+        <result column="payoff_type_code" jdbcType="VARCHAR" property="payoffTypeCode" />
+        <result column="tender_name" jdbcType="VARCHAR" property="tenderName" />
+        <result column="payoff_type_sub_number_code" jdbcType="VARCHAR" property="payoffTypeSubNumberCode" />
+        <result column="payoff_amount_currency_code" jdbcType="VARCHAR" property="payoffAmountCurrencyCode" />
+        <result column="payoff_amount" jdbcType="NUMERIC" property="payoffAmount" />
+     </resultMap>
+     <select id="selectTenderPaymentDataList" parameterType="com.fastretailing.dcp.sales.common.entity.optional.TenderPaymentOptionalCondition" resultMap="BaseResultMap">
+        SELECT /* TenderPaymentOptionalMapper-001 */ 
+		  substring(payoff_type_code from 2) payoff_type_code,
+		  tender_name,
+		  payoff_type_sub_number_code,
+		  payoff_amount_currency_code,
+		  payoff_amount
+		FROM
+		  t_pile_up_pay_off_data tpupod,
+		  m_tender mt
+		WHERE
+		  tpupod.store_code = #{ storeCode }
+		  AND mt.store_code = #{ storeCode }
+		  AND tpupod.payoff_date = #{ payoffDate }
+		  AND tpupod.cash_register_no = #{ cashRegisterNo }
+		  AND mt.ims_tender_id = TO_NUMBER(tpupod.payoff_type_sub_number_code, '000000')
+		  AND tpupod.payoff_type_code = mt.ims_tender_group
+		ORDER BY
+		  payoff_type_code,
+		  payoff_type_sub_number_code
+     </select>
+</mapper>

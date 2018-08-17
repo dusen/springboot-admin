@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.fastretailing.dcp.storecommon.masterupdate.repository.MasterUpdateMapper">
+
+	<select id="countByLotNumber" resultType="int">
+		SELECT /* CMN9900101-001 */
+		COUNT(lot_number) FROM ${tableName} WHERE
+		lot_number = #{lotNumber}
+		<if test=" eaiType != null ">
+			AND eai_update_type IN ('1','2','9')
+		</if>
+	</select>
+
+	<select id="countTableName" resultType="int">
+		SELECT
+		/* CMN9900101-002
+		*/
+		COUNT(table_name)
+		FROM information_schema.tables
+		WHERE
+		table_name =
+		#{tableName}
+	</select>
+
+	<delete id="delete">
+		DELETE
+		/* CMN9900101-003 */
+		FROM
+		${tableName}
+	</delete>
+
+	<select id="getConstraintName" resultType="java.lang.String">
+		SELECT /* CMN9900101-004 */
+		constraint_name
+		FROM
+		information_schema.table_constraints
+		WHERE
+		table_name = #{updateTableName}
+		AND
+		constraint_type = 'PRIMARY KEY'
+	</select>
+
+	<delete id="deleteByLotNumber">
+		DELETE
+		/* CMN9900101-005 */
+		FROM
+		${tableName}
+		WHERE
+		lot_number = #{lotNumber}
+	</delete>
+
+	<select id="getColumnName" resultType="java.lang.String">
+		SELECT
+		/* CMN9900101-006 */
+		pg_attribute.attname
+		FROM pg_class,pg_attribute
+		WHERE
+		pg_attribute.attrelid = pg_class.oid
+		AND
+		pg_class.relname =
+		#{tableName}
+		AND
+		pg_attribute.attnum > 0
+	</select>
+
+	<select id="countEaiUpdateTypeOthers" resultType="int">
+		SELECT
+		/*
+		CMN9900101-007 */
+		COUNT(*)
+		FROM
+		${tableName}
+		WHERE
+		lot_number =
+		#{lotNumber}
+		AND
+		eai_update_type NOT IN ('1', '2','3',
+		'9')
+	</select>
+
+	<select id="getInputData" resultType="java.util.HashMap">
+		SELECT /* CMN9900101-008 */
+		${columnName} AS value ,
+		#{columnType} AS type
+		<if test="fieldName != null">
+			, ${fieldName} AS timeZoneId
+		</if>
+		FROM
+		${tableName}
+		WHERE
+		lot_number = #{lotNumber}
+		AND
+		eai_update_type IN
+		('1', '2', '9')
+		ORDER BY
+		#{key}
+		LIMIT
+		#{size}
+		OFFSET
+		#{startIndex}
+	</select>
+
+	<select id="getColumnType" resultType="java.lang.String">
+		SELECT data_type
+		/*CMN9900101-010 */
+		FROM
+		information_schema.columns AS
+		columnsInfo
+		WHERE
+		columnsInfo.table_name = #{tableName}
+		AND
+		columnsInfo.column_name =
+		#{columnName}
+	</select>
+
+	<insert id="upsert" parameterType="java.util.Map">
+		INSERT INTO ${tableName} /* CMN9900101-011 */
+		<foreach item='column' index='index' collection='updateColumnList'
+			open='(' separator=',' close=')'>
+			${column}
+		</foreach>
+		SELECT
+		<foreach item='updateDataList' index='indexD' collection='updateDataInfoList'
+			separator=','>
+			<foreach item='updateData' index='indexDD' collection='updateDataList'
+				open='unnest(array[' separator=',' close='])'>
+				<choose>
+					<when test=" updateData.type == 'timestamp without time zone'">
+						CAST(#{updateData.value} AS TIMESTAMP)
+					</when>
+					<when test=" updateData.type == 'timestamp with time zone'">
+						CAST(#{updateData.value} AS TIMESTAMP)
+					</when>
+					<when test=" updateData.type == 'time without time zone'">
+						CAST(#{updateData.value} AS TIME)
+					</when>
+					<when test=" updateData.type == 'time with time zone'">
+						CAST(#{updateData.value} AS TIME)
+					</when>
+					<when test=" updateData.type == 'date'">
+						CAST(#{updateData.value} AS DATE)
+					</when>
+					<when test=" updateData.type == 'boolean'">
+						CAST(#{updateData.value} AS BOOLEAN)
+					</when>
+					<otherwise>
+						#{updateData.value}
+					</otherwise>
+				</choose>
+			</foreach>
+		</foreach>
+		ON CONFLICT ON CONSTRAINT ${constraintName} DO UPDATE SET
+		<foreach item='column' index='index' collection='updateColumnList'
+			separator=','>
+			<if
+				test=" column != 'create_user_id' and column != 'create_datetime' and column != 'create_program_id' ">
+				${column} = excluded.${column}
+			</if>
+		</foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozermapper.github.io/schema/bean-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping
+          http://dozermapper.github.io/schema/bean-mapping.xsd">
+
+    <configuration>
+        <date-format>yyyy-MM-dd HH:mm:ss.SSS</date-format>
+        <!-- change collection mapping setting to cumulative  -->
+        <relationship-type>cumulative</relationship-type>
+        <!-- Add converters to dozer-->
+        <custom-converters>
+            <converter type="com.fastretailing.dcp.common.dozer.converters.LocalDateDozerConverter">
+                <class-a>java.time.LocalDate</class-a>
+                <class-b>java.time.LocalDate</class-b>
+            </converter>
+            <converter type="com.fastretailing.dcp.common.dozer.converters.LocalDateTimeDozerConverter">
+                <class-a>java.time.LocalDateTime</class-a>
+                <class-b>java.time.LocalDateTime</class-b>
+            </converter>
+            <converter type="com.fastretailing.dcp.common.dozer.converters.LocalTimeDozerConverter">
+                <class-a>java.time.LocalTime</class-a>
+                <class-b>java.time.LocalTime</class-b>
+            </converter>
+        </custom-converters>
+    </configuration>
+</mappings>

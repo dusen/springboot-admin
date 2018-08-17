@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <m_report_master report_id="TestReportId" 
+        report_type="PDF" country_code="JPN"
+        apply_start_date="2017-12-20" apply_end_date="2018-12-20"
+        report_form_bucket_name="S3BucketName" report_form_key_name="S3Key" 
+        report_title="ReportTitle" report_preservation_period="8"
+        printer_name="PrinterName" outer_command_execute_flag="0"
+        auto_print_server_ip_address="192.168.11.111" 
+        create_datetime="2017-12-01 06:00:09" update_datetime="2017-12-01 06:00:09" />
+</dataset>

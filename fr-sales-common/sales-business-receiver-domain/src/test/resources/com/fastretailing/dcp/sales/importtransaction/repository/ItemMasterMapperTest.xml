@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<m_item system_brand_code="99" system_business_code="1"
+		system_country_code="98" item_code="97" item_code_type="1"
+		view_item_code="1" year_code="1" view_year_type="1" season_code="1"
+		detail_season_code="1" sales_country_code="1" color_code="1"
+		size_code="1" pattern_length_code="1" major_category_code="1"
+		class_code="1" middle_category_code="1" small_category_value="1"
+		item_parent="1" item_crand_parent="1" item_level="1"
+		transaction_level="1" pack_flag="1" simple_item_pack_flag="1"
+		contains_inner_kind="1" sellable_flag="1" orderable_flag="1"
+		pack_status="1" order_unit_type="1" asort_code="1" fob="1"
+		cost_price_sequence="1" stock_buying_type_code="1"
+		initial_selling_price="1" sales_zone_group="1" standard_sales_unit="1"
+		item_name="1" intern_item_name="1" pos_item_name="1"
+		second_pos_item_name="1" external_item_name_1="1"
+		external_item_name_2="1" external_item_name_3="1"
+		external_item_name_4="1" second_item_name="1" picking_shipment_flag="1"
+		direct_delivery_unit_quantity="1" regular_item_flag="1"
+		color_size_management_flag="1" b_item_return_possible_flag="1" status="1"
+		delivery_type_code="1" supplier_code="1" stock_buying_cost="1"
+		packing_quantity="1" picking_unit_quantity="1" selling_price="1"
+		selling_unit="1" taxation_flag="1" batch_region="1" create_user_id="1"
+		create_datetime="2010-03-15 00:00:00" create_program_id="1" update_user_id="1"
+		update_datetime="2010-03-15 00:00:00" update_program_id="1" />
+
+</dataset>

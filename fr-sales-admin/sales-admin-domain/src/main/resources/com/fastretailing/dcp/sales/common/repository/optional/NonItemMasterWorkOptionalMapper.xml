@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.NonItemMasterWorkOptionalMapper">
+	<insert id="insertByLotNumber">
+		INSERT INTO /* NonItemMasterWorkOptionalMapper_001 */ m_non_item
+		(
+		system_country_code,
+		system_brand_code,
+		non_item_code,
+		apply_start_date,
+		apply_end_date,
+		non_item_type,
+		pos_item_name,
+		unit_retail,
+		g_dept_code,
+		major_category_code,
+		tax_rate,
+		tax_type,
+		tax_kind,
+		discount_flag,
+		create_user_id,
+		create_datetime,
+		create_program_id,
+		update_user_id,
+		update_datetime,
+		update_program_id
+		)
+		SELECT
+		system_country_code,
+		system_brand_code,
+		non_item_code,
+		apply_start_date,
+		apply_end_date,
+		non_item_type,
+		pos_item_name,
+		unit_retail,
+		g_dept_code,
+		major_category_code,
+		tax_rate,
+		tax_type,
+		tax_kind,
+		discount_flag,
+		#{createUserId},
+		#{createDatetime},
+		#{createProgramId},
+		#{updateUserId},
+		#{updateDatetime},
+		#{updateProgramId}
+		FROM
+		m_non_item_if
+		WHERE
+		lot_num = #{lotNum}
+	</insert>
+</mapper>

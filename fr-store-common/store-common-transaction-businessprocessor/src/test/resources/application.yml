@@ -1,0 +1,27 @@
+spring:
+  main:
+    banner-mode: 'off'
+  datasource:
+    url: jdbc:postgresql://unittest-db.ap-northeast-1.maintenance:5432/unittest
+    username: testuser
+    password: DxxuireMqm6b
+    driverClassName: org.postgresql.Driver
+
+transaction-dispatch: 
+  channel-code: 10
+  max-thread-count: 1
+  accepting-transaction-type : 10
+  business-process-name: targetStubService
+  queue-capacity: 10
+  business-processor: 
+    partitioning: 
+      total-count: 10
+      partition-number: 1
+  dynamodb:
+    region: ap-northeast-1
+    transaction-status-table: TransactionStatus
+    #expiration-days: 30
+    connection-timeout: 11000
+    request-timeout: 12000
+    backoff-strategy: default
+    max-error-retry: 13

@@ -1,0 +1,19 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+ <m_general_delete_setting 
+  processing_target_type="COMMON"
+  processing_no="1" 
+  delete_target_table="del_config" 
+  saved_days="1"
+  date_item="create_datetime" 
+  system_brand_code="01" 
+  system_country_code="01" 
+  store_code="01" 
+  create_user_id="01"
+  create_datetime="2017-10-01 00:00:00"
+  create_program_id="01"
+  update_user_id="01"
+  update_datetime="2017-10-01 00:00:00"
+  update_program_id="01"
+  />
+</dataset>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div class="selectbox width160 modal-trigger"
+	data-open-modal="select-catelory" id="nonMerchandiseItemSelect"
+	th:object="${storeTransactionInquiryForm}">
+	<div class="selectbox-text">
+		<div class="input-elem">
+			<input type="text" readonly th:field="*{nonMerchandiseItemName}">
+			<input type="hidden" th:field="*{nonMerchandiseItemCode}">
+		</div>
+	</div>
+	<div class="select-elem">
+		<ul class="nonMerchandiseItem" id="groupNonMerchandiseItem"
+			th:each="nonMerchandiseItem : ${storeTransactionInquiryForm.nonMerchandiseItemList}">
+			<li th:data-value="${nonMerchandiseItem.key}"
+				th:data-name="${nonMerchandiseItem.value}" id="display"><span
+				th:text="${nonMerchandiseItem.value}"></span></li>
+		</ul>
+	</div>
+</div>
+</html>

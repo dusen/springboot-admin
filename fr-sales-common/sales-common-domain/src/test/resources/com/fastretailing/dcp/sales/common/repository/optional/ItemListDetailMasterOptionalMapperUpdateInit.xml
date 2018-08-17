@@ -1,0 +1,50 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+	<m_trans_business_code system_country_code="17"
+		system_business_code="017" system_brand_code="1" batch_region="23"
+		create_user_id="mygration" create_datetime="2018-2-9 15:00:00"
+		create_program_id="mygration" update_user_id="mygration"
+		update_datetime="2018-2-9 15:00:00" update_program_id="mygration" />
+	<w_skulist_child eai_update_date="6/15/2018 10:01:42"
+		eai_update_type="1" skulist_code="49019383" item_code="2000084654265"
+		item_level="3" inventory_management_level="0" pack_ind="0" insert_id="mygration"
+		insert_date="2018-2-9 15:00:00" create_datetime="2018-2-9 15:00:00"
+		last_update_datetime="2018-2-9 15:00:00" last_update_id="mygration"
+		main_item_type="F" inner_pack_size="100.5555" logical_delete_type="N"
+		business_code="17" country_code="17" batch_region="10" lot_number="12345678" />
+	<w_skulist_child eai_update_date="6/16/2018 10:01:42"
+		eai_update_type="2" skulist_code="79019383" item_code="2000084654265"
+		item_level="3" inventory_management_level="0" pack_ind="0" insert_id="mygration"
+		insert_date="2018-2-9 15:00:00" create_datetime="2018-2-9 15:00:00"
+		last_update_datetime="2018-2-9 15:00:00" last_update_id="mygration"
+		main_item_type="F" inner_pack_size="100.5555" logical_delete_type="N"
+		business_code="17" country_code="17" batch_region="10" lot_number="12345678" />
+	<w_skulist_child eai_update_date="6/13/2018 10:01:42"
+		eai_update_type="9" skulist_code="39019383" item_code="2000084654265"
+		item_level="3" inventory_management_level="0" pack_ind="0" insert_id="mygration"
+		insert_date="2018-2-9 15:00:00" create_datetime="2018-2-9 15:00:00"
+		last_update_datetime="2018-2-9 15:00:00" last_update_id="mygration"
+		main_item_type="F" inner_pack_size="100.5555" logical_delete_type="N"
+		business_code="17" country_code="17" batch_region="10" lot_number="12345678" />
+	<m_item_list_detail system_brand_code="1"
+		system_business_code="17" system_country_code="17" skulist_code="39019383"
+		item_code="2000084654265" item_level="3" inventory_management_level="0"
+		pack_ind="0" main_item_flag="false" create_user_id="mygration"
+		create_datetime="2018-2-9 15:00:00" create_program_id="mygration"
+		update_user_id="mygration" update_datetime="2018-2-9 15:00:00"
+		update_program_id="mygration" />
+	<m_item_list_detail system_brand_code="1"
+		system_business_code="17" system_country_code="17" skulist_code="49019383"
+		item_code="2000084654265" item_level="3" inventory_management_level="0"
+		pack_ind="0" main_item_flag="false" create_user_id="mygration"
+		create_datetime="2018-2-9 15:00:00" create_program_id="mygration"
+		update_user_id="mygration" update_datetime="2018-2-9 15:00:00"
+		update_program_id="mygration" />
+	<m_item_list_detail system_brand_code="1"
+		system_business_code="17" system_country_code="17" skulist_code="79019383"
+		item_code="2000084654265" item_level="3" inventory_management_level="0"
+		pack_ind="0" main_item_flag="false" create_user_id="mygration"
+		create_datetime="2018-2-9 15:00:00" create_program_id="mygration"
+		update_user_id="mygration" update_datetime="2018-2-9 15:00:00"
+		update_program_id="mygration" />
+</dataset>

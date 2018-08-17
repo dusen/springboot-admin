@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<m_trans_tender store_code="99" tender_id="98"
+		tender_group="97" valid_date="2020-03-15 00:00:00" ims_tender_id="96" ims_tender_group="95"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00" create_program_id="1"
+		update_user_id="1" update_datetime="2010-03-15 00:00:00" update_program_id="1" />
+
+	<m_trans_tender store_code="2" tender_id="2"
+		tender_group="97" valid_date="2020-03-15 00:00:00" ims_tender_id="96" ims_tender_group="95"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00" create_program_id="1"
+		update_user_id="1" update_datetime="2010-03-15 00:00:00" update_program_id="1" />
+
+	<m_trans_tender store_code="3" tender_id="3"
+		tender_group="97" valid_date="2000-03-15 00:00:00" ims_tender_id="96" ims_tender_group="95"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00" create_program_id="1"
+		update_user_id="1" update_datetime="2010-03-15 00:00:00" update_program_id="1" />
+
+</dataset>

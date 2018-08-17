@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+<footer th:fragment="autoprint_footer">
+<script type="text/javascript">
+window.onload = function() {
+	if ($("#jsonRequest").val() === null ||
+			$("#jsonRequest").val() === "" ||
+			$("#jsonRequest").val() === undefined) {
+	} else {
+		executeAutoPrint();
+	}
+}
+function executeAutoPrint(){
+    // URL of Auto print server.
+    var AutoprintUrl = $("#autoPrintUrl").val();
+    // Json Request for Auto print server.
+    var JsonRequest = $("#jsonRequest").val();
+    $.ajax({
+    	headers: {
+    		'Accept': 'application/json',
+    		'Content-Type': 'application/json'
+    	},
+        type : "POST",
+        url : AutoprintUrl,
+        dataType : "json",
+        data : JsonRequest,
+        async: false
+    }).done(function(resultData) {
+        // Success to post
+        alert('The Auto Print Request was succeed to send.');
+    }).fail(function(jqXHR, textStatus, errorThrown){
+        // Failed to post
+        alert('The Auto Print Request was Failed to send.');
+    });
+}
+</script>
+
+  <input type="hidden" th:id="autoPrintUrl" th:value="*{url}">
+  <input type="hidden" th:id="jsonRequest" th:value="*{jsonRequest}">
+  
+</footer>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:object="${salesTransactionErrorListForm}">
+	<div
+		th:replace="sales-transaction-error-list-tableBody :: tableBody(*{salesTransactionErrorList})"></div>
+	<div class="text-right" th:if="!${#lists.isEmpty(salesTransactionErrorListForm.salesTransactionErrorList)}">
+		<label th:utext="#{sales-transaction-error-list.option}"></label>
+		<div class="inputWrap spaceBetween fz13 mb15">
+			<div class="input-elem">
+				<div class="radio-btn">
+					<input type="radio"value="1" checked> 
+					<label th:utext="#{sales-transaction-error-list.uploadWithoutCorrection}"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

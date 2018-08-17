@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.StoreTransactionInquiryOptionalMapper">
+	<select id="selectByCountryBrandCode"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.NonItemMasterOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-001 */
+		non_item_code,
+		Max(pos_item_name)
+		FROM
+		m_non_item
+		WHERE
+		system_country_code = #{systemCountryCode}
+		AND system_brand_code =
+		#{systemBrandCode}
+		GROUP BY
+		non_item_code
+		ORDER BY
+		non_item_code
+	</select>
+	<select id="selectPaymentTenderGroup"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.TranslationTenderMasterOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-002 */
+		tender_group,
+		ims_tender_group
+		FROM
+		m_trans_tender
+		WHERE
+		store_code =
+		#{storeCode}
+		GROUP BY
+		tender_group,
+		ims_tender_group
+	</select>
+	<select id="selectPaymentTenderId"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.TranslationTenderMasterOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-003 */
+		tender_id,
+		ims_tender_id
+		FROM
+		m_trans_tender
+		WHERE
+		store_code =
+		#{storeCode}
+		GROUP BY
+		tender_id,
+		ims_tender_id
+	</select>
+	<select id="selectTransactionIdCount" resultType="java.lang.Integer">
+		SELECT /*
+		StoreTransactionInquiryOptionalMapper-004 */
+		count(sales_transaction_id)
+		FROM
+		t_sales_report_transaction_header
+	</select>
+
+	<select id="selectSalesReportTransactionHeaderByCondition"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionHeaderOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-005 */
+		t01.sales_transaction_id
+		,t01.ims_linkage_date
+		,t01.data_creation_date_time
+		,t01.store_code
+		,t01.cash_register_no
+		,t01.receipt_no
+		,t01.operator_code
+		,t01.sales_transaction_type
+		,t01.deposit_value
+		,t01.change_value
+		,t01.deposit_currency_code
+		,t01.change_currency_code
+		from
+		t_sales_report_transaction_header t01
+		where
+		t01.system_brand_code = #{systemBrandCode}
+		and t01.system_country_code = #{systemCountryCode}
+		and t01.store_code = #{storeCode}
+		<if test="salesTransactionType != null and salesTransactionType != ''">
+			and t01.sales_transaction_type = #{salesTransactionType}
+		</if>
+		<if test="cashRegisterNo != null and cashRegisterNo != ''">
+			and t01.cash_register_no = #{cashRegisterNo}
+		</if>
+		<if test="businessDate != null and businessDate != ''">
+			and t01.ims_linkage_date = #{businessDate}
+		</if>
+		<if test="dataCreationDateTimeFrom != null">
+                <![CDATA[
+                  and t01.data_creation_date_time >= #{dataCreationDateTimeFrom}
+                ]]>
+		</if>
+		<if test="dataCreationDateTimeTo != null">
+                <![CDATA[
+                  and t01.data_creation_date_time <= #{dataCreationDateTimeTo}
+                ]]>
+		</if>
+		<if test="casherCode != null and casherCode != ''">
+			and t01.operator_code = #{casherCode}
+		</if>
+		<if test="membershipId != null and membershipId != ''">
+			and t01.customer_id = #{membershipId}
+		</if>
+		<if test="receiptNoFrom != null and receiptNoFrom != ''">
+                <![CDATA[
+                  and t01.receipt_no >= #{receiptNoFrom}
+                ]]>
+		</if>
+		<if test="receiptNoTo != null and receiptNoTo != ''">
+                <![CDATA[
+                  and t01.receipt_no <= #{receiptNoTo}
+                ]]>
+		</if>
+		<if test="depositAmountFrom != null and depositAmountFrom != ''">
+                <![CDATA[
+                  and t01.deposit_value >= #{depositAmountFrom}
+                ]]>
+		</if>
+		<if test="depositAmountTo != null and depositAmountTo != ''">
+                <![CDATA[
+                  and t01.deposit_value <= #{depositAmountTo}
+                ]]>
+		</if>
+		<if test="changeAmountFrom != null and changeAmountFrom != ''">
+                <![CDATA[
+                  and t01.change_value >= #{changeAmountFrom}
+                ]]>
+		</if>
+		<if test="changeAmountTo != null and changeAmountTo != ''">
+                <![CDATA[
+                  and t01.change_value <= #{changeAmountTo}
+                ]]>
+		</if>
+		order by
+		t01.sales_transaction_id desc
+	</select>
+
+
+	<select id="selectSalesReportTransactionDetailByCondition"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionItemDetailOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-006 */
+			t02.sales_transaction_id
+			, t02.detail_sub_number
+			, t02.l3_pos_product_name
+			, t02.l3_item_code
+			, t02.detail_quantity
+			, t02.retail_unit_price_tax_excluded_currency_code
+			, t02.retail_unit_price_tax_included_currency_code
+			, t02.retail_unit_price_tax_excluded
+			, t02.retail_unit_price_tax_included
+			, t02.non_md_code
+			, t02.taxation_type
+		from
+			t_sales_report_transaction_detail t02
+		where
+			t02.sales_transaction_id = #{transactionId}
+			<if test="taxationType != null and taxationType != ''">
+				and t02.taxation_type = #{taxationType}
+			</if>
+			<if test="nonMerchandiseItemList != null">
+				and t02.non_md_code in
+				<foreach collection="nonMerchandiseItemList" item="nonMerchandiseItem"
+					index="index" open="(" close=")" separator=",">
+					#{nonMerchandiseItem}
+				</foreach>
+			</if>
+			<if test="itemCode != null and itemCode != ''">
+				and t02.l3_item_code = #{itemCode}
+			</if>
+	</select>
+	
+	<select id="selectSalesReportTransactionDiscountDetailByCondition"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionDiscountDetailOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-007 */
+			t03.sales_transaction_id
+			,t03.promotion_type
+		    ,t03.promotion_no
+		    ,t03.detail_sub_number
+			,t03.store_discount_type
+			,t03.discount_quantity
+			,t03.discount_amount_tax_excluded_currency_code
+			,t03.discount_amount_tax_included_currency_code
+			,t03.discount_amount_tax_excluded
+			,t03.discount_amount_tax_included
+		from
+			t_sales_report_transaction_discount t03
+		where
+ 			t03.sales_transaction_id = #{transactionId}
+	</select>
+	
+	<select id="selectSalesReportTransactionTaxDetailByCondition"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.repository.optional.SalesReportTransactionTaxOptionalMapper">
+		SELECT /* StoreTransactionInquiryOptionalMapper-008 */
+		t04.sales_transaction_id
+		, t04.tax_group
+		, t04.tax_amount_sign
+		, t04.tax_amount_currency_code
+		, t04.tax_amount_value
+		from
+		t_sales_report_transaction_tax t04
+		where
+		t04.sales_transaction_id = #{transactionId}
+		and
+ 		t04.detail_sub_number = '0'
+	</select>
+
+	<select id="selectSalesReportTransactionTenderDetailByCondition"
+		parameterType="com.fastretailing.dcp.sales.common.entity.optional.StoreTransactionInquiryCondition"
+		resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesReportTransactionTenderOptional">
+		SELECT /* StoreTransactionInquiryOptionalMapper-009 */
+			t05.sales_transaction_id
+			, t06.ims_tender_group
+			, t05.tender_id
+			, t05.tender_group
+			, t05.payment_sign
+			, t05.tax_included_payment_amount_currency_code
+			, t05.tax_included_payment_amount_value
+		from
+			t_sales_report_transaction_header t01,
+			t_sales_report_transaction_tender t05,
+			m_trans_tender t06
+		where
+			t01.sales_transaction_id = t05.sales_transaction_id
+			and t05.sales_transaction_id = #{transactionId}
+			and t05.tender_id = t06.ims_tender_id
+			 <![CDATA[
+			and t01.order_status_last_update_date_time <= t06.valid_date
+			 ]]>
+		<if test="paymentTenderGroup != null and paymentTenderGroup != ''">
+			and t05.tender_group = #{paymentTenderGroup}
+		</if>
+		<if test="paymentTenderId != null and paymentTenderId != ''">
+			and t05.tender_id = #{paymentTenderId}
+		</if>
+		<if test="paymentAmountFrom != null and paymentAmountFrom != ''">
+                <![CDATA[
+                  and t05.tax_included_payment_amount_value >= #{paymentAmountFrom} 
+                ]]>
+		</if>
+		<if test="paymentAmountTo != null and paymentAmountTo != ''">
+                <![CDATA[
+                  and t05.tax_included_payment_amount_value <= #{paymentAmountTo}
+                ]]>
+		</if>
+	</select>
+
+</mapper>

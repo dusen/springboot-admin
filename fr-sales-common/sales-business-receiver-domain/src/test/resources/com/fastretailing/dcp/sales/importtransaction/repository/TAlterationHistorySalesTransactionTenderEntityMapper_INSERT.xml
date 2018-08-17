@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<t_alteration_history_sales_transaction_tender
+		transaction_id="0" order_sub_number="0" sales_transaction_id="0"
+		tender_group="0" tender_id="0" history_type="0"
+		sales_transaction_error_id="0" payment_sign="0"
+		tax_included_payment_amount_currency_code="0"
+		tax_included_payment_amount_value="0" tender_sub_number="0"
+		create_user_id="0" create_datetime="2010-03-15 00:00:00"
+		create_program_id="0" update_user_id="0" update_datetime="2018-03-15 00:00:00"
+		update_program_id="0" />
+	<t_alteration_history_sales_transaction_tender
+		transaction_id="1" order_sub_number="1" sales_transaction_id="1"
+		tender_group="1" tender_id="1" history_type="1"
+		sales_transaction_error_id="1" payment_sign="1"
+		tax_included_payment_amount_currency_code="1"
+		tax_included_payment_amount_value="1" tender_sub_number="1"
+		create_user_id="1" create_datetime="2010-03-15 00:00:00"
+		create_program_id="1" update_user_id="1" update_datetime="2018-03-15 00:00:00"
+		update_program_id="1" />
+
+</dataset>

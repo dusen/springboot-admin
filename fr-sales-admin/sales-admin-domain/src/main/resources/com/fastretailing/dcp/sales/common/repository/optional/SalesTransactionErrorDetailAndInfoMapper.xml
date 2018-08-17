@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fastretailing.dcp.sales.common.repository.optional.SalesTransactionErrorDetailAndInfoMapper">
+	<resultMap id="BaseResultMap" type="java.lang.String">
+	    <result column="system_brand_code" jdbcType="VARCHAR" property="systemBrandCode" />
+	</resultMap>
+	<select id="getDetailAndInfo"  resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionDetailAndInfo">
+		SELECT <!-- SalesTransactionErrorDetailAndInfoMapper-01 -->
+		  detail.transaction_id
+		  , detail.order_sub_number
+		  , detail.sales_transaction_id
+		  , detail.detail_sub_number
+		  , detail.item_detail_sub_number
+		  , detail.sales_transaction_type
+		  , detail.system_brand_code
+		  , detail.l2_item_code
+		  , detail.display_l2_item_code
+		  , detail.l2_product_name
+		  , detail.l3_item_code
+		  , detail.l3_pos_product_name
+		  , detail.product_classification
+		  , detail.non_md_type
+		  , detail.non_md_code
+		  , detail.service_code
+		  , detail.epc_code
+		  , detail.g_department_code
+		  , detail.major_category_code
+		  , detail.quantity_code
+		  , detail.detail_quantity
+		  , detail.item_cost_currency_code
+		  , detail.item_cost_value
+		  , detail.initial_selling_price_currency_code
+		  , detail.initial_selling_price
+		  , detail.bclass_price_currency_code
+		  , detail.bclass_price
+		  , detail.new_price_currency_code
+		  , detail.new_price
+		  , detail.retail_unit_price_tax_excluded_currency_code
+		  , detail.retail_unit_price_tax_excluded
+		  , detail.retail_unit_price_tax_included_currency_code
+		  , detail.retail_unit_price_tax_included
+		  , detail.sales_amount_tax_excluded_currency_code
+		  , detail.sales_amount_tax_excluded
+		  , detail.sales_amount_tax_included_currency_code
+		  , detail.sales_amount_tax_included
+		  , detail.calculation_unavailable_type
+		  , detail.order_status_update_date
+		  , detail.order_status_last_update_date_time
+		  , detail.order_status
+		  , detail.order_substatus
+		  , detail.booking_store_code
+		  , detail.booking_store_system_brand_code
+		  , detail.booking_store_system_business_code
+		  , detail.booking_store_system_country_code
+		  , detail.shipment_store_code
+		  , detail.shipment_store_system_brand_code
+		  , detail.shipment_store_system_business_code
+		  , detail.shipment_store_system_country_code
+		  , detail.receipt_store_code
+		  , detail.receipt_store_system_brand_code
+		  , detail.receipt_store_system_business_code
+		  , detail.receipt_store_system_country_code
+		  , detail.contribution_sales_representative
+		  , detail.customer_id
+		  , detail.bundle_purchase_applicable_quantity
+		  , detail.bundle_purchase_applicable_price_currency_code
+		  , detail.bundle_purchase_applicable_price
+		  , detail.bundle_purchase_index
+		  , detail.limited_amount_promotion_count
+		  , detail.store_item_discount_type
+		  , detail.store_item_discount_currency_code
+		  , detail.store_item_discount_setting
+		  , detail.store_bundle_sale_flag
+		  , detail.store_bundle_sale_price_currency_code
+		  , detail.store_bundle_sale_price
+		  , detail.set_sales_detail_index
+		  , detail.taxation_type
+		  , detail.tax_system_type
+		  , detailinfo.key_code
+		  , detailinfo.code_value_1
+		  , detailinfo.code_value_2
+		  , detailinfo.code_value_3
+		  , detailinfo.code_value_4
+		  , detailinfo.name_1
+		  , detailinfo.name_2
+		  , detailinfo.name_3
+		  , detailinfo.name_4 
+		FROM
+		  t_sales_error_sales_transaction_detail detail 
+		  LEFT JOIN t_sales_error_sales_transaction_detail_info detailinfo 
+		    ON detail.transaction_id = detailinfo.transaction_id 
+		    AND detail.transaction_id = detailinfo.transaction_id 
+		    AND detail.order_sub_number = detailinfo.order_sub_number 
+		    AND detail.sales_transaction_id = detailinfo.sales_transaction_id 
+		    AND detail.detail_sub_number = detailinfo.detail_sub_number 
+		WHERE
+		  detail.transaction_id = #{transactionId}
+		ORDER BY
+		  detail.detail_sub_number asc
+		  , detailinfo.detail_sub_number asc; 
+	</select>
+	<select id="getTenderAndInfo" resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionTenderAndInfo">
+	SELECT <!-- SalesTransactionErrorDetailAndInfoMapper-02 -->
+	  tender.transaction_id
+	  , tender.order_sub_number
+	  , tender.sales_transaction_id
+	  , tender.tender_group
+	  , tender.tender_id
+	  , tender.tender_sub_number
+	  , tender.payment_sign
+	  , tender.tax_included_payment_amount_currency_code
+	  , tender.tax_included_payment_amount_value
+	  , tenderinfo.discount_value_currency_code
+	  , tenderinfo.discount_value
+	  , tenderinfo.discount_rate
+	  , tenderinfo.discount_code_id_corporate_id
+	  , tenderinfo.coupon_type
+	  , tenderinfo.coupon_discount_amount_setting_currency_code
+	  , tenderinfo.coupon_discount_amount_setting_value
+	  , tenderinfo.coupon_min_usage_amount_threshold_currency_code
+	  , tenderinfo.coupon_min_usage_amount_threshold_value
+	  , tenderinfo.coupon_user_id
+	  , tenderinfo.card_no
+	  , tenderinfo.credit_approval_code
+	  , tenderinfo.credit_processing_serial_number
+	  , tenderinfo.credit_payment_type
+	  , tenderinfo.credit_payment_count
+	  , tenderinfo.credit_affiliated_store_number 
+	FROM
+	  t_sales_error_sales_transaction_tender tender 
+	  LEFT JOIN t_sales_error_sales_transaction_tender_info tenderinfo 
+	    ON tender.order_sub_number = tenderinfo.order_sub_number 
+	    AND tender.sales_transaction_id = tenderinfo.sales_transaction_id 
+	    AND tender.tender_group = tenderinfo.tender_group 
+	    AND tender.tender_id = tenderinfo.tender_id 
+	    AND tender.tender_sub_number = tenderinfo.tender_sub_number 
+	WHERE
+	  tender.transaction_id = #{transactionId}
+	ORDER BY
+	  tender.order_sub_number asc
+	  , tenderinfo.order_sub_number asc
+	</select>
+	
+	<select id="getErrorEvacuationDetailAndInfo"  resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionDetailAndInfo">
+		SELECT <!-- SalesTransactionErrorDetailAndInfoMapper-03 -->
+		  detail.transaction_id
+		  , detail.order_sub_number
+		  , detail.sales_transaction_id
+		  , detail.detail_sub_number
+		  , detail.item_detail_sub_number
+		  , detail.sales_transaction_type
+		  , detail.system_brand_code
+		  , detail.l2_item_code
+		  , detail.display_l2_item_code
+		  , detail.l2_product_name
+		  , detail.l3_item_code
+		  , detail.l3_pos_product_name
+		  , detail.product_classification
+		  , detail.non_md_type
+		  , detail.non_md_code
+		  , detail.service_code
+		  , detail.epc_code
+		  , detail.g_department_code
+		  , detail.major_category_code
+		  , detail.quantity_code
+		  , detail.detail_quantity
+		  , detail.item_cost_currency_code
+		  , detail.item_cost_value
+		  , detail.initial_selling_price_currency_code
+		  , detail.initial_selling_price
+		  , detail.bclass_price_currency_code
+		  , detail.bclass_price
+		  , detail.new_price_currency_code
+		  , detail.new_price
+		  , detail.retail_unit_price_tax_excluded_currency_code
+		  , detail.retail_unit_price_tax_excluded
+		  , detail.retail_unit_price_tax_included_currency_code
+		  , detail.retail_unit_price_tax_included
+		  , detail.sales_amount_tax_excluded_currency_code
+		  , detail.sales_amount_tax_excluded
+		  , detail.sales_amount_tax_included_currency_code
+		  , detail.sales_amount_tax_included
+		  , detail.calculation_unavailable_type
+		  , detail.order_status_update_date
+		  , detail.order_status_last_update_date_time
+		  , detail.order_status
+		  , detail.order_substatus
+		  , detail.booking_store_code
+		  , detail.booking_store_system_brand_code
+		  , detail.booking_store_system_business_code
+		  , detail.booking_store_system_country_code
+		  , detail.shipment_store_code
+		  , detail.shipment_store_system_brand_code
+		  , detail.shipment_store_system_business_code
+		  , detail.shipment_store_system_country_code
+		  , detail.receipt_store_code
+		  , detail.receipt_store_system_brand_code
+		  , detail.receipt_store_system_business_code
+		  , detail.receipt_store_system_country_code
+		  , detail.contribution_sales_representative
+		  , detail.customer_id
+		  , detail.bundle_purchase_applicable_quantity
+		  , detail.bundle_purchase_applicable_price_currency_code
+		  , detail.bundle_purchase_applicable_price
+		  , detail.bundle_purchase_index
+		  , detail.limited_amount_promotion_count
+		  , detail.store_item_discount_type
+		  , detail.store_item_discount_currency_code
+		  , detail.store_item_discount_setting
+		  , detail.store_bundle_sale_flag
+		  , detail.store_bundle_sale_price_currency_code
+		  , detail.store_bundle_sale_price
+		  , detail.set_sales_detail_index
+		  , detail.taxation_type
+		  , detail.tax_system_type
+		  , detailinfo.key_code
+		  , detailinfo.code_value_1
+		  , detailinfo.code_value_2
+		  , detailinfo.code_value_3
+		  , detailinfo.code_value_4
+		  , detailinfo.name_1
+		  , detailinfo.name_2
+		  , detailinfo.name_3
+		  , detailinfo.name_4 
+		FROM
+		  t_error_evacuation_sales_transaction_detail detail 
+		  LEFT JOIN t_error_evacuation_sales_transaction_detail_info detailinfo 
+		    ON detail.transaction_id = detailinfo.transaction_id 
+		    AND detail.transaction_id = detailinfo.transaction_id 
+		    AND detail.order_sub_number = detailinfo.order_sub_number 
+		    AND detail.sales_transaction_id = detailinfo.sales_transaction_id 
+		    AND detail.detail_sub_number = detailinfo.detail_sub_number 
+		WHERE
+		  detail.transaction_id = #{transactionId}
+		ORDER BY
+		  detail.detail_sub_number asc
+		  , detailinfo.detail_sub_number asc; 
+	</select>
+	<select id="getErrorEvacuationTenderAndInfo" resultType="com.fastretailing.dcp.sales.common.entity.optional.SalesErrorSalesTransactionTenderAndInfo">
+	SELECT <!-- SalesTransactionErrorDetailAndInfoMapper-04 -->
+	  tender.transaction_id
+	  , tender.order_sub_number
+	  , tender.sales_transaction_id
+	  , tender.tender_group
+	  , tender.tender_id
+	  , tender.tender_sub_number
+	  , tender.payment_sign
+	  , tender.tax_included_payment_amount_currency_code
+	  , tender.tax_included_payment_amount_value
+	  , tenderinfo.discount_value_currency_code
+	  , tenderinfo.discount_value
+	  , tenderinfo.discount_rate
+	  , tenderinfo.discount_code_id_corporate_id
+	  , tenderinfo.coupon_type
+	  , tenderinfo.coupon_discount_amount_setting_currency_code
+	  , tenderinfo.coupon_discount_amount_setting_value
+	  , tenderinfo.coupon_min_usage_amount_threshold_currency_code
+	  , tenderinfo.coupon_min_usage_amount_threshold_value
+	  , tenderinfo.coupon_user_id
+	  , tenderinfo.card_no
+	  , tenderinfo.credit_approval_code
+	  , tenderinfo.credit_processing_serial_number
+	  , tenderinfo.credit_payment_type
+	  , tenderinfo.credit_payment_count
+	  , tenderinfo.credit_affiliated_store_number 
+	FROM
+	  t_error_evacuation_sales_transaction_tender tender 
+	  LEFT JOIN t_error_evacuation_sales_transaction_tender_info tenderinfo 
+	    ON tender.order_sub_number = tenderinfo.order_sub_number 
+	    AND tender.sales_transaction_id = tenderinfo.sales_transaction_id 
+	    AND tender.tender_group = tenderinfo.tender_group 
+	    AND tender.tender_id = tenderinfo.tender_id 
+	    AND tender.tender_sub_number = tenderinfo.tender_sub_number 
+	WHERE
+	  tender.transaction_id = #{transactionId}
+	ORDER BY
+	  tender.order_sub_number asc
+	  , tenderinfo.order_sub_number asc
+	</select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version=  "1.0" encoding = "UTF-8"?>
+<dataset>
+	<t_salesreport_management store_code="1234567890"
+		business_date="20180621" reception_number="123" system_brand_code="1234"
+		system_business_code="1234567890" system_country_code="123"
+		create_user_id="BATCH" create_datetime="2018-03-08 05:13:53"
+		create_program_id="SLS0800103" update_user_id="BATCH" update_datetime="2018-03-08 05:13:53"
+		update_program_id="SLS0800103" />
+</dataset>
+

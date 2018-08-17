@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SalesAdmin 画面起動用ダミーページ</title>
+<script type="text/javascript" th:src="@{static/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/sales-admin-index.js}"></script>
+</head>
+  <body>
+    <h2>SalesAdmin 画面起動用ダミーページ</h2>
+
+    <h3>Startup screen URL.</h3>
+    <input type="hidden" id="contextPath" th:value="${contextPath}" />
+    <input type="hidden" id="screenPath" value="screen" />
+	URL：<span id="showFullPath"></span><br/>
+    <span>[[${contextPath}]]/</span>
+    <input type='text' id='brandPath' th:value="${brand}" />
+    <span>/</span>
+    <input type='text' id='regionPath' th:value="${region}" /> 
+    <span>/screen/</span>
+    <input type='text' id='startupPath' value='sales-transaction-history-list' /> <br/>
+    <hr />
+
+    <form method='post' id='formWindowOpen' name='formWindowOpen'>
+      <h3>POST parameter.</h3>
+	<table>
+      <tr>
+      	<td width="150">storeCode：</td>
+      	<td width="200"><input type='text' id='storeCode' name='storeCode' 
+      		th:value="${session.storeCode}" /></td>
+      </tr>
+      <tr>
+      	<td width="150">userId：</td>
+      	<td width="200"><input type='text' id='userId' name='userId' 
+      		th:value="${session.userId}" /></td>
+      </tr>
+      <tr>
+      	<td width="150">defaultLocale：</td>
+      	<td width="200"><input type='text' id='defaultLocale' name='defaultLocale' 
+      		th:value="${commonBaseForm.defaultLocale}" /></td>
+      </tr>
+      <tr>
+      	<td width="150">specifyLocale：</td>
+      	<td width="200"><input type='text' id='specifyLocale' name='specifyLocale' 
+      		th:value="${commonBaseForm.specifyLocale}" /></td>
+      </tr>
+      <tr>
+      	<td width="150">brandCode：</td>
+      	<td width="200"><input type='text' id='brandCode' name='brandCode' 
+      		th:value="${commonBaseForm.brandCode}" /></td>
+      </tr>
+      <tr>
+      	<td width="150">countryCode：</td>
+      	<td width="200"><input type='text' id='countryCode' name='countryCode' 
+      		th:value="${commonBaseForm.countryCode}" /></td>
+      </tr>
+	    </table>
+    </form>
+
+    <br />
+    
+    <input type='button' id='submitButton' name='submitButton' value='起動！！' />
+
+  </body>
+</html>
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="tableBody(salesTransactionErrorList)" id="table_content">
+	<table id="dataTable"
+		class="common-table width100per cell-color-change">
+		<colgroup>
+			<col class="width10em">
+			<col class="width3em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width5em">
+			<col class="width20em">
+			<col class="width8em">
+			<col class="width8em">
+			<col class="width5em">
+			<col class="width15em">
+			<col class="width10em">
+			<col class="width30em">
+			<col class="width15em">
+		</colgroup>
+		<tbody>
+			<tr class="v-align-middle item_list_tr"
+				th:each="info , stat: ${salesTransactionErrorList}">
+				<td class="text-center">
+					<div class="checkbox">
+						<div class="checkbox">
+							<input th:id="|${stat.index}_checkbox|" class="select_checkbox" type="checkbox">
+							<label class="fz13" th:for="|${stat.index}_checkbox|"> </label>
+						</div>
+					</div>
+				</td> 
+				<td class="text-center" ><a th:text="${stat.index + 1}" onclick="javascript:void(0)" href="javascript:void(0)" class="noLink"></a>
+				<input type="hidden" class="checkFlagInput" th:field="*{salesTransactionErrorList[__${stat.index}__].checkFlag}">
+				<input type="hidden" th:field="*{salesTransactionErrorList[__${stat.index}__].salesTransactionErrorId}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.brandCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].brandCode}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.countryCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].countryCode}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.storeCode:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].storeCode}">
+					<input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].realStoreCode}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.storeName:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].storeName}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.cashRegisterNo:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].cashRegisterNo}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.receiptNo:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].receiptNo}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.salesTransactionType:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].salesTransactionType}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.dataCreationDate:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].dataCreationDate}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.businessDate:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].businessDate}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.errorContents:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].errorContents}">
+				</td>
+				<td class="text-center"><label
+					th:text="${info != null ? info.status:''}"></label> <input
+					type="hidden"
+					th:field="*{salesTransactionErrorList[__${stat.index}__].status}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

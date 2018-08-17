@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="static/html-base-template :: html-base-template-head(#{brand-country-setting-edit.title},~{::link}, ~{::script})">
+<link th:href="@{static/css/brand-country-setting-edit.css}"
+	rel="stylesheet" />
+<script type="text/javascript"
+	th:src="@{static/js/store-setting-list.js}"></script>
+</head>
+<body
+	th:replace="static/html-base-template :: html-base-template-body(#{brand-country-setting-edit.title},~{::#main},~{::#footer},~{::#popup})">
+	<div class="contents" id="main" th:object="${storeSettingForm}">
+		<input type="hidden" id="detailErrorMsg"
+			th:value="*{detailError != null ? detailError.toJsonString() : null}" />
+		<input type="hidden" th:field="*{storeCode}"> <input
+			type="hidden" th:field="*{storeBrandCode}"> <input
+			type="hidden" th:field="*{storeCountryCode}"> <input
+			type="hidden" th:field="*{stateCode}"> <input type="hidden"
+			th:field="*{businessCode}"><input type="hidden"
+			th:field="*{count}"><input type="hidden"
+			th:field="*{pageData}"><input type="hidden"
+			th:field="*{storeName}"><input type="hidden"
+			th:field="*{viewStoreCode}"><input type="hidden"
+			th:field="*{countryName}"><input type="hidden"
+			th:field="*{brandName}"><input type="hidden"
+			th:field="*{codeL1}">
+		<div id="breadcrumbs">
+			<div>
+				<p>
+					<a href="#" class="icon icon-home">Home</a>
+				</p>
+				<p class="separator">＞</p>
+				<p>
+					<a href="#" th:onclick="'PopUpUtil.util.doTransition(this.id, \'/brand-country-setting-edit/backSearch\');'"
+					 	th:text="#{brand-country-setting-edit.breadcrumbs}"></a>
+				</p>
+				<p class="separator">＞</p>
+				<p th:text="#{store-setting-list.breadcrumbs}"></p>
+			</div>
+		</div>
+		<div class="option-block">
+			<div class="mb50"></div>
+			<div class="input-wrap space-between fz13">
+				<div class="input-wrap mb0">
+					<div class="width120 text-center">
+						<label th:utext="#{brand-country-setting-edit.brandLabel}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:text="*{brandName}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:utext="#{brand-country-setting-edit.countryLabel}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:text="*{countryName}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:utext="#{brand-country-setting-edit.storeLabel}"></label>
+					</div>
+					<div class="width120 text-center">
+						<label th:text="*{viewStoreCode}"></label>
+					</div>
+					<div class="width120">
+						<label th:text="*{storeName}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="width80per input-left">
+			<p class="text-right mb20">
+				<a href="#" class="button skeleton primary small"
+					onclick="PopUpUtil.util.doTransition(null, '/brand-country-setting-edit/delete')"
+					th:text="#{store-setting-list.deleteButton}"></a>
+			</p>
+			<div class="th-fixed">
+				<div class="th-fixed-head">
+					<table class="common-table width100per">
+						<colgroup>
+							<col class="width3em">
+							<col class="width15em">
+							<col class="width5em">
+						</colgroup>
+						<thead>
+							<tr class="v-align-middle">
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.noLabel}"></th>
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.countryLabel}"></th>
+								<th class="text-center"
+									th:utext="#{brand-country-setting-edit.table.statusLabel}"></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id="divTableBody">
+					<div
+						th:replace="store-setting-list-tableBody :: tableBody(*{storeSettingList})"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer" class="footer">
+		<div class="right-options"></div>
+	</div>
+	<div id="popup" th:replace="static/html-popup-template.html::popup"></div>
+</body>
+</html>
